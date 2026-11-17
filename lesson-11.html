@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>L11 为什么他可以没有固定止盈止损</title>
+
+<style>
+.nav{position:sticky;top:0;z-index:50;background:#1a202c;padding:8px 14px;display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif}
+.nav a{color:#e2e8f0;text-decoration:none;font-size:13px;padding:3px 10px;border-radius:999px;background:#2d3748}
+.nav a:hover{background:#4a5568}
+.nav a.cur{background:#c05621;color:#fff;font-weight:600}
+.nav a.home{background:#2b6cb0}
+.nav .sp{color:#718096;font-size:12px;margin:0 4px}
+</style>
+</head>
+<body style="margin:0;background:#f7fafc">
+<nav class="nav"><a class="home" href="index.html">目录主页</a><a class="" href="lesson-01.html">L01 本金保护</a><a class="" href="lesson-02.html">L02 盈亏同源</a><a class="" href="lesson-03.html">L03 交易模式</a><a class="" href="lesson-04.html">L04 看什么</a><a class="" href="lesson-05.html">L05 技术分析</a><a class="" href="lesson-06.html">L06 交易纪律</a><a class="" href="lesson-07.html">L07 切换原理</a><a class="" href="lesson-08.html">L08 成长</a><a class="" href="lesson-09.html">L09 实操学习</a><a class="" href="lesson-10.html">L10 随手单</a><a class="cur" href="lesson-11.html">L11 止盈止损</a><span class="sp">点击跳转复看</span></nav>
+<style>
+  :root{--ink:#1a202c;--sub:#4a5568;--line:#e2e8f0;--bg:#f7fafc;--accent:#c05621;--accent2:#2b6cb0;--good:#276749;--warn:#9b2c2c;--card:#fff}
+  *{box-sizing:border-box}
+  .doc{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;color:var(--ink);background:var(--bg);padding:28px 20px 60px;line-height:1.8;max-width:980px;margin:0 auto}
+  .doc h1{font-size:26px;margin:0 0 4px}
+  .doc h2{font-size:19px;margin:34px 0 10px;padding-left:10px;border-left:4px solid var(--accent)}
+  .doc h3{font-size:16px;margin:20px 0 8px;color:var(--accent2)}
+  .doc p{margin:8px 0}
+  .meta{color:var(--sub);font-size:13px;margin-bottom:16px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin:12px 0}
+  .goal{background:#fffaf0;border-color:#fbd38d}
+  .warn{background:#fff5f5;border-color:#feb2b2}
+  .good{background:#f0fff4;border-color:#9ae6b4}
+  .note{background:#ebf8ff;border-color:#90cdf4}
+  table{width:100%;border-collapse:collapse;font-size:13px;background:var(--card);border-radius:8px;overflow:hidden;margin:8px 0}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+  th{background:#edf2f7;font-weight:600}
+  td.num{white-space:nowrap;font-variant-numeric:tabular-nums}
+  .tag{display:inline-block;font-size:11px;padding:1px 8px;border-radius:999px;background:#edf2f7;color:var(--sub);margin-right:4px}
+  .p1{background:#feebc8;color:#7b341e}.p2{background:#bee3f8;color:#2a4365}.p3{background:#c6f6d5;color:#22543d}.p4{background:#fed7e2;color:#702459}
+  a{color:var(--accent2);text-decoration:none}a:hover{text-decoration:underline}
+  .formula{background:#1a202c;color:#f7fafc;border-radius:8px;padding:12px 16px;font-family:"SF Mono",Menlo,monospace;font-size:13px;margin:10px 0;overflow-x:auto;line-height:1.9}
+  .formula b{color:#f6ad55}
+  .q{border-left:3px solid var(--accent2);padding-left:12px;margin:12px 0}
+  .ans{color:var(--good);font-size:13px;margin-top:4px}
+  .next{margin-top:24px;padding:14px 18px;border:1px dashed var(--accent);border-radius:10px;background:#fffaf0;font-size:14px}
+  .small{font-size:12.5px;color:var(--sub)}
+  details{margin:8px 0}summary{cursor:pointer;color:var(--accent2);font-size:13.5px}
+  .cheat{columns:2;column-gap:24px}.cheat li{margin:6px 0;break-inside:avoid}
+  ul,ol{margin:6px 0 6px 20px;padding:0}li{margin:3px 0}
+  .demo{background:#1a202c;border-radius:12px;padding:18px 20px;color:#f7fafc;margin:14px 0}
+  .demo h4{margin:0 0 10px;font-size:15px;color:#f6ad55}
+  .demo .btns{display:flex;flex-wrap:wrap;gap:8px}
+  .demo button{border:0;border-radius:8px;padding:8px 12px;font-size:12.5px;cursor:pointer;background:#2d3748;color:#e2e8f0;font-family:inherit}
+  .demo button:hover{background:#4a5568}
+  .demo button.on{background:#c05621;color:#fff}
+  .demo .out{margin-top:12px;background:#2d3748;border-radius:8px;padding:12px 14px;font-size:13px;line-height:1.9;min-height:66px}
+  .demo .out b{color:#f6ad55}
+  .flash{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:10px 0;cursor:pointer}
+  .flash .front{font-weight:600}
+  .flash .back{display:none;margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);color:var(--good)}
+  .flash.open .back{display:block}
+  .flash .hint{font-size:11.5px;color:var(--sub);float:right;font-weight:400}
+  @media(max-width:640px){.cheat{columns:1}}
+</style>
+
+<div class="doc">
+  <div class="card" style="padding:10px 14px;margin:0 0 14px">
+    <b>课程目录</b>　<span class="small">L01 本金保护 · L02 盈亏同源 · L03 交易模式 · L04 看什么 · L05 技术分析 · L06 交易纪律 · L07 切换原理 · L08 成长 · L09 实操学习 · L10 随手单 · <b>L11 止盈止损（本课）</b> · L12–L13 方法 · L14–L25 认知心智</span><br>
+    <span class="small">导航口令：「目录」看全表 ｜「下一课」推进 ｜「重讲 Lxx」换方式重讲 ｜「我讲给你听 Lxx」＝费曼关卡 ｜ 直接提问＝答疑</span><br>
+    <span class="small">总览入口：<a href="trees.html">十课知识树</a> ｜ <a href="cases.html">十课真实案例</a>（每课正文内也有各自的知识树与真实案例）</span>
+  </div>
+
+  <h1>第十一课：为什么他可以没有固定止盈止损——预期和操作的统一</h1>
+  <div class="meta">《豆子悟道 · 股票系统学习课》L11 ｜ 模块三 光速提升·方法 ｜ 源自原视频《光速提升：为什么我没有固定的止盈止损》（0:50，<a href="https://www.bilibili.com/video/BV1oWLg6hEcg">BV1oWLg6hEcg</a>）｜ <b>本讲义是消化后的讲解</b>：视频短小精悍，内核已展开为完整教学，不需要看视频 ｜ 2026-11-16</div>
+
+  <div class="card goal">
+    <b>这节课讲什么</b>
+    <p style="margin:6px 0 0">一句话：<b>他"没有固定止盈止损"，不是"没有止盈止损"——而是不固定数字、固定逻辑。止盈止损是模式的内生变量，必须与你的预期（赚钱效应）统一。</b></p>
+    <p style="margin:6px 0 0">视频 50 秒给了完整答案：不同模式、不同标的，对浮盈浮亏的承受能力不同；固定套用别人的止盈止损，会与你当下的赚钱效应不符；对专一的模式，你心里要有"大概多少钱止盈、多少钱止损"的预期——只是不要刻板地要一个数。本课把这段话展开成可执行的出场设计。</p>
+  </div>
+
+  <h2><span class="tag p4">图</span>本课知识树（思维导图）</h2>
+  <p class="small">从左向右生长：根＝本课主张，一级分支＝主题，向右展开概念；右上角编号＝关联（见图例）。</p>
+  <div style="overflow-x:auto;margin:10px 0">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 780" role="img" aria-labelledby="l11-tree-tree-title l11-tree-tree-desc" style="min-width:1024px;width:100%;height:auto;font-family:'PingFang SC','Microsoft YaHei','Noto Sans SC',-apple-system,sans-serif">
+    <title id="l11-tree-tree-title">L11 止盈止损知识树</title>
+    <desc id="l11-tree-tree-desc">止盈止损的完整层级：真相、统一原则、固定数字之害、心理预期、新手分界，含三条关联。</desc>
+    <defs>
+      <marker id="l11-tree-arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1 L 8 5 L 0 9 z" fill="#2b6cb0"/>
+      </marker>
+    </defs>
+    <path d="M 148 333 C 224 333 224 69 300 69" fill="none" stroke="#b9c3d0" stroke-width="1.6"/>
+    <path d="M 396 69 C 478 69 478 25 560 25" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 69 C 478 69 478 69 560 69" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 69 C 478 69 478 113 560 113" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 148 333 C 224 333 224 201 300 201" fill="none" stroke="#b9c3d0" stroke-width="1.6"/>
+    <path d="M 396 201 C 478 201 478 157 560 157" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 201 C 478 201 478 201 560 201" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 201 C 478 201 478 245 560 245" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 148 333 C 224 333 224 333 300 333" fill="none" stroke="#b9c3d0" stroke-width="1.6"/>
+    <path d="M 404 333 C 482 333 482 289 560 289" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 404 333 C 482 333 482 333 560 333" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 404 333 C 482 333 482 377 560 377" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 148 333 C 224 333 224 465 300 465" fill="none" stroke="#b9c3d0" stroke-width="1.6"/>
+    <path d="M 396 465 C 478 465 478 421 560 421" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 465 C 478 465 478 465 560 465" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 465 C 478 465 478 509 560 509" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 148 333 C 224 333 224 597 300 597" fill="none" stroke="#b9c3d0" stroke-width="1.6"/>
+    <path d="M 396 597 C 478 597 478 553 560 553" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 597 C 478 597 478 597 560 597" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 597 C 478 597 478 641 560 641" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 194 C 466 194 474 333 404 333" fill="none" stroke="#2b6cb0" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#l11-tree-arr)"/>
+    <path d="M 396 465 C 466 465 466 69 396 69" fill="none" stroke="#2b6cb0" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#l11-tree-arr)"/>
+    <path d="M 396 597 C 466 597 466 208 396 208" fill="none" stroke="#2b6cb0" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#l11-tree-arr)"/>
+    <rect x="560" y="8" width="112" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="30" font-size="12" font-weight="600" fill="#1a202c">看起来没有固定</text>
+    <rect x="560" y="52" width="124" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="74" font-size="12" font-weight="600" fill="#1a202c">实际每个模式都有</text>
+    <rect x="560" y="96" width="148" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="118" font-size="12" font-weight="600" fill="#1a202c">不固定数字·固定逻辑</text>
+    <rect x="300" y="52" width="96" height="34" rx="8" fill="#ffffff" stroke="#1a202c" stroke-width="1.2"/>
+    <text x="313" y="74" font-size="13" font-weight="600" fill="#1a202c">真相</text>
+    <rect x="560" y="140" width="100" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="162" font-size="12" font-weight="600" fill="#1a202c">操作服从预期</text>
+    <rect x="560" y="184" width="136" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="206" font-size="12" font-weight="600" fill="#1a202c">不同标的承受力不同</text>
+    <rect x="560" y="228" width="160" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="250" font-size="12" font-weight="600" fill="#1a202c">套用别人＝不符赚钱效应</text>
+    <rect x="300" y="184" width="96" height="34" rx="8" fill="#ffffff" stroke="#1a202c" stroke-width="1.2"/>
+    <text x="313" y="206" font-size="13" font-weight="600" fill="#1a202c">统一原则</text>
+    <rect x="560" y="272" width="112" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="294" font-size="12" font-weight="600" fill="#1a202c">砍右尾（趋势）</text>
+    <rect x="560" y="316" width="124" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="338" font-size="12" font-weight="600" fill="#1a202c">洗盘被洗（打板）</text>
+    <rect x="560" y="360" width="160" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="382" font-size="12" font-weight="600" fill="#1a202c">逻辑没变就下车（价值）</text>
+    <rect x="300" y="316" width="104" height="34" rx="8" fill="#ffffff" stroke="#1a202c" stroke-width="1.2"/>
+    <text x="313" y="338" font-size="13" font-weight="600" fill="#1a202c">固定数字之害</text>
+    <rect x="560" y="404" width="124" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="426" font-size="12" font-weight="600" fill="#1a202c">专一模式要有预期</text>
+    <rect x="560" y="448" width="168" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="470" font-size="12" font-weight="600" fill="#1a202c">多少钱止盈/止损心里有数</text>
+    <rect x="560" y="492" width="112" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="514" font-size="12" font-weight="600" fill="#1a202c">不刻板要一个数</text>
+    <rect x="300" y="448" width="96" height="34" rx="8" fill="#ffffff" stroke="#1a202c" stroke-width="1.2"/>
+    <text x="313" y="470" font-size="13" font-weight="600" fill="#1a202c">心理预期</text>
+    <rect x="560" y="536" width="120" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="558" font-size="12" font-weight="600" fill="#1a202c">外生护栏（L01）</text>
+    <rect x="560" y="580" width="100" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="602" font-size="12" font-weight="600" fill="#1a202c">成熟后内生化</text>
+    <rect x="560" y="624" width="112" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="646" font-size="12" font-weight="600" fill="#1a202c">没有≠没有固定</text>
+    <rect x="300" y="580" width="96" height="34" rx="8" fill="#ffffff" stroke="#1a202c" stroke-width="1.2"/>
+    <text x="313" y="602" font-size="13" font-weight="600" fill="#1a202c">新手分界</text>
+    <rect x="24" y="303" width="124" height="60" rx="8" fill="rgba(192,86,33,0.08)" stroke="#c05621" stroke-width="1.4"/>
+    <text x="38" y="329" font-size="15" font-weight="600" fill="#1a202c">L11 止盈止损</text>
+    <text x="38" y="349" font-size="11" fill="#4a5568">预期和操作的统一</text>
+    <circle cx="392" cy="56" r="8" fill="#2b6cb0"/>
+    <text x="392" y="60" text-anchor="middle" font-size="10" font-weight="600" fill="#fff">1</text>
+    <circle cx="392" cy="188" r="8" fill="#2b6cb0"/>
+    <text x="392" y="192" text-anchor="middle" font-size="10" font-weight="600" fill="#fff">2</text>
+    <circle cx="400" cy="320" r="8" fill="#2b6cb0"/>
+    <text x="400" y="324" text-anchor="middle" font-size="10" font-weight="600" fill="#fff">3</text>
+    <circle cx="392" cy="452" r="8" fill="#2b6cb0"/>
+    <text x="392" y="456" text-anchor="middle" font-size="10" font-weight="600" fill="#fff">4</text>
+    <circle cx="392" cy="584" r="8" fill="#2b6cb0"/>
+    <text x="392" y="588" text-anchor="middle" font-size="10" font-weight="600" fill="#fff">5</text>
+    <line x1="10" y1="676" x2="1014" y2="676" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="10" y="692" font-size="12" font-weight="600" fill="#1a202c">关联图例</text>
+    <text x="86" y="692" font-size="12" fill="#4a5568">① 外生数字与内生赚钱效应不符＝三种死法</text>
+    <text x="86" y="714" font-size="12" fill="#4a5568">② 心理预期范围→不固定数字、固定逻辑</text>
+    <text x="86" y="736" font-size="12" fill="#4a5568">③ 先外生护栏活下来，再内生化出场</text>
+  </svg>
+  </div>
+
+  <h2><span class="tag p1">一</span>问题的真相：他"没有固定"，但不是"没有"</h2>
+  <p>先把标题的误读拆掉。很多人看到"没有固定止盈止损"，理解成"高手都不设止损、扛单就行"——<b>大错</b>。豆子的原话结构是：<b>"看起来我就是没有固定的止盈止损，但实际上对于一个专一的模式来说，你其实可以有一个心理的预期——多少钱止盈、多少钱止损，这还是要有的。只是说不要那么刻板的就是要一个数。"</b></p>
+  <p>所以准确的说法是：<b>不固定数字，固定逻辑。</b>每个模式都有自己的出场方式（L03 的 X 条款），只是这些方式不是"全场统一的 +10%/−5%"，而是跟着模式走的。他同时做几个模式，每个模式的出场不同，合起来看就"没有固定"。</p>
+  <p><b>我的类比</b>：问一个厨师"你放多少盐"，他说"没有固定"——不是不放盐，是<b>每道菜的盐量由菜决定</b>。汤和腌肉的盐量当然不同；但每道菜里，盐是有数的。</p>
+
+  <h2><span class="tag p1">二</span>核心原则：预期和操作的统一</h2>
+  <p>视频的关键句：<b>"它的关键点在于预期和操作的统一。"</b>展开：你对一笔交易的<b>预期</b>（它靠什么赚钱、正常波动多大、什么时候算兑现/证伪），必须和你的<b>操作</b>（何时止盈、何时止损）一致。</p>
+  <p>为什么统一这么重要？因为<b>不同模式、不同标的，对浮盈浮亏的承受能力完全不同</b>（视频原话）。打板模式的正常波动是 ±8%，趋势模式的正常回撤是 −3% 连发，价值长线的正常波动是 −20% 且可能持续一年。你用同一个"−5% 止损"去套三者：打板被洗、趋势刚好、价值被割——<b>同一个数字，三种命运</b>。</p>
+  <div class="formula">预期 ↔ 操作 的统一检验（每笔下单前问）：
+① 我这笔的预期是什么？（赚什么钱、正常波动多大、什么算兑现/证伪）
+② 我的止盈/止损，是不是这个预期的<b>直接翻译</b>？
+③ 如果答案是"因为别人都设 −5%"——不统一，改。</div>
+
+  <h2><span class="tag p2">三</span>为什么固定数字会害你：与赚钱效应不符</h2>
+  <p>视频原话：<b>"如果你固定的套用市面上其他人的止盈或者止损的话，它有可能与你当下所做的赚钱效应是不符的，这样就不好。"</b>用数字看"不符"的三种死法：</p>
+  <div class="formula">死法① 砍右尾（趋势模式套固定止盈）：
+模式分布 35 笔 +9% / 65 笔 −3% → E=+1.2%/笔
+套"+3% 止盈" → 35×3% − 65×3% = <b>−0.9%/笔</b>（由正转负，L02 已证）
+死法② 洗盘被洗（打板模式套固定止损）：
+模式正常洗盘 −8%，你设 −5% → 洗盘单全被洗出，错过随后 +15% 的兑现
+死法③ 逻辑没变就下车（价值长线套固定止盈）：
+年化锚 10% 的标的，+20% 止盈 → 在低估修复中途下车，错过后续复利</div>
+  <p><b>共同点</b>：固定数字是<b>外生的</b>（从别人那里抄来的），而赚钱效应是<b>内生的</b>（你的模式自己的）。外生数字套内生逻辑＝拿别人的鞋量自己的脚。</p>
+
+  <h2><span class="tag p2">四</span>专一模式的"心理预期"：不固定数字、固定逻辑</h2>
+  <p>那正确的出场长什么样？视频给了答案：<b>对专一的模式，心里要有"大概多少钱止盈、多少钱止损"的预期</b>——注意是"心理预期"（一个范围/一个逻辑），不是"刻板的一个数"。对照 L03 老龙反抽板的 X 条款，就是"固定逻辑"的样板：</p>
+  <table>
+    <thead><tr><th>模式</th><th>止盈逻辑（预期兑现）</th><th>止损逻辑（预期证伪）</th><th>心理预期范围</th></tr></thead>
+    <tbody>
+      <tr><td>打板/老龙反抽</td><td>次日溢价兑现；转强连板则格局到转弱</td><td>没封板/次日低开＝低于预期，开盘走</td><td>赚 +5~15%，亏 −5~8%</td></tr>
+      <tr><td>趋势跟踪</td><td>让利润奔跑，趋势转弱才走</td><td>跌破趋势结构/固定小止损（−3%）</td><td>赚靠右尾，亏小亏连发</td></tr>
+      <tr><td>价值长线</td><td>估值修复到合理/逻辑兑现</td><td>买入逻辑被证伪（不是跌了就卖）</td><td>容忍 −20% 波动，看逻辑不看价</td></tr>
+    </tbody>
+  </table>
+  <p><b>读法</b>：每一行的止盈/止损都是<b>预期的翻译</b>——"溢价兑现"翻译自"我赚的是次日溢价"，"逻辑证伪"翻译自"我赚的是低估修复"。数字范围是心理锚，触发条件是逻辑。<b>这就是"没有固定"的真身：数字不固定，逻辑固定。</b></p>
+
+  <h2><span class="tag p2">五</span>新手与成熟者的分界：外生护栏 → 内生化</h2>
+  <p>这里必须加一条豆子没明说、但课程逻辑要求的边界：<b>"没有固定止盈止损"是模式成熟者的特权，不是新手的许可证。</b></p>
+  <p>新手还没有"专一的模式"，也就没有"内生逻辑"可翻译——此时<b>外生护栏是保护</b>：L01 的单笔风险 1–2% ＋ 固定止损幅度（用来算仓位），L06 的大亏/大赚空仓。这些"固定数字"在成熟者手里是束缚，在新手手里是<b>救生圈</b>。</p>
+  <p>成长路径（接 L08/L13）：先有外生护栏活下来 → 小钱实盘练出专一模式（L09）→ 模式三检验通过（L03）→ 把出场从"固定数字"升级为"预期翻译"（本课）→ 模式成熟的表现（L13）。<b>顺序不能反：先护栏，后内生。</b></p>
+  <div class="card warn">
+    <b>最危险的误读</b>
+    <p class="small" style="margin:6px 0 0">把"没有固定"读成"没有止损"。LTCM（L06 案例）就是"没有止损"的机构版——诺奖阵容也爆仓。<b>"没有固定"≠"没有"；扛单不是内生化，是放弃出场。</b>豆子的大亏空仓（L06）一直都在——那是模式级的止损，比单笔止损更硬。</p>
+  </div>
+
+  <h2><span class="tag p2">六</span>落地：给你的模式写出场逻辑（X 条款模板）</h2>
+  <p>把本课变成动作：对你正在用的（或想用的）模式，填这张表——填不出"预期"那一列，就说明你还没有模式，先用外生护栏。</p>
+  <div class="card note">
+    <p style="margin:6px 0 0"><b>X 条款模板</b>：① 我赚的是什么钱（预期来源）→ ② 什么信号算兑现（止盈逻辑）→ ③ 什么信号算证伪（止损逻辑）→ ④ 正常波动范围（心理锚，不是触发器）→ ⑤ 模式级止损（大亏空仓条件，L06）。</p>
+    <p class="small" style="margin:6px 0 0">例（打板）：① 次日溢价 ② 次日高开不转强→兑现；转强连板→格局到转弱 ③ 没封板/低开→开盘走 ④ ±8% ⑤ 封板率+溢价双降→停用。</p>
+  </div>
+
+  <h2><span class="tag p4">七</span>可视化件：出场逻辑对照器</h2>
+  <p class="small">选一个模式，看它的正确出场逻辑，以及套用固定 +10%/−5% 的后果。</p>
+  <div class="demo">
+    <h4>出场逻辑对照器</h4>
+    <div class="btns" id="btns">
+      <button data-k="a">打板/老龙反抽</button>
+      <button data-k="b">趋势跟踪</button>
+      <button data-k="c">价值长线</button>
+      <button data-k="d">新手·还没有模式</button>
+    </div>
+    <div class="out" id="out">👆 点一个模式，这里显示出场逻辑与固定数字的后果。</div>
+  </div>
+  <script>
+    var VERDICT = {
+      a: '<b>正确出场</b>：次日溢价兑现／转强连板格局到转弱；没封板或低开＝低于预期，开盘走。<br><b>套固定 −5% 止损</b>：正常洗盘 −8% 会把你洗出去，错过 +15% 兑现。<b>套固定 +10% 止盈</b>：多数溢价单到不了 +10% 就回落，把 +6% 变成 +2%。',
+      b: '<b>正确出场</b>：让利润奔跑，趋势转弱才走；小止损 −3% 连发是门票。<br><b>套固定 +10% 止盈</b>：砍掉右尾大肉，E 由正转负（L02）。<b>套固定 −10% 止损</b>：单笔风险过大，连败即进指数区（L01）。',
+      c: '<b>正确出场</b>：估值修复到合理／买入逻辑证伪才走；容忍 −20% 波动。<br><b>套固定 +20% 止盈</b>：低估修复中途下车，错过复利。<b>套固定 −10% 止损</b>：在"越跌越买"的低估区割肉——把加仓点变成止损点。',
+      d: '<b>你还没有内生逻辑</b>——此时固定数字是救生圈不是束缚：单笔风险 1–2%＋固定止损幅度算仓位（L01），大亏/大赚空仓（L06）。先护栏活下来，练出专一模式后再内生化。<b>别学"没有固定"，先学"有护栏"。</b>'
+    };
+    var btns = document.querySelectorAll('#btns button');
+    btns.forEach(function(b){ b.addEventListener('click', function(){
+      btns.forEach(function(x){ x.classList.remove('on'); });
+      b.classList.add('on');
+      document.getElementById('out').innerHTML = VERDICT[b.getAttribute('data-k')];
+    });});
+  </script>
+
+  <h2><span class="tag p4">八</span>真实案例：概念落在盘面上</h2>
+  <p class="small">公开市场事件（数字为约数）。</p>
+  <div class="card"><b>顺控发展 2021：固定止盈砍掉连板大肉</b>
+    <p class="small" style="margin:6px 0 0"><b>事实</b>：21 连板期间，任何"固定 +10% 止盈"都会在第 2 板下车，错过后面 19 板；而"固定 −5% 止损"会在盘中洗盘时被洗出。</p>
+    <p class="small" style="margin:4px 0 0"><b>对应知识点</b>：连板模式的出场是"转弱才走"（预期翻译），不是固定数字——固定数字与赚钱效应不符的极端样本。</p></div>
+  <div class="card"><b>贵州茅台 2014 起涨：固定止盈的长线代价</b>
+    <p class="small" style="margin:6px 0 0"><b>事实</b>：2014 年低估修复启动后十年数十倍；任何"+30% 止盈"都在山脚下车。</p>
+    <p class="small" style="margin:4px 0 0"><b>对应知识点</b>：价值长线的止盈逻辑是"估值修复到合理/逻辑兑现"，固定百分比止盈＝逻辑没变就下车。</p></div>
+  <div class="card"><b>LTCM 1998：把"没有固定"读成"没有"的代价</b>
+    <p class="small" style="margin:6px 0 0"><b>事实</b>：诺奖阵容＋高杠杆＋不认错，4 个月亏约 46%，濒临爆仓、美联储协调救助。</p>
+    <p class="small" style="margin:4px 0 0"><b>对应知识点</b>："没有固定"≠"没有止损"。扛单不是内生化，是放弃出场——模式级止损（大亏空仓）比单笔止损更硬。</p></div>
+
+  <h2><span class="tag p3">九</span>复习巩固</h2>
+  <p>按 1/7/30 天各来一轮。先自己答，再点开卡片对答案。</p>
+  <div class="flash" onclick="this.classList.toggle('open')">
+    <div class="front">L11 · 卡 1："没有固定止盈止损"到底是什么意思？<span class="hint">点击翻面</span></div>
+    <div class="back"><b>不固定数字，固定逻辑。</b>每个模式有自己的出场方式（预期的翻译），合起来看"没有固定"；但专一模式心里要有止盈/止损的预期范围。→ 追问：我的模式的 X 条款，是"预期的翻译"还是"抄来的数字"？</div>
+  </div>
+  <div class="flash" onclick="this.classList.toggle('open')">
+    <div class="front">L11 · 卡 2：为什么固定套用别人的止损会害你？<span class="hint">点击翻面</span></div>
+    <div class="back">因为<b>不同模式/标的对浮盈浮亏的承受能力不同</b>，外生数字与你当下的赚钱效应不符：打板被洗、趋势砍右尾、价值在低估区割肉。→ 追问：我现在的止损数字，是从我的模式波动里算出来的，还是从别人嘴里听来的？</div>
+  </div>
+  <div class="flash" onclick="this.classList.toggle('open')">
+    <div class="front">L11 · 卡 3：新手能学"没有固定止盈止损"吗？<span class="hint">点击翻面</span></div>
+    <div class="back">不能。那是<b>模式成熟者的特权</b>。新手没有内生逻辑，外生护栏（L01 风险预算＋固定止损幅度、L06 空仓纪律）是救生圈。顺序：先护栏→练出专一模式→再内生化。→ 追问：我现在处于哪一阶段？</div>
+  </div>
+
+  <h3>悟道提问（没有标准答案，答案写进你自己的交易笔记）</h3>
+  <div class="card good">
+    <ol style="margin:6px 0 0;padding-left:20px">
+      <li>我的每一笔止损，是"预期证伪"还是"价格到了某个数"？两者差别在哪笔单上最明显？</li>
+      <li>如果我的模式明天被证明逻辑错了，我的出场信号是什么？（写不出来＝还没有模式级止损）</li>
+      <li>"心理预期范围"和"刻板一个数"的差别，在我最近一笔交易里体现为什么？</li>
+    </ol>
+  </div>
+
+  <h2><span class="tag p3">十</span>内化掌握（三关全过＝这课学完）</h2>
+  <div class="card warn">
+    <p style="margin:6px 0 0"><b>关卡一 · 费曼</b>：在聊天里输入「我讲给你听 L11」，重点考你："没有固定≠没有，那到底是什么？"、"新手为什么不能学？"</p>
+    <p style="margin:6px 0 0"><b>关卡二 · 场景判断</b>：你做趋势模式，某笔已 +12%，你的固定止盈是 +10%（抄来的），但趋势结构完好、赚钱效应仍在。你卖不卖？说理由。</p>
+    <details><summary>参考判断与评分点</summary><div class="ans">不卖。趋势模式的止盈逻辑是"趋势转弱才走"，+10% 是外生数字、与赚钱效应不符；结构完好＝预期未兑现完，继续持有（让利润奔跑）。评分点：① 识别固定数字是外生的；② 用模式逻辑（转弱）而非数字判断；③ 知道砍右尾的后果（E 转负）；④ 同时保留小止损/模式级止损（不是扛单）。</div></details>
+    <p style="margin:6px 0 0"><b>关卡三 · 规则产出</b>：用第六节 X 条款模板，给你的模式写出场逻辑五栏（预期来源/兑现信号/证伪信号/波动心理锚/模式级止损）。</p>
+  </div>
+
+  <h2><span class="tag p3">十一</span>作业 · 自测 · 速查</h2>
+  <h4>作业（下次课前完成）</h4>
+  <ol>
+    <li><b>X 条款审计</b>：把你现在用的止盈/止损数字列出来，逐个标注"外生（抄的）/内生（模式算的）"，外生的全部重写为预期翻译。</li>
+    <li><b>波动测量</b>：统计你的模式最近 30 笔的正常波动范围（最大回撤/最大浮盈），用它校准"心理预期范围"。</li>
+    <li><b>阶段自评</b>：写下你处于"外生护栏/内生化"的哪一阶段，以及升级的下一个条件。</li>
+  </ol>
+  <h4>自测（8 题，先答再看答案）</h4>
+  <div class="q">Q1. "没有固定止盈止损"的准确含义？
+    <details><summary>答案</summary><div class="ans">不固定数字、固定逻辑：每个模式有自己预期的翻译式出场；专一模式仍有心理预期范围，只是不刻板要一个数。</div></details></div>
+  <div class="q">Q2. 为什么不同模式不能用同一个止损数字？
+    <details><summary>答案</summary><div class="ans">对浮盈浮亏的承受能力不同（打板±8%、趋势−3%连发、价值−20%）；同一数字套三者＝打板被洗/趋势刚好/价值被割，与赚钱效应不符。</div></details></div>
+  <div class="q">Q3. 趋势模式套 +3% 止盈会怎样？
+    <details><summary>答案</summary><div class="ans">砍右尾：35×3%−65×3%＝−0.9%/笔，由正转负（L02 分布数学）。</div></details></div>
+  <div class="q">Q4. 价值长线的止损逻辑是什么？
+    <details><summary>答案</summary><div class="ans">买入逻辑被证伪才走，不是跌了就卖；容忍 −20% 波动，看逻辑不看价。</div></details></div>
+  <div class="q">Q5. 新手为什么不能学"没有固定"？
+    <details><summary>答案</summary><div class="ans">没有专一模式就没有内生逻辑；外生护栏（风险预算＋固定止损幅度＋空仓纪律）是救生圈。先护栏后内生，顺序不能反。</div></details></div>
+  <div class="q">Q6. "没有固定"和"没有止损"的区别？
+    <details><summary>答案</summary><div class="ans">前者每个模式都有出场逻辑＋模式级止损（大亏空仓）；后者是放弃出场＝扛单（LTCM 反面）。</div></details></div>
+  <div class="q">Q7. X 条款五栏是什么？
+    <details><summary>答案</summary><div class="ans">预期来源／兑现信号（止盈）／证伪信号（止损）／波动心理锚／模式级止损。</div></details></div>
+  <div class="q">Q8. 打板模式的"心理预期范围"大概是什么？
+    <details><summary>答案</summary><div class="ans">赚 +5~15%（溢价/连板），亏 −5~8%（洗盘/低于预期）；触发靠逻辑（封板/溢价/转弱），数字只是锚。</div></details></div>
+
+  <div class="card good"><b>速查卡</b><ul class="cheat" style="margin:6px 0;padding-left:18px">
+    <li>不固定数字，固定逻辑。</li>
+    <li>止盈止损＝预期的翻译。</li>
+    <li>不同模式承受力不同，别套同一个数。</li>
+    <li>外生数字套内生逻辑＝拿别人的鞋量自己的脚。</li>
+    <li>打板被洗／趋势砍右尾／价值低估区割肉＝固定数字三死法。</li>
+    <li>专一模式要有心理预期范围。</li>
+    <li>新手先外生护栏，成熟后内生化。</li>
+    <li>没有固定≠没有；扛单不是内生化。</li>
+    <li>模式级止损（大亏空仓）比单笔更硬。</li>
+    <li>X 条款五栏：来源/兑现/证伪/心理锚/模式级。</li>
+  </ul></div>
+
+  <div class="next"><b>下一讲（L12）：判断一个模式的赚钱效应是否优秀</b>（<a href="https://www.bilibili.com/video/BV1hTRoBjEgp">BV1hTRoBjEgp</a>）——出场逻辑写好了，下一步是判断你的模式本身值不值得做。回「下一课」即跳转，或直接提问。</div>
+  <p class="small" style="margin-top:20px">投资有风险，本课为教育内容，不构成投资建议。数值为教学模拟；案例为公开事件约数。疑问直接问，我换例子重讲。</p>
+</div>
+
+</body>
+</html>
