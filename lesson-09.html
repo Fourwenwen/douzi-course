@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>L09 实操学习的方式</title>
+
+<style>
+.nav{position:sticky;top:0;z-index:50;background:#1a202c;padding:8px 14px;display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif}
+.nav a{color:#e2e8f0;text-decoration:none;font-size:13px;padding:3px 10px;border-radius:999px;background:#2d3748}
+.nav a:hover{background:#4a5568}
+.nav a.cur{background:#c05621;color:#fff;font-weight:600}
+.nav a.home{background:#2b6cb0}
+.nav .sp{color:#718096;font-size:12px;margin:0 4px}
+</style>
+</head>
+<body style="margin:0;background:#f7fafc">
+<nav class="nav"><a class="home" href="index.html">目录主页</a><a class="" href="lesson-01.html">L01 本金保护</a><a class="" href="lesson-02.html">L02 盈亏同源</a><a class="" href="lesson-03.html">L03 交易模式</a><a class="" href="lesson-04.html">L04 看什么</a><a class="" href="lesson-05.html">L05 技术分析</a><a class="" href="lesson-06.html">L06 交易纪律</a><a class="" href="lesson-07.html">L07 切换原理</a><a class="" href="lesson-08.html">L08 成长</a><a class="cur" href="lesson-09.html">L09 实操学习</a><a class="" href="lesson-10.html">L10 随手单</a><span class="sp">点击跳转复看</span></nav>
+<style>
+  :root{--ink:#1a202c;--sub:#4a5568;--line:#e2e8f0;--bg:#f7fafc;--accent:#c05621;--accent2:#2b6cb0;--good:#276749;--warn:#9b2c2c;--card:#fff}
+  *{box-sizing:border-box}
+  .doc{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;color:var(--ink);background:var(--bg);padding:28px 20px 60px;line-height:1.8;max-width:980px;margin:0 auto}
+  .doc h1{font-size:26px;margin:0 0 4px}
+  .doc h2{font-size:19px;margin:34px 0 10px;padding-left:10px;border-left:4px solid var(--accent)}
+  .doc h3{font-size:16px;margin:20px 0 8px;color:var(--accent2)}
+  .doc h4{font-size:15px;margin:16px 0 6px}
+  .doc p{margin:8px 0}
+  .meta{color:var(--sub);font-size:13px;margin-bottom:16px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin:12px 0}
+  .goal{background:#fffaf0;border-color:#fbd38d}
+  .warn{background:#fff5f5;border-color:#feb2b2}
+  .good{background:#f0fff4;border-color:#9ae6b4}
+  .note{background:#ebf8ff;border-color:#90cdf4}
+  table{width:100%;border-collapse:collapse;font-size:13px;background:var(--card);border-radius:8px;overflow:hidden;margin:8px 0}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+  th{background:#edf2f7;font-weight:600}
+  td.num{white-space:nowrap;font-variant-numeric:tabular-nums;text-align:right}
+  .pos{color:var(--good);font-weight:600}.neg{color:var(--warn);font-weight:600}
+  .tag{display:inline-block;font-size:11px;padding:1px 8px;border-radius:999px;background:#edf2f7;color:var(--sub);margin-right:4px}
+  .p1{background:#feebc8;color:#7b341e}.p2{background:#bee3f8;color:#2a4365}.p3{background:#c6f6d5;color:#22543d}.p4{background:#fed7e2;color:#702459}
+  a{color:var(--accent2);text-decoration:none}a:hover{text-decoration:underline}
+  .formula{background:#1a202c;color:#f7fafc;border-radius:8px;padding:12px 16px;font-family:"SF Mono",Menlo,monospace;font-size:13px;margin:10px 0;overflow-x:auto;line-height:1.9}
+  .formula b{color:#f6ad55}
+  .q{border-left:3px solid var(--accent2);padding-left:12px;margin:12px 0}
+  .ans{color:var(--good);font-size:13px;margin-top:4px}
+  .next{margin-top:24px;padding:14px 18px;border:1px dashed var(--accent);border-radius:10px;background:#fffaf0;font-size:14px}
+  .small{font-size:12.5px;color:var(--sub)}
+  details{margin:8px 0}summary{cursor:pointer;color:var(--accent2);font-size:13.5px}
+  .cheat{columns:2;column-gap:24px}.cheat li{margin:6px 0;break-inside:avoid}
+  ul,ol{margin:6px 0 6px 20px;padding:0}li{margin:3px 0}
+  code{background:#edf2f7;border-radius:4px;padding:0 5px;font-size:12.5px}
+  .demo{background:#1a202c;border-radius:12px;padding:18px 20px;color:#f7fafc;margin:14px 0}
+  .demo h4{margin:0 0 10px;font-size:15px;color:#f6ad55}
+  .demo .row{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;margin:8px 0;font-size:13px}
+  .demo input[type=range]{flex:1;min-width:180px;accent-color:#c05621}
+  .demo .val{font-variant-numeric:tabular-nums;color:#f6ad55;font-weight:600;min-width:96px;text-align:right}
+  .demo .out{margin-top:12px;background:#2d3748;border-radius:8px;padding:12px 14px;font-size:13px;line-height:1.9;min-height:66px}
+  .demo .out b{color:#f6ad55}
+  .flash{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:10px 0;cursor:pointer}
+  .flash .front{font-weight:600}
+  .flash .back{display:none;margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);color:var(--good)}
+  .flash.open .back{display:block}
+  .flash .hint{font-size:11.5px;color:var(--sub);float:right;font-weight:400}
+  @media(max-width:640px){.cheat{columns:1}}
+</style>
+
+<div class="doc">
+  <div class="card" style="padding:10px 14px;margin:0 0 14px">
+    <b>课程目录</b>　<span class="small">L01 本金保护 · L02 盈亏同源 · L03 交易模式 · L04 看什么 · L05 技术分析 · L06 交易纪律 · L07 切换原理 · L08 交易记录 · <b>L09 实操学习（本课）</b> · L10–L13 方法 · L14–L25 认知心智</span><br>
+    <span class="small">导航口令：「目录」看全表 ｜「下一课」推进 ｜「重讲 Lxx」换方式重讲 ｜「我讲给你听 Lxx」＝费曼关卡 ｜ 直接提问＝答疑</span>
+    <span class="small">总览入口：<a href="trees.html">十课知识树</a> ｜ <a href="cases.html">十课真实案例</a>（每课正文内也有各自的知识树与真实案例）</span>
+  </div>
+
+  <h1>第九课：实操学习的方式——小钱实盘</h1>
+  <div class="meta">《豆子悟道 · 股票系统学习课》L09 ｜ 模块三 光速提升 · 方法 ｜ 源自原视频《光速提升：进行实操学习的方式》（0:55，<a href="https://www.bilibili.com/video/BV11NRNBdEPz">BV11NRNBdEPz</a>）｜ <b>本讲义是消化后的讲解</b>：视频短小精悍，内核已展开为完整教学，不需要看视频 ｜ 2026-11-01</div>
+
+  <div class="card goal">
+    <b>这节课讲什么</b>
+    <p style="margin:6px 0 0">一句话：<b>实操练习不要去模拟盘，要小钱实盘。</b>这是豆子给出的"光速提升"式答案——视频只有 55 秒，一句话结论，但这句话背后是一整套关于人性、成本和学费的逻辑，值得我们花一整课把它讲透。</p>
+    <p style="margin:6px 0 0">本课回答三个问题：<b>为什么模拟盘练不出真本事</b>（四个理由）；<b>什么是小钱</b>（不影响你生活和心情的钱，附操作化口径和数字）；<b>小钱怎么练才有价值</b>（模式内执行＋记录＋复盘，接 L08）。核心立场：交易是一个向内求的事业，学费必须交，但要用最便宜的价格交。</p>
+  </div>
+
+  <h2><span class="tag p4">图</span>本课知识树（思维导图）</h2>
+  <p class="small">从左向右生长：根＝本课主张，一级分支＝主题，向右展开概念；右上角编号＝关联（见图例）。</p>
+  <div style="overflow-x:auto;margin:10px 0">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 780" role="img" aria-labelledby="l09-tree-tree-title l09-tree-tree-desc" style="min-width:1024px;width:100%;height:auto;font-family:'PingFang SC','Microsoft YaHei','Noto Sans SC',-apple-system,sans-serif">
+    <title id="l09-tree-tree-title">L09 实操学习知识树</title>
+    <desc id="l09-tree-tree-desc">实操学习的完整层级：三条路、模拟盘四宗罪、小钱定义、学费论、怎么练，含三条关联。</desc>
+    <defs>
+      <marker id="l09-tree-arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1 L 8 5 L 0 9 z" fill="#2b6cb0"/>
+      </marker>
+    </defs>
+    <path d="M 148 333 C 224 333 224 47 300 47" fill="none" stroke="#b9c3d0" stroke-width="1.6"/>
+    <path d="M 396 47 C 478 47 478 25 560 25" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 47 C 478 47 478 69 560 69" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 148 333 C 224 333 224 179 300 179" fill="none" stroke="#b9c3d0" stroke-width="1.6"/>
+    <path d="M 404 179 C 482 179 482 113 560 113" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 404 179 C 482 179 482 157 560 157" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 404 179 C 482 179 482 201 560 201" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 404 179 C 482 179 482 245 560 245" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 148 333 C 224 333 224 333 300 333" fill="none" stroke="#b9c3d0" stroke-width="1.6"/>
+    <path d="M 396 333 C 478 333 478 289 560 289" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 333 C 478 333 478 333 560 333" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 333 C 478 333 478 377 560 377" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 148 333 C 224 333 224 465 300 465" fill="none" stroke="#b9c3d0" stroke-width="1.6"/>
+    <path d="M 396 465 C 478 465 478 421 560 421" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 465 C 478 465 478 465 560 465" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 465 C 478 465 478 509 560 509" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 148 333 C 224 333 224 597 300 597" fill="none" stroke="#b9c3d0" stroke-width="1.6"/>
+    <path d="M 396 597 C 478 597 478 553 560 553" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 597 C 478 597 478 597 560 597" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 597 C 478 597 478 641 560 641" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 404 179 C 474 179 466 326 396 326" fill="none" stroke="#2b6cb0" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#l09-tree-arr)"/>
+    <path d="M 396 465 C 466 465 466 47 396 47" fill="none" stroke="#2b6cb0" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#l09-tree-arr)"/>
+    <path d="M 396 597 C 466 597 466 340 396 340" fill="none" stroke="#2b6cb0" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#l09-tree-arr)"/>
+    <rect x="560" y="8" width="128" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="30" font-size="12" font-weight="600" fill="#1a202c">模拟盘/小钱/大钱</text>
+    <rect x="560" y="52" width="136" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="74" font-size="12" font-weight="600" fill="#1a202c">验证模式＋新手感悟</text>
+    <rect x="300" y="30" width="96" height="34" rx="8" fill="#ffffff" stroke="#1a202c" stroke-width="1.2"/>
+    <text x="313" y="52" font-size="13" font-weight="600" fill="#1a202c">三条路</text>
+    <rect x="560" y="96" width="112" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="118" font-size="12" font-weight="600" fill="#1a202c">绕过了人性本身</text>
+    <rect x="560" y="140" width="136" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="162" font-size="12" font-weight="600" fill="#1a202c">冲击成本·吃单挂单</text>
+    <rect x="560" y="184" width="96" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="206" font-size="12" font-weight="600" fill="#1a202c">不客观</text>
+    <rect x="560" y="228" width="100" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="250" font-size="12" font-weight="600" fill="#1a202c">不能提升认知</text>
+    <rect x="300" y="162" width="104" height="34" rx="8" fill="#ffffff" stroke="#1a202c" stroke-width="1.2"/>
+    <text x="313" y="184" font-size="13" font-weight="600" fill="#1a202c">模拟盘四宗罪</text>
+    <rect x="560" y="272" width="124" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="294" font-size="12" font-weight="600" fill="#1a202c">不影响生活和心情</text>
+    <rect x="560" y="316" width="128" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="338" font-size="12" font-weight="600" fill="#1a202c">月5–10%学费预算</text>
+    <rect x="560" y="360" width="96" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="382" font-size="12" font-weight="600" fill="#1a202c">亏完不心疼</text>
+    <rect x="300" y="316" width="96" height="34" rx="8" fill="#ffffff" stroke="#1a202c" stroke-width="1.2"/>
+    <text x="313" y="338" font-size="13" font-weight="600" fill="#1a202c">小钱定义</text>
+    <rect x="560" y="404" width="124" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="426" font-size="12" font-weight="600" fill="#1a202c">必须交的学费别省</text>
+    <rect x="560" y="448" width="136" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="470" font-size="12" font-weight="600" fill="#1a202c">模拟→大钱实盘更贵</text>
+    <rect x="560" y="492" width="120" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="514" font-size="12" font-weight="600" fill="#1a202c">同教训成本差6倍</text>
+    <rect x="300" y="448" width="96" height="34" rx="8" fill="#ffffff" stroke="#1a202c" stroke-width="1.2"/>
+    <text x="313" y="470" font-size="13" font-weight="600" fill="#1a202c">学费论</text>
+    <rect x="560" y="536" width="136" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="558" font-size="12" font-weight="600" fill="#1a202c">小钱也要模式内执行</text>
+    <rect x="560" y="580" width="136" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="602" font-size="12" font-weight="600" fill="#1a202c">真实人性＋真实成本</text>
+    <rect x="560" y="624" width="112" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="646" font-size="12" font-weight="600" fill="#1a202c">产出可归因样本</text>
+    <rect x="300" y="580" width="96" height="34" rx="8" fill="#ffffff" stroke="#1a202c" stroke-width="1.2"/>
+    <text x="313" y="602" font-size="13" font-weight="600" fill="#1a202c">怎么练</text>
+    <rect x="24" y="303" width="124" height="60" rx="8" fill="rgba(192,86,33,0.08)" stroke="#c05621" stroke-width="1.4"/>
+    <text x="38" y="329" font-size="15" font-weight="600" fill="#1a202c">L09 实操学习</text>
+    <text x="38" y="349" font-size="11" fill="#4a5568">小钱实盘</text>
+    <circle cx="392" cy="34" r="8" fill="#2b6cb0"/>
+    <text x="392" y="38" text-anchor="middle" font-size="10" font-weight="600" fill="#fff">1</text>
+    <circle cx="400" cy="166" r="8" fill="#2b6cb0"/>
+    <text x="400" y="170" text-anchor="middle" font-size="10" font-weight="600" fill="#fff">2</text>
+    <circle cx="392" cy="320" r="8" fill="#2b6cb0"/>
+    <text x="392" y="324" text-anchor="middle" font-size="10" font-weight="600" fill="#fff">3</text>
+    <circle cx="392" cy="452" r="8" fill="#2b6cb0"/>
+    <text x="392" y="456" text-anchor="middle" font-size="10" font-weight="600" fill="#fff">4</text>
+    <circle cx="392" cy="584" r="8" fill="#2b6cb0"/>
+    <text x="392" y="588" text-anchor="middle" font-size="10" font-weight="600" fill="#fff">5</text>
+    <line x1="10" y1="676" x2="1014" y2="676" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="10" y="692" font-size="12" font-weight="600" fill="#1a202c">关联图例</text>
+    <text x="86" y="692" font-size="12" fill="#4a5568">① 模拟盘测不出人性——小钱实盘才有真实执行力数据</text>
+    <text x="86" y="714" font-size="12" fill="#4a5568">② 同一份教训：小钱学费 vs 大钱回撤，成本差 6 倍以上</text>
+    <text x="86" y="736" font-size="12" fill="#4a5568">③ 小钱练习的价值在可归因样本（接 L08 认知机制）</text>
+  </svg>
+  </div>
+  <h2><span class="tag p1">一</span>开题：实操练习的三条路，答案只有一条</h2>
+  <p>今天这节课的源头是一个问题：<b>交易上如何进行实操练习？</b>豆子的回答干脆利落——<b>一句话，小钱实盘。</b>这张"小钱实盘"的卡片，就是本课的全部内核。</p>
+  <p>先摆一下摆在新手面前的三条路：</p>
+  <table>
+    <tr><th>路</th><th>是什么</th><th>豆子的态度</th></tr>
+    <tr><td><b>模拟盘</b></td><td>虚拟资金、游戏化交易，零成本试错</td><td class="neg">不要去。绕过人性、不客观、不能提升认知</td></tr>
+    <tr><td><b>小钱实盘</b></td><td>真金白银，但额度小到亏完不心疼</td><td class="pos">唯一推荐。真实人性＋真实成本＋可归因样本</td></tr>
+    <tr><td><b>大钱实盘</b></td><td>直接上主力资金"认真练"</td><td class="neg">别急。没交过学费就上大钱，学费按大钱面额收</td></tr>
+  </table>
+  <p>这个答案<b>适用于两种人</b>：一种是<b>要验证模式的人</b>——你有一套打法想检验成色；另一种是<b>单纯的新手</b>——想感悟一下这个市场的实操，摸一摸真实的水温。不管你站在哪一头，答案都是同一个：小钱实盘。</p>
+  <p><b>我的理解：这就像学游泳。</b>没人靠看视频学会换气，但也没人一上来就跳进深水区——先在浅水区，身体是真湿的、水是真凉的、呛水是真难受的，只是站起来就能呼吸。小钱实盘就是交易的浅水区。</p>
+
+  <h2><span class="tag p2">二</span>为什么不用模拟盘：四个理由，刀刀见血</h2>
+  <p>"那模拟盘不是免费吗？先免费练熟了再上真钱，不是更稳？"——豆子的答案是：<b>不要去模拟盘。</b>理由有四条，一条比一条深。</p>
+
+  <h3>① 模拟盘绕过了你的人性本身</h3>
+  <p>豆子说了一句很重的话：<b>交易是一个向内求的事业。</b>你真正要战胜的不是市场，是你自己盘里的贪婪和恐惧。可模拟盘里的钱<b>不是你的钱</b>——盘不是你的，盈亏不动心，<b>贪婪和恐惧根本不启动</b>。你在模拟盘里测出来的"执行力"是假的：跌 5% 你眼都不眨就砍，不是因为你纪律好，是因为那只是数字。<b>真实账户里砍下去手是抖的，模拟盘永远测不出这只手抖不抖。</b>这接回 L03 讲的多巴胺机制：赌性是被真金白银的得失喂大的，虚拟盈亏喂不出真实的多巴胺反应，也压不住真实的赌性。</p>
+
+  <h3>② 模拟盘有很多不符合实际交易的地方</h3>
+  <p>他点了两个名字：<b>冲击成本</b>和<b>吃单挂单的感觉</b>。</p>
+  <ul>
+    <li><b>冲击成本</b>：真实市场里，你的单子会推动价格。你挂 10 万元买单，成交价可能被你自己买高 0.2%~0.5%；出货时再砸低一截。模拟盘通常按"理想价"成交，你根本不知道自己的打法在真实摩擦下还剩多少利润。</li>
+    <li><b>吃单挂单的感觉</b>：挂单排队排在第几位、什么价位能成交、撤单来不来得及、涨停板上排队被不被砸——这些"手感"只有真实盘口才给得出。模拟盘的成交是软件"施舍"给你的，<b>游戏和交易，还是两回事。</b></li>
+  </ul>
+
+  <h3>③ 模拟盘不客观</h3>
+  <p>盘不是你的钱，<b>无所谓，就会乱来</b>：满仓梭哈、逆势加仓、亏了不止损扛到天荒地老——反正没有后果。这样攒出来的样本<b>没有纪律约束</b>，统计出来"胜率 60%"毫无意义：那不是你真实交易的胜率，是"随便玩玩"的胜率。<b>样本被污染了，结论自然不客观。</b></p>
+
+  <h3>④ 模拟盘不能提升认知</h3>
+  <p>认知是被<b>痛</b>改写的。模拟盘的盈亏在你身上<b>留不下情绪印记</b>：亏了 20% 关掉软件就忘了，记不住教训。而真实小钱实盘里，那笔"满仓追高被砸 −8%"会让你半夜睡不着、会反反复复想起那个瞬间——<b>就是这个睡不着，才是认知真正长出来的地方。</b></p>
+
+  <div class="card note">
+    <b>两个类比，把道理钉死</b>
+    <p class="small" style="margin:6px 0 0"><b>游泳游戏练不出水性。</b>你在手机上划拉一年自由泳，下水照样沉——水的阻力、呛水的恐惧、体力的临界点，屏幕给不了。<br>
+    <b>飞行模拟器能练流程，但练不出迫降时的手抖。</b>模拟器最适合背"起落架—襟翼—检查单"的流程（这点它是有用的），可当发动机真停了、仪表真乱了、命真悬了，副驾驶的手抖不抖，模拟器测不出来。交易也一样：<b>流程可以模拟，人性必须实盘。</b></p>
+  </div>
+
+  <h2><span class="tag p2">三</span>什么是小钱：不影响你生活和心情的钱</h2>
+  <p>小钱实盘，那多小算小？豆子的定义只有一句：<b>小钱，指的就是不影响你生活和心情的钱。</b>注意是两个"不影响"——<b>生活</b>和<b>心情</b>，缺一不可。</p>
+  <p>我把它翻译成三条可以核对的操作化口径，<b>三条全过，才算小钱</b>：</p>
+  <ol>
+    <li><b>亏完不心疼</b>——这笔钱全部亏光，你当天照样吃饭睡觉，不心疼、不懊悔；</li>
+    <li><b>不看账户不惦记</b>——不盘中反复刷账户，不上班走神想行情；</li>
+    <li><b>亏了不跟家人急</b>——亏损不进家庭开支视野，不引发家庭矛盾。</li>
+  </ol>
+  <p><b>数量口径（教学参考）</b>：月可支配收入的 <b>5%~10%</b>，或者总资产的 <b>1%~2%</b>，拿出来做"学费预算"。举个具体数字：<b>月薪 1 万，小钱＝每月 500~1000 元的学费预算</b>——一年攒下来 6000~12000，足够走完一个完整的"交学费—记教训—改动作"循环，而它不伤生活分毫。</p>
+  <div class="formula">小钱的三问检验（对答案，全"是"才合格）：
+Q1 这笔钱<b>全部亏完</b>，我心疼吗？　　　→ 必须答"不心疼"
+Q2 我能<b>不惦记</b>它、正常上班生活吗？　→ 必须答"能"
+Q3 亏了它，我会<b>跟家人急</b>吗？　　　　→ 必须答"不会"
+任何一问答错 → 额度砍半，直到三问全过</div>
+  <p><b>为什么心情也算？看反面例子。</b>有人觉得"10 万块亏 3 万也就 30%，扛得住"——大钱实盘一次随手单回撤 30%，痛感是会<b>反过来毁心态</b>的：回本心态上头（L01），加仓、追高、变高频，越亏越快。数字上这笔账更冷酷：<b>亏 30%，需要 +42.9% 才回本</b>（1 ÷ 0.7 ≈ 1.429）。你在月薪 1 万的水平上，凭空多出一个"先赚 42.9%"的爬坑任务——心态不变形才怪。而小钱实盘亏 30%，亏的是 500 块里的 150 块，<b>痛感刚好够记住教训，又不够毁掉你。</b></p>
+
+  <h2><span class="tag p3">四</span>学费论：必须交的学费不要省，不能因小失大</h2>
+  <p>很多人选模拟盘的动机是"省钱"——学费能不交就不交。豆子的态度正相反：<b>必须交的学费不要省，不能因小失大。</b>交易这行的学费逃不掉，区别只在<b>你用什么面额交</b>。</p>
+  <p>把账摆开算（教学模拟数字）：</p>
+  <table>
+    <tr><th>路径</th><th>学费怎么交</th><th>典型代价</th></tr>
+    <tr><td>模拟盘 → 直接大钱实盘</td><td>模拟盘 0 学费，人性一课没上过，<b>学费按大钱面额收</b></td><td class="neg">10 万账户一次回撤 30% ＝ 亏 3 万</td></tr>
+    <tr><td>小钱实盘</td><td>学费按小钱面额交，<b>同样买到"满仓追高的真实痛感"</b></td><td class="pos">5000 元以内买下同样的教训</td></tr>
+    <tr><td>差价</td><td>——</td><td class="pos">成本差 <b>6 倍以上</b>（3 万 ÷ 5000 ＝ 6）</td></tr>
+  </table>
+  <p>结论是豆子那句原话的展开：<b>模拟之后立刻去大钱实盘，大概率亏的远比小钱实盘之后要多。</b>为什么？因为<b>人性这一课没上过</b>：模拟盘里没有贪婪恐惧、没有冲击成本、没有睡不着觉——这些课你在小钱实盘里一门一门修完，每门课学费几百块；跳过它们直接上大钱，市场会用 10 万的面额把同样的课重新收你一遍学费。</p>
+  <div class="formula">学费账（教学模拟）：
+跳过小钱直接大钱：学费 = 100,000 × 30% = <b>30,000 元</b>（还附赠心态损毁）
+小钱实盘买同款教训：学费 ≈ <b>5,000 元以内</b>（"满仓追高的真实痛感"一份）
+差价：30,000 ÷ 5,000 = <b>6 倍以上</b>
+小钱亏 30% → 回本只需 +42.9% 的小钱；大钱亏 30% → 回本要 +42.9% 的大钱
+<b>教训相同，面额不同——这就是"必须交的学费不要省"的反面：省小钱，交大钱。</b></div>
+
+  <h2><span class="tag p3">五</span>小钱怎么练才有价值：接上 L08 的方法</h2>
+  <p>注意，小钱实盘不是"换个地方随便玩"。它的价值由三样东西构成，<b>缺一样就退回游戏</b>：</p>
+  <ul>
+    <li><b>真实人性</b>——钱是你的，贪婪恐惧真实启动，测出来的执行力才是真的；</li>
+    <li><b>真实成本</b>——冲击成本、吃单挂单、滑点，全都要真金白银地感受；</li>
+    <li><b>可归因样本</b>——每一笔都有纪律约束、有记录可查，盈亏能归因到模式，样本才干净。</li>
+  </ul>
+  <p>所以练法上要和大钱实盘<b>完全同构</b>，接上 L08 的动作：<b>小钱也要做模式内执行、也要写交易记录、也要复盘。</b>你不是在"试试水"，你是在用最便宜的成本跑一个完整的、严肃的交易系统。</p>
+  <p>小钱阶段主修三个科目：</p>
+  <ol>
+    <li><b>执行纪律</b>：止损线到了，<b>敢不敢砍</b>？500 块的单子砍下去手抖不抖？——这是在给 L06 的"违规难受传感器"接线。</li>
+    <li><b>盘感</b>：<b>吃单挂单的感觉</b>——挂单排队、撤单、成交不确定，这些手感只能真实盘口喂出来。你的单子推动了多少价格（冲击成本），也要在这个阶段量出来。</li>
+    <li><b>心态觉察</b>：亏了<b>睡不睡得着</b>？会不会想立刻翻本？——这直接接回 L03：赌性发作的第一个信号，往往先出现在睡眠里。</li>
+  </ol>
+  <p><b>我的建议：给每笔小钱单子写一条"体感笔记"</b>——今天挂单挂了几秒成交、滑了几个价位、砍止损时心里想了什么。这些东西写不进胜率统计，但它们是小钱实盘独有的产出。</p>
+
+  <h2><span class="tag p4">六</span>边界与误区：小钱不是随便钱</h2>
+  <p>最后把三条边界钉牢，防止把"小钱实盘"练变形：</p>
+  <p><b>① 小钱 ≠ 随便钱。</b>亏完了就充值、无限续币，等于把学费约束拆了——反正有的是"下一把"，又回到模拟盘的无所谓状态。正确做法：<b>学费预算是硬约束</b>，本月额度亏完就停，等下个月额度，或者停手复盘（L06 的空仓纪律在这里照样适用）。额度烧完不补，才是真学费。</p>
+  <p><b>② 小钱不测重仓心态。</b>有一个著名的坑：小钱练得很好，一上大钱就变形——因为<b>资金量改变行为</b>，3 万块账户满仓和 100 万账户满仓，心跳不是一个频率。怎么办？<b>仓位管理要按比例练</b>：小钱阶段就执行"单笔不超过账户 X%"的规则，练的是百分比纪律，不是金额胆量。至于重仓的真实心态，只能在资金升级的过程中逐步体验，别指望小钱阶段全测出来。</p>
+  <p><b>③ 模拟盘并非全无用。</b>纯练<b>软件操作和流程</b>可以——怎么下单、怎么挂条件单、怎么用交易软件，这些"起落架—襟翼—检查单"用模拟盘练完全没问题（还记得飞行模拟器的类比吗）。但有一条红线：<b>别拿模拟盘验证模式。</b>模式的成色，只有小钱实盘说了算。</p>
+  <div class="card warn">
+    <b>一句话边界</b>
+    <p class="small" style="margin:6px 0 0">小钱实盘练的是<b>真实的你</b>，不是虚拟的高手。额度硬约束、仓位按比例、记录不缺席——三条都做到，500 块的学费才买得到 3 万块的教训。</p>
+  </div>
+
+  <h2><span class="tag p4">七</span>可视化件：学费计算器（拖滑块，看两条路径的数字差）</h2>
+  <p class="small">输入你的月可支配收入和大钱账户规模，实时对比"小钱学费路径"（月 5–10%）与"模拟盘→大钱实盘学费路径"（一次回撤 20–30%），并给出小钱额度建议。</p>
+  <div class="demo">
+    <h4>学费计算器：小钱学费 vs 大钱回撤学费</h4>
+    <div class="row">
+      <span style="min-width:120px">月可支配收入</span>
+      <input type="range" id="l09Income" min="3000" max="50000" step="500" value="10000">
+      <span class="val" id="l09IncomeV">¥10,000</span>
+    </div>
+    <div class="row">
+      <span style="min-width:120px">大钱账户规模</span>
+      <input type="range" id="l09Acct" min="20000" max="1000000" step="10000" value="100000">
+      <span class="val" id="l09AcctV">¥100,000</span>
+    </div>
+    <div class="out" id="l09Out">👆 拖动滑块，这里实时显示两条学费路径的对比与小钱额度建议。</div>
+  </div>
+  <script>
+    (function(){
+      var income = document.getElementById('l09Income');
+      var acct = document.getElementById('l09Acct');
+      var out = document.getElementById('l09Out');
+      function fmt(n){ return '¥' + Math.round(n).toLocaleString('zh-CN'); }
+      function calc(){
+        var inc = +income.value, acc = +acct.value;
+        document.getElementById('l09IncomeV').textContent = fmt(inc);
+        document.getElementById('l09AcctV').textContent = fmt(acc);
+        var lo = inc * 0.05, hi = inc * 0.10;
+        var halfLo = lo * 6, halfHi = hi * 6;
+        var d20 = acc * 0.20, d30 = acc * 0.30;
+        var ratioLo = halfHi > 0 ? (d20 / halfHi) : 0;
+        var ratioHi = halfLo > 0 ? (d30 / halfLo) : 0;
+        var html = '';
+        html += '<b>小钱学费路径</b>（月学费 ＝ 月可支配 5%~10%）：每月 <b>' + fmt(lo) + ' ~ ' + fmt(hi) + '</b>；半年累计学费 <b>' + fmt(halfLo) + ' ~ ' + fmt(halfHi) + '</b>。<br>';
+        html += '<b>模拟盘→大钱实盘学费路径</b>（一次随手单回撤 20%~30%）：学费 <b>' + fmt(d20) + ' ~ ' + fmt(d30) + '</b>；且亏 30% 需 <b>+42.9%</b> 才回本。<br>';
+        html += '<b>数字差</b>：大钱路径的学费是小钱半年学费的 <b>' + ratioLo.toFixed(1) + ' ~ ' + ratioHi.toFixed(1) + ' 倍</b>。<br>';
+        html += '<b>小钱额度建议</b>：月学费定在 <b>' + fmt(lo) + ' ~ ' + fmt(hi) + '</b>（月可支配 5%~10%），并以"亏完不心疼、不看账户不惦记、亏了不跟家人急"三问校准；';
+        html += '若这个数字超过总资产口径（账户的 1%~2% ＝ ' + fmt(acc * 0.01) + ' ~ ' + fmt(acc * 0.02) + '），取两者中<b>较小</b>的那个。';
+        out.innerHTML = html;
+      }
+      income.addEventListener('input', calc);
+      acct.addEventListener('input', calc);
+      calc();
+    })();
+  </script>
+
+    <h2><span class="tag p4">案</span>真实案例：概念落在盘面上</h2>
+  <p class="small">以下为公开市场事件（数字为约数），用来把本课概念放到真实盘面上看。</p>
+    <div class="card"><b>2021 顶峰买明星基金的年轻人</b>
+      <p class="small" style="margin:6px 0 0"><b>事实</b>：2021 年 2 月赛道顶点，易方达蓝筹等明星基金申购暴增、规模冲上千亿；随后两年回撤 40–50%，高位买入者深套。</p>
+      <p class="small" style="margin:4px 0 0"><b>对应知识点</b>：没经过小钱实盘验证的「模式」（听人说/看历史业绩）直接上大钱——学费论的反面：省了小钱学费，交了大钱回撤。</p></div>
+    <div class="card"><b>模拟盘与实盘的系统性鸿沟</b>
+      <p class="small" style="margin:6px 0 0"><b>事实</b>：各类模拟大赛高收益者在实盘中普遍打回原形：模拟盘无冲击成本、无真实情绪，样本不客观（对应讲义「模拟盘四宗罪」）。</p>
+      <p class="small" style="margin:4px 0 0"><b>对应知识点</b>：小钱实盘的必要性：真实人性＋真实成本＋可归因样本，三者模拟盘一个都给不了；学费成本差 6 倍以上。</p></div>
+
+
+<h2><span class="tag p3">八</span>复习巩固</h2>
+  <p>按 1/7/30 天各来一轮。先自己答，再点开卡片对答案——答案不是背我的，是要长出你自己的悟道。</p>
+  <div class="flash" onclick="this.classList.toggle('open')">
+    <div class="front">L09 · 卡 1：为什么不能用模拟盘先练熟了再上真钱？<span class="hint">点击翻面</span></div>
+    <div class="back">四个理由：① <b>绕过人性</b>——盘不是你的钱，贪婪恐惧不启动，测出的执行力是假的；② <b>不符合实际</b>——没有冲击成本、没有吃单挂单的感觉；③ <b>不客观</b>——无所谓就乱来，样本无纪律约束；④ <b>不能提升认知</b>——盈亏无情绪印记，记不住教训。游戏和交易是两回事。→ 追问自己：我上次在模拟盘里做过的"勇敢操作"，换成真金白银我敢吗？</div>
+  </div>
+  <div class="flash" onclick="this.classList.toggle('open')">
+    <div class="front">L09 · 卡 2："小钱"的准确定义是什么？怎么判断我的额度够不够小？<span class="hint">点击翻面</span></div>
+    <div class="back">定义：<b>不影响你生活和心情的钱</b>。三问校准：亏完不心疼、不看账户不惦记、亏了不跟家人急——全"是"才合格。数量口径：月可支配收入的 5%~10% 或总资产的 1%~2%，取小者。例如月薪 1 万 → 500~1000/月学费预算。→ 追问：我的三问答案诚实吗？有没有哪一问其实在骗自己？</div>
+  </div>
+  <div class="flash" onclick="this.classList.toggle('open')">
+    <div class="front">L09 · 卡 3：为什么"必须交的学费不要省"？省了会怎样？<span class="hint">点击翻面</span></div>
+    <div class="back">学费逃不掉，区别只在<b>面额</b>。模拟盘 0 学费→直接大钱实盘，人性一课没上过，学费按大钱收（10 万亏 3 万）；小钱实盘 5000 以内买下同样的教训，成本差 6 倍以上。模拟之后立刻上大钱，大概率亏的远比小钱实盘之后多——<b>省小钱，交大钱，这就是因小失大。</b>→ 追问：我现在省下的到底是学费，还是把学费转成了"大钱面额的账单"？</div>
+  </div>
+
+  <h3>悟道提问（没有标准答案，答案写进你自己的交易笔记）</h3>
+  <div class="card good">
+    <ol style="margin:6px 0 0;padding-left:20px">
+      <li>如果"交易是向内求的事业"，那我从模拟盘转向小钱实盘的那一刻，最想看清自己身上的哪一个弱点（贪婪？恐惧？不服输？）？</li>
+      <li>我的小钱数字是多少？写下它，然后当场做三问检验——哪一问最难过，说明了什么？</li>
+      <li>如果一年后我从小钱实盘毕业，我希望那时的自己"长出"了什么？（是敢砍止损的手，是盘口感，还是亏了睡得着的心态？）</li>
+    </ol>
+  </div>
+
+  <h3>联结图（文字版）：L09 在系统里的位置</h3>
+  <div class="formula">L09 小钱实盘（实操学习的方式）
+ ├─ 接 <b>L01 回撤数学</b>：大钱回撤 30% → 需 +42.9% 回本，痛感反过来毁心态
+ ├─ 接 <b>L03 多巴胺/赌性</b>：模拟盘绕过人性，贪婪恐惧不启动；小钱实盘才测得出真实执行力
+ ├─ 接 <b>L06 交易纪律</b>：小钱也要止损敢砍，给"违规难受传感器"接上真实电流
+ ├─ 接 <b>L08 交易记录与复盘</b>：小钱也要做模式内执行＋记录＋复盘，攒可归因样本
+ └─ 递进 <b>L10 随手单</b>：小钱实盘正是练"不随手"的最低成本场地</div>
+
+  <h2><span class="tag p3">九</span>内化掌握（三关全过＝这课学完）</h2>
+  <div class="card warn">
+    <p style="margin:6px 0 0"><b>关卡一 · 费曼</b>：在聊天里输入「我讲给你听 L09」，我扮演爱追问的学生——重点考你："模拟盘免费，为什么反而不能用？"、"小钱到底多小算小？"、"学费论的账是怎么算的？"</p>
+    <p style="margin:6px 0 0"><b>关卡二 · 场景判断</b>：小王月薪 1.2 万、可支配收入 8000，手里有个 20 万的账户。他打算：先在模拟盘练 3 个月"把胜率练到 60%"，然后直接拿 20 万账户实盘，理由是"小钱练不出感觉，要玩就玩真的"。请指出他方案里的问题，并给出你的替代方案（含具体数字）。</p>
+    <details><summary>参考判断与评分点</summary><div class="ans">问题一：模拟盘胜率不可信——样本无纪律约束、绕过人性、无冲击成本，"60% 胜率"是假数据，不能作为上大钱的依据。问题二：直接上 20 万实盘＝学费按大钱面额收，一次回撤 30% 就是 6 万（等于他 7.5 个月可支配收入），大概率触发回本心态（L01）。替代方案：小钱实盘，月学费 8000×5%~10% ＝ 400~800/月（或账户 1%~2% ＝ 2000~4000 的年预算口径内取小），先跑 3 个月完整"执行＋记录＋复盘"循环。评分点：① 指出模拟盘验证模式不靠谱（至少两条理由）；② 算出大钱回撤的具体数字和痛感；③ 给出小钱额度（有数字）＋三问校准；④ 提到小钱也要模式内执行/记录/复盘（接 L08）；⑤ 仓位按比例练，不测重仓心态。</div></details>
+    <p style="margin:6px 0 0"><b>关卡三 · 规则产出</b>：写出你自己的"小钱实盘落地模板"：① 我的小钱额度（具体数字）＋三问检验结果；② 我的学费硬约束（月度额度、亏完即停、不充值续币）；③ 我的体感笔记格式（每笔记录冲击成本/吃单挂单感觉/心态波动）；④ 毕业条件（什么标准满足了，才升大钱、升多少）。</p>
+  </div>
+
+  <h2><span class="tag p3">十</span>作业 · 自测 · 速查</h2>
+
+  <h4>作业（下次课前完成）</h4>
+  <ol>
+    <li><b>定额度</b>：按"月可支配 5%~10% 取小"算出你的小钱数字，写下三问检验的诚实答案，贴在交易记录首页。</li>
+    <li><b>第一笔学费</b>：开一个真实的小钱账户，做第一笔模式内交易并按 L08 格式写记录，额外加一条"体感笔记"（挂单成交几秒、滑了几个价、砍止损时心里想什么）。</li>
+    <li><b>学费对照表</b>：把这笔小钱单子的盈亏，换算成"如果这是 20 万大钱账户"的金额，写下对应的回本百分比（如亏 30% → +42.9%），体会两条路径的痛感差。</li>
+  </ol>
+
+  <h4>自测（8 题，先答再看答案）</h4>
+  <div class="q">Q1. 实操练习的三条路是什么？豆子的答案是哪条？
+    <details><summary>答案</summary><div class="ans">模拟盘、小钱实盘、大钱实盘。答案是小钱实盘——一句话：小钱实盘。适用于验证模式的人和想感悟市场的新手。</div></details></div>
+  <div class="q">Q2. 不用模拟盘的四个理由是什么？
+    <details><summary>答案</summary><div class="ans">① 绕过人性（钱不是你的，贪婪恐惧不启动，测出的执行力是假的）；② 不符合实际（没有冲击成本、吃单挂单的感觉）；③ 不客观（无所谓→乱来，样本无纪律约束）；④ 不能提升认知（盈亏无情绪印记，记不住教训）。</div></details></div>
+  <div class="q">Q3. 什么是冲击成本？为什么模拟盘给不了？
+    <details><summary>答案</summary><div class="ans">你的单子会推动价格：买入抬高成交价、卖出压低成交价，这是真实交易的摩擦成本。模拟盘通常按理想价成交，感受不到自己的体量对价格的影响，也量不出打法在真实摩擦下的真实利润。</div></details></div>
+  <div class="q">Q4. "小钱"的定义和操作化口径是什么？
+    <details><summary>答案</summary><div class="ans">定义：不影响你生活和心情的钱。三问：亏完不心疼、不看账户不惦记、亏了不跟家人急。数量口径：月可支配收入 5%~10% 或总资产 1%~2%（取小），如月薪 1 万 → 500~1000/月学费预算。</div></details></div>
+  <div class="q">Q5. "必须交的学费不要省"的数字账是怎么算的？
+    <details><summary>答案</summary><div class="ans">模拟盘 0 学费→直接大钱实盘，学费按大钱收：10 万账户回撤 30%＝亏 3 万；小钱实盘 5000 以内买到同款教训（如满仓追高的真实痛感），成本差 6 倍以上。模拟之后立刻大钱，大概率亏得远比小钱实盘之后多——人性这课没上过。</div></details></div>
+  <div class="q">Q6. 小钱实盘的价值由哪三样构成？缺一样会怎样？
+    <details><summary>答案</summary><div class="ans">真实人性＋真实成本＋可归因样本。缺任何一样就退回游戏：没有真实人性＝模拟盘翻版；没有真实成本＝不知道摩擦吃掉多少利润；没有可归因样本＝盈亏归因不了模式，白练。</div></details></div>
+  <div class="q">Q7. 小钱阶段主修哪三个科目？
+    <details><summary>答案</summary><div class="ans">① 执行纪律：止损敢不敢砍；② 盘感：吃单挂单的感觉（排队、撤单、成交不确定、冲击成本）；③ 心态觉察：亏了睡不睡得着、想不想立刻翻本。且小钱也要做模式内执行、写交易记录、复盘（接 L08）。</div></details></div>
+  <div class="q">Q8. 小钱实盘的三个边界/误区是什么？
+    <details><summary>答案</summary><div class="ans">① 小钱≠随便钱：亏完就充值无限续＝没学费约束，额度是硬约束，亏完即停；② 小钱不测重仓心态：资金量改变行为，仓位管理要按比例练；③ 模拟盘并非全无用：纯练软件操作/流程可以，但别拿它验证模式。</div></details></div>
+
+  <div class="card good"><b>速查卡</b><ul class="cheat" style="margin:6px 0;padding-left:18px">
+    <li>一句话答案：小钱实盘。</li>
+    <li>适用两种人：验证模式的、新手感悟市场。</li>
+    <li>模拟盘四宗罪：绕人性、不实际、不客观、不涨认知。</li>
+    <li>交易是向内求的事业——人性必须实盘。</li>
+    <li>冲击成本＋吃单挂单的感觉，模拟盘给不了。</li>
+    <li>游泳游戏练不出水性；飞行模拟器练流程不练手抖。</li>
+    <li>小钱＝不影响生活和心情的钱。</li>
+    <li>三问校准：亏完不心疼/不惦记/不跟家人急。</li>
+    <li>额度口径：月可支配 5%~10% 或总资产 1%~2%，取小。</li>
+    <li>月薪 1 万 → 小钱 500~1000/月。</li>
+    <li>亏 30% 需 +42.9% 回本——大钱痛感毁心态。</li>
+    <li>学费不要省：省小钱，交大钱，差 6 倍以上。</li>
+    <li>模拟后立刻大钱 ≈ 人性课没上过，学费按大钱收。</li>
+    <li>小钱价值＝真实人性＋真实成本＋可归因样本。</li>
+    <li>小钱也做模式内执行＋记录＋复盘（接 L08）。</li>
+    <li>三科目：执行纪律、盘感、心态觉察。</li>
+    <li>小钱≠随便钱：额度硬约束，亏完不续币。</li>
+    <li>仓位按比例练；重仓心态小钱测不出。</li>
+    <li>模拟盘可练软件流程，不可验证模式。</li>
+  </ul></div>
+
+  <div class="next"><b>下一讲（L10）：如何避免随手单</b>（<a href="https://www.bilibili.com/video/BV1rtoUBmEZp">BV1rtoUBmEZp</a>）。小钱实盘给你搭好了最便宜的实战场地，下一课解决场地里最大的敌人——随手单。回「下一课」即跳转，或直接提问。</div>
+  <p class="small" style="margin-top:20px">投资有风险，本课为教育内容，不构成投资建议。数值例子为教学模拟（学费比例、回撤数字仅作口径参考，请按自身情况校准）；个别口述字迹/转写处已按语境校订（任职＝认知、吃蛋挂蛋＝吃单挂单、交易游戏＝模拟盘/游戏化交易）。疑问直接问，我换例子重讲。</p>
+</div>
+
+</body>
+</html>

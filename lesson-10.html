@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>L10 如何避免随手单</title>
+
+<style>
+.nav{position:sticky;top:0;z-index:50;background:#1a202c;padding:8px 14px;display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif}
+.nav a{color:#e2e8f0;text-decoration:none;font-size:13px;padding:3px 10px;border-radius:999px;background:#2d3748}
+.nav a:hover{background:#4a5568}
+.nav a.cur{background:#c05621;color:#fff;font-weight:600}
+.nav a.home{background:#2b6cb0}
+.nav .sp{color:#718096;font-size:12px;margin:0 4px}
+</style>
+</head>
+<body style="margin:0;background:#f7fafc">
+<nav class="nav"><a class="home" href="index.html">目录主页</a><a class="" href="lesson-01.html">L01 本金保护</a><a class="" href="lesson-02.html">L02 盈亏同源</a><a class="" href="lesson-03.html">L03 交易模式</a><a class="" href="lesson-04.html">L04 看什么</a><a class="" href="lesson-05.html">L05 技术分析</a><a class="" href="lesson-06.html">L06 交易纪律</a><a class="" href="lesson-07.html">L07 切换原理</a><a class="" href="lesson-08.html">L08 成长</a><a class="" href="lesson-09.html">L09 实操学习</a><a class="cur" href="lesson-10.html">L10 随手单</a><span class="sp">点击跳转复看</span></nav>
+<style>
+  :root{--ink:#1a202c;--sub:#4a5568;--line:#e2e8f0;--bg:#f7fafc;--accent:#c05621;--accent2:#2b6cb0;--good:#276749;--warn:#9b2c2c;--card:#fff}
+  *{box-sizing:border-box}
+  .doc{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;color:var(--ink);background:var(--bg);padding:28px 20px 60px;line-height:1.8;max-width:980px;margin:0 auto}
+  .doc h1{font-size:26px;margin:0 0 4px}
+  .doc h2{font-size:19px;margin:34px 0 10px;padding-left:10px;border-left:4px solid var(--accent)}
+  .doc h3{font-size:16px;margin:20px 0 8px;color:var(--accent2)}
+  .doc p{margin:8px 0}
+  .meta{color:var(--sub);font-size:13px;margin-bottom:16px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin:12px 0}
+  .goal{background:#fffaf0;border-color:#fbd38d}
+  .warn{background:#fff5f5;border-color:#feb2b2}
+  .good{background:#f0fff4;border-color:#9ae6b4}
+  .note{background:#ebf8ff;border-color:#90cdf4}
+  table{width:100%;border-collapse:collapse;font-size:13px;background:var(--card);border-radius:8px;overflow:hidden;margin:8px 0}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+  th{background:#edf2f7;font-weight:600}
+  td.num{white-space:nowrap;font-variant-numeric:tabular-nums;text-align:right}
+  .pos{color:var(--good);font-weight:600}.neg{color:var(--warn);font-weight:600}
+  .tag{display:inline-block;font-size:11px;padding:1px 8px;border-radius:999px;background:#edf2f7;color:var(--sub);margin-right:4px}
+  .p1{background:#feebc8;color:#7b341e}.p2{background:#bee3f8;color:#2a4365}.p3{background:#c6f6d5;color:#22543d}.p4{background:#fed7e2;color:#702459}
+  a{color:var(--accent2);text-decoration:none}a:hover{text-decoration:underline}
+  .formula{background:#1a202c;color:#f7fafc;border-radius:8px;padding:12px 16px;font-family:"SF Mono",Menlo,monospace;font-size:13px;margin:10px 0;overflow-x:auto;line-height:1.9}
+  .formula b{color:#f6ad55}
+  .q{border-left:3px solid var(--accent2);padding-left:12px;margin:12px 0}
+  .ans{color:var(--good);font-size:13px;margin-top:4px}
+  .next{margin-top:24px;padding:14px 18px;border:1px dashed var(--accent);border-radius:10px;background:#fffaf0;font-size:14px}
+  .small{font-size:12.5px;color:var(--sub)}
+  details{margin:8px 0}summary{cursor:pointer;color:var(--accent2);font-size:13.5px}
+  .cheat{columns:2;column-gap:24px}.cheat li{margin:6px 0;break-inside:avoid}
+  ul,ol{margin:6px 0 6px 20px;padding:0}li{margin:3px 0}
+  code{background:#edf2f7;border-radius:4px;padding:0 5px;font-size:12.5px}
+  .demo{background:#1a202c;border-radius:12px;padding:18px 20px;color:#f7fafc;margin:14px 0}
+  .demo h4{margin:0 0 10px;font-size:15px;color:#f6ad55}
+  .demo .btns{display:flex;flex-wrap:wrap;gap:8px}
+  .demo button{border:0;border-radius:8px;padding:8px 12px;font-size:12.5px;cursor:pointer;background:#2d3748;color:#e2e8f0;font-family:inherit}
+  .demo button:hover{background:#4a5568}
+  .demo button.on{background:#c05621;color:#fff}
+  .demo .out{margin-top:12px;background:#2d3748;border-radius:8px;padding:12px 14px;font-size:13px;line-height:1.9;min-height:66px}
+  .demo .out b{color:#f6ad55}
+  .flash{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:10px 0;cursor:pointer}
+  .flash .front{font-weight:600}
+  .flash .back{display:none;margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);color:var(--good)}
+  .flash.open .back{display:block}
+  .flash .hint{font-size:11.5px;color:var(--sub);float:right;font-weight:400}
+  @media(max-width:640px){.cheat{columns:1}}
+</style>
+
+<div class="doc">
+  <div class="card" style="padding:10px 14px;margin:0 0 14px">
+    <b>课程目录</b>　<span class="small">L01 本金保护 · L02 盈亏同源 · L03 交易模式 · L04 看什么 · L05 技术分析 · L06 交易纪律 · L07 切换原理 · L08–L13 方法（<b>L10 本课</b>）· L14–L25 认知心智</span><br>
+    <span class="small">导航口令：「目录」看全表 ｜「下一课」推进 ｜「重讲 Lxx」换方式重讲 ｜「我讲给你听 Lxx」＝费曼关卡 ｜ 直接提问＝答疑</span>
+    <span class="small">总览入口：<a href="trees.html">十课知识树</a> ｜ <a href="cases.html">十课真实案例</a>（每课正文内也有各自的知识树与真实案例）</span>
+  </div>
+
+  <h1>第十课：如何避免随手单——不要考验人性</h1>
+  <div class="meta">《豆子悟道 · 股票系统学习课》L10 ｜ 模块三 光速提升 · 方法 ｜ 源自原视频《光速提升:如何避免随手单》（1:04，<a href="https://www.bilibili.com/video/BV1rtoUBmEZp">BV1rtoUBmEZp</a>）｜ <b>本讲义是消化后的讲解</b>：视频短小精悍，内核已展开为完整教学，配上我的理解、例子和数字，不需要看视频 ｜ 2026-11-01</div>
+
+  <div class="card goal">
+    <b>这节课讲什么</b>
+    <p style="margin:6px 0 0">一句话：<b>避免随手单不靠意志力，靠制度——"不要考验人性"，而且考验的是你自己的人性。</b>原视频只有 64 秒，但内核极硬：既然绝大多数人的人性经不住考验，就<b>别给自己做随手单的机会</b>。</p>
+    <p style="margin:6px 0 0">方案是一套"机会设计"：把交易生活切成两块——<b>准备阶段</b>（盘后、冷状态：做预期、找赚钱效应、定模式，此处必须有主观判断）和<b>执行阶段</b>（盘中、热状态：零主观、客观执行），两阶段之间强制<b>冷却间隔 ≥ 24 小时</b>。所有决策搬到冷状态做，热状态只当执行机器。</p>
+  </div>
+
+  <h2><span class="tag p4">图</span>本课知识树（思维导图）</h2>
+  <p class="small">从左向右生长：根＝本课主张，一级分支＝主题，向右展开概念；右上角编号＝关联（见图例）。</p>
+  <div style="overflow-x:auto;margin:10px 0">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 824" role="img" aria-labelledby="l10-tree-tree-title l10-tree-tree-desc" style="min-width:1024px;width:100%;height:auto;font-family:'PingFang SC','Microsoft YaHei','Noto Sans SC',-apple-system,sans-serif">
+    <title id="l10-tree-tree-title">L10 避免随手单知识树</title>
+    <desc id="l10-tree-tree-desc">避免随手单的完整层级：命题、机会设计、准备阶段、执行阶段、24h间隔，含三条关联。</desc>
+    <defs>
+      <marker id="l10-tree-arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1 L 8 5 L 0 9 z" fill="#2b6cb0"/>
+      </marker>
+    </defs>
+    <path d="M 164 355 C 232 355 232 69 300 69" fill="none" stroke="#b9c3d0" stroke-width="1.6"/>
+    <path d="M 396 69 C 478 69 478 25 560 25" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 69 C 478 69 478 69 560 69" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 69 C 478 69 478 113 560 113" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 164 355 C 232 355 232 201 300 201" fill="none" stroke="#b9c3d0" stroke-width="1.6"/>
+    <path d="M 396 201 C 478 201 478 157 560 157" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 201 C 478 201 478 201 560 201" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 201 C 478 201 478 245 560 245" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 164 355 C 232 355 232 355 300 355" fill="none" stroke="#b9c3d0" stroke-width="1.6"/>
+    <path d="M 396 355 C 478 355 478 289 560 289" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 355 C 478 355 478 333 560 333" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 355 C 478 355 478 377 560 377" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 355 C 478 355 478 421 560 421" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 164 355 C 232 355 232 509 300 509" fill="none" stroke="#b9c3d0" stroke-width="1.6"/>
+    <path d="M 396 509 C 478 509 478 465 560 465" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 509 C 478 509 478 509 560 509" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 509 C 478 509 478 553 560 553" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 164 355 C 232 355 232 641 300 641" fill="none" stroke="#b9c3d0" stroke-width="1.6"/>
+    <path d="M 396 641 C 478 641 478 597 560 597" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 641 C 478 641 478 641 560 641" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 641 C 478 641 478 685 560 685" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 69 C 466 69 466 194 396 194" fill="none" stroke="#2b6cb0" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#l10-tree-arr)"/>
+    <path d="M 396 355 C 466 355 466 509 396 509" fill="none" stroke="#2b6cb0" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#l10-tree-arr)"/>
+    <path d="M 396 641 C 466 641 466 208 396 208" fill="none" stroke="#2b6cb0" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#l10-tree-arr)"/>
+    <rect x="560" y="8" width="100" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="30" font-size="12" font-weight="600" fill="#1a202c">考验的是自己</text>
+    <rect x="560" y="52" width="112" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="74" font-size="12" font-weight="600" fill="#1a202c">人性经不住考验</text>
+    <rect x="560" y="96" width="124" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="118" font-size="12" font-weight="600" fill="#1a202c">不给机会＞意志力</text>
+    <rect x="300" y="52" width="96" height="34" rx="8" fill="#ffffff" stroke="#1a202c" stroke-width="1.2"/>
+    <text x="313" y="74" font-size="13" font-weight="600" fill="#1a202c">命题</text>
+    <rect x="560" y="140" width="112" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="162" font-size="12" font-weight="600" fill="#1a202c">热状态→冷状态</text>
+    <rect x="560" y="184" width="132" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="206" font-size="12" font-weight="600" fill="#1a202c">预先承诺 Ulysses</text>
+    <rect x="560" y="228" width="100" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="250" font-size="12" font-weight="600" fill="#1a202c">不买零食进家</text>
+    <rect x="300" y="184" width="96" height="34" rx="8" fill="#ffffff" stroke="#1a202c" stroke-width="1.2"/>
+    <text x="313" y="206" font-size="13" font-weight="600" fill="#1a202c">机会设计</text>
+    <rect x="560" y="272" width="96" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="294" font-size="12" font-weight="600" fill="#1a202c">做预期</text>
+    <rect x="560" y="316" width="96" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="338" font-size="12" font-weight="600" fill="#1a202c">找赚钱效应</text>
+    <rect x="560" y="360" width="100" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="382" font-size="12" font-weight="600" fill="#1a202c">定模式写计划</text>
+    <rect x="560" y="404" width="100" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="426" font-size="12" font-weight="600" fill="#1a202c">此处要有主观</text>
+    <rect x="300" y="338" width="96" height="34" rx="8" fill="#ffffff" stroke="#1a202c" stroke-width="1.2"/>
+    <text x="313" y="360" font-size="13" font-weight="600" fill="#1a202c">准备阶段</text>
+    <rect x="560" y="448" width="124" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="470" font-size="12" font-weight="600" fill="#1a202c">零主观·客观执行</text>
+    <rect x="560" y="492" width="100" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="514" font-size="12" font-weight="600" fill="#1a202c">只执行计划单</text>
+    <rect x="560" y="536" width="112" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="558" font-size="12" font-weight="600" fill="#1a202c">止损触发＝客观</text>
+    <rect x="300" y="492" width="96" height="34" rx="8" fill="#ffffff" stroke="#1a202c" stroke-width="1.2"/>
+    <text x="313" y="514" font-size="13" font-weight="600" fill="#1a202c">执行阶段</text>
+    <rect x="560" y="580" width="124" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="602" font-size="12" font-weight="600" fill="#1a202c">准备→执行≥一天</text>
+    <rect x="560" y="624" width="120" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="646" font-size="12" font-weight="600" fill="#1a202c">卖了不买（L06）</text>
+    <rect x="560" y="668" width="100" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="690" font-size="12" font-weight="600" fill="#1a202c">冲动半衰期短</text>
+    <rect x="300" y="624" width="96" height="34" rx="8" fill="#ffffff" stroke="#1a202c" stroke-width="1.2"/>
+    <text x="313" y="646" font-size="13" font-weight="600" fill="#1a202c">24h间隔</text>
+    <rect x="24" y="325" width="140" height="60" rx="8" fill="rgba(192,86,33,0.08)" stroke="#c05621" stroke-width="1.4"/>
+    <text x="38" y="351" font-size="15" font-weight="600" fill="#1a202c">L10 避免随手单</text>
+    <text x="38" y="371" font-size="11" fill="#4a5568">不要考验人性</text>
+    <circle cx="392" cy="56" r="8" fill="#2b6cb0"/>
+    <text x="392" y="60" text-anchor="middle" font-size="10" font-weight="600" fill="#fff">1</text>
+    <circle cx="392" cy="188" r="8" fill="#2b6cb0"/>
+    <text x="392" y="192" text-anchor="middle" font-size="10" font-weight="600" fill="#fff">2</text>
+    <circle cx="392" cy="342" r="8" fill="#2b6cb0"/>
+    <text x="392" y="346" text-anchor="middle" font-size="10" font-weight="600" fill="#fff">3</text>
+    <circle cx="392" cy="496" r="8" fill="#2b6cb0"/>
+    <text x="392" y="500" text-anchor="middle" font-size="10" font-weight="600" fill="#fff">4</text>
+    <circle cx="392" cy="628" r="8" fill="#2b6cb0"/>
+    <text x="392" y="632" text-anchor="middle" font-size="10" font-weight="600" fill="#fff">5</text>
+    <line x1="10" y1="720" x2="1014" y2="720" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="10" y="736" font-size="12" font-weight="600" fill="#1a202c">关联图例</text>
+    <text x="86" y="736" font-size="12" fill="#4a5568">① 不考验人性的办法是不给机会——用制度不用意志力</text>
+    <text x="86" y="758" font-size="12" fill="#4a5568">② 所有主观判断搬进准备阶段（冷状态），执行阶段零主观</text>
+    <text x="86" y="780" font-size="12" fill="#4a5568">③ 24 小时冷却的不是亏损，是决策本身（接 L06 大亏空仓是另一条）</text>
+  </svg>
+  </div>
+  <h2><span class="tag p1">一</span>开题：随手单是什么，为什么根治它不能靠意志力</h2>
+  <p>先把靶子立清楚。<b>随手单</b>这个词我们在 L08 和 L03 都碰到过：临场随机起意、没有明确思路、没有明确赚钱效应依据的单子——盘中看到直线拉升手一痒就追，看到群里喊一嗓子就买，亏了之后"感觉要反弹"就加仓。它有三个特征：<b>临场、无思路、无赚钱效应支撑</b>，三个全占，就是随手单。</p>
+  <p>之前我们说过随手单"十个有九个错"，但一直没给根治方案。今天给。<b>先立论：避免随手单不是靠意志力，靠制度。</b>豆子的原话就一句："不要考验人性。"紧接着他自己解释了——这句话不是说考验别人的人性，<b>考验的是你自己的人性</b>。而且他补了很诚实的一刀：「我认为绝大多数人的人性都是经不住考验的。如果我一直给我自己做随手单的机会，我也会去做随手单的。」</p>
+  <p><b>注意这句话的分量：这是个能长期稳定盈利的成熟交易者的自况。</b>他不是说"我修炼好了所以我不做随手单"，他说的是"我也做不到，所以我<b>不给自己机会</b>"。差别在哪？前者想改变自己，后者改变环境。<b>高手和普通人的差别不在于能不能忍住，而在于根本不需要忍。</b></p>
+  <p><b>我的类比：减肥的人不把零食买进家里。</b>你靠"看见薯片不吃"来减肥，就是天天考验自己；把家里薯片全送人、只在冰箱放黄瓜，考验就不存在了。赌场为什么没有时钟、没有窗户？不考验顾客对时间的感知力，让你一直处在热状态。赌场在给顾客做"机会设计"——<b>今天你要给自己做反向的机会设计</b>：不给随手单留入口。</p>
+
+  <h2><span class="tag p2">二</span>核心机制：把决策从"热状态"搬到"冷状态"</h2>
+  <p>为什么"给机会就会做"？这里接一点学术线索（L03 提过）：</p>
+  <ul>
+    <li><b>热冷共情差距（hot-cold empathy gap）</b>：冷状态的你（盘后心平气和）根本不理解热状态的你（盘中直线拉升、肾上腺素飙升）会有多冲动。你冷状态立的"我明天绝不追高"的誓，在热状态里会被瞬间推翻。</li>
+    <li><b>双曲贴现（hyperbolic discounting）</b>：盘中那一下"现在就上车"的诱惑，把远期收益（模式的期望）压得一文不值，把即时快感（马上可能赚 3 个点）放大十倍。随手单本质上是把长期期望贱卖换即时多巴胺。</li>
+    <li><b>预先承诺（pre-commitment / Ulysses contract，尤利西斯契约）</b>：尤利西斯过塞壬海域前让船员把自己绑在桅杆上——<b>提前用规则捆住未来那个会失控的自己</b>。L03 的 U/E/X/S/A/K 计划就是一种预先承诺，本课把它升级成一套两阶段制度。</li>
+  </ul>
+  <p><b>所以解法只有一条：临场（热状态）不做决策，决策全部搬到盘后（冷状态）做完。</b>盘中的你不是"交易者"，只是执行盘后那个冷静的你留下的指令的机器。判断一个动作是不是随手单，就问一句话：<b>这个决策是热状态做的还是冷状态做的？</b>热状态做的，一律不执行，转给冷状态重新过。</p>
+
+  <h2><span class="tag p2">三</span>制度设计：交易生活二分法（准备阶段 / 执行阶段）</h2>
+  <p>豆子给的制度：把自己的交易生活<b>分成两块</b>。</p>
+  <table>
+    <tr><th style="width:16%"></th><th>准备阶段（冷状态）</th><th>执行阶段（热状态）</th></tr>
+    <tr><td><b>什么时候</b></td><td>盘后 / 收盘之后，放弃所有持仓之后</td><td>盘中，市场开着的时候</td></tr>
+    <tr><td><b>干什么</b></td><td>做预期、寻找赚钱效应、制定模式、准备去执行</td><td>只执行准备阶段留下的计划</td></tr>
+    <tr><td><b>主观性能不能参与</b></td><td><b>必须有</b>主观预期判断——这里需要脑子</td><td><b>零主观</b>，客观执行，不给自己任何主观参与的机会</td></tr>
+    <tr><td><b>对应的认知</b></td><td>这是"做判断"的唯一场所</td><td>这是"按下按钮"的场所</td></tr>
+  </table>
+  <p>两个阶段各有各的铁律，方向相反，很多人一辈子搞反：</p>
+  <p><b>第一，准备阶段要有主观预期判断——这里需要脑子。</b>原文说得很清楚：「准备阶段做预期、做赚钱效应的时候要有主观预期判断。」明天大盘什么状态？哪个板块有赚钱效应？我的模式（L03）在当前环境里做不做、做哪类？U（买入理由）、E（预期走势）、X（出场条件）、S（仓位）、A（预案）、K（关键位）全写下来。<b>没有主观判断的准备不是准备，是抄作业。</b></p>
+  <p><b>第二，执行阶段零主观。</b>「执行阶段的时候就不要给自己任何主观能参与的机会。所有的预期都在准备阶段做。」盘中冒出的一切"我觉得"——我觉得要跌、我觉得还能涨、我觉得这个比计划里那个好——<b>全部不算数</b>，因为它们都是热状态的产物。盘中你的工作只有一件事：按计划单执行，触发了条件就动手，没触发就看着。</p>
+  <p><b>一个很妙的对称：主观不是坏东西，放错位置的主观才是。</b>准备阶段的主观＝你作为交易者的核心价值（判断市场）；执行阶段的主观＝纯噪音（情绪想插手）。把主观全部集中到冷状态去产出，把执行阶段清空成一台自动机——这就是二分法的全部。</p>
+
+  <h2><span class="tag p2">四</span>冷却间隔：两阶段之间至少隔一天（24 小时）</h2>
+  <p>光分两块还不够——如果准备完五分钟就开盘，热状态马上就接管了。所以原文加了第三条：<b>准备阶段和执行阶段之间要有固定的时间间隔，一天以上。</b>规则原话：「我今天发现了这些东西，放弃所有持仓之后去做准备，直到下一天 24 小时之内，我不能再次进行执行。」也就是说：<b>今天做好的准备，最快也要等到下一天才允许执行；24 小时之内，不允许对新想法动手。</b></p>
+  <p><b>为什么要 24 小时？三个理由：</b></p>
+  <ol>
+    <li><b>情绪代谢周期</b>：亢奋、懊悔、想翻本这些交易情绪有代谢半衰期，但<b>冲动的半衰期远短于一天</b>。盘中让你热血上涌的那个"机会"，睡一觉起来大概率你自己都不想做了——这正说明它不值得做。</li>
+    <li><b>睡一觉＝强制回到冷状态</b>：睡眠是免费的、不可跳过的情绪重置。过夜这个动作天然把热状态打断，你没有别的选择。</li>
+    <li><b>把决策权移交给"清醒的自己"</b>：今天的你不替明天的你做决定——同样的预先承诺逻辑。</li>
+  </ol>
+  <p><b>数值例子，把随手单的账拆开算。</b>统计你最近 10 笔随手单：盈利 4 笔，平均 <span class="pos">+3%</span>；亏损 6 笔，平均 <span class="neg">−4%</span>。</p>
+  <div class="formula">随手单的期望（教学模拟）：
+E = 40% × (+3%) + 60% × (−4%) = +1.2% − 2.4% = <b>−1.2%/笔</b>
+一年做 60 笔随手单 → 60 × (−1.2%) ≈ <b>−7.2%</b>，还没算手续费滑点
+更毒的是<b>盈利笔的强化效应</b>：那 4 笔 +3% 会像老虎机的铃声一样，
+把"随手一单也能赚"的赌性喂大 → 随手单越做越多，60 笔变 120 笔
+24h 间隔后：10 笔冲动被压缩成 <b>2 笔计划单</b>，这 2 笔的期望由你的模式决定
+（模式期望按 +2%/笔算：2 × 2% = +4%），对比随手单 10 × (−1.2%) = <b>−12%</b>
+一来一回，一条 24 小时规则的差值 ≈ <b>16 个点</b></div>
+  <p><b>看清楚这个结构：24h 规则不是让那 10 个冲动"变对"，是让其中 8 个根本不发生。</b>剩下 2 个经过一夜冷却还坚持的，就升格成计划单，交给模式的期望去管——盈亏都不再由情绪负责。随手单最狠的不是单笔亏 4%，是<b>盈利笔会强化赌性</b>：赢了随手单，你学到的是"随手也能赢"，下次手更痒。掐断的正是这个正反馈。</p>
+
+  <h2><span class="tag p2">五</span>落地模板：盘后 checklist、盘中规则、24h 规则</h2>
+  <p>把制度变成每天可以打勾的动作。这一页直接抄进你的交易笔记。</p>
+  <h3>① 盘后 checklist（准备阶段，冷状态）</h3>
+  <ol>
+    <li><b>复盘市场状态</b>（接 L07 每日复盘）：今天什么在涨、什么在跌、情绪处于什么阶段？切换信号有没有出现？</li>
+    <li><b>找赚钱效应</b>（接 L04 看什么）：钱在哪个板块、哪个风格里赚？赚钱效应的载体是谁？</li>
+    <li><b>写明日计划</b>（接 L03）：<b>U / E / X / S / A / K 全写上</b>，一个都不许省。没有 U（买入理由）的标的，写都不用写。</li>
+    <li><b>标记"明日只做这 N 笔"</b>：把明天允许的动作白纸黑字写死——最多 2 笔、分别是什么条件触发、各多少仓位。<b>N 是个很小的数，写"随便看看"等于没写。</b></li>
+  </ol>
+  <h3>② 盘中规则（执行阶段，热状态）</h3>
+  <ol>
+    <li><b>只执行计划单</b>：计划里的条件触发了才动手，按 S（仓位）来，不临时加码。</li>
+    <li><b>计划外＝不看、不下单</b>：没写进计划的标的，连自选都不要加——手痒的第一步永远是"先看看"。</li>
+    <li><b>想改单→挂起</b>：盘中冒出任何想改计划、想加新单的念头，不讨论对错，一律<b>挂起，扔进明日准备阶段</b>。挂起不丢机会——真机会明天还在，不是真机会明天你自己就忘了。</li>
+  </ol>
+  <h3>③ 24h 规则（冷却间隔）</h3>
+  <ol>
+    <li><b>当日卖了不买</b>（接 L06 的 T+1 周期：今天买明天卖，卖的那天不再买）。</li>
+    <li><b>准备后 24 小时内不得执行新想法</b>：今天盘后写好的计划，明天盘中执行；明天盘中挂起的新想法，后天盘后才允许进准备阶段——再过一天才可能被执行。</li>
+  </ol>
+  <div class="formula">一天的完整流程（把三条串起来）：
+昨天盘后：准备（预期+赚钱效应+计划+「明日只做这 2 笔」）——冷状态，敢用主观
+今天盘中：只执行那 2 笔；第 3 个念头出现 → 挂起，写进今晚准备的议题
+今天盘后：复盘 + 处理挂起议题 + 写明天的 2 笔 —— 距离执行点 ≥ 24h
+明天盘中：执行昨天（相对今天）定好的 2 笔……循环
+<b>决策永远发生在至少一天以前——这就是"不给自己机会"的机械实现。</b></div>
+
+  <h2><span class="tag p2">六</span>边界与误区：三个最容易做歪的地方</h2>
+  <p><b>误区一：把执行阶段的"客观"理解成"死板"。</b>不是。客观指的是<b>按预设规则行动，不按临场感觉行动</b>——这两者经常长得像，方向却相反：</p>
+  <ul>
+    <li>止损触发了就走——这是 <b>客观规则</b>（X 条款），盘后定的，盘中触发就执行，<b>越机械越对</b>。</li>
+    <li>"感觉要跌"所以提前卖——这是 <b>主观</b>，执行阶段不许有。哪怕事后碰巧对了，这个动作也是错的，因为它下次会让你在启动前被洗出去。</li>
+  </ul>
+  <p>判据一句话：<b>规则写在昨天的纸上＝客观；涌在今天的心头＝主观。</b></p>
+  <p><b>误区二：准备阶段拖延＝另一种逃避。</b>有人发现"准备阶段可以动脑子"，就无限期准备下去：今天研究、明天研究、永远"还没准备好"。记住：<b>准备是为了执行，不是纸上谈兵</b>。准备阶段的产出必须是可执行的计划单（U/E/X/S/A/K 齐全、明日只做这 N 笔）；写不出计划单的准备，是用勤奋包装的不敢出手。</p>
+  <p><b>误区三：把 24h 间隔当成"冷却亏损"。</b>大亏之后空仓冷却，那是 L06 大亏空仓的事，触发条件是超预期亏损、解除条件是搞明白——<b>那是另一条规则，管的是亏损反应</b>。本课的 24h 间隔<b>冷却的是决策本身</b>：不管你今天是赚是亏，新的决策一律等 24 小时。赚钱了想乘胜追击？等 24 小时。亏钱了想立刻翻本？等 24 小时。<b>它不看你的情绪状态，它看的是"这个决策是不是热状态做的"。</b>两条规则可以同时生效，但不要混：L06 管"亏了怎么停"，L10 管"决策怎么来"。</p>
+
+  <h2><span class="tag p4">七</span>可视化件：两阶段检查器（点按钮看该怎么做）</h2>
+  <p class="small">把你盘中会遇到的场景交给制度去裁决：选一个场景，看它属于哪个阶段、正确动作是什么、依据在哪。</p>
+  <div class="demo">
+    <h4>两阶段检查器</h4>
+    <div class="btns" id="l10-btns">
+      <button data-k="a">盘中看到直线拉，想追</button>
+      <button data-k="b">准备阶段发现新机会</button>
+      <button data-k="c">执行阶段想改单</button>
+      <button data-k="d">24 小时内想再执行</button>
+      <button data-k="e">止损触发了</button>
+    </div>
+    <div class="out" id="l10-out">👆 点一个场景，这里显示：所属阶段 / 正确动作 / 依据。</div>
+  </div>
+  <script>
+    var L10_VERDICT = {
+      a: '<b>所属阶段：</b>执行阶段（盘中、热状态）想做决策——判定为<b>随手单倾向</b>。<br><b>正确动作：</b>不下单，不看不追；把这个想法"挂起"，写进今晚准备阶段的议题清单。24 小时后它还在、且写得出 U/E/X，才允许变成计划单。<br><b>依据：</b>临场冲动是热状态产物（热冷共情差距＋双曲贴现）；「执行阶段不要给自己任何主观能参与的机会」。直线拉升给的是即时快感，不是赚钱效应证据。',
+      b: '<b>所属阶段：</b>准备阶段（盘后、冷状态）——这里是<b>唯一允许动用主观判断</b>的地方。<br><b>正确动作：</b>认真做：复盘市场状态、确认赚钱效应（L04）、把新机会写成完整计划单（U/E/X/S/A/K 全写），并纳入"明日只做这 N 笔"的名额。<br><b>依据：</b>「准备阶段做预期、做赚钱效应的时候要有主观预期判断」——该用脑子时必须用脑子；但计划生效仍要等 ≥24h 的固定间隔。',
+      c: '<b>所属阶段：</b>执行阶段想插手主观——<b>不批准</b>。<br><b>正确动作：</b>挂起。不改、不撤、不加；把想改的理由写下来，今晚盘后作为议题重新评估，改好的新计划最快明天执行。唯一例外：触发了计划里预设的 X（出场条款）就照 X 执行。<br><b>依据：</b>「所有的预期都在准备阶段做」；执行阶段零主观。「想改」这个念头本身就是热状态信号——真有理，明天还站得住。',
+      d: '<b>所属阶段：</b>还在 24 小时冷却间隔内——<b>时间闸未开</b>。<br><b>正确动作：</b>不做。今天刚做完（或刚准备好）的决策，「直到下一天 24 小时之内，不能再次进行执行」。把新想法记下来，进入下一个准备阶段。<br><b>依据：</b>固定时间间隔 ≥ 一天：情绪代谢＋睡一觉强制回冷状态；冲动的半衰期远短于一天。等一天成本≈0，收益＝避开 −1.2%/笔的随手单期望。',
+      e: '<b>所属阶段：</b>执行阶段的<b>客观规则触发</b>——这不叫主观，这叫执行。<br><b>正确动作：</b>立刻按计划的 X 条款出场，机械执行，不犹豫不打折。出场后想立刻反手或换标的？不批——当日卖了不买（接 L06 T+1）。<br><b>依据：</b>止损是昨天写在纸上的规则，今天触发就照做＝客观执行；「感觉要跌」才叫主观。零主观≠零动作：规则要求的动作，一秒都不要拖。'
+    };
+    var l10btns = document.querySelectorAll('#l10-btns button');
+    l10btns.forEach(function(b){ b.addEventListener('click', function(){
+      l10btns.forEach(function(x){ x.classList.remove('on'); });
+      b.classList.add('on');
+      document.getElementById('l10-out').innerHTML = L10_VERDICT[b.getAttribute('data-k')];
+    });});
+  </script>
+
+    <h2><span class="tag p4">案</span>真实案例：概念落在盘面上</h2>
+  <p class="small">以下为公开市场事件（数字为约数），用来把本课概念放到真实盘面上看。</p>
+    <div class="card"><b>重庆啤酒 2011「疫苗神话」</b>
+      <p class="small" style="margin:6px 0 0"><b>事实</b>：乙肝疫苗叙事推动多年上涨，2011 年 12 月揭盲失败复牌后连续 9 个跌停，重仓追随者亏损 70%+。</p>
+      <p class="small" style="margin:4px 0 0"><b>对应知识点</b>：故事催生随手单：没有准备阶段的预期核对，「信仰」代替了逻辑链——跌停板排队卖不出时才想起该做的是不考验人性。</p></div>
+    <div class="card"><b>中国中车 2015「神车」追高</b>
+      <p class="small" style="margin:6px 0 0"><b>事实</b>：南北车合并炒作，股价冲上 30 元上方后见顶，一年内跌去约 70%；大量追高者在「目光聚集处」接盘。</p>
+      <p class="small" style="margin:4px 0 0"><b>对应知识点</b>：反目光＋两阶段制度：盘中「感觉」属于执行阶段外的主观冲动——正确动作是挂起，进明日准备阶段写成计划或放弃。</p></div>
+
+
+<h2><span class="tag p3">八</span>复习巩固</h2>
+  <p>按 1/7/30 天各来一轮。先自己答，再点开卡片对答案——答案不是背我的，是要长出你自己的悟道。</p>
+  <div class="flash" onclick="this.classList.toggle('open')">
+    <div class="front">L10 · 卡 1：「不要考验人性」考验的是谁的人性？为什么高手也做不到"靠忍"？<span class="hint">点击翻面</span></div>
+    <div class="back">考验的是<b>你自己的人性</b>，不是别人的。豆子的自况：一直给自己做随手单的机会，他也会去做——绝大多数人的人性经不住考验，包括成熟交易者。所以解法不是修炼意志力，是<b>改变环境、不给机会</b>（减肥的人不把零食买进家；赌场不设时钟）。→ 追问自己：我现在的交易环境里，随手单的"入口"都有哪些？（自选杂、盯盘闲、群里喊单……）</div>
+  </div>
+  <div class="flash" onclick="this.classList.toggle('open')">
+    <div class="front">L10 · 卡 2：准备阶段和执行阶段，主观预期判断分别该放在哪？<span class="hint">点击翻面</span></div>
+    <div class="back"><b>准备阶段必须有</b>主观预期判断——做预期、找赚钱效应、定模式，这里是"做判断"的唯一场所，需要脑子；<b>执行阶段零主观</b>——只按计划单客观执行，不给自己任何主观参与的机会。主观不是坏东西，<b>放错位置的主观才是</b>。→ 追问：我昨天的计划单上，U/E/X/S/A/K 有哪几项是空着的？空着＝准备阶段的主观没做完。</div>
+  </div>
+  <div class="flash" onclick="this.classList.toggle('open')">
+    <div class="front">L10 · 卡 3：盘中止损触发就走，算不算"执行阶段的主观"？<span class="hint">点击翻面</span></div>
+    <div class="back">不算，恰恰是<b>客观执行</b>的样板。判据：规则写在昨天的纸上＝客观；涌在今天的心头＝主观。止损触发走人是 X 条款的动作，越机械越对；「感觉要跌」才叫主观，执行阶段不许有。零主观≠零动作。→ 追问：我上周有没有哪次"感觉要跌"提前卖？事后看是躲过了，还是卖飞了？</div>
+  </div>
+
+  <h3>悟道提问（没有标准答案，答案写进你自己的交易笔记）</h3>
+  <div class="card good">
+    <ol style="margin:6px 0 0;padding-left:20px">
+      <li>我的交易生活里，哪些环节还在"考验人性"？把它们逐条列出来，每条配一个"不给机会"的改造（例：盘中不开交易软件行情页→改为只看条件预警）。</li>
+      <li>如果随手单的期望是 −1.2%/笔，我今年做了多少笔随手单？粗算一下总账——这个数字让我意外吗？</li>
+      <li>24 小时冷却里被"挂起"的念头，我印象中有几个第二天还坚持要做？如果几乎没有，说明了什么？</li>
+    </ol>
+  </div>
+  <h3>本课联结图（文字版，帮你把新旧知识缝起来）</h3>
+  <p class="small">L03 交易模式（U/E/X/S/A/K＋预先承诺）→ 本课"准备阶段"把它变成每日产出；L04 看什么（赚钱效应）→ 准备阶段的第二项输入；L06 交易纪律（T+1 卖了不买）→ 本课 24h 规则的执行侧落点；L07 每日复盘 → 盘后 checklist 第一项。往下：L11 为什么他可以没有固定止盈止损——两阶段制度跑熟之后，出场从"固定数字"进化为"预期判断"。</p>
+
+  <h2><span class="tag p3">九</span>内化掌握（三关全过＝这课学完）</h2>
+  <div class="card warn">
+    <p style="margin:6px 0 0"><b>关卡一 · 费曼</b>：在聊天里输入「我讲给你听 L10」，我扮演爱追问的学生——重点考你："不靠意志力靠什么？"、"准备阶段为什么要允许主观、执行阶段又为什么禁止主观？"、"24 小时到底在冷却什么？"</p>
+    <p style="margin:6px 0 0"><b>关卡二 · 场景判断</b>：周三盘后你复盘发现某个板块赚钱效应起来了，写好计划：周四只做 2 笔，各半仓。周四盘中：① 第 1 笔按计划成交；② 10 点半一只计划外的票直线拉 7%，群里都在喊；③ 你的第 2 笔计划条件还差一点没触发。你会怎么处理这三件事？说出动作和依据。</p>
+    <details><summary>参考判断与评分点</summary><div class="ans">正确动作：① 照计划执行，已完成 1 笔；② 计划外直线拉＝随手单的教科书触发器——不看不下单，挂起写进今晚议题（若它真是赚钱效应载体，明天写进计划、后天执行，机会不会跑）；③ 条件没触发就不做，<b>不降标准迁就</b>，"明日只做这 N 笔"里允许有的笔不成交。评分点：① 分得清计划内/计划外；② 对计划外诱惑用"挂起＋24h"处理而不是"就这一次"；③ 未触发条件不硬做；④ 当日不追加第三笔（N=2 是白纸黑字）。</div></details>
+    <p style="margin:6px 0 0"><b>关卡三 · 规则产出</b>：写出你自己的两阶段落地模板：① 我的盘后 checklist（复盘→赚钱效应→U/E/X/S/A/K→"明日只做这 N 笔"，N＝？）；② 我的盘中三规则（只执行计划单／计划外不看不下单／想改单→挂起）；③ 我的 24h 规则（当日卖了不买＋新想法 24h 内不得执行）＋ 我的"挂起清单"记在哪。</p>
+  </div>
+
+  <h2><span class="tag p3">十</span>作业 · 自测 · 速查</h2>
+
+  <h4>作业（下次课前完成）</h4>
+  <ol>
+    <li><b>随手单清算</b>：翻出最近 10 笔随手单，逐笔记下盈亏，算出你自己的每笔期望（对照教学模拟的 −1.2%/笔），并写下其中"盈利笔如何强化了下一次冲动"的实例。</li>
+    <li><b>挂起实验</b>：严格执行"盘中想买的都挂起、只做计划单"三个交易日，每天记录挂起了几个念头、第二天还坚持的有几个，写 100 字感受。</li>
+    <li><b>写死 N</b>：按模板写出你明天的完整计划单（U/E/X/S/A/K 齐全），并在顶部写「明日只做这 N 笔」（N≤2），盘后核对执行率。</li>
+  </ol>
+
+  <h4>自测（8 题，先答再看答案）</h4>
+  <div class="q">Q1. 「不要考验人性」这句话，考验的是谁的人性？
+    <details><summary>答案</summary><div class="ans">是你自己的人性，不是别人的。豆子自况：一直给自己做随手单的机会，他也会做——绝大多数人的人性经不住考验。</div></details></div>
+  <div class="q">Q2. 避免随手单靠意志力还是靠制度？为什么？
+    <details><summary>答案</summary><div class="ans">靠制度（机会设计）。意志力＝天天考验人性，热状态下必然失守（热冷共情差距）；制度＝把决策搬到冷状态、不给随手单留入口，根本不需要忍。</div></details></div>
+  <div class="q">Q3. 准备阶段和执行阶段，主观预期判断分别放在哪？
+    <details><summary>答案</summary><div class="ans">准备阶段必须有主观预期判断（做预期、找赚钱效应、定模式，需要脑子）；执行阶段零主观、客观执行，不给自己任何主观参与的机会。所有预期都在准备阶段做完。</div></details></div>
+  <div class="q">Q4. 为什么准备与执行之间要隔 24 小时以上？
+    <details><summary>答案</summary><div class="ans">情绪代谢需要周期、冲动半衰期远短于一天；睡一觉强制回到冷状态；把决策权移交给清醒的自己。原文规则：今天准备的东西，下一天 24 小时之内不能再次执行。</div></details></div>
+  <div class="q">Q5. 用数字说明随手单为什么必亏。
+    <details><summary>答案</summary><div class="ans">10 笔随手单：4 笔 +3%、6 笔 −4%，E＝40%×3%−60%×4%＝−1.2%/笔，60 笔/年≈−7.2%；且盈利笔强化赌性、越做越多。24h 间隔把 10 笔冲动压成 2 笔计划单，期望由模式决定——一来一回差约 16 个点。</div></details></div>
+  <div class="q">Q6. 盘中"想改单"的念头怎么处理？
+    <details><summary>答案</summary><div class="ans">挂起：不改不撤不加，写进今晚准备阶段的议题，改好的新计划最快明天执行。例外：计划里预设的 X（出场条款）触发就照 X 客观执行。</div></details></div>
+  <div class="q">Q7. 止损触发就走，是不是执行阶段的"主观"？
+    <details><summary>答案</summary><div class="ans">不是，是客观执行。判据：规则写在昨天的纸上＝客观；涌在今天的心头＝主观。止损走人是 X 条款动作，越机械越对；"感觉要跌"才叫主观。</div></details></div>
+  <div class="q">Q8. 本课的 24h 间隔和 L06 的大亏空仓有什么区别？
+    <details><summary>答案</summary><div class="ans">L06 大亏空仓冷却的是亏损反应：超预期亏损触发、搞明白才解除；本课 24h 间隔冷却的是决策本身：不论赚亏，新决策一律等 24 小时。两条可同时生效，但不要混。</div></details></div>
+
+  <div class="card good"><b>速查卡</b><ul class="cheat" style="margin:6px 0;padding-left:18px">
+    <li>随手单＝临场、无思路、无赚钱效应的单子。</li>
+    <li>避免随手单不靠意志力，靠制度：不要考验人性。</li>
+    <li>考验的是你自己的人性——豆子也做不到，所以不给机会。</li>
+    <li>热状态不做决策，决策全搬冷状态（盘后）。</li>
+    <li>热冷共情差距＋双曲贴现＋预先承诺（尤利西斯契约）。</li>
+    <li>类比：减肥不买零食进家；赌场不设时钟。</li>
+    <li>准备阶段：做预期、找赚钱效应、定模式——要有主观判断。</li>
+    <li>执行阶段：零主观、客观执行，不给任何主观参与的机会。</li>
+    <li>所有预期都在准备阶段做完。</li>
+    <li>冷却间隔 ≥ 一天／24 小时；睡一觉强制回冷状态。</li>
+    <li>盘后 checklist：复盘→赚钱效应→U/E/X/S/A/K→明日只做这 N 笔。</li>
+    <li>盘中三规则：只执行计划单／计划外不看不下单／想改单→挂起。</li>
+    <li>24h 规则：当日卖了不买；新想法 24h 内不得执行。</li>
+    <li>随手单期望 −1.2%/笔，盈利笔还会强化赌性。</li>
+    <li>客观＝昨天纸上写的规则（止损触发就走）；主观＝今天心头的感觉。</li>
+    <li>准备拖延是逃避：准备是为了执行，产出必须是计划单。</li>
+    <li>24h 冷却的是决策，不是亏损（大亏空仓是 L06 另一条）。</li>
+  </ul></div>
+
+  <div class="next"><b>下一讲（L11）：为什么他可以没有固定止盈止损</b>（<a href="https://www.bilibili.com/video/BV1oWLg6hEcg">BV1oWLg6hEcg</a>）。本课把决策锁进两阶段制度，L11 往下钻一层：出场为什么可以不设固定数字——当预期判断足够明白，止盈止损从"死数字"变成"活的预期兑现"。回「下一课」即跳转，或直接提问。</div>
+  <p class="small" style="margin-top:20px">投资有风险，本课为教育内容，不构成投资建议。数值例子为教学模拟；原视频个别字幕（随手单／持仓／主观预期判断）已按转写与语境校订。疑问直接问，我换例子重讲。</p>
+</div>
+
+</body>
+</html>

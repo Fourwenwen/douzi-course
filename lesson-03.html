@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>L03 交易模式</title>
+
+<style>
+.nav{position:sticky;top:0;z-index:50;background:#1a202c;padding:8px 14px;display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif}
+.nav a{color:#e2e8f0;text-decoration:none;font-size:13px;padding:3px 10px;border-radius:999px;background:#2d3748}
+.nav a:hover{background:#4a5568}
+.nav a.cur{background:#c05621;color:#fff;font-weight:600}
+.nav a.home{background:#2b6cb0}
+.nav .sp{color:#718096;font-size:12px;margin:0 4px}
+</style>
+</head>
+<body style="margin:0;background:#f7fafc">
+<nav class="nav"><a class="home" href="index.html">目录主页</a><a class="" href="lesson-01.html">L01 本金保护</a><a class="" href="lesson-02.html">L02 盈亏同源</a><a class="cur" href="lesson-03.html">L03 交易模式</a><a class="" href="lesson-04.html">L04 看什么</a><a class="" href="lesson-05.html">L05 技术分析</a><a class="" href="lesson-06.html">L06 交易纪律</a><a class="" href="lesson-07.html">L07 切换原理</a><a class="" href="lesson-08.html">L08 成长</a><a class="" href="lesson-09.html">L09 实操学习</a><a class="" href="lesson-10.html">L10 随手单</a><span class="sp">点击跳转复看</span></nav>
+<style>
+  :root{--ink:#1a202c;--sub:#4a5568;--line:#e2e8f0;--bg:#f7fafc;--accent:#c05621;--accent2:#2b6cb0;--good:#276749;--warn:#9b2c2c;--card:#fff}
+  *{box-sizing:border-box}
+  .doc{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;color:var(--ink);background:var(--bg);padding:28px 20px 60px;line-height:1.8;max-width:980px;margin:0 auto}
+  .doc h1{font-size:26px;margin:0 0 4px}
+  .doc h2{font-size:19px;margin:34px 0 10px;padding-left:10px;border-left:4px solid var(--accent)}
+  .doc h3{font-size:16px;margin:20px 0 8px;color:var(--accent2)}
+  .doc p{margin:8px 0}
+  .meta{color:var(--sub);font-size:13px;margin-bottom:16px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin:12px 0}
+  .goal{background:#fffaf0;border-color:#fbd38d}
+  .warn{background:#fff5f5;border-color:#feb2b2}
+  .good{background:#f0fff4;border-color:#9ae6b4}
+  .note{background:#ebf8ff;border-color:#90cdf4}
+  table{width:100%;border-collapse:collapse;font-size:13px;background:var(--card);border-radius:8px;overflow:hidden;margin:8px 0}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+  th{background:#edf2f7;font-weight:600}
+  td.num{white-space:nowrap;font-variant-numeric:tabular-nums;text-align:right}
+  .pos{color:var(--good);font-weight:600}.neg{color:var(--warn);font-weight:600}
+  .tag{display:inline-block;font-size:11px;padding:1px 8px;border-radius:999px;background:#edf2f7;color:var(--sub);margin-right:4px}
+  .p1{background:#feebc8;color:#7b341e}.p2{background:#bee3f8;color:#2a4365}.p3{background:#c6f6d5;color:#22543d}.p4{background:#fed7e2;color:#702459}
+  a{color:var(--accent2);text-decoration:none}a:hover{text-decoration:underline}
+  .formula{background:#1a202c;color:#f7fafc;border-radius:8px;padding:12px 16px;font-family:"SF Mono",Menlo,monospace;font-size:13px;margin:10px 0;overflow-x:auto;line-height:1.9}
+  .formula b{color:#f6ad55}
+  .q{border-left:3px solid var(--accent2);padding-left:12px;margin:12px 0}
+  .ans{color:var(--good);font-size:13px;margin-top:4px}
+  .next{margin-top:24px;padding:14px 18px;border:1px dashed var(--accent);border-radius:10px;background:#fffaf0;font-size:14px}
+  .small{font-size:12.5px;color:var(--sub)}
+  details{margin:8px 0}summary{cursor:pointer;color:var(--accent2);font-size:13.5px}
+  .cheat{columns:2;column-gap:24px}.cheat li{margin:6px 0;break-inside:avoid}
+  ul,ol{margin:6px 0 6px 20px;padding:0}li{margin:3px 0}
+  code{background:#edf2f7;border-radius:4px;padding:0 5px;font-size:12.5px}
+  @media(max-width:640px){.cheat{columns:1}}
+  .demo{background:#1a202c;border-radius:12px;padding:18px 20px;color:#f7fafc;margin:14px 0}
+  .demo h4{margin:0 0 10px;font-size:15px;color:#f6ad55}
+  .demo .row{display:flex;flex-wrap:wrap;gap:18px;align-items:center}
+  .demo label{font-size:13px}
+  .demo input[type=range]{width:240px;vertical-align:middle}
+  .demo .out{font-family:"SF Mono",Menlo,monospace;font-size:13px;line-height:2}
+  .demo .out b{color:#f6ad55}
+  .demo .bar{height:16px;border-radius:8px;background:#2d3748;overflow:hidden;margin:6px 0}
+  .demo .bar i{display:block;height:100%;border-radius:8px}
+  .demo button{font-family:inherit;font-size:13px;border:none;border-radius:8px;padding:6px 14px;cursor:pointer;background:#f6ad55;color:#1a202c;font-weight:600}
+  .demo button:hover{background:#ed8936}
+  .flash{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:10px 0;cursor:pointer}
+  .flash .front{font-weight:600}
+  .flash .back{display:none;margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);color:var(--good)}
+  .flash.open .back{display:block}
+  .flash .hint{font-size:11.5px;color:var(--sub);float:right;font-weight:400}
+</style>
+
+<div class="doc">
+  <div class="card" style="padding:10px 14px;margin:0 0 14px">
+    <b>课程目录</b>　<span class="small">L01 本金保护 · L02 盈亏同源 · <b>L03 交易模式（本课）</b> · L04 看什么 · L05 技术分析 · L06 纪律 · L07 切换原理 · L08–L13 方法 · L14–L25 认知心智</span><br>
+    <span class="small">导航口令：「目录」看全表 ｜「下一课」推进 ｜「重讲 Lxx」换方式重讲 ｜ 直接提问＝答疑</span>
+    <span class="small">总览入口：<a href="trees.html">十课知识树</a> ｜ <a href="cases.html">十课真实案例</a>（每课正文内也有各自的知识树与真实案例）</span>
+  </div>
+
+  <h1>第三课：交易模式——一个稳定盈利的模式长什么样</h1>
+  <div class="meta">《豆子悟道 · 股票系统学习课》L03 ｜ 模块一 悟道·地基 ｜ 源自原视频《悟道系列——讲解交易模式，以一个稳定盈利的交易模式举例》（约 12:42，<a href="https://www.bilibili.com/video/BV1pgYYzhEE5">BV1pgYYzhEE5</a>）｜ <b>本讲义是消化后的讲解</b>：视频全部要点已重组融入正文，配上我的理解与例子，不需要看视频 ｜ 2026-10-27</div>
+
+  <div class="card goal">
+    <b>这节课讲什么</b>
+    <p style="margin:6px 0 0">一句话：<b>一个稳定盈利的模式 = 六元组（U 标的池 / E 入场 / X 出场 / S 仓位 / A 加减仓 / K 开关）＋ 三道检验（正期望、可重复、回撤可承受）。</b>写不出这六项的"打法"不是模式，是感觉。</p>
+    <p style="margin:6px 0 0">L01 讲「先活下来」，L02 讲「盈亏同源」。这一课把两件事落到一个<b>可执行的载体</b>上：交易模式。豆子拿他自己真实用过、达到稳定盈利级别的<b>「老龙反抽板」</b>当解剖标本，把一个模式该有的零件全部拆开：钱从哪来、怎么进怎么出、投多少钱、什么时候会反噬、用什么信号停用和重启。</p>
+    <p style="margin:6px 0 0">重点不是让你去抄这个模式——它有明确的生命周期，现在已经不在最好做的阶段——而是学会「模式」这个东西的结构，然后往框架里填你自己的东西。下面十一节：先讲为什么需要模式（多巴胺），再立框架与六元组、三道检验，然后完整拆解老龙反抽板（含两期数值模拟），接着讲期望值数学、失效机制、生命周期开关、三个原则，最后是术语表、作业与速查。</p>
+  </div>
+
+  <h2><span class="tag p4">图</span>本课知识树（思维导图）</h2>
+  <p class="small">从左向右生长：根＝本课主张，一级分支＝主题，向右展开概念；右上角编号＝关联（见图例）。</p>
+  <div style="overflow-x:auto;margin:10px 0">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1196" role="img" aria-labelledby="l03-tree-tree-title l03-tree-tree-desc" style="min-width:1024px;width:100%;height:auto;font-family:'PingFang SC','Microsoft YaHei','Noto Sans SC',-apple-system,sans-serif">
+    <title id="l03-tree-tree-title">L03 交易模式知识树</title>
+    <desc id="l03-tree-tree-desc">交易模式的完整层级：六元组（含出场四件套与开关细分）、三道检验、老龙反抽板、期望值、失效与开关，含三条关联。</desc>
+    <defs>
+      <marker id="l03-tree-arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1 L 8 5 L 0 9 z" fill="#2b6cb0"/>
+      </marker>
+    </defs>
+    <path d="M 152 541 C 226 541 226 189 300 189" fill="none" stroke="#b9c3d0" stroke-width="1.6"/>
+    <path d="M 396 189 C 478 189 478 25 560 25" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 189 C 478 189 478 69 560 69" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 189 C 478 189 478 171 560 171" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 656 171 C 728 171 728 111 800 111" fill="none" stroke="#cdd5df" stroke-width="1"/>
+    <path d="M 656 171 C 728 171 728 151 800 151" fill="none" stroke="#cdd5df" stroke-width="1"/>
+    <path d="M 656 171 C 728 171 728 191 800 191" fill="none" stroke="#cdd5df" stroke-width="1"/>
+    <path d="M 656 171 C 728 171 728 231 800 231" fill="none" stroke="#cdd5df" stroke-width="1"/>
+    <path d="M 396 189 C 478 189 478 273 560 273" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 189 C 478 189 478 335 560 335" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 656 335 C 728 335 728 315 800 315" fill="none" stroke="#cdd5df" stroke-width="1"/>
+    <path d="M 656 335 C 728 335 728 355 800 355" fill="none" stroke="#cdd5df" stroke-width="1"/>
+    <path d="M 152 541 C 226 541 226 441 300 441" fill="none" stroke="#b9c3d0" stroke-width="1.6"/>
+    <path d="M 396 441 C 478 441 478 397 560 397" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 441 C 478 441 478 441 560 441" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 441 C 478 441 478 485 560 485" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 152 541 C 226 541 226 617 300 617" fill="none" stroke="#b9c3d0" stroke-width="1.6"/>
+    <path d="M 396 617 C 478 617 478 529 560 529" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 617 C 478 617 478 573 560 573" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 617 C 478 617 478 617 560 617" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 617 C 478 617 478 661 560 661" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 617 C 478 617 478 705 560 705" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 152 541 C 226 541 226 793 300 793" fill="none" stroke="#b9c3d0" stroke-width="1.6"/>
+    <path d="M 396 793 C 478 793 478 749 560 749" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 793 C 478 793 478 793 560 793" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 793 C 478 793 478 837 560 837" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 152 541 C 226 541 226 969 300 969" fill="none" stroke="#b9c3d0" stroke-width="1.6"/>
+    <path d="M 396 969 C 478 969 478 881 560 881" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 969 C 478 969 478 925 560 925" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 969 C 478 969 478 969 560 969" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 969 C 478 969 478 1013 560 1013" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 969 C 478 969 478 1057 560 1057" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 617 C 466 617 466 962 396 962" fill="none" stroke="#2b6cb0" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#l03-tree-arr)"/>
+    <path d="M 396 793 C 466 793 466 441 396 441" fill="none" stroke="#2b6cb0" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#l03-tree-arr)"/>
+    <path d="M 396 976 C 466 976 466 189 396 189" fill="none" stroke="#2b6cb0" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#l03-tree-arr)"/>
+    <rect x="560" y="8" width="128" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="30" font-size="12" font-weight="600" fill="#1a202c">U 标的池（老龙）</text>
+    <rect x="560" y="52" width="144" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="74" font-size="12" font-weight="600" fill="#1a202c">E 入场（扫板/半路）</text>
+    <rect x="800" y="96" width="96" height="30" rx="8" fill="#f7fafc" stroke="#cbd5e0" stroke-width="0.8"/>
+    <text x="813" y="116" font-size="12" font-weight="400" fill="#4a5568">首板兑现</text>
+    <rect x="800" y="136" width="96" height="30" rx="8" fill="#f7fafc" stroke="#cbd5e0" stroke-width="0.8"/>
+    <text x="813" y="156" font-size="12" font-weight="400" fill="#4a5568">连板转弱走</text>
+    <rect x="800" y="176" width="124" height="30" rx="8" fill="#f7fafc" stroke="#cbd5e0" stroke-width="0.8"/>
+    <text x="813" y="196" font-size="12" font-weight="400" fill="#4a5568">低于预期开盘兑现</text>
+    <rect x="800" y="216" width="112" height="30" rx="8" fill="#f7fafc" stroke="#cbd5e0" stroke-width="0.8"/>
+    <text x="813" y="236" font-size="12" font-weight="400" fill="#4a5568">空一个买点观察</text>
+    <rect x="560" y="154" width="96" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="176" font-size="12" font-weight="600" fill="#1a202c">X 出场</text>
+    <rect x="560" y="256" width="188" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="278" font-size="12" font-weight="600" fill="#1a202c">S/A 仓位·加减（定额阶梯）</text>
+    <rect x="800" y="300" width="96" height="30" rx="8" fill="#f7fafc" stroke="#cbd5e0" stroke-width="0.8"/>
+    <text x="813" y="320" font-size="12" font-weight="400" fill="#4a5568">双降＝停用</text>
+    <rect x="800" y="340" width="112" height="30" rx="8" fill="#f7fafc" stroke="#cbd5e0" stroke-width="0.8"/>
+    <text x="813" y="360" font-size="12" font-weight="400" fill="#4a5568">突破连板＝重启</text>
+    <rect x="560" y="318" width="96" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="340" font-size="12" font-weight="600" fill="#1a202c">K 开关</text>
+    <rect x="300" y="172" width="96" height="34" rx="8" fill="#ffffff" stroke="#1a202c" stroke-width="1.2"/>
+    <text x="313" y="194" font-size="13" font-weight="600" fill="#1a202c">六元组</text>
+    <rect x="560" y="380" width="136" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="402" font-size="12" font-weight="600" fill="#1a202c">正期望（赚谁的钱）</text>
+    <rect x="560" y="424" width="148" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="446" font-size="12" font-weight="600" fill="#1a202c">可重复（分布非单笔）</text>
+    <rect x="560" y="468" width="172" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="490" font-size="12" font-weight="600" fill="#1a202c">回撤可承受（连败扛得住）</text>
+    <rect x="300" y="424" width="96" height="34" rx="8" fill="#ffffff" stroke="#1a202c" stroke-width="1.2"/>
+    <text x="313" y="446" font-size="13" font-weight="600" fill="#1a202c">三道检验</text>
+    <rect x="560" y="512" width="112" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="534" font-size="12" font-weight="600" fill="#1a202c">名字＝选股条件</text>
+    <rect x="560" y="556" width="124" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="578" font-size="12" font-weight="600" fill="#1a202c">钱源＝认知差博傻</text>
+    <rect x="560" y="600" width="116" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="622" font-size="12" font-weight="600" fill="#1a202c">封板率 ↔ 胜率</text>
+    <rect x="560" y="644" width="140" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="666" font-size="12" font-weight="600" fill="#1a202c">次日溢价 ↔ 盈亏比</text>
+    <rect x="560" y="688" width="148" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="710" font-size="12" font-weight="600" fill="#1a202c">恒宝利空＝模式内亏损</text>
+    <rect x="300" y="600" width="96" height="34" rx="8" fill="#ffffff" stroke="#1a202c" stroke-width="1.2"/>
+    <text x="313" y="622" font-size="13" font-weight="600" fill="#1a202c">老龙反抽板</text>
+    <rect x="560" y="732" width="152" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="754" font-size="12" font-weight="600" fill="#1a202c">E=p×盈−(1−p)×亏</text>
+    <rect x="560" y="776" width="128" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="798" font-size="12" font-weight="600" fill="#1a202c">纪律版 +4.0%/笔</text>
+    <rect x="560" y="820" width="132" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="842" font-size="12" font-weight="600" fill="#1a202c">放任版 −1.5%/笔</text>
+    <rect x="300" y="776" width="96" height="34" rx="8" fill="#ffffff" stroke="#1a202c" stroke-width="1.2"/>
+    <text x="313" y="798" font-size="13" font-weight="600" fill="#1a202c">期望值</text>
+    <rect x="560" y="864" width="124" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="886" font-size="12" font-weight="600" fill="#1a202c">认知差被学习抹平</text>
+    <rect x="560" y="908" width="124" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="930" font-size="12" font-weight="600" fill="#1a202c">博傻需要不断新人</text>
+    <rect x="560" y="952" width="112" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="974" font-size="12" font-weight="600" fill="#1a202c">拥挤＝买点前置</text>
+    <rect x="560" y="996" width="148" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="1018" font-size="12" font-weight="600" fill="#1a202c">双降＝胜率盈亏比同降</text>
+    <rect x="560" y="1040" width="136" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="1062" font-size="12" font-weight="600" fill="#1a202c">重启＝老龙突破连板</text>
+    <rect x="300" y="952" width="96" height="34" rx="8" fill="#ffffff" stroke="#1a202c" stroke-width="1.2"/>
+    <text x="313" y="974" font-size="13" font-weight="600" fill="#1a202c">失效与开关</text>
+    <rect x="24" y="511" width="128" height="60" rx="8" fill="rgba(192,86,33,0.08)" stroke="#c05621" stroke-width="1.4"/>
+    <text x="38" y="537" font-size="15" font-weight="600" fill="#1a202c">L03 交易模式</text>
+    <text x="38" y="557" font-size="11" fill="#4a5568">六元组 ＋ 三道检验</text>
+    <circle cx="392" cy="176" r="8" fill="#2b6cb0"/>
+    <text x="392" y="180" text-anchor="middle" font-size="10" font-weight="600" fill="#fff">1</text>
+    <circle cx="392" cy="428" r="8" fill="#2b6cb0"/>
+    <text x="392" y="432" text-anchor="middle" font-size="10" font-weight="600" fill="#fff">2</text>
+    <circle cx="392" cy="604" r="8" fill="#2b6cb0"/>
+    <text x="392" y="608" text-anchor="middle" font-size="10" font-weight="600" fill="#fff">3</text>
+    <circle cx="392" cy="780" r="8" fill="#2b6cb0"/>
+    <text x="392" y="784" text-anchor="middle" font-size="10" font-weight="600" fill="#fff">4</text>
+    <circle cx="392" cy="956" r="8" fill="#2b6cb0"/>
+    <text x="392" y="960" text-anchor="middle" font-size="10" font-weight="600" fill="#fff">5</text>
+    <line x1="10" y1="1092" x2="1014" y2="1092" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="10" y="1108" font-size="12" font-weight="600" fill="#1a202c">关联图例</text>
+    <text x="86" y="1108" font-size="12" fill="#4a5568">① 封板率（胜率）与次日溢价（盈亏比）双降＝老龙模式的停用信号</text>
+    <text x="86" y="1130" font-size="12" fill="#4a5568">② 期望值 E=p×盈−(1−p)×亏 直接给出三道检验的第一道</text>
+    <text x="86" y="1152" font-size="12" fill="#4a5568">③ 生命周期开关就是六元组里的 K，停用与重启都有 observable 信号</text>
+  </svg>
+  </div>
+  <h2><span class="tag p1">一</span>先立命题：模式是给冲动装的制度，不是给聪明加的杠杆</h2>
+  <p>豆子刚从实盘比赛回来（两个账户都拿了百万组第一），开场却一点都不讲战法，先讲生理学。他说：做过交易的人都知道，<b>交易通常是向内求，比向外求多</b>——为什么？因为<b>投机和赌博太像了，它和赌博一样会刺激多巴胺释放</b>。</p>
+  <p>他举的那个小鼠实验非常有名：小鼠按一个电极按钮就能获得多巴胺，结果哪怕它饿到饭都不吃了、直到死，<b>都没有停止按那个按钮</b>。推论他讲得很克制：「我不极端，但绝大多数人都是在<b>生理上</b>就很难控制自己不去做随手单。」注意是"生理上"——不是你意志力不行，是这个机制本来就在那里。</p>
+  <p>所以交易模式的意义，他给的定义是：<b>采取制度性措施，让不客观、主观的自己有更少的操作空间，并且让理智的自己有更好的操作，去把握我们真正追逐的东西——赚钱效应。</b>换句话说，模式首先是一套<b>约束冲动的装置</b>，其次才是赚钱方法。</p>
+  <p><b>我的理解：这就是行为金融里的「热冷状态差距」（hot-cold empathy gap）与双曲贴现。</b>冷静时（盘后、理智期）定的计划，临场（盘中、多巴胺驱动的热状态）会被推翻。学界的解法叫<b>预先承诺（precommitment，又叫 Ulysses contract——奥德修斯把自己绑在桅杆上，事先绑住临场的自己）</b>。豆子说的"让主观的自己更少操作空间"，翻译过来就是：<b>把决策从临场移到盘前。</b></p>
+  <p><b>例子（走一遍数字）：随手单"十个有九个都是错的"。</b>假设你一年做了 60 笔随手单——盘中看到直线拉就追、炸板就慌着割——平均每笔亏 2%（追高回落＋手续费＋情绪化止损），一年就是 <span class="neg">−12%</span>。这足以吃掉一个正期望模式一整年的利润。而且随手单不属于任何模式的 U/E，没有来源检验、没有开关保护，期望值由情绪和市场随机性决定，长期必为负。</p>
+
+  <h2><span class="tag p1">二</span>模式怎么形成：一句话公式，和豆子的七行框架</h2>
+  <p>模式如何形成？他说特别简单，一句话：<div class="formula">规律总结 → <b>观察赚钱效应</b> → 掌握赚钱效应</div>
+  <p>重点在中间那步：<b>赚钱效应是第一个要观察的东西</b>——「有了它才能去做前面的这些东西（标的、入场、出场、资金管理），这些东西都是围绕着它来的」。然后他给出自己个人总结的模式框架，一行字：</p>
+  <div class="formula">标的选择，入场，出场，资金管理，<b>赚钱效应</b>，盈亏同源产生，如何避免盈亏同源
+前四项 = 操作层（怎么抓）　第五项 = 源头（钱从哪来）　后两项 = L02 盈亏同源在模式层的落地</div>
+  <p>为什么框架里必须写最后两行？因为<b>赚钱效应和盈亏同源是伴生的</b>：「交易没有圣杯，超额收益一定有它背后的原因」——所以它一定有盈亏同源，盈亏同源是本质道理（L02）。你要看到赚钱效应的同时，就得想到它为什么会出现这种超额收益、它的风险是什么。<b>一个模式的完整描述必须包含"它怎么赚钱"和"它怎么亏钱"两半，缺一不可。</b></p>
+  <p><b>例子。</b>924 之后做打板的人很容易观察到一个赚钱效应：老龙一反抽封板，封板率极高，次日个个给溢价——这是"观察赚钱效应"。但按框架你必须马上写后两行：这个超额来自新散户的联想（认知差），它什么时候会反噬？答案在第五、七节。<b>只写前四行的，是战法；七行写全的，才是模式。</b></p>
+
+  <h2><span class="tag p2">三</span>模式六元组：U / E / X / S / A / K</h2>
+  <p>把七行框架翻译成工程语言，一个<b>完整</b>的交易模式就是六元组加判别标准。下表右列直接用老龙反抽板填，你以后填自己的：</p>
+  <table>
+    <thead><tr><th style="width:120px">组件</th><th>含义</th><th>老龙反抽板的取值</th></tr></thead>
+    <tbody>
+      <tr><td><b>U 标的池</b></td><td>只在哪个池子里找机会</td><td>924 后产生的老龙头（有过连板高度的前期人气股）</td></tr>
+      <tr><td><b>E 入场</b></td><td>什么信号触发买</td><td>老龙反抽首板：扫板，或突破半路（点火突破时中途介入）</td></tr>
+      <tr><td><b>X 出场</b></td><td>什么信号触发卖（止损＋止盈）</td><td>首板兑现；或转强连板后转弱再走；低于预期（没封板/次日低开）→ 开盘兑现，<b>空一个买点观察</b></td></tr>
+      <tr><td><b>S 仓位</b></td><td>每次投多少、总敞口多少</td><td>半仓以上<b>定额</b>（总资金 100w–200w 时每次固定投 100w）</td></tr>
+      <tr><td><b>A 加减仓</b></td><td>什么状态加、什么状态减、试错怎么投</td><td>正常期按定额执行；出现低于预期后<b>降仓试探</b>而非重仓；重启信号后先<b>小仓试错</b>，确认没问题回原定额；定额随资金阶梯放大（200–400w 投 200w）</td></tr>
+      <tr><td><b>K 开关</b></td><td>环境假设失效时停用/重启模式的判据（赚钱效应与盈亏同源的管理层）</td><td>停用：次日溢价↓ ＋ 封板率↓ 双降；重启：亏钱效应释放一段时间后出现<b>老龙突破连板</b>，再看新老龙首板有无超预期胜率和溢价</td></tr>
+    </tbody>
+  </table>
+  <p class="small">豆子的原框架里，「赚钱效应（适合的行情）」就是 K 的判据来源，「盈亏同源产生＋如何避免」就是 K 的停用与重启逻辑——六元组不丢信息，只是把七行收拢成六个可执行的部件。</p>
+  <p><b>判别标准：写不出这六项的"打法"不是模式，是感觉。</b>大多数人亏钱，是因为手里只有 E（怎么买），没有 X / S / A / K。</p>
+  <p><b>例子（同一个入场，两种结局）。</b>假设入场完全相同（首板点火突破买入，胜率 45%、盈利端能到 +15%）：有 X/S/A/K 的版本，严格止损把单笔亏损砍在 −5%，<b>E = 0.45×15% − 0.55×5% = +4.0%/笔</b>；只有 E 的版本，亏损靠"扛一扛"放到 −15%，同样胜率下 <b>E = 6.75% − 8.25% = −1.5%/笔</b>。<b>入场一模一样，一个稳定盈利，一个是亏钱机器</b>——差别全在你没写的那几项。</p>
+
+  <h2><span class="tag p2">四</span>模式成立的三道检验：正期望 / 可重复 / 回撤可承受</h2>
+  <p>六元组是零件，三道检验是质检。豆子的原话框架里对应的是「来源检验、样本检验、开关检验」，我把它归纳成三个更好记的问题：</p>
+  <ol>
+    <li><b>正期望（来源检验）：钱从哪来？E 算得正吗？</b>必须说清赚的是谁的钱。老龙反抽赚的是「新散户对老龙头的联想溢价」＝认知差／博傻（第五节拆）。说不清来源的模式，赚的往往是运气；算不出 E&gt;0 的"感觉很准"，不叫正期望。</li>
+    <li><b>可重复（样本检验）：信号能反复出现吗？规则客观吗？</b>要客观到两个人照着执行结果接近。一次性暴利不是模式——单月翻倍也证明不了什么，必须有 100 笔量级的分布（接 L02：评价模式看分布，不看单笔）。</li>
+    <li><b>回撤可承受（开关检验）：它何时会亏？亏起来扛得住吗？</b>预先知道它在什么环境下会亏、用什么可观测指标判断"现在处于亏钱期"（溢价↓＋封板率↓），并且亏损连发时账户与心态都扛得住。这是 L02 盈亏同源的落地，也是 L01 回撤数学的接口。</li>
+  </ol>
+  <div class="formula">三检验速记：<b>赚谁的钱（正期望）</b> → <b>能否反复赚（可重复）</b> → <b>亏的时候死不了（回撤可承受＋开关）</b>
+数字示例·回撤可承受：每笔风险 5%，连亏 5 笔 = 0.95⁵−1 ≈ <b>−22.6%</b>，回本需 +29.2%
+每笔风险 10%，连亏 5 笔 = 0.90⁵−1 ≈ <b>−41%</b>，回本需 +69.3%
+→ "亏得起"决定单笔风险上限，不是胆量；这就是 S/A 存在的理由</div>
+  <p><b>我的读法：三道检验任何一道不过，模式不成立。</b>来源不清＝赚运气（过不了正期望）；规则靠临场发挥＝不可重复；亏损连发两次就慌到改规则＝回撤不可承受。<b>很多人卡在第三道：模式没问题，仓位让回撤变成了事故。</b></p>
+
+  <h2 id="mode"><span class="tag p4">五</span>完整拆解：老龙反抽板——一个稳定盈利级别的模式</h2>
+  <p>下面进入本课主菜。这是豆子 924 行情之后真实做过、他个人认为「非常成熟、已经达到稳定盈利级别」的模式。我按「名字 → 钱从哪来 → 怎么进 → 怎么出 → 怎么管钱 → 怎么反噬 → 怎么避免」的顺序拆给你看。</p>
+
+  <h3>1. 模式名自带技术条件：老龙 = 辨识度，反抽板 = 首板形态</h3>
+  <p>先拆名字——这个名字本身就是选股条件，两个词各管一半：</p>
+  <ul>
+    <li><b>老龙（老龙头）＝历史强辨识度</b>：上一轮行情里走出过高连板高度、涨过好几倍的人气龙头股。全市场都认得它——辨识度是这个模式的原料，因为后面赚的就是"散户认得它"的钱。</li>
+    <li><b>反抽板＝首板形态</b>：老龙跌下来之后的一次脉冲反弹中的<b>第一个涨停板</b>（不是连板途中，是反抽里的首板）。做的是"跌后第一枪"，不是接力主升。</li>
+  </ul>
+  <p>所以 U 标的池一句话就定了：<b>924 后产生的、有历史辨识度的老龙头，在反抽中走出首板的那一个。</b>最近的例子如恒宝之类都符合（后面讲他做恒宝的遭遇）。</p>
+
+  <h3>2. 钱从哪来：新散户的联想，和"认知差博傻"</h3>
+  <p>赚钱效应是第一个要观察的，那就先看清楚它的形状。924 行情之后，<b>大量新散户入场</b>——他们了解的股票不多、反应比较慢。关键在于他们是怎么进场的：<b>看到老龙头的赚钱效应才进来买的</b>。看着那些股票"以前好几倍好几倍，现在跌下来了，觉得很便宜"，于是对老龙头的以往优秀表现产生联想，觉得"龙头还会走牛"。</p>
+  <p>结果就是：一旦老龙出现<b>超预期首板</b>——点火突破之后买盘力量特别强、封板率极高、基本都有资金做；次日接盘力量很强，高开后能维持非常久、基本上能接一整天，<b>存在溢价非常多</b>；而且老龙反抽首板一般会<b>直接冲到热度榜最前面</b>。</p>
+  <p>这笔钱的本质，豆子自己写在板书上：「<b>认知差博傻</b>」——「其实就是赚别人的钱……反正就是投资嘛，大家各凭本事」。我的展开：<b>认知差</b>是注意力层面的错定价（新散户不认识新题材、只记得老龙头）；<b>博傻</b>是买入者并不认为它值这个价，只认为会有更晚的人来接（新散户觉得龙头还会走牛）。<b>你的利润就是"后知后觉者愿意付的联想溢价"。</b></p>
+  <div class="formula">赚钱效应期的直观数字（教学模拟口径）：
+首板点火后 <b>封板率 ≈ 90–95%</b>｜次日平均溢价 <b>+6% ~ +7%</b>，高开能维持一整天
+100 笔：55 笔首板兑现均 <b>+6%</b>（=+330）｜20 笔转强连板均 <b>+18%</b>（=+360）｜25 笔失败均 <b>−5%</b>（=−125）
+→ 净 <b>+565</b>，期望 <b>+5.65%/笔</b>　（定额 100 万/笔 ≈ 平均一笔赚 5.65 万）</div>
+
+  <h3>3. 入场（E）：反抽扫板，或突破半路</h3>
+  <p>入场写的是「924 后产生的老龙反抽，<b>扫板和突破半路</b>」。扫板＝在涨停即将封死的瞬间主动买单扫货成交，赌封住；突破半路＝还没涨停、突破关键位时中途介入。为什么敢做半路？豆子的理由是<b>这个模式封板率够高，所以突破半路损失的确定性不多</b>，"可以说是和扫板差不多"。但他补了一句关键的话：<b>突破半路本身就是一种买点前置</b>——记住这句话，它在反噬那一节会回来。</p>
+
+  <h3>4. 出场（X）：三条规则，加一个"空一个买点观察"</h3>
+  <ul>
+    <li><b>首板兑现</b>：次日不转强，早盘基本就能看出来是要兑现了 → 卖。这就是把超预期首板当隔日兑现做的标准动作。</li>
+    <li><b>转强连板 → 格局到转弱</b>：如果超预期走成连板，你肯定不卖，把它当一个"最初买点的连板"做，等到转弱再走。<b>让利润奔跑的那一段，就是盈亏比的来源。</b></li>
+    <li><b>低于预期 → 开盘兑现</b>：没封住板、或次日低开，就是低于预期，开盘就兑现，不等确认。</li>
+    <li><b>兑现之后：空一个买点观察。</b>这是全模式最聪明的一笔。出现低于预期后，就要<b>怀疑它是不是要开始盈亏同源了</b>：下一个出现的同款买点（老龙反包板）<b>只看不做</b>——看它封不封得住、次日还有没有溢价。如果有 → 说明只是那一个老龙自己的问题，不是整个赚钱效应的问题，那就<b>接着清仓或原仓位继续试</b>；如果<b>连续</b>出现溢价低＋封板率降 → 确认整体赚钱效应已进入亏钱期，休息不做。</li>
+  </ul>
+  <p><b>我的理解："空一个买点观察"是一次付费验证。</b>你花"错过一笔"的成本，买一个信息：个体坏还是整体坏。数字上：一笔的期望约 +5.65%，而误判整体坏境、在亏钱期硬做 100 笔是 <span class="neg">−140%</span>（下一目模拟）——用一笔换 100 笔的判断依据，这笔"学费"便宜得离谱。</p>
+
+  <h3>5. 资金管理（S/A）：半仓以上定额，为什么"定额"两个字值钱</h3>
+  <p>板书写的是「半仓以上定额」，并给了精确理由：<b>每次都投 100 万，涨 10% 是赚 10 万、跌 10% 是亏 10 万</b>——盈亏<b>金额</b>对称，你就不会被涨跌的<b>比例</b>错觉干扰，「相当于盈亏比上升了」。再配合严格出场把亏损端砍小（低于预期就走，单笔亏 5% 而不是 10%），盈亏比被制度性抬高。</p>
+  <p>定额还有阶梯：<b>资金 100–200 万时每次投 100 万；到 200–400 万时每次投 200 万</b>。我的解读这是<b>仓位再基准化</b>：让单笔风险占总资金的比例保持恒定，避免资金变大后单笔绝对风险悄悄失控、或资金变小后为回本而过度冒险（回本心态是 L01 的天价门票）。加减仓（A）则是状态化的：正常期按定额；出现低于预期后降仓试探而非重仓；重启后先小仓试错。</p>
+  <div class="formula">定额的对称性：投 <b>100 万</b>，涨停 +10% → <b>+10 万</b>；跌停 −10% → <b>−10 万</b>（金额对称，无比例错觉）
+若"按比例满仓滚动"：赚了加仓、亏了减仓 → 盈亏金额不对称，情绪会替你改规则
+阶梯：100–200w → 投 100w ｜ 200–400w → 投 200w ｜ 单笔风险占总资金比例恒定</div>
+
+  <h3>6. 盈亏同源：它不适合的行情，两个恶化表现</h3>
+  <p>按框架，写完赚钱效应必须写盈亏同源。这个赚钱效应持续一段时间后，产生<b>两个表现</b>：</p>
+  <ul>
+    <li><b>表现①：新散户接得多了，接盘意愿走弱。</b>老是首板兑现，新散户被兑现几次也学乖了，接的就少了 → <b>次日溢价降低</b>。溢价对应的是<b>盈亏比</b>。</li>
+    <li><b>表现②：聪明的资金做买点前置。</b>包括"咱们这种次日接盘和当时扫板的资金"本身就是前置买点。埋伏资金过多后，<b>很多人在板上就砸掉了</b>（不等到次日首板兑现），抛压过大 → <b>封板率降低</b>。封板率对应的是<b>胜率</b>。</li>
+  </ul>
+  <div class="formula">两个降 = 胜率与盈亏比双降 = 期望转负
+<b>封板率</b> ↔ 胜率　｜　<b>次日溢价</b> ↔ 盈亏比　｜　双降 → 「这个赚钱效应就已经产生亏钱效应了」
+亏钱期模拟（同一模式、同一动作）：40 笔兑现均 +2%（=+80）｜10 笔连板均 +8%（=+80）｜50 笔失败均 −6%（=−300）
+→ 净 <b>−140</b>，期望 <b>−1.4%/笔</b>　（定额 100 万/笔 ≈ 平均一笔亏 1.4 万）</div>
+  <p><b>对照两个模拟框你就看懂了：动作没变、人没变、规则没变，赚钱期 +5.65%/笔，亏钱期 −1.4%/笔——差了 7 个百分点，全在环境。</b>这就是 L02 盈亏同源在单个模式上的具体形状：同一个"新散户愿付联想溢价"的机制，退潮时反向付给你折价。</p>
+
+  <h3>7. 如何避免（K）：两个消失条件，和一条重启规则</h3>
+  <p>什么时候亏钱效应会消失？豆子给了<b>每个表现各自的消失条件</b>：</p>
+  <ul>
+    <li><b>表现①（接盘意愿走弱）会在出现老龙突破连板后消失。</b>逻辑很妙：散户反应慢，<b>你得给他一个接的理由</b>。看到老龙走出突破连板，他们才会用模仿思路去想"哎我又看到新的首板了，原来老龙突破连板了"，然后去接这种老龙——接盘意愿就回来了。</li>
+    <li><b>表现②（买点前置）会在反抽减少、持续阴跌后消失。</b>道理更简单：赚钱效应消失一段时间后没有反抽板了，<b>聪明的埋伏资金们也就变成愚蠢的埋伏资金了</b>——埋伏不到肉，自然不埋了。</li>
+  </ul>
+  <p>合起来得出结论（这句话请当条款记住）：<b>在亏钱效应释放一段时间后，产生老龙的突破连板，就可以再关注新的老龙首板是否存在超预期的胜率和溢价。</b>每次出手前问自己这一句——「是否存在超预期胜率和溢价」，答案是没有，就不出手。</p>
+
+  <h3>8. 现在还能做吗？恒宝与那记利空</h3>
+  <p>豆子说这个模式「现在也能做」，最近像<b>恒宝</b>之类都符合这套结构。但他自己这次运气不太好，<b>直接吃了个利空</b>。这个小故事是原则二的注脚：<b>模式正确不等于每笔都赚</b>——模式给的是分布上的正期望，不是单笔的保票。吃到利空那笔是模式内亏损，「错了，错了无所谓」。</p>
+
+  <h2><span class="tag p2">六</span>期望值：为什么"涨 10% 亏 10%"还能赚钱</h2>
+  <p>豆子说「我涨 10% 亏 10%，相当于盈亏比上升了」。这句话背后是整个模式的数学骨架：</p>
+  <div class="formula"><b>E(单笔) = p × 平均盈利 − (1−p) × 平均亏损</b>
+纪律版：E = 0.45 × 15% − 0.55 × 5% = 6.75% − 2.75% = <b>+4.0% / 笔</b>
+放任版：E = 0.45 × 15% − 0.55 × 15% = 6.75% − 8.25% = <b>−1.5% / 笔</b>（同胜率、同入场，由正转负）</div>
+  <p>三个读法：<b>① 不靠高胜率，靠亏损端小、盈利端大。</b>45% 胜率照样正期望——前提是严格出场把平均亏损砍到 5%（低于预期就兑现），而让盈利端跑到 +15%（转强连板的格局段）。<b>② 纪律决定它是模式还是赌局。</b>同一入场规则，出场不纪律（亏损放到 −15%）立刻变负期望。<b>③ 定额把比例错觉换成金额对称</b>：涨 10% 赚 10 万、跌 10% 亏 10 万，配合砍小的亏损端，「相当于盈亏比上升了」。</p>
+  <p><b>我的补充：期望值为正 ≠ 心态安全。</b>胜率 45% 时，任意连续 5 笔全亏的概率是 0.55⁵ ≈ 5%——100 笔交易里撞上一两回五连亏非常正常。这就是为什么第四节把"回撤可承受"单列为一道检验：<b>E 管长期，回撤管短期活命</b>，两者都要算。</p>
+
+  <h2><span class="tag p2">七</span>模式为什么会失效：认知差、博傻、拥挤度</h2>
+  <p>把第五节的"两个表现"抽象一层，任何模式失效都逃不出三个机制：</p>
+  <ul>
+    <li><b>认知差（注意力错定价）＝利润的来源。</b>924 后新散户不认识新题材、只记得老龙头，老龙一反抽就被抢——这是注意力层面的错定价。<b>你的超额收益就藏在别人的认知滞后里。</b></li>
+    <li><b>博傻（greater-fool）＝利润的脆弱性。</b>买入者不认为它值这个价，只认为会有更晚的人接。这类利润天然依赖"后来者持续进场"，一旦进场速度放缓就坍塌——对应表现①「新散户接的多了，接盘意愿走弱」。</li>
+    <li><b>拥挤度（crowding）／alpha 衰减＝利润的寿命。</b>当一个打法被越来越多聪明资金知道，他们会把买点往前挪（买点前置），抢先成交、抬高中途成本、并在板上砸货压低封板率——<b>模式的超额收益被自己的成功消灭</b>。量化里叫 alpha decay，主观里叫「这招烂大街了」。对应表现②。</li>
+  </ul>
+  <div class="formula">拥挤度的数字（同一入场，100 笔）：
+早期：封住 95 笔 × 次日溢价 +7%（=+665）｜炸 5 笔 × −5%（=−25）→ 净 <b>+640</b>
+拥挤后：封住 75 笔 × 溢价 +2%（=+150）｜炸 25 笔 × −5%（=−125）→ 净 <b>+25</b>
+再恶化（溢价与封板率继续双降）→ 转负，即第五节的亏钱期模拟
+结论：<b>模式的寿命 = 它的利润来源被市场修复／被拥挤掉所需的时间</b></div>
+  <p>所以「超额收益一定不是一直持续的」不是感慨，是结构必然：<b>认知差会被学习抹平，博傻需要不断有新人，拥挤会把买点拆穿。</b>看到赚钱效应的同时必须想到这三条——这就是框架里"盈亏同源产生、如何避免"两行存在的原因。</p>
+
+  <h2><span class="tag p2">八</span>模式生命周期与开关 K：把模式做成一台状态机</h2>
+  <p>把第五节的具体观察拉通成一条生命周期，四个阶段各有特征和动作：</p>
+  <table>
+    <thead><tr><th style="width:90px">阶段</th><th>特征</th><th>老龙反抽的表现</th><th>动作（A/K）</th></tr></thead>
+    <tbody>
+      <tr><td>发现/早期</td><td>少数人知道，溢价高、封板率高</td><td>首板冲热度榜前列，次日大溢价</td><td>正常定额执行</td></tr>
+      <tr><td>拥挤</td><td>埋伏资金增多，买点前置</td><td>封板率开始降</td><td>降仓、提高买点标准</td></tr>
+      <tr><td>失效/反噬</td><td>接盘意愿走弱＋封板率双降</td><td>次日无溢价、低开</td><td><b>K 触发：停用</b>（含空一个买点观察）</td></tr>
+      <tr><td>出清/回归</td><td>亏钱效应释放完，埋伏资金割肉离场</td><td>阴跌后出现老龙突破连板</td><td>重新观察，小仓试错重启</td></tr>
+    </tbody>
+  </table>
+  <p>重启信号为什么是「老龙突破连板」而不是预测底部？因为它是一个 <b>observable 的环境确认信号</b>——亏钱效应释放完了、做多力量回归了、散户有接的理由了。<b>本质是把模式做成一台带滞后确认的状态机：不预测顶底，而是等环境信号出现再切换状态。</b>这和 L02 的「必须等，等待行情给你机会」是同一思想。</p>
+  <p><b>例子（滞后确认值不值）。</b>用第五节的模拟数字算账：开关不完美，它会让你晚——假设重启信号晚了 20 笔，你错过 20 笔赚钱期（20 × 5.65% ≈ +113）；但如果没开关而在亏钱期硬做 100 笔，是 <span class="neg">−140</span>。两害相权净省约 <b>+27 个点起步</b>，若亏钱期更长则省得更多。<b>开关买的不是准确，是不接刀。</b></p>
+
+  <h2><span class="tag p2">九</span>三个原则：认知层的护栏</h2>
+
+  <h3>原则一 · 交易没有圣杯</h3>
+  <p>「超额收益一定有它背后的原因，超额收益一定不是一直持续的。」网上那些「逆天、完美、接近圣杯级的模式」他不信——真有那么好，他自己是不信的，也不太信互联网上某些人的表现。<b>超额必有来源，也必导致盈亏同源，必须亲自观察到赚钱效应，才能把它当稳健盈利的模式去做。</b>第七节的三个机制就是"超额必有来源"的展开。</p>
+
+  <h3>原则二 · 相信自己的模式，预期内的亏损不要太在意</h3>
+  <p>「你也不需要把所有的钱都赚光。」有些亏钱效应没办法避免，有些稳定性弱了就弱了、盈亏比低了就低了——只要总体模式是正盈亏比，就要坚持做。他把话说到底：<b>哪怕胜率 70%、盈亏比 1:1 的逆天模式，连续亏五六次也太正常了</b>，这时候不要怀疑自己；只要是预期内的、符合盈亏同源的亏损，「错了，错了无所谓」。</p>
+  <p><b>例子（走一遍数字）：为什么 70% 胜率也会连亏五次。</b>任意五笔全亏的概率 = 0.3⁵ ≈ 0.24%——听着小，但 100 笔交易里有 96 个"五连窗口"，撞上至少一次的概率约 <b>两成</b>；100 个人同时做这个模式，约 20 个人会遇到"连亏五次"，然后开始怀疑模式、改规则——<b>把一个正期望模式亲手改成永远没有模式</b>。恒宝那记利空也是同理：模式正确不等于每笔都赚。</p>
+
+  <h3>原则三 · 模式的意义就是避免随手单，不要主观</h3>
+  <p>「预期内的卖点到了就要卖。」理由回扣开场的多巴胺：<b>你在理智时期做的决定，大多数时候比你在临场做的决定更客观、更正确。</b>随手单十个有九个都是错的，靠运气赚的钱赔率太低。<b>模式的意义不是让你更聪明，是让临场的你没机会犯蠢。</b></p>
+  <p>结尾他说「我现在讲的都很简约了……那我这个还是很有价值的」——价值在框架本身：<b>七行框架＋六元组是一张空表，你往里填就是你自己的模式。</b></p>
+
+  <h2><span class="tag p2">十</span>工具箱：术语小词典，与前后课的拼接</h2>
+  <table>
+    <thead><tr><th style="width:110px">术语</th><th>含义</th></tr></thead>
+    <tbody>
+      <tr><td>首板 / 连板</td><td>第一个涨停板 / 连续多个涨停板。</td></tr>
+      <tr><td>扫板</td><td>在即将封死涨停的瞬间主动买单扫货成交，赌封住。</td></tr>
+      <tr><td>半路</td><td>未涨停前、上涨途中买入（突破半路＝突破关键位时中途介入）。</td></tr>
+      <tr><td>封板率</td><td>触及涨停后最终封住的比例，衡量打板资金决心与接盘强度——本课里它对应<b>胜率</b>。</td></tr>
+      <tr><td>溢价</td><td>次日开盘相对昨日收盘的超出部分，打板模式的核心利润来源——本课里它对应<b>盈亏比</b>。</td></tr>
+      <tr><td>老龙 / 老龙头</td><td>上一轮行情中走出过高连板高度的人气龙头股（历史强辨识度）。</td></tr>
+      <tr><td>反抽</td><td>下跌趋势中的短暂反弹；老龙反抽＝老龙头跌后的一次脉冲反弹（首板形态）。</td></tr>
+      <tr><td>反包板</td><td>回调/炸板后再次包回去的涨停板，本课用它做"空一个买点观察"的观察对象。</td></tr>
+      <tr><td>兑现</td><td>卖出落袋（首板兑现＝次日把隔日利润收了）。</td></tr>
+      <tr><td>买点前置</td><td>聪明资金抢在原模式买点之前埋伏/成交，抬高成本并在板上砸货。</td></tr>
+      <tr><td>924 行情</td><td>2024-09-24 政策刺激引发的 A 股放量暴涨行情，新增大量散户。</td></tr>
+    </tbody>
+  </table>
+  <div class="formula">与前后课的拼接：
+L01 先活下来 → 本课 <b>X / S / A</b> 是活下来的执行层：定额＋低于预期就走＋亏钱期降仓
+L02 盈亏同源 → 本课 <b>A / K</b> 是盈亏同源的管理层：承认模式必有两面，用 observable 指标切换
+合起来：<b>模式 = 把"怎么赚"和"怎么亏"都写清楚，并给"亏的那一面"装一个可触发的停用开关</b>
+模式六元组的每一项，都是在<b>选择承受哪种同源亏损</b>；三道检验保证你选得起</div>
+
+  <h2><span class="tag p4">交互</span>可视化件：动手拨一拨</h2>
+  <p class="small">下面这个小工具把第六节的期望值公式和第八节的生命周期开关做成能动手拨的东西。拖滑块、点预设，亲眼看一看「同一套动作，环境一换，期望由正转负」。</p>
+  <div class="demo">
+    <h4>期望值 ＋ 生命周期开关（L03 核心）</h4>
+    <div class="row">
+      <label>胜率 <input type="range" id="l03p" min="20" max="80" step="1" value="75"> <b id="l03pV">75%</b></label>
+      <label>平均盈利 <input type="range" id="l03win" min="1" max="30" step="0.2" value="9.2"> <b id="l03winV">9.2%</b></label>
+      <label>平均亏损 <input type="range" id="l03lose" min="1" max="30" step="0.2" value="5"> <b id="l03loseV">5.0%</b></label>
+    </div>
+    <div class="row" style="margin-top:10px">
+      <button id="l03up" type="button">赚钱期</button>
+      <button id="l03down" type="button">亏钱期</button>
+      <span id="l03env" style="font-size:12px;color:#a0aec0">当前：赚钱期预设（对应讲义第五节赚钱期模拟）</span>
+    </div>
+    <div class="out">单笔期望 <b id="l03ev">+5.65%</b> <span id="l03verdict" style="font-size:12px"></span></div>
+    <p class="small" style="color:#a0aec0;margin:8px 0 0">两个预设对应讲义里的两段模拟：<b>赚钱期</b>（封板率≈90–95%、次日溢价+6%~+7%）E≈<b>+5.6%/笔</b>；<b>亏钱期</b>（溢价↓＋封板率↓双降）E≈<b>−1.4%/笔</b>。动作没变、人没变、规则没变，期望却由正转负——差的那 7 个百分点全在环境。<b>这就是 K 开关存在的理由：不预测顶底，只等环境信号切换。</b>你也可以自己拖滑块，找找期望转负的临界点在哪。</p>
+  </div>
+  <script>
+  (function(){
+    function l03fmt(n){return (n>=0?'+':'')+n.toFixed(2)+'%'}
+    function l03calc(envText){
+      var p=+document.getElementById('l03p').value,
+          w=+document.getElementById('l03win').value,
+          lo=+document.getElementById('l03lose').value;
+      var ev=p/100*w-(1-p/100)*lo;
+      document.getElementById('l03pV').textContent=p+'%';
+      document.getElementById('l03winV').textContent=w.toFixed(1)+'%';
+      document.getElementById('l03loseV').textContent=lo.toFixed(1)+'%';
+      document.getElementById('l03ev').textContent=l03fmt(ev);
+      var v=document.getElementById('l03verdict');
+      if(ev>0){v.textContent='（正期望——长期做，这是模式的赚钱期）';v.style.color='#68d391';}
+      else{v.textContent='（负期望——期望由正转负，K 开关该触发了）';v.style.color='#fc8181';}
+      if(envText){document.getElementById('l03env').textContent=envText;}
+    }
+    function l03preset(p,w,lo,envText){
+      document.getElementById('l03p').value=p;
+      document.getElementById('l03win').value=w;
+      document.getElementById('l03lose').value=lo;
+      l03calc(envText);
+    }
+    document.getElementById('l03up').addEventListener('click',function(){
+      l03preset(75,9.2,5,'当前：赚钱期预设——E≈+5.6%/笔（讲义第五节模拟口径）');
+    });
+    document.getElementById('l03down').addEventListener('click',function(){
+      l03preset(50,3.2,6,'当前：亏钱期预设——E≈−1.4%/笔（同一动作，期望由正转负）');
+    });
+    ['l03p','l03win','l03lose'].forEach(function(id){
+      document.getElementById(id).addEventListener('input',function(){l03calc('当前：自定义参数');});
+    });
+    l03calc(null);
+  })();
+  </script>
+
+  <h2><span class="tag p3">十一</span>作业 · 自测 · 速查</h2>
+
+  <h4>作业 1 · 写出你自己的六元组</h4>
+  <p class="small">用 U / E / X / S / A / K 写出<b>你自己</b>现在用的（或想用的）一个打法。写不出某一项，就诚实承认那一项目前是「感觉」——先把洞列出来。</p>
+  <h4>作业 2 · 过三道检验</h4>
+  <p class="small">对你的打法回答：① 钱从谁那来（来源）？E 用 p×盈−(1−p)×亏 算一遍，正吗？② 信号可重复吗？规则客观到别人执行结果接近吗？③ 什么 observable 指标说明它进入亏钱期（开关判据）？亏损连发 5 次时你的账户回撤多少、扛得住吗？</p>
+  <h4>作业 3 · 亏损单分类</h4>
+  <p class="small">回看最近 10 笔亏损单，标出哪些是「模式内亏损」（规则内、该亏），哪些是「模式外亏损」（随手单／违反 X 或 S）。目标：把模式外亏损清零。</p>
+  <h4>作业 4 · 给模式算一本生命周期的账</h4>
+  <p class="small">按你的模式写四个阶段（早期/拥挤/失效/出清）各自的 observable 特征，以及每阶段的仓位动作；再用模拟数字算：开关误触发一次（晚进 10 笔）你损失多少？亏钱期硬做 100 笔你损失多少？两个数对比，你就知道开关该多敏感。</p>
+
+  <h4>自测（8 题，先答再看答案）</h4>
+  <div class="q">Q1. 为什么「只有入场规则」不算一个模式？
+    <details><summary>答案</summary><div class="ans">因为模式的利润与风险由 X/S/A/K 共同决定。同一入场规则，纪律出场是正期望（E=+4.0%/笔），放任出场是负期望（E=−1.5%/笔）。入场只决定「在哪玩」，其余决定「玩得下去吗」。</div></details></div>
+  <div class="q">Q2. 老龙反抽的利润来源是什么？为什么它注定会失效？
+    <details><summary>答案</summary><div class="ans">来源＝新散户对老龙头的注意力错定价（认知差）＋"觉得龙头还会走牛"的联想溢价（博傻）。它依赖「后来者持续进场」，进场放缓即坍塌（接盘意愿走弱→溢价降）；同时聪明钱买点前置造成拥挤（板上砸货→封板率降），双重作用使超额收益衰减。</div></details></div>
+  <div class="q">Q3. 「买点前置」为什么伤害原模式？
+    <details><summary>答案</summary><div class="ans">埋伏资金抢在原买点之前成交，抬高成本，并在板上就砸掉（不等次日兑现），抛压过大压低封板率与次日溢价——等于把原模式的利润提前抽走。注意：突破半路本身就是买点前置的一种，模式自带少量自我拥挤。</div></details></div>
+  <div class="q">Q4. 开关 K 为什么用「老龙突破连板」作重启信号，而不是直接预测底部？
+    <details><summary>答案</summary><div class="ans">因为它是 observable 的环境确认信号（亏钱效应释放完、做多力量回归、散户有了接的理由），而非预测。等确认再进，牺牲一点起点换取「不在反噬期接刀」；用模拟数字算，晚进 20 笔的代价远小于亏钱期硬做 100 笔的 −140。</div></details></div>
+  <div class="q">Q5. 「涨 10% 亏 10%」为何还能正期望？
+    <details><summary>答案</summary><div class="ans">关键有二：① 定额使盈亏金额对称（100 万：+10 万/−10 万），消除比例错觉；② 严格出场把亏损端砍小（−5%）而让盈利端跑大（+15%），盈亏比&gt;1 时中等胜率即正期望（45% → E=+4.0%/笔）。纪律出场是前提。</div></details></div>
+  <div class="q">Q6. 为什么「随手单十个有九个错」？
+    <details><summary>答案</summary><div class="ans">随手单不在任何模式的 U/E 内，没有来源检验与开关保护，期望值由情绪与市场随机性决定，长期为负（还要付成本）。60 笔随手单 × 平均 −2% = 一年 −12%，足以吃掉一个正期望模式的全年利润。</div></details></div>
+  <div class="q">Q7. 豆子做恒宝直接吃了个利空，这说明模式没用吗？
+    <details><summary>答案</summary><div class="ans">恰恰相反。模式给的是分布上的正期望，不是单笔保票；利空那笔是模式内亏损。原则二：预期内的、符合盈亏同源的亏损不要太在意——用单笔否定规则，才是把模式毁掉的最快方式。</div></details></div>
+  <div class="q">Q8. 100 笔：胜率 45%、平均盈利 +15%、平均亏损 −5%。期望？若亏损放任到 −15% 呢？说明什么？
+    <details><summary>答案</summary><div class="ans">E = 0.45×15 − 0.55×5 = +4.0%/笔；放任后 E = 6.75 − 8.25 = −1.5%/笔。同一入场、同一胜率，出场纪律让模式由正转负——「纪律决定它是模式还是赌局」。</div></details></div>
+
+  <div class="card good"><b>速查卡</b><ul class="cheat" style="margin:6px 0;padding-left:18px">
+    <li>模式六元组：U 标的池 / E 入场 / X 出场 / S 仓位 / A 加减仓 / K 开关。</li>
+    <li>写不出六项的打法是感觉，不是模式；只有 E 的人最亏。</li>
+    <li>三道检验：正期望（赚谁的钱）、可重复（分布而非单笔）、回撤可承受（＋开关）。</li>
+    <li>形成路径：规律总结 → 观察赚钱效应 → 掌握赚钱效应；赚钱效应第一个观察。</li>
+    <li>框架七行：标的、入场、出场、资金管理、赚钱效应、盈亏同源产生、如何避免。</li>
+    <li>老龙＝历史强辨识度；反抽板＝跌后首板形态。名字即选股条件。</li>
+    <li>利润来源＝认知差博傻：赚后知后觉接盘者的联想溢价。</li>
+    <li>封板率↔胜率，次日溢价↔盈亏比；双降＝期望转负＝停。</li>
+    <li>出场四件套：首板兑现 / 连板转弱 / 低于预期开盘兑现 / 空一个买点观察。</li>
+    <li>定额＋阶梯：100–200w 投 100w、200–400w 投 200w；金额对称，盈亏比上升。</li>
+    <li>重启信号：亏钱效应释放一段时间后出现老龙突破连板 → 小仓试错。</li>
+    <li>E = p×盈 − (1−p)×亏；45% 胜率靠盈亏比照样正期望。</li>
+    <li>交易没有圣杯：超额必有来源、必不持续；拥挤（买点前置）加速衰减。</li>
+    <li>预期内的亏损错了无所谓；随手单十个九错，卖点到了就卖。</li>
+  </ul></div>
+
+    <h2><span class="tag p4">案</span>真实案例：概念落在盘面上</h2>
+  <p class="small">以下为公开市场事件（数字为约数），用来把本课概念放到真实盘面上看。</p>
+    <div class="card"><b>顺控发展 2021：21 连板与随后的炸板潮</b>
+      <p class="small" style="margin:6px 0 0"><b>事实</b>：2021 年 3 月 8 日起 21 连板（创 A 股连板纪录），赚钱效应期封板率极高、次日溢价丰厚；4 月见顶后连板生态迅速转差、炸板频发。</p>
+      <p class="small" style="margin:4px 0 0"><b>对应知识点</b>：封板率↔胜率、次日溢价↔盈亏比：同一个打板动作，3 月是 +6%/笔的模式，4 月是 −1.4%/笔的模式——「双降＝K 停用」的真实样本。</p></div>
+    <div class="card"><b>恒宝股份（豆子 L03 实战原案）</b>
+      <p class="small" style="margin:6px 0 0"><b>事实</b>：老龙反抽板模式运转中直接吃了一个利空，单笔亏损。</p>
+      <p class="small" style="margin:4px 0 0"><b>对应知识点</b>：模式内亏损：模式给的是分布上的正期望不是单笔保票——「错了，错了无所谓」，用单笔否定规则才是毁掉模式最快的方式。</p></div>
+
+
+<h2><span class="tag p1">复习</span>复习巩固</h2>
+  <p class="small">按 1 / 7 / 30 天三轮复习。先自己把答案说出来，再点卡片翻面对照——目标不是记住我说的，是长出你自己的悟道。</p>
+
+  <h3>复习卡（点击卡片翻面）</h3>
+  <div class="flash" onclick="this.classList.toggle('open')">
+    <div class="front">L03：一个完整交易模式的六元组，各是什么？<span class="hint">点击翻面</span></div>
+    <div class="back"><b>U 标的池</b>（只在哪个池子里找机会）／<b>E 入场</b>（什么信号触发买）／<b>X 出场</b>（止损＋止盈）／<b>S 仓位</b>（每次投多少、总敞口多少）／<b>A 加减仓</b>（什么状态加、什么状态减、试错怎么投）／<b>K 开关</b>（环境假设失效时停用/重启的判据）。写不出这六项的打法是感觉，不是模式——大多数人手里只有 E。→ 追问自己：我现在的打法，哪一项其实还是"感觉"？</div>
+  </div>
+  <div class="flash" onclick="this.classList.toggle('open')">
+    <div class="front">L03：模式成立的三道检验是什么？各在检验什么？<span class="hint">点击翻面</span></div>
+    <div class="back">① <b>正期望（来源检验）</b>：钱从哪来、赚谁的钱？E = p×盈 − (1−p)×亏 算得正吗；② <b>可重复（样本检验）</b>：信号能反复出现吗？规则客观到两个人执行结果接近吗？看 100 笔量级的分布，不看单笔；③ <b>回撤可承受（开关检验）</b>：它何时会亏、亏起来扛得住吗？用什么 observable 指标判断"现在是亏钱期"。<b>任何一道不过，模式不成立。</b>→ 追问自己：我的模式三道里最薄的是哪一道？</div>
+  </div>
+  <div class="flash" onclick="this.classList.toggle('open')">
+    <div class="front">L03：封板率、次日溢价分别对应什么？两个一起降意味着什么？<span class="hint">点击翻面</span></div>
+    <div class="back"><b>封板率 ↔ 胜率</b>（埋伏资金买点前置、板上砸货 → 封不住）；<b>次日溢价 ↔ 盈亏比</b>（新散户接盘意愿走弱 → 没溢价）。<b>双降 ＝ 胜率盈亏比同降 ＝ 期望转负 ＝ K 触发：停用</b>——先空一个买点观察（只看不做），降仓而非硬做。→ 追问自己：我用什么数字、多久记录一次，才能第一时间看到"双降"？</div>
+  </div>
+
+  <h3>悟道提问（没有标准答案，回答写进你自己的交易笔记）</h3>
+  <div class="card good">
+    <ol style="margin:6px 0 0;padding-left:20px">
+      <li>我的模式赚的是谁的钱？他为什么把钱给我——这个"为什么"什么时候会消失？</li>
+      <li>如果六元组只能保留一项，我留哪项？如果一项都写不出，我现在凭什么下单？</li>
+      <li>什么具体的、可观测的数字出现时，我会承认模式已进入亏钱期并停手？（写指标和阈值，不是"感觉不好"）</li>
+    </ol>
+  </div>
+
+  <h3>联结图（把这课接到你的知识网上）</h3>
+  <div class="card note">
+    <p style="margin:6px 0 0"><b>L01 回撤可承受</b> → 本课三道检验之三与 S/A：每笔风险 5% 连亏 5 笔约 −22.6%、10% 则 −41%，"亏得起"决定仓位上限，定额就是把这条数学装进制度；<b>L02 盈亏同源</b> → 本课 A/K：赚钱效应与亏钱效应是同一机制的两面，六元组每一项都是在选择承受哪种同源亏损，K 就是框架里"如何避免盈亏同源"的管理层；<b>L04 看什么（观察信号）</b> → 下一课解决"赚钱效应在哪一层被观察到、哪些是噪音"，正好是 K 判据（封板率、次日溢价）的观察方法论；<b>L06 纪律</b> → 六元组写在纸上只是制度，执行靠纪律——预期内的卖点到了就要卖，否则第三节的"同一个入场两种结局"就会发生在你身上。</p>
+  </div>
+
+  <h2><span class="tag p2">内化</span>内化掌握</h2>
+  <p class="small">三关全过，这课才算学完。按顺序做，别跳关。</p>
+
+  <div class="card">
+    <b>关卡一 · 费曼关</b>
+    <p style="margin:6px 0 0">合上讲义，在聊天输入「<b>我讲给你听 L03</b>」，把这一课讲给我听。我扮演爱追问的学生：钱到底从哪来？为什么它注定会失效？K 凭什么在那个信号停？哪里含糊，哪里就是没懂的地方——讲不圆不算过。</p>
+  </div>
+
+  <div class="card warn">
+    <b>关卡二 · 场景判断关</b>
+    <p style="margin:6px 0 0"><b>情境题：</b>你做的老龙反抽板，最近封板率从 92% 掉到 75%，次日平均溢价从 +6% 掉到 +1%。下一步怎么做？先自己作答（写出动作＋理由），再展开下面对答案。</p>
+    <details><summary>参考判断与评分点（做完再看）</summary>
+      <div class="ans"><b>核心判断：双降 ＝ 胜率（封板率）与盈亏比（次日溢价）同降 ＝ 期望已转负 ＝ K 触发。</b><br>
+      合格动作：① <b>停用/降仓而非硬做</b>——把定额降成降仓试探，不加仓、不摊薄、不重仓；② <b>空一个买点观察</b>——下一个同款买点只看不做，看它封不封得住、次日还有没有溢价，借此分辨是个股的问题还是整体赚钱效应的问题；③ <b>写下 observable 的重启判据</b>——亏钱效应释放一段时间后出现老龙突破连板，再看新老龙首板有无超预期胜率和溢价，而不是去预测底部。<br>
+      评分点：说得出"双降对应胜率与盈亏比"（30%）；动作是降仓/停用而非"再试试"（40%）；给出可观测的重启判据而非主观感觉（30%）。反例：只降仓不观察＝浪费信息；硬做摊薄成本＝在负期望上加注。</div>
+    </details>
+  </div>
+
+  <div class="card">
+    <b>关卡三 · 规则产出关</b>
+    <p style="margin:6px 0 0">写出你自己的可执行规则，具体到「什么信号、多少仓位、什么情况停」。写不出来＝还没内化。照下面的模板填（六格＋三检验自问）：</p>
+    <div class="formula">U 标的池：我在哪个池子里找机会？______________
+E 入场：什么信号触发买？______________
+X 出场：什么信号卖（止损＋止盈各是什么）？______________
+S 仓位：每次投多少、总敞口多少？______________
+A 加减仓：什么状态加、什么状态减、试错怎么投？______________
+K 开关：什么 observable 指标停用？什么信号重启？______________
+三检验自问：① 我赚谁的钱？E = p×盈−(1−p)×亏 算得正吗
+　　　　　　② 信号可重复吗？规则客观到别人执行结果接近吗
+　　　　　　③ 亏钱期的判据是什么？连亏 5 笔回撤多少、扛得住吗</div>
+    <p class="small" style="margin:6px 0 0">填好后发给我，我按三道检验帮你挑毛病——挑出来的洞，就是你下一步要补的功课。</p>
+  </div>
+
+  <div class="next"><b>下一讲（L04）：看什么——技术面 vs 基本面，赚钱效应在哪</b>（盯盘到底盯什么、哪些信息是噪音、赚钱效应在哪个层面被观察到）。回「下一课」即跳转，或直接提问。</div>
+  <p class="small" style="margin-top:20px">投资有风险，本课为教育内容，不构成投资建议。文中数值例子为教学模拟（含 2024 年初 924 行情背景的量级参照），用于看清结构，不是实盘收益承诺。疑问直接问，我换例子重讲。</p>
+</div>
+
+</body>
+</html>

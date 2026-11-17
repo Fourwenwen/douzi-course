@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>学习标准 · 豆子悟道·股票系统学习课</title>
+<style>
+  :root{--ink:#1a202c;--sub:#4a5568;--line:#e2e8f0;--bg:#f7fafc;--accent:#c05621;--accent2:#2b6cb0;--good:#276749;--warn:#9b2c2c;--card:#fff}
+  .nav{position:sticky;top:0;z-index:50;background:#1a202c;padding:8px 14px;display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif}
+  .nav a{color:#e2e8f0;text-decoration:none;font-size:13px;padding:3px 10px;border-radius:999px;background:#2d3748}
+  .nav a:hover{background:#4a5568}
+  .nav a.cur{background:#c05621;color:#fff;font-weight:600}
+  .nav a.home{background:#2b6cb0}
+  body{margin:0;background:var(--bg);font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;color:var(--ink);line-height:1.8}
+  .wrap{max-width:980px;margin:0 auto;padding:28px 20px 60px}
+  h1{font-size:26px;margin:0 0 4px}
+  h2{font-size:19px;margin:34px 0 10px;padding-left:10px;border-left:4px solid var(--accent)}
+  h3{font-size:16px;margin:20px 0 8px;color:var(--accent2)}
+  p{margin:8px 0}
+  .meta{color:var(--sub);font-size:13px;margin-bottom:16px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin:12px 0}
+  .note{background:#ebf8ff;border-color:#90cdf4}
+  .good{background:#f0fff4;border-color:#9ae6b4}
+  .warn{background:#fff5f5;border-color:#feb2b2}
+  table{width:100%;border-collapse:collapse;font-size:13px;background:var(--card);border-radius:8px;overflow:hidden;margin:8px 0}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+  th{background:#edf2f7;font-weight:600}
+  td.num{white-space:nowrap;font-variant-numeric:tabular-nums}
+  a{color:var(--accent2);text-decoration:none}a:hover{text-decoration:underline}
+  .small{font-size:12.5px;color:var(--sub)}
+  ul,ol{margin:6px 0 6px 20px;padding:0}li{margin:3px 0}
+  .tag{display:inline-block;font-size:11px;padding:1px 8px;border-radius:999px;background:#edf2f7;color:var(--sub);margin-right:4px}
+  .flow{display:flex;flex-wrap:wrap;gap:8px;align-items:stretch;margin:14px 0}
+  .step{flex:1 1 150px;min-width:150px;background:var(--card);border:1px solid var(--line);border-top:4px solid var(--accent2);border-radius:10px;padding:12px 12px 10px;cursor:default;transition:transform .15s ease, box-shadow .15s ease}
+  .step:hover{transform:translateY(-3px);box-shadow:0 6px 16px rgba(0,0,0,.08)}
+  .step .n{display:inline-block;width:22px;height:22px;line-height:22px;border-radius:50%;background:var(--accent2);color:#fff;font-size:12px;text-align:center;font-weight:700}
+  .step b{display:block;font-size:14px;margin:6px 0 4px}
+  .step .d{font-size:12px;color:var(--sub);line-height:1.6}
+  .step.me{border-top-color:var(--accent)}
+  .step.you{border-top-color:var(--good)}
+  .step .who{font-size:11px;margin-top:6px;display:inline-block;padding:1px 8px;border-radius:999px}
+  .step.me .who{background:#feebc8;color:#7b341e}
+  .step.you .who{background:#c6f6d5;color:#22543d}
+  .demo{background:#1a202c;border-radius:12px;padding:18px 20px;color:#f7fafc;margin:14px 0}
+  .demo h4{margin:0 0 10px;font-size:15px;color:#f6ad55}
+  .demo .row{display:flex;flex-wrap:wrap;gap:18px;align-items:center}
+  .demo label{font-size:13px}
+  .demo input[type=range]{width:240px;vertical-align:middle}
+  .demo .out{font-family:"SF Mono",Menlo,monospace;font-size:13px;line-height:2}
+  .demo .out b{color:#f6ad55}
+  .demo .bar{height:16px;border-radius:8px;background:#2d3748;overflow:hidden;margin:6px 0}
+  .demo .bar i{display:block;height:100%;border-radius:8px}
+  .flash{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:10px 0;cursor:pointer}
+  .flash .front{font-weight:600}
+  .flash .back{display:none;margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);color:var(--good)}
+  .flash.open .back{display:block}
+  .flash .hint{font-size:11.5px;color:var(--sub);float:right;font-weight:400}
+  .next{margin-top:24px;padding:14px 18px;border:1px dashed var(--accent);border-radius:10px;background:#fffaf0;font-size:14px}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <a class="home" href="index.html">目录主页</a>
+  <a href="lesson-01.html">L01 本金保护</a>
+  <a href="lesson-02.html">L02 盈亏同源</a>
+  <a href="lesson-03.html">L03 交易模式</a>
+  <a href="lesson-04.html">L04 看什么</a>
+  <a href="lesson-05.html">L05 技术分析</a>
+  <a class="cur" href="standard.html">学习标准</a>
+</nav>
+<div class="wrap">
+
+<h1>学习标准：从视频到内化的八阶流水线</h1>
+<div class="meta">《豆子悟道 · 股票系统学习课》方法论 ｜ 定义每一课从「B站视频输入」到「你真正掌握」的完整流程与交付物 ｜ 2026-10-28</div>
+
+<div class="card note">
+  <b>为什么要有这个标准</b>
+  <p style="margin:6px 0 0">因为「听过」≠「学到」。没有消化环节，讲义只是转录；没有可视化，抽象概念停在字面；没有复习与内化环节，学完就忘、用不出来。这页标准定义八个阶段各干什么、谁来干、产出什么——<b>每一课都按这个流程生产和交付</b>，你随时可以对照它检查课程质量。</p>
+</div>
+
+<h2>一、八阶流水线总览（点击卡片看细节在下表）</h2>
+<div class="flow">
+  <div class="step me"><span class="n">1</span><b>学习输入</b><div class="d">B站视频全量获取：音频＋逐帧画面（板书/烧录字幕）</div><span class="who">我做</span></div>
+  <div class="step me"><span class="n">2</span><b>理解消化</b><div class="d">通读口播+板书+字幕，还原论证线、校订专名与数字</div><span class="who">我做</span></div>
+  <div class="step me"><span class="n">3</span><b>记录笔记</b><div class="d">悟道笔记：我的理解、联结、反直觉处、存疑点</div><span class="who">我做</span></div>
+  <div class="step me"><span class="n">4</span><b>整理归纳</b><div class="d">重组知识结构：命题→例子→边界→数值；知识地图</div><span class="who">我做</span></div>
+  <div class="step me"><span class="n">5</span><b>可视化呈现</b><div class="d">图解/对比表/数值模拟/交互演示，怎么好懂怎么来</div><span class="who">我做</span></div>
+  <div class="step me"><span class="n">6</span><b>知识沉淀</b><div class="d">讲解版讲义＋作业＋自测＋速查，沉淀进课程网站</div><span class="who">我做</span></div>
+  <div class="step you"><span class="n">7</span><b>复习巩固</b><div class="d">间隔复习卡＋悟道提问＋联结图，目标：你自己的悟道</div><span class="who">你做·我陪</span></div>
+  <div class="step you"><span class="n">8</span><b>内化掌握</b><div class="d">费曼讲给我听＋场景判断＋写出你自己的规则</div><span class="who">你做·我验</span></div>
+</div>
+
+<h2>二、逐阶定义</h2>
+<table>
+  <thead><tr><th style="width:110px">阶段</th><th>做什么</th><th style="width:220px">产出物（可检查）</th></tr></thead>
+  <tbody>
+    <tr><td><b>1 学习输入</b></td><td>获取原视频视频流＋音频流；每 15 秒拆帧保留板书/烧录字幕等视觉信息；音频转写全文。视觉层和口播层都要——板书里常有口播没讲的结构。</td><td>素材包（视频/帧/转写）</td></tr>
+    <tr><td><b>2 理解消化</b></td><td>通读全部素材，还原视频的论证线（命题→例子→结论），校订专名、数字、术语（转写常有同音字错误），列出存疑点并核实。<b>这一步的检验：合上素材，能把整节课的逻辑讲给一个没看过视频的人。</b></td><td>消化底稿（内部）</td></tr>
+    <tr><td><b>3 记录笔记</b></td><td>写下我自己的理解与悟道：这个概念和旧知识哪里联结（L01 的回撤数学 ↔ L02 的门票论）、哪里反直觉、我的独立见解、我想加的例子。<b>笔记是消化的证据，不是内容的复述。</b></td><td>悟道笔记（融入讲义"我的理解/解读"）</td></tr>
+    <tr><td><b>4 整理归纳</b></td><td>把内容重组为可教的知识结构：按主题分节（不是按时间线）、概念→判据→数值例子→边界条件→反例；拉出术语表、速查卡、与前后课的拼接图。</td><td>讲义骨架＋知识地图</td></tr>
+    <tr><td><b>5 可视化呈现</b></td><td>为难点配最合适的形态：流程图、对比表、走数字的模拟框、可交互演示（拖动参数看结果）、时间线、决策树。标准只有一条：<b>怎么方便理解怎么来</b>。每课至少一个可视化件。</td><td>可视化件（图/表/交互）</td></tr>
+    <tr><td><b>6 知识沉淀</b></td><td>产出讲解版讲义（自包含、有例子、不需要看视频）＋作业＋自测＋速查卡，沉淀进课程网站（吸顶导航可跳转复看），目录页更新状态。</td><td>课程页（douzi-course 网站）</td></tr>
+    <tr><td><b>7 复习巩固</b></td><td>按遗忘曲线安排复习（1/7/30 天三轮）；用「悟道提问」（没有标准答案的反思题）逼出你自己的结论；画联结图把新旧知识连起来。<b>目标不是记住我说的，是长出你自己的悟道。</b></td><td>复习卡＋悟道提问＋联结图</td></tr>
+    <tr><td><b>8 内化掌握</b></td><td>三道关卡：① 费曼——把这课讲给我听（我来当学生挑毛病）；② 场景判断——给真实/模拟盘面情境做决策并说理由；③ 规则产出——写出你自己的可执行规则。<b>三关都过，这课才算学完。</b></td><td>内化关卡记录</td></tr>
+  </tbody>
+</table>
+
+<h2>三、演示：可视化件长什么样（可交互）</h2>
+<p class="small">下面两个小工具就是"可视化呈现"阶段的示例——把 L01/L03 的概念变成可以动手拨弄的东西。拖动滑块试试。</p>
+
+<div class="demo">
+  <h4>演示 ① 回撤不对称计算器（L01 核心）</h4>
+  <div class="row">
+    <label>亏损幅度 <input type="range" id="loss" min="5" max="80" value="50"> <b id="lossV">50%</b></label>
+    <div class="out">
+      需要涨 <b id="rec">100.0%</b> 才能回本
+      <div class="bar"><i id="barLoss" style="width:50%;background:#fc8181"></i></div>
+      <div class="bar"><i id="barRec" style="width:100%;background:#68d391"></i></div>
+    </div>
+  </div>
+  <p class="small" style="color:#a0aec0;margin:8px 0 0">红条＝亏掉的比例；绿条＝回本所需涨幅。把滑块拉到 70% 看看绿条的长度——这就是"亏损越深回本越难"的样子。</p>
+</div>
+
+<div class="demo">
+  <h4>演示 ② 期望值与纪律（L03 核心）</h4>
+  <div class="row">
+    <label>胜率 <input type="range" id="p" min="20" max="80" value="45"> <b id="pV">45%</b></label>
+    <label>平均盈利 <input type="range" id="win" min="2" max="30" value="15"> <b id="winV">15%</b></label>
+    <label>平均亏损 <input type="range" id="lose" min="1" max="30" value="5"> <b id="loseV">5%</b></label>
+    <div class="out">单笔期望 <b id="ev">+4.0%</b> <span id="verdict" style="font-size:12px"></span></div>
+  </div>
+  <p class="small" style="color:#a0aec0;margin:8px 0 0">保持 45% 胜率，把"平均亏损"滑到 15%——期望立刻由正转负。<b>同一入场、同一胜率，出场纪律决定它是模式还是赌局。</b></p>
+</div>
+
+<h2>四、演示：复习巩固与内化关卡长什么样</h2>
+
+<h3>复习卡（点击卡片翻面；正式课程每课配一叠，按 1/7/30 天复习）</h3>
+<div class="flash" onclick="this.classList.toggle('open')">
+  <div class="front">L02：你靠什么赚钱，就会靠什么亏钱——"亏损"在交易里到底是什么？<span class="hint">点击翻面</span></div>
+  <div class="back">不是错误，是<b>门票</b>。你想砍掉的回撤和想留住的利润是同一笔钱的两面；想单独消灭亏损，会连利润一起消灭（盈亏同源）。→ 追问自己：我最近一笔亏损，是门票还是违纪？</div>
+</div>
+<div class="flash" onclick="this.classList.toggle('open')">
+  <div class="front">L05：十连阳的股票，该追、该空、还是该无视？<span class="hint">点击翻面</span></div>
+  <div class="back">该<b>无视</b>——不当有效信息。追和空是同一个错误的两个方向：从基率内的噪声里读因果（每天全市场都有 4~5 只十连阳）。正确反应是回到自己的模式与赚钱效应判断。</div>
+</div>
+
+<h3>悟道提问（没有标准答案，回答写进你自己的交易笔记）</h3>
+<div class="card good">
+  <ol style="margin:6px 0 0;padding-left:20px">
+    <li>如果"同源亏损"不可消除，那我选择承受哪一种？为什么是这一种而不是别的？</li>
+    <li>我见过的"技术分析大师"里，哪些其实只是幸存者？我用什么办法把他们和真技能区分开？</li>
+    <li>什么证据出现时，我会承认自己的模式已经失效？（写具体的可观测信号，不是心情）</li>
+    <li>如果只能保留一条交易规则，我留哪条？它保护我免于什么？</li>
+  </ol>
+</div>
+
+<h3>内化关卡（三关全过＝这课学完）</h3>
+<div class="card warn">
+  <p style="margin:6px 0 0"><b>关卡一 · 费曼</b>：把这课讲给我听（聊天里说"我讲给你听 Lxx"即可），我扮演爱追问的学生，哪里含糊哪里暴露。</p>
+  <p style="margin:6px 0 0"><b>关卡二 · 场景判断</b>：给你一个盘面情境（比如"某老龙反抽首板封板率突然掉到 70%"），你做决策＋说理由，我按判据打分。</p>
+  <p style="margin:6px 0 0"><b>关卡三 · 规则产出</b>：写出你自己的可执行规则（六元组格式即可），要具体到"什么信号、多少仓位、什么情况停"。写不出来＝还没内化。</p>
+</div>
+
+<h2>五、每课交付物清单（质量检查表）</h2>
+<table>
+  <thead><tr><th>交付物</th><th>对应阶段</th><th>在哪找</th></tr></thead>
+  <tbody>
+    <tr><td>讲解版讲义（含悟道笔记·我的理解）</td><td>1–4, 6</td><td>课程页正文</td></tr>
+    <tr><td>可视化件（知识树/图/表/数值模拟/交互）</td><td>5</td><td>讲义内嵌（每课开头一棵知识树）</td></tr>
+    <tr><td>作业＋自测＋速查卡</td><td>6</td><td>讲义末尾</td></tr>
+    <tr><td>复习卡＋悟道提问＋联结图</td><td>7</td><td>讲义「复习巩固」模块</td></tr>
+    <tr><td>内化关卡（费曼/场景/规则）</td><td>8</td><td>讲义「内化掌握」模块</td></tr>
+  </tbody>
+</table>
+
+<div class="next"><b>怎么用这套标准</b>：上完一课 → 当天做自测与复习卡 → 1/7/30 天各复习一次 → 费曼讲给我听 → 场景判断 → 写出你自己的规则。任何一课觉得"没悟到"，直接在聊天里说「重讲 Lxx」或对任意概念提问，我会换例子/换形态（图、动画、交互）再讲。</div>
+<p class="small" style="margin-top:20px">投资有风险，本课程为教育内容，不构成投资建议。</p>
+</div>
+<script>
+function fmt(n){return (n>=0?'+':'')+n.toFixed(1)+'%'}
+function calc(){
+  var l=+document.getElementById('loss').value;
+  var rec=l/(100-l)*100;
+  document.getElementById('lossV').textContent=l+'%';
+  document.getElementById('rec').textContent=rec.toFixed(1)+'%';
+  document.getElementById('barLoss').style.width=l+'%';
+  document.getElementById('barRec').style.width=Math.min(100,rec/2.4)+'%';
+}
+function calcEv(){
+  var p=+document.getElementById('p').value, w=+document.getElementById('win').value, lo=+document.getElementById('lose').value;
+  var ev=p/100*w-(1-p/100)*lo;
+  document.getElementById('pV').textContent=p+'%';
+  document.getElementById('winV').textContent=w+'%';
+  document.getElementById('loseV').textContent=lo+'%';
+  document.getElementById('ev').textContent=fmt(ev);
+  var v=document.getElementById('verdict');
+  v.textContent = ev>0 ? '（正期望，前提是可重复+活到长期）' : '（负期望——纪律/出场问题）';
+  v.style.color = ev>0 ? '#68d391' : '#fc8181';
+}
+document.getElementById('loss').addEventListener('input',calc);
+['p','win','lose'].forEach(function(id){document.getElementById(id).addEventListener('input',calcEv)});
+calc(); calcEv();
+</script>
+</body>
+</html>

@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>L06 交易纪律的意义</title>
+
+<style>
+.nav{position:sticky;top:0;z-index:50;background:#1a202c;padding:8px 14px;display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif}
+.nav a{color:#e2e8f0;text-decoration:none;font-size:13px;padding:3px 10px;border-radius:999px;background:#2d3748}
+.nav a:hover{background:#4a5568}
+.nav a.cur{background:#c05621;color:#fff;font-weight:600}
+.nav a.home{background:#2b6cb0}
+.nav .sp{color:#718096;font-size:12px;margin:0 4px}
+</style>
+</head>
+<body style="margin:0;background:#f7fafc">
+<nav class="nav"><a class="home" href="index.html">目录主页</a><a class="" href="lesson-01.html">L01 本金保护</a><a class="" href="lesson-02.html">L02 盈亏同源</a><a class="" href="lesson-03.html">L03 交易模式</a><a class="" href="lesson-04.html">L04 看什么</a><a class="" href="lesson-05.html">L05 技术分析</a><a class="cur" href="lesson-06.html">L06 交易纪律</a><a class="" href="lesson-07.html">L07 切换原理</a><a class="" href="lesson-08.html">L08 成长</a><a class="" href="lesson-09.html">L09 实操学习</a><a class="" href="lesson-10.html">L10 随手单</a><span class="sp">点击跳转复看</span></nav>
+<style>
+  :root{--ink:#1a202c;--sub:#4a5568;--line:#e2e8f0;--bg:#f7fafc;--accent:#c05621;--accent2:#2b6cb0;--good:#276749;--warn:#9b2c2c;--card:#fff}
+  *{box-sizing:border-box}
+  .doc{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;color:var(--ink);background:var(--bg);padding:28px 20px 60px;line-height:1.8;max-width:980px;margin:0 auto}
+  .doc h1{font-size:26px;margin:0 0 4px}
+  .doc h2{font-size:19px;margin:34px 0 10px;padding-left:10px;border-left:4px solid var(--accent)}
+  .doc h3{font-size:16px;margin:20px 0 8px;color:var(--accent2)}
+  .doc p{margin:8px 0}
+  .meta{color:var(--sub);font-size:13px;margin-bottom:16px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin:12px 0}
+  .goal{background:#fffaf0;border-color:#fbd38d}
+  .warn{background:#fff5f5;border-color:#feb2b2}
+  .good{background:#f0fff4;border-color:#9ae6b4}
+  .note{background:#ebf8ff;border-color:#90cdf4}
+  table{width:100%;border-collapse:collapse;font-size:13px;background:var(--card);border-radius:8px;overflow:hidden;margin:8px 0}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+  th{background:#edf2f7;font-weight:600}
+  td.num{white-space:nowrap;font-variant-numeric:tabular-nums;text-align:right}
+  .pos{color:var(--good);font-weight:600}.neg{color:var(--warn);font-weight:600}
+  .tag{display:inline-block;font-size:11px;padding:1px 8px;border-radius:999px;background:#edf2f7;color:var(--sub);margin-right:4px}
+  .p1{background:#feebc8;color:#7b341e}.p2{background:#bee3f8;color:#2a4365}.p3{background:#c6f6d5;color:#22543d}.p4{background:#fed7e2;color:#702459}
+  a{color:var(--accent2);text-decoration:none}a:hover{text-decoration:underline}
+  .formula{background:#1a202c;color:#f7fafc;border-radius:8px;padding:12px 16px;font-family:"SF Mono",Menlo,monospace;font-size:13px;margin:10px 0;overflow-x:auto;line-height:1.9}
+  .formula b{color:#f6ad55}
+  .q{border-left:3px solid var(--accent2);padding-left:12px;margin:12px 0}
+  .ans{color:var(--good);font-size:13px;margin-top:4px}
+  .next{margin-top:24px;padding:14px 18px;border:1px dashed var(--accent);border-radius:10px;background:#fffaf0;font-size:14px}
+  .small{font-size:12.5px;color:var(--sub)}
+  details{margin:8px 0}summary{cursor:pointer;color:var(--accent2);font-size:13.5px}
+  .cheat{columns:2;column-gap:24px}.cheat li{margin:6px 0;break-inside:avoid}
+  ul,ol{margin:6px 0 6px 20px;padding:0}li{margin:3px 0}
+  code{background:#edf2f7;border-radius:4px;padding:0 5px;font-size:12.5px}
+  .demo{background:#1a202c;border-radius:12px;padding:18px 20px;color:#f7fafc;margin:14px 0}
+  .demo h4{margin:0 0 10px;font-size:15px;color:#f6ad55}
+  .demo .btns{display:flex;flex-wrap:wrap;gap:8px}
+  .demo button{border:0;border-radius:8px;padding:8px 12px;font-size:12.5px;cursor:pointer;background:#2d3748;color:#e2e8f0;font-family:inherit}
+  .demo button:hover{background:#4a5568}
+  .demo button.on{background:#c05621;color:#fff}
+  .demo .out{margin-top:12px;background:#2d3748;border-radius:8px;padding:12px 14px;font-size:13px;line-height:1.9;min-height:66px}
+  .demo .out b{color:#f6ad55}
+  .flash{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:10px 0;cursor:pointer}
+  .flash .front{font-weight:600}
+  .flash .back{display:none;margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);color:var(--good)}
+  .flash.open .back{display:block}
+  .flash .hint{font-size:11.5px;color:var(--sub);float:right;font-weight:400}
+  @media(max-width:640px){.cheat{columns:1}}
+</style>
+
+<div class="doc">
+  <div class="card" style="padding:10px 14px;margin:0 0 14px">
+    <b>课程目录</b>　<span class="small">L01 本金保护 · L02 盈亏同源 · L03 交易模式 · L04 看什么 · L05 技术分析 · <b>L06 交易纪律（本课）</b> · L07 切换原理 · L08–L13 方法 · L14–L25 认知心智</span><br>
+    <span class="small">导航口令：「目录」看全表 ｜「下一课」推进 ｜「重讲 Lxx」换方式重讲 ｜「我讲给你听 Lxx」＝费曼关卡 ｜ 直接提问＝答疑</span>
+    <span class="small">总览入口：<a href="trees.html">十课知识树</a> ｜ <a href="cases.html">十课真实案例</a>（每课正文内也有各自的知识树与真实案例）</span>
+  </div>
+
+  <h1>第六课：交易纪律的意义——"知道"和"做到"之间靠什么填</h1>
+  <div class="meta">《豆子悟道 · 股票系统学习课》L06 ｜ 模块二 悟道注·纪律 ｜ 源自原视频《交易纪律的意义——悟道注》（13:59，<a href="https://www.bilibili.com/video/BV16P336bERG">BV16P336bERG</a>）｜ <b>本讲义是消化后的讲解</b>：视频全部要点已重组融入正文，配上我的理解与例子，不需要看视频 ｜ 2026-10-28</div>
+
+  <div class="card goal">
+    <b>这节课讲什么</b>
+    <p style="margin:6px 0 0">一句话：<b>新手还没有"知"的时候，靠交易纪律强行"做到"——让表象上的操作先像成熟交易者，理解以后慢慢补。</b>豆子把这期称为"真正重要的一集"：它不教你怎么赚，教你怎么把 L01 的活下来、L02 的盈亏同源，变成每天盘中可以执行的动作。</p>
+    <p style="margin:6px 0 0">本课的核心是他的<b>三条空仓纪律</b>：大亏空仓（只对超预期的亏损触发）、大赚空仓（超额赚钱效应是盈亏同源的前兆）、必须空仓（卖了不追、T+1 周期、拒绝每天满仓）。再往深一层，纪律的本质是给心态装一个"违规难受传感器"。</p>
+  </div>
+
+  <h2><span class="tag p4">图</span>本课知识树（思维导图）</h2>
+  <p class="small">从左向右生长：根＝本课主张，一级分支＝主题，向右展开概念；右上角编号＝关联（见图例）。</p>
+  <div style="overflow-x:auto;margin:10px 0">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 944" role="img" aria-labelledby="l06-tree-tree-title l06-tree-tree-desc" style="min-width:1024px;width:100%;height:auto;font-family:'PingFang SC','Microsoft YaHei','Noto Sans SC',-apple-system,sans-serif">
+    <title id="l06-tree-tree-title">L06 交易纪律知识树</title>
+    <desc id="l06-tree-tree-desc">交易纪律的完整层级：定位、大亏空仓、大赚空仓、必须空仓、难受传感器，含三条关联。</desc>
+    <defs>
+      <marker id="l06-tree-arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1 L 8 5 L 0 9 z" fill="#2b6cb0"/>
+      </marker>
+    </defs>
+    <path d="M 152 415 C 226 415 226 69 300 69" fill="none" stroke="#b9c3d0" stroke-width="1.6"/>
+    <path d="M 396 69 C 478 69 478 25 560 25" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 69 C 478 69 478 69 560 69" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 69 C 478 69 478 113 560 113" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 152 415 C 226 415 226 223 300 223" fill="none" stroke="#b9c3d0" stroke-width="1.6"/>
+    <path d="M 396 223 C 478 223 478 157 560 157" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 223 C 478 223 478 201 560 201" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 223 C 478 223 478 245 560 245" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 223 C 478 223 478 289 560 289" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 152 415 C 226 415 226 399 300 399" fill="none" stroke="#b9c3d0" stroke-width="1.6"/>
+    <path d="M 396 399 C 478 399 478 333 560 333" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 399 C 478 399 478 377 560 377" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 399 C 478 399 478 421 560 421" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 399 C 478 399 478 465 560 465" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 152 415 C 226 415 226 591 300 591" fill="none" stroke="#b9c3d0" stroke-width="1.6"/>
+    <path d="M 396 591 C 478 591 478 509 560 509" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 591 C 478 591 478 591 560 591" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 656 591 C 728 591 728 551 800 551" fill="none" stroke="#cdd5df" stroke-width="1"/>
+    <path d="M 656 591 C 728 591 728 591 800 591" fill="none" stroke="#cdd5df" stroke-width="1"/>
+    <path d="M 656 591 C 728 591 728 631 800 631" fill="none" stroke="#cdd5df" stroke-width="1"/>
+    <path d="M 396 591 C 478 591 478 673 560 673" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 152 415 C 226 415 226 761 300 761" fill="none" stroke="#b9c3d0" stroke-width="1.6"/>
+    <path d="M 396 761 C 478 761 478 717 560 717" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 761 C 478 761 478 761 560 761" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 761 C 478 761 478 805 560 805" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 223 C 466 223 466 399 396 399" fill="none" stroke="#2b6cb0" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#l06-tree-arr)"/>
+    <path d="M 396 591 C 466 591 466 62 396 62" fill="none" stroke="#2b6cb0" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#l06-tree-arr)"/>
+    <path d="M 396 761 C 466 761 466 76 396 76" fill="none" stroke="#2b6cb0" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#l06-tree-arr)"/>
+    <rect x="560" y="8" width="124" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="30" font-size="12" font-weight="600" fill="#1a202c">小钱实盘，压赌性</text>
+    <rect x="560" y="52" width="144" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="74" font-size="12" font-weight="600" fill="#1a202c">保本金第一（接L01）</text>
+    <rect x="560" y="96" width="112" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="118" font-size="12" font-weight="600" fill="#1a202c">先执行，后理解</text>
+    <rect x="300" y="52" width="96" height="34" rx="8" fill="#ffffff" stroke="#1a202c" stroke-width="1.2"/>
+    <text x="313" y="74" font-size="13" font-weight="600" fill="#1a202c">定位</text>
+    <rect x="560" y="140" width="124" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="162" font-size="12" font-weight="600" fill="#1a202c">超预期亏损才触发</text>
+    <rect x="560" y="184" width="124" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="206" font-size="12" font-weight="600" fill="#1a202c">模式内亏损＝门票</text>
+    <rect x="560" y="228" width="148" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="250" font-size="12" font-weight="600" fill="#1a202c">解除＝搞明白，非天数</text>
+    <rect x="560" y="272" width="144" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="294" font-size="12" font-weight="600" fill="#1a202c">≠止损 单笔vs模式级</text>
+    <rect x="300" y="206" width="96" height="34" rx="8" fill="#ffffff" stroke="#1a202c" stroke-width="1.2"/>
+    <text x="313" y="228" font-size="13" font-weight="600" fill="#1a202c">大亏空仓</text>
+    <rect x="560" y="316" width="148" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="338" font-size="12" font-weight="600" fill="#1a202c">意外之财＝超预期信号</text>
+    <rect x="560" y="360" width="148" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="382" font-size="12" font-weight="600" fill="#1a202c">超额效应→避盈亏同源</text>
+    <rect x="560" y="404" width="148" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="426" font-size="12" font-weight="600" fill="#1a202c">账户级四五十点也触发</text>
+    <rect x="560" y="448" width="136" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="470" font-size="12" font-weight="600" fill="#1a202c">空仓时长按同源周期</text>
+    <rect x="300" y="382" width="96" height="34" rx="8" fill="#ffffff" stroke="#1a202c" stroke-width="1.2"/>
+    <text x="313" y="404" font-size="13" font-weight="600" fill="#1a202c">大赚空仓</text>
+    <rect x="560" y="492" width="128" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="514" font-size="12" font-weight="600" fill="#1a202c">T+1 卖的当天不买</text>
+    <rect x="800" y="536" width="96" height="30" rx="8" fill="#f7fafc" stroke="#cbd5e0" stroke-width="0.8"/>
+    <text x="813" y="556" font-size="12" font-weight="400" fill="#4a5568">硬板悖论</text>
+    <rect x="800" y="576" width="96" height="30" rx="8" fill="#f7fafc" stroke="#cbd5e0" stroke-width="0.8"/>
+    <text x="813" y="596" font-size="12" font-weight="400" fill="#4a5568">弃先手优势</text>
+    <rect x="800" y="616" width="96" height="30" rx="8" fill="#f7fafc" stroke="#cbd5e0" stroke-width="0.8"/>
+    <text x="813" y="636" font-size="12" font-weight="400" fill="#4a5568">抑赌性</text>
+    <rect x="560" y="574" width="96" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="596" font-size="12" font-weight="600" fill="#1a202c">卖了不追</text>
+    <rect x="560" y="656" width="100" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="678" font-size="12" font-weight="600" fill="#1a202c">拒绝每天满仓</text>
+    <rect x="300" y="574" width="96" height="34" rx="8" fill="#ffffff" stroke="#1a202c" stroke-width="1.2"/>
+    <text x="313" y="596" font-size="13" font-weight="600" fill="#1a202c">必须空仓</text>
+    <rect x="560" y="700" width="96" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="722" font-size="12" font-weight="600" fill="#1a202c">违规即反思</text>
+    <rect x="560" y="744" width="148" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="766" font-size="12" font-weight="600" fill="#1a202c">先像后是（表象靠齐）</text>
+    <rect x="560" y="788" width="148" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="810" font-size="12" font-weight="600" fill="#1a202c">高手可拆框框（境界）</text>
+    <rect x="300" y="744" width="96" height="34" rx="8" fill="#ffffff" stroke="#1a202c" stroke-width="1.2"/>
+    <text x="313" y="766" font-size="13" font-weight="600" fill="#1a202c">难受传感器</text>
+    <rect x="24" y="385" width="128" height="60" rx="8" fill="rgba(192,86,33,0.08)" stroke="#c05621" stroke-width="1.4"/>
+    <text x="38" y="411" font-size="15" font-weight="600" fill="#1a202c">L06 交易纪律</text>
+    <text x="38" y="431" font-size="11" fill="#4a5568">先行后知，先像后是</text>
+    <circle cx="392" cy="56" r="8" fill="#2b6cb0"/>
+    <text x="392" y="60" text-anchor="middle" font-size="10" font-weight="600" fill="#fff">1</text>
+    <circle cx="392" cy="210" r="8" fill="#2b6cb0"/>
+    <text x="392" y="214" text-anchor="middle" font-size="10" font-weight="600" fill="#fff">2</text>
+    <circle cx="392" cy="386" r="8" fill="#2b6cb0"/>
+    <text x="392" y="390" text-anchor="middle" font-size="10" font-weight="600" fill="#fff">3</text>
+    <circle cx="392" cy="578" r="8" fill="#2b6cb0"/>
+    <text x="392" y="582" text-anchor="middle" font-size="10" font-weight="600" fill="#fff">4</text>
+    <circle cx="392" cy="748" r="8" fill="#2b6cb0"/>
+    <text x="392" y="752" text-anchor="middle" font-size="10" font-weight="600" fill="#fff">5</text>
+    <line x1="10" y1="840" x2="1014" y2="840" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="10" y="856" font-size="12" font-weight="600" fill="#1a202c">关联图例</text>
+    <text x="86" y="856" font-size="12" fill="#4a5568">① 大亏空仓堵连续亏损，大赚空仓堵盈亏同源——分布两端各一闸</text>
+    <text x="86" y="878" font-size="12" fill="#4a5568">② 卖了不追/T+1 既保先手优势，也把赌性压下去</text>
+    <text x="86" y="900" font-size="12" fill="#4a5568">③ 先执行后理解——规则住进身体，才长出违规难受的传感器</text>
+  </svg>
+  </div>
+  <h2><span class="tag p1">一</span>开题：新手实盘该干什么——小钱实盘，把赌性压下去</h2>
+  <p>豆子的开场很实在：<b>实践出真知，必须去实盘</b>——但实盘干什么？不是上来赚钱，是两件事：<b>控制赌性</b>和<b>保护本金</b>。</p>
+  <p>他给的具体做法是<b>小钱实盘</b>（特意强调"加一个小钱两个字"）：赌性一定要往下降，越低越好，<b>不要把自己的钱当欢乐豆玩</b>。为什么先谈赌性？因为投机和赌博太像（L03 讲过的多巴胺机制），新手实盘的第一任务不是验证水平，是<b>把赌瘾的剂量调到最低</b>。</p>
+  <p>然后是全课的命题：新手如何保护本金？<b>答案是交易纪律。</b>他把"知行合一"拆得很诚实：<b>大多数人刚开始的时候没有"知"</b>——你还不懂为什么，那就先把"老的、比较适合保护本金的东西"强行做到。<b>先执行，后理解。</b></p>
+  <p><b>我的理解：这和学开车先背交规是一个道理。</b>你不需要先成为汽车工程师才能上路——先背下"红灯停、不压实线"，理解这些规则背后的物理和博弈，是以后的事。交易里的"红灯"就是下面三条空仓纪律。<b>知行合一的顺序对新手来说是"行→知"，不是"知→行"</b>：先让手不动，脑子才追得上来。</p>
+
+  <h2><span class="tag p1">二</span>纪律的骨架：大亏空仓、大赚空仓、必须空仓</h2>
+  <p>豆子亮出自己的三条纪律（板书核心）：<b>大亏空仓、大赚空仓、必须空仓。</b>三条各管一个方向：大亏空仓防<b>连续亏损</b>（保本金＋保心态），大赚空仓防<b>盈亏同源</b>（L02 的落地），必须空仓防<b>赌性</b>（随手单与满仓流转）。下面逐条拆开讲，每条都带边界和数字。</p>
+
+  <h2><span class="tag p2">三</span>大亏空仓：只对"超预期的亏损"触发</h2>
+  <p><b>定义：超预期的亏损一旦出现，立刻空仓暂停。</b>空仓多久？没有固定数字——<b>"在我能明白这个超预期出现在哪里之前，我是不能再开仓的。"</b>暂停的解除条件不是时间，是<b>搞明白</b>。</p>
+  <p>最容易记反的是边界：<b>模式内的亏损不算大亏。</b>他原话的意思是：一笔交易本来就有好的发展和坏的发展，综合期望是赚钱的，但这一笔亏了、甚至亏的比例比较大——<b>无所谓的</b>。为什么无所谓？因为模式内资金管理正确，你投入的资金本来就小，影响不大。"在我的预测范围内的"亏损，是门票（L02），照付。</p>
+  <p><b>怎么区分"模式内"和"超预期"？看他给的判据原话：</b>「你说我觉得明天就要反弹了，但是这个东西这一波大亏是我没有想到的——这就是超预期的亏损。」简单说：<b>模式的剧本里写着的亏损＝模式内；剧本外的意外＝超预期。</b>剧本外的典型形态是黑天鹅：拿到了预期外的亏损要退出来，只要标的走势超出了你原来的预期，<b>在你对新的黑天鹅做足预期之前，是不能接着持有的</b>。</p>
+  <div class="card warn">
+    <b>大亏空仓 ≠ 止损（豆子特意强调"这不是止损的道理"）</b>
+    <p class="small" style="margin:6px 0 0">止损是<b>单笔</b>的认错动作：这笔错了我走，解决这一笔。<br>
+    大亏空仓是<b>模式级</b>的暂停：发生了我没预料到的亏损形态，说明我对这个模式/环境的理解破了——<b>整个模式停用，直到我能解释那个"没想到"</b>。止损管一笔，大亏空仓管一个模式。</p>
+  </div>
+  <p><b>我的例子，走一遍判断。</b>你做打板模式，历史分布里封板率 92%、失败单均 −5%。某天吃了 −6%——剧本内，付门票，不触发。接着两天连续炸板、单日 −8%、−9%，且炸的是你模式里从没炸过的形态（比如集合竞价一字板开板）——<b>这不是"运气差"，这是超预期</b>：立刻空仓，去搞明白（题材退潮？监管窗口？资金结构变了？），搞明白前一笔都不开。数字上：<b>模式内的 −6%×N 是你算过的成本；模式外的 −9% 连发是"你的模型错了"的信号</b>——前者靠 X 出场解决，后者只能靠暂停解决。</p>
+
+  <h2><span class="tag p2">四</span>大赚空仓：超额赚钱效应是盈亏同源的前兆</h2>
+  <p>大赚也分两种，处理不同：</p>
+  <ul>
+    <li><b>运气带来的大赚＝超预期本身</b>：「就不要再参与了」——环境已经出现你解释不了的异常，此后参与不论赚亏都是在赌运气。<b>拿到预期外的盈利，和拿到预期外的亏损一样，都要退出来。</b>这条很反直觉：<b>意外之财也是"超出预期"的信号，处理方式同黑天鹅——先离场，重新建立预期。</b></li>
+    <li><b>模式内想好的大赚</b>：一波大赚之后要不要空仓？<b>必须空仓</b>——这是去<b>避免盈亏同源</b>的。空仓时长<b>按你的盈亏同源周期来</b>：周期足够长，就空足够长。他自己的例子：对超短和科技炒作"快一年没有参与了"——这相关的模式都处于空仓避免盈亏同源的状态，<b>只是在做其他的模式而已</b>。</li>
+  </ul>
+  <p><b>一个关键澄清：空仓是相对于模式的，不是相对于市场的。</b>一个模式还在赚钱效应区间内，「你不能就不赚了，该赚还是要赚，模式内买点出现还是要买」。触发条件是那笔做完后<b>发现了明显的超额赚钱效应</b>——因为超额的赚钱效应才会带来超额的亏钱效应；你都没有超额赚钱效应，那自然不用思考盈亏同源，<b>或者你的模式本身就有问题</b>。特别是连板这种东西——必须空仓，重新选机会。</p>
+  <p>还有一个账户级触发：<b>如果你的账户产生了特别大的波动的大赚</b>——整体数倍、甚至四五十个点，且是一笔交易做完——他推荐也要空仓一下。理由：<b>大多数超额赚钱效应出现的时候＝极端行情出现的时候，走反向的概率也比较大，盈亏同源出现得会比较极端。</b></p>
+  <div class="formula">大赚空仓的账（教学模拟）：
+一笔 +50%（账户级）后硬做 → 极端行情反向，假设 60% 概率回吐 20~40%：E ≈ 0.6×(−30%) + 0.4×(+10%) = <b>−14%</b>
+空仓重置预期后再做 → 用正常模式的期望（如 +2%/笔）继续，没有反噬段
+结论：<b>大赚后的"不动作"本身是有正期望的动作</b>——它买断的是极端反噬段
+（对照 L01：+50% 后若回吐 −33%，需要 +49% 才回到高点）</div>
+  <p><b>为什么这两个空仓有效？他给的答案接回 L02：大亏空仓避免了连续亏损（本金受大打击＋心态受影响）；大赚空仓避免了盈亏同源。</b>两条纪律各自堵住分布的一端。</p>
+
+  <h2><span class="tag p2">五</span>大误区：卖了就买、每天满仓</h2>
+  <p>他点名"家人们最大的误区之一"：<b>买了之后就卖、卖了之后就买</b>（高频流转、每天满仓）。拆开是两个问题：</p>
+  <p><b>问题一：随手单。</b>「你卖了之后去追，本身就是一种随手单的表现。」就算两个模式真的是并行的，也不能互相占用资金——他自己的例子：黄金持仓已经盈利了，非常想平掉黄金去做另一个品种，<b>最后也因为交易纪律一直没这么做</b>，只是抽了保证金出来。「这也属于一种交易纪律，不能去这么做的。」</p>
+  <p><b>问题二：每天满仓本身就是错的。</b>「我当时也有这个思路」——每天把仓位打满。他的替代规则：以 <b>T+1 为一个交易周期</b>——今天买，明天卖，<b>卖的那一天就不再买了</b>。</p>
+  <p><b>为什么卖了不能立刻追？他给了三个原因：</b></p>
+  <ol>
+    <li><b>硬板悖论</b>（对打板选手）：想买到早盘硬板，卖出之后立刻去追——如果你还能追到，<b>代表你卖得低</b>（同题材盘中还有更高的冲高）；如果你卖得高，那你追到的<b>就不是硬板</b>，大概率炸板下来（题材持续性不够了）。卖了就追＝两头都不占理。</li>
+    <li><b>先手优势</b>：即便两标的在同一个赚钱效应之下、不是随手单，把手里卖了去追那个——「单纯就是放弃自己的先手优势，并且它很影响情绪」。</li>
+    <li><b>赌性抑制</b>：亏了钱已经卖了就不能再追，这本身就抑制赌性——「它既是一个正面的效果，也减少了你的赌性。你等一天，你的状态会好很多。」</li>
+  </ol>
+  <div class="formula">卖了就追的账（教学模拟）：
+先手优势损失：持币日的正常模式期望本来 +2%/笔，追高买回平均少 1~2 个点的先手成本
+随手单期望：情绪驱动、无 U/E 保护，长期为负（L03：随手单十个有九个错，60 笔 × −2% = −12%/年）
+情绪成本：连错两笔后加仓翻本的概率显著上升（回本心态，L01）
+等一天：成本≈0，收益＝避掉以上全部</div>
+  <p class="small">边界（他主动说了）：「不是说所有人都需要这么做。」如果你的交易模式已经非常成型、对本质掌握得非常透，这些刻板纪律可以松绑——但那是更高境界的交易者的事。</p>
+
+  <h2><span class="tag p2">六</span>纪律的本质：让表象操作先"像"成熟交易者</h2>
+  <p>他把纪律的目的讲到了最深处：<b>交易纪律是希望你靠着那些"能把自己的交易预期做得特别明白"的成熟交易者，让你至少在表象上的操作接近他们。</b></p>
+  <p>成熟交易者长什么样？<b>冷静、理性、对自己的预期掌握得非常明确</b>：亏了钱不影响心态（都在预期内），赚了钱也一样——不在意账户的浮盈浮亏。而大多数人：亏了赚了之后，<b>对自己的心态产生大量的影响</b>，操作随之变形（亏了之后立刻变成高频交易、放大本金去追）。</p>
+  <p>所以纪律是一条"代偿"路径：<b>你还没有那个认知和心态，就先用规则把动作摆到位——空仓不要做、亏了不要立刻变高频——先"像"，后"是"。</b>等你真的对预期掌握得非常明确，条条框框自然可以拆掉，去做更创新的东西。豆子的自况值得抄下来：<b>「我觉得我就是做不到的，我可能也在尝试创新，但是我觉得我仍然需要交易纪律去规范我的思考。」</b>他还自评：「很多选手进攻比我强非常多，我进攻很弱的，我只是回撤没那么大。」</p>
+
+  <h2><span class="tag p3">七</span>纪律的另一半好处：安装一个"违规难受传感器"</h2>
+  <p>他说纪律还有一件好事：当你去<b>想</b>做不符合纪律的事情、甚至已经做出来了，「你会立刻开始反思自己」。这像父母从小教的观念印在脑中——每当你想做不符合交易纪律的事情，<b>你会感觉到一种难受、一种跳脱，"这样是不好的"</b>，你就能感觉到。这个好习惯会伴着你的交易生涯，利于你的投资观、交易观。</p>
+  <p><b>我的解读：纪律不只是约束，它在给你的身体装传感器。</b>违规前的那一下"难受"，是免费的复盘触发器——它把违规检测从"事后看账户"提前到"下单前 3 秒"。这也是为什么第一条里说"先执行后理解"：<b>规则先住进身体，难受感长出来，你对规则的理解才有了落脚点。</b></p>
+
+  <h2><span class="tag p3">八</span>收束：他自己的验证与这课的地位</h2>
+  <p>两个收尾信息。第一，他把这期称为<b>"真正重要的一集"</b>，并吐槽：它播放量不高，反而是他觉得"错误最多、价值最低"的量价关系那期播放量最高——「这实际上是我很无奈的事情」。理由：这一篇是对<b>基础投资观、交易观</b>的塑造，好习惯好观念形成后，成长速度会更快。<b>地基不性感，但地基决定高度。</b></p>
+  <p>第二，他用自己的经历验证纪律：黄金持仓盈利时非常想平仓换做别的品种，因交易纪律一直没做；并自嘲「这个时候的豆子还不知道未来他会产生很大的回撤——30 多个点的回撤，全资产的 30 多个点」。<b>纪律拦住的事，当时看是"少赚了"，事后看往往价值千金。</b>最后他给超短也盖了时间戳：24、25 年超短非常好、市场走牛时行，现在就不太行了——模式有窗口（接 L02 窗口论），但纪律没有窗口：<b>「特别简单、特别正确，做了绝对有好处，不会有任何的坏处。」</b>他说自己也是这些条条框框的既得利益者。</p>
+
+  <h2><span class="tag p4">九</span>可视化件：三纪律决策器（点按钮看该怎么做）</h2>
+  <p class="small">把这节课变成盘中可用的工具：选一个情境，看豆子的纪律体系给出什么动作。</p>
+  <div class="demo">
+    <h4>三纪律决策器</h4>
+    <div class="btns" id="btns">
+      <button data-k="a">模式内亏损（剧本内，亏得还挺多）</button>
+      <button data-k="b">超预期的亏损（剧本外，没想到）</button>
+      <button data-k="c">运气带来的意外大赚</button>
+      <button data-k="d">模式内大赚＋明显超额赚钱效应</button>
+      <button data-k="e">账户一笔赚了四五十个点</button>
+      <button data-k="f">今天卖了，手痒想立刻追</button>
+      <button data-k="g">模式还在赚钱效应区间，买点又出现了</button>
+    </div>
+    <div class="out" id="out">👆 点一个情境，这里显示动作与依据。</div>
+  </div>
+  <script>
+    var VERDICT = {
+      a: '<b>照常执行，不触发空仓。</b>模式内的亏损是门票（L02），按 X 出场规则处理即可——资金管理正确时它伤不到你。要做的只有一件事：记进亏损分类表，确认它确实是模式内。',
+      b: '<b>立刻空仓暂停，解除条件是"搞明白"，不是时间。</b>剧本外的亏损说明你对模式/环境的理解破了；在对这个"没想到"建立新预期之前（黑天鹅做足预期之前），一笔都不开。这不是止损——止损管一笔，大亏空仓管一个模式。',
+      c: '<b>退出来，不要接着参与。</b>意外之财和意外之亏是同一个信号：环境超出了你的预期。此后参与不论赚亏都是赌运气——先离场，重新建立预期，再决定要不要回来。',
+      d: '<b>大赚空仓，时长按盈亏同源周期来。</b>超额赚钱效应出现＝超额亏钱效应已经预售。该模式空窗（他自己的例子：超短/科技空了快一年），但这不等于不做交易——去<strong>做其他模式</strong>。空仓是相对于模式的。',
+      e: '<b>账户级大赚，建议空仓重置。</b>极端行情下走反向的概率大，盈亏同源出现得极端。+50% 后若回吐 −33% 需要 +49% 才回到高点——大赚后的"不动作"本身是有正期望的动作。',
+      f: '<b>等一天。</b>卖了立刻追＝随手单＋放弃先手优势＋喂赌性。追得到说明你卖低了，追到的不是硬板说明大概率要炸。T+1 周期：今天买明天卖，卖的那天不再买。等一天，状态会好很多。',
+      g: '<b>该赚还是要赚。</b>模式还在赚钱效应区间、买点出现，纪律不是让你不赚钱——触发空仓的是超预期（亏损侧）或超额赚钱效应（盈利侧），不是"最近运气不好/好"的感觉。'
+    };
+    var btns = document.querySelectorAll('#btns button');
+    btns.forEach(function(b){ b.addEventListener('click', function(){
+      btns.forEach(function(x){ x.classList.remove('on'); });
+      b.classList.add('on');
+      document.getElementById('out').innerHTML = VERDICT[b.getAttribute('data-k')];
+    });});
+  </script>
+
+    <h2><span class="tag p4">案</span>真实案例：概念落在盘面上</h2>
+  <p class="small">以下为公开市场事件（数字为约数），用来把本课概念放到真实盘面上看。</p>
+    <div class="card"><b>长期资本 LTCM 1998</b>
+      <p class="small" style="margin:6px 0 0"><b>事实</b>：诺奖得主阵容＋高杠杆＋不认错，1998 年 8–9 月亏约 46%，濒临爆仓，美联储出面协调救助。</p>
+      <p class="small" style="margin:4px 0 0"><b>对应知识点</b>：大亏空仓的机构版反面教材：模式内亏损不设边界就变成模式外灾难——「超预期出现先停」对机构和个人同样成立。</p></div>
+    <div class="card"><b>2015 股灾：两种结局</b>
+      <p class="small" style="margin:6px 0 0"><b>事实</b>：满仓＋配资＋「再跌就补」的账户在 6–8 月连续爆仓出局；同期单笔风险 1–2%、执行止损/熔断的账户回撤可控，活到 2016–2019 修复期。</p>
+      <p class="small" style="margin:4px 0 0"><b>对应知识点</b>：止损≠保本＋连败熔断：同样的行情，结局差在下单前定好的风险参数（L01 三硬规则的真实对照组）。</p></div>
+    <div class="card"><b>期货大佬的尾部结局</b>
+      <p class="small" style="margin:6px 0 0"><b>事实</b>：豆子原话「这种大佬跳楼的很多了」：2015–2016 年多起公开报道——重仓赌单边＋浮盈加仓者一波清零。</p>
+      <p class="small" style="margin:4px 0 0"><b>对应知识点</b>：尾部换当期＋幸存者偏差：你只看见做到几十亿的那一个，看不见同一打法清零的那批。</p></div>
+
+
+<h2><span class="tag p3">十</span>复习巩固</h2>
+  <p>按 1/7/30 天各来一轮。先自己答，再点开卡片对答案——答案不是背我的，是要长出你自己的悟道。</p>
+  <div class="flash" onclick="this.classList.toggle('open')">
+    <div class="front">L06 · 卡 1：一笔亏了 8%，要不要触发"大亏空仓"？<span class="hint">点击翻面</span></div>
+    <div class="back">看它在不在剧本内。<b>模式内的亏损不算大亏</b>——哪怕亏的比例大，它是门票，资金管理下伤不到根本。只有<b>超预期的亏损</b>（剧本外、没想到、如黑天鹅）才触发空仓，且解除条件是"搞明白"而非时间。→ 追问自己：我能白纸黑字写出我的"剧本"（模式内亏损的边界）吗？写不出边界，就分不清模式内和超预期。</div>
+  </div>
+  <div class="flash" onclick="this.classList.toggle('open')">
+    <div class="front">L06 · 卡 2：意外大赚之后为什么要空仓？赚了不是好事吗？<span class="hint">点击翻面</span></div>
+    <div class="back">意外之财和意外之亏是同一个信号：<b>环境超出你的预期</b>。此后参与不论赚亏都是赌运气；且超额赚钱效应＝极端行情＝反向概率大，盈亏同源出现得极端。<b>大赚空仓避免的是盈亏同源</b>（L02 的落地）。→ 追问：我最近一次大赚，是模式内还是运气？当时我做了什么？</div>
+  </div>
+  <div class="flash" onclick="this.classList.toggle('open')">
+    <div class="front">L06 · 卡 3：模式已经很成熟的人，还需要这些条条框框吗？<span class="hint">点击翻面</span></div>
+    <div class="back">豆子说不是所有人都需要：对预期掌握非常明确、不受浮盈浮亏影响的高手可以拆掉框框。但他的自况是「我觉得我就是做不到的，我仍然需要交易纪律去规范我的思考」。<b>纪律是"先像后是"的代偿</b>——表象操作先向成熟交易者靠齐，认知慢慢补。→ 追问：我上一次违规时，有没有那一瞬间的"难受"？有＝传感器在工作；没有＝更需要规则。</div>
+  </div>
+
+  <h3>悟道提问（没有标准答案，答案写进你自己的交易笔记）</h3>
+  <div class="card good">
+    <ol style="margin:6px 0 0;padding-left:20px">
+      <li>我的"超预期"判据是什么？把"剧本外"写成可核对的文字（什么信号出现＝理解破了）。</li>
+      <li>如果纪律的价值要到很多年后才显形，我今天靠什么相信它？（豆子的答案是"既得利益者"——我的第一个小证据会是什么？）</li>
+      <li>我的三条空仓纪律分别是什么？如果只能加一条约束给自己的交易，我加哪条、为什么？</li>
+    </ol>
+  </div>
+
+  <h2><span class="tag p3">十一</span>内化掌握（三关全过＝这课学完）</h2>
+  <div class="card warn">
+    <p style="margin:6px 0 0"><b>关卡一 · 费曼</b>：在聊天里输入「我讲给你听 L06」，我扮演爱追问的学生——重点考你："模式内亏损和超预期亏损怎么分？"、"大赚空仓是不是不让人赚钱？"</p>
+    <p style="margin:6px 0 0"><b>关卡二 · 场景判断</b>：你的打板模式历史分布：封板率 92%、失败单均 −5%。本周连续三天大面（−6%、−8%、−9%），其中第三天炸的是从没炸过的形态。你会怎么做？说出你的动作和依据。</p>
+    <details><summary>参考判断与评分点</summary><div class="ans">正确动作：第一天照常付门票（−6% 在剧本内）；第二天起警觉；第三天确认<b>超预期</b>（形态都没炸过＝剧本外）→ 触发<b>大亏空仓</b>，停用整个模式，去搞明白（题材退潮/资金结构/监管？），搞明白前不开仓。评分点：① 分清模式内与超预期；② 用"搞明白"而非固定天数解除；③ 知道这不是止损（止损管一笔，大亏空仓管一个模式）；④ 不抄底摊平、不变高频。</div></details>
+    <p style="margin:6px 0 0"><b>关卡三 · 规则产出</b>：写出你自己的三纪律落地模板：① 我的"超预期亏损"判据（可核对的文字）＋空仓解除条件；② 我的"超额赚钱效应"判据（多大的赚算超额？）＋空仓周期；③ 我的 T+1 规则（卖的当天不买/不追高）与满仓禁令。</p>
+  </div>
+
+  <h2><span class="tag p3">十二</span>作业 · 自测 · 速查</h2>
+
+  <h4>作业（下次课前完成）</h4>
+  <ol>
+    <li><b>写剧本</b>：把你的模式内亏损边界写成文字（单笔最大亏损、连亏次数、什么形态属于"从没出现过"），贴在交易记录首页。</li>
+    <li><b>违规日志</b>：记录一周内每次"想违规"的瞬间（想追、想加仓、想提前卖），只记录不批评——数一数你的传感器响了几次。</li>
+    <li><b>空仓实验</b>：严格执行"卖的当天不买"一周，对比前一周随手单次数与账户波动，写出对比。</li>
+  </ol>
+
+  <h4>自测（8 题，先答再看答案）</h4>
+  <div class="q">Q1. 大亏空仓和止损的区别是什么？
+    <details><summary>答案</summary><div class="ans">止损是单笔认错动作，管一笔；大亏空仓是模式级暂停，触发条件是"超预期的亏损"（剧本外），解除条件是搞明白超预期从哪来，不是固定时间。</div></details></div>
+  <div class="q">Q2. 模式内亏损亏得比例很大，要不要空仓？
+    <details><summary>答案</summary><div class="ans">不要。模式内的亏损是门票，资金管理正确时投入小、影响有限。触发空仓的只能是超预期，不是"亏得难受"。</div></details></div>
+  <div class="q">Q3. 意外大赚之后为什么也要退出来？
+    <details><summary>答案</summary><div class="ans">意外之财=环境超出预期的信号，和意外之亏同源；此后参与不论赚亏都是赌运气。且超额赚钱效应出现时极端行情走反向概率大，盈亏同源出现得极端。</div></details></div>
+  <div class="q">Q4. "大赚空仓"是不是让人不赚钱？
+    <details><summary>答案</summary><div class="ans">不是。空仓是相对于模式的：该模式超额赚钱效应出现→该模式空窗（避免盈亏同源）；其他模式的买点该做还是做。模式还在正常赚钱效应区间内，买点出现照买。</div></details></div>
+  <div class="q">Q5. 为什么卖了之后不能立刻追？三个原因。
+    <details><summary>答案</summary><div class="ans">① 硬板悖论：追得到=卖低了；追到的不是硬板=大概率炸板；② 放弃先手优势＋影响情绪；③ 失去赌性抑制——等一天，状态会好很多。</div></details></div>
+  <div class="q">Q6. 每天满仓为什么是错的？豆子的替代规则是什么？
+    <details><summary>答案</summary><div class="ans">满仓流转=高频随手单温床＋无空仓保护（三条空仓都落不了地）。替代规则：T+1 为一个交易周期——今天买、明天卖，卖的那一天不再买。</div></details></div>
+  <div class="q">Q7. 纪律对"还没有知"的新手到底起什么作用？
+    <details><summary>答案</summary><div class="ans">代偿：先执行后理解，让表象上的操作先向成熟交易者（冷静、理性、预期明确、不被浮盈浮亏影响心态）靠齐；同时安装"违规难受传感器"，违规前的不适感成为免费的复盘触发器。</div></details></div>
+  <div class="q">Q8. 为什么豆子说这期是"真正重要的一集"？
+    <details><summary>答案</summary><div class="ans">它塑造的是基础投资观/交易观：好习惯好观念形成后成长速度更快。地基不性感但决定高度——连他自己也是这些条条框框的既得利益者（"进攻很弱，只是回撤没那么大"）。</div></details></div>
+
+  <div class="card good"><b>速查卡</b><ul class="cheat" style="margin:6px 0;padding-left:18px">
+    <li>小钱实盘，赌性越低越好；别把钱当欢乐豆。</li>
+    <li>没有"知"先"做到"：先执行，后理解。</li>
+    <li>三纪律：大亏空仓、大赚空仓、必须空仓。</li>
+    <li>模式内的亏损是门票，超预期的亏损才空仓。</li>
+    <li>大亏空仓解除条件＝搞明白，不是天数。</li>
+    <li>止损管一笔，大亏空仓管一个模式。</li>
+    <li>意外之财=超预期信号，和意外之亏同样处理：先离场。</li>
+    <li>超额赚钱效应出现→大赚空仓（避免盈亏同源）。</li>
+    <li>空仓是相对于模式的：该赚的还是要赚。</li>
+    <li>账户一笔四五十个点→空仓重置。</li>
+    <li>卖了不追：硬板悖论/先手优势/赌性抑制。</li>
+    <li>T+1 周期：今天买明天卖，卖的当天不再买。</li>
+    <li>纪律＝先像后是＋违规难受传感器。</li>
+    <li>做了绝对有好处，不会有任何坏处。</li>
+  </ul></div>
+
+  <div class="next"><b>下一讲（L07）：切换原理——什么时候该换打法</b>（<a href="https://www.bilibili.com/video/BV19JKA6mErE">BV19JKA6mErE</a>）。三条空仓纪律解决了"什么时候停"，切换原理解决"什么时候换"——模式有窗口，打法要跟着窗口走。回「下一课」即跳转，或直接提问。</div>
+  <p class="small" style="margin-top:20px">投资有风险，本课为教育内容，不构成投资建议。数值例子为教学模拟；个别板书字迹潦草处已按转写与语境校订。疑问直接问，我换例子重讲。</p>
+</div>
+
+</body>
+</html>

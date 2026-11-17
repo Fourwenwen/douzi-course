@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>L01 为什么第一目标是活下来：本金保护</title>
+
+<style>
+.nav{position:sticky;top:0;z-index:50;background:#1a202c;padding:8px 14px;display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif}
+.nav a{color:#e2e8f0;text-decoration:none;font-size:13px;padding:3px 10px;border-radius:999px;background:#2d3748}
+.nav a:hover{background:#4a5568}
+.nav a.cur{background:#c05621;color:#fff;font-weight:600}
+.nav a.home{background:#2b6cb0}
+.nav .sp{color:#718096;font-size:12px;margin:0 4px}
+</style>
+</head>
+<body style="margin:0;background:#f7fafc">
+<nav class="nav"><a class="home" href="index.html">目录主页</a><a class="cur" href="lesson-01.html">L01 本金保护</a><a class="" href="lesson-02.html">L02 盈亏同源</a><a class="" href="lesson-03.html">L03 交易模式</a><a class="" href="lesson-04.html">L04 看什么</a><a class="" href="lesson-05.html">L05 技术分析</a><a class="" href="lesson-06.html">L06 交易纪律</a><a class="" href="lesson-07.html">L07 切换原理</a><a class="" href="lesson-08.html">L08 成长</a><a class="" href="lesson-09.html">L09 实操学习</a><a class="" href="lesson-10.html">L10 随手单</a><span class="sp">点击跳转复看</span></nav>
+<style>
+  :root{--ink:#1a202c;--sub:#4a5568;--line:#e2e8f0;--bg:#f7fafc;--accent:#c05621;--accent2:#2b6cb0;--good:#276749;--warn:#9b2c2c;--card:#fff}
+  *{box-sizing:border-box}
+  .doc{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;color:var(--ink);background:var(--bg);padding:28px 20px 60px;line-height:1.8;max-width:980px;margin:0 auto}
+  .doc h1{font-size:26px;margin:0 0 4px;letter-spacing:.5px}
+  .doc h2{font-size:19px;margin:34px 0 10px;padding-left:10px;border-left:4px solid var(--accent)}
+  .doc h3{font-size:16px;margin:20px 0 8px;color:var(--accent2)}
+  .doc p{margin:8px 0}
+  .meta{color:var(--sub);font-size:13px;margin-bottom:16px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin:12px 0}
+  .goal{background:#fffaf0;border-color:#fbd38d}
+  .warn{background:#fff5f5;border-color:#feb2b2}
+  .good{background:#f0fff4;border-color:#9ae6b4}
+  .note{background:#ebf8ff;border-color:#90cdf4}
+  table{width:100%;border-collapse:collapse;font-size:13px;background:var(--card);border-radius:8px;overflow:hidden;margin:8px 0}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+  th{background:#edf2f7;font-weight:600}
+  td.num{white-space:nowrap;font-variant-numeric:tabular-nums;text-align:right}
+  .pos{color:var(--good);font-weight:600}.neg{color:var(--warn);font-weight:600}
+  .tag{display:inline-block;font-size:11px;padding:1px 8px;border-radius:999px;background:#edf2f7;color:var(--sub);margin-right:4px}
+  .p1{background:#feebc8;color:#7b341e}.p2{background:#bee3f8;color:#2a4365}.p3{background:#c6f6d5;color:#22543d}
+  a{color:var(--accent2);text-decoration:none}a:hover{text-decoration:underline}
+  .formula{background:#1a202c;color:#f7fafc;border-radius:8px;padding:12px 16px;font-family:"SF Mono",Menlo,monospace;font-size:13px;margin:10px 0;overflow-x:auto;line-height:1.9}
+  .formula b{color:#f6ad55}
+  .q{border-left:3px solid var(--accent2);padding-left:12px;margin:12px 0}
+  .ans{color:var(--good);font-size:13px;margin-top:4px}
+  .next{margin-top:24px;padding:14px 18px;border:1px dashed var(--accent);border-radius:10px;background:#fffaf0;font-size:14px}
+  .small{font-size:12.5px;color:var(--sub)}
+  details{margin:8px 0}summary{cursor:pointer;color:var(--accent2);font-size:13.5px}
+  .cheat{columns:2;column-gap:24px}.cheat li{margin:6px 0;break-inside:avoid}
+  ul,ol{margin:6px 0 6px 20px;padding:0}li{margin:3px 0}
+  code{background:#edf2f7;border-radius:4px;padding:0 5px;font-size:12.5px}
+  @media(max-width:640px){.cheat{columns:1}}
+  .demo{background:#1a202c;border-radius:12px;padding:18px 20px;color:#f7fafc;margin:14px 0}
+  .demo h4{margin:0 0 10px;font-size:15px;color:#f6ad55}
+  .demo .row{display:flex;flex-wrap:wrap;gap:18px;align-items:center}
+  .demo label{font-size:13px}
+  .demo input[type=range]{width:240px;vertical-align:middle}
+  .demo .out{font-family:"SF Mono",Menlo,monospace;font-size:13px;line-height:2}
+  .demo .out b{color:#f6ad55}
+  .demo .bar{height:16px;border-radius:8px;background:#2d3748;overflow:hidden;margin:6px 0}
+  .demo .bar i{display:block;height:100%;border-radius:8px}
+  .flash{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:10px 0;cursor:pointer}
+  .flash .front{font-weight:600}
+  .flash .back{display:none;margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);color:var(--good)}
+  .flash.open .back{display:block}
+  .flash .hint{font-size:11.5px;color:var(--sub);float:right;font-weight:400}
+</style>
+
+<div class="doc">
+  <div class="card" style="padding:10px 14px;margin:0 0 14px">
+    <b>课程目录</b>　<span class="small"><b>L01 本金保护（本课）</b> · L02 盈亏同源 · L03 交易模式 · L04 看什么 · L05 技术分析 · L06 纪律 · L07 切换原理 · L08–L13 方法 · L14–L25 认知心智</span><br>
+    <span class="small">导航口令：「目录」看全表 ｜「下一课」推进 ｜「重讲 Lxx」换方式重讲 ｜ 直接提问＝答疑</span>
+    <span class="small">总览入口：<a href="trees.html">十课知识树</a> ｜ <a href="cases.html">十课真实案例</a>（每课正文内也有各自的知识树与真实案例）</span>
+  </div>
+
+  <h1>第一课：为什么第一目标是活下来——本金保护</h1>
+  <div class="meta">《豆子悟道 · 股票系统学习课》L01 ｜ 模块一 悟道·地基 ｜ 源自原视频《新手如何保护本金》（<a href="https://www.bilibili.com/video/BV1KnrCYyEzj">BV1KnrCYyEzj</a>）｜ <b>本讲义是消化后的讲解</b>：要点已重组融入正文，配上理解与例子，不需要看视频 ｜ 2026-10-27</div>
+
+  <div class="card goal">
+    <b>这节课讲什么</b>
+    <p style="margin:6px 0 0">一句话：<b>专业交易者的第一目标从来不是"赚多少"，而是"别亏到回不来的深度"。</b>这不是保守主义口号，而是一道算术题——亏掉的钱和赚回来的钱，天生不对等。</p>
+    <p style="margin:6px 0 0">学完本节你能：① 用回撤数学解释"为什么亏大了几乎回不来"；② 给自己定单笔风险上限并反推仓位；③ 说清"止损"和"保护本金"不是一回事；④ 把这节课变成三条可执行的硬规则。</p>
+  </div>
+
+  <h2><span class="tag p4">图</span>本课知识树（思维导图）</h2>
+  <p class="small">从左向右生长：根＝本课主张，一级分支＝主题，向右展开概念；右上角编号＝关联（见图例）。</p>
+  <div style="overflow-x:auto;margin:10px 0">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 868" role="img" aria-labelledby="l01-tree-tree-title l01-tree-tree-desc" style="min-width:1024px;width:100%;height:auto;font-family:'PingFang SC','Microsoft YaHei','Noto Sans SC',-apple-system,sans-serif">
+    <title id="l01-tree-tree-title">L01 本金保护知识树</title>
+    <desc id="l01-tree-tree-desc">本金保护的完整层级：回撤数学、风险预算、连败数学、止损不等于保本、三条硬规则，各分支下展开具体概念与数字，含三条关联。</desc>
+    <defs>
+      <marker id="l01-tree-arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1 L 8 5 L 0 9 z" fill="#2b6cb0"/>
+      </marker>
+    </defs>
+    <path d="M 184 377 C 242 377 242 91 300 91" fill="none" stroke="#b9c3d0" stroke-width="1.6"/>
+    <path d="M 396 91 C 478 91 478 25 560 25" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 91 C 478 91 478 69 560 69" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 91 C 478 91 478 113 560 113" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 91 C 478 91 478 157 560 157" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 184 377 C 242 377 242 267 300 267" fill="none" stroke="#b9c3d0" stroke-width="1.6"/>
+    <path d="M 396 267 C 478 267 478 201 560 201" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 267 C 478 267 478 245 560 245" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 267 C 478 267 478 289 560 289" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 267 C 478 267 478 333 560 333" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 184 377 C 242 377 242 421 300 421" fill="none" stroke="#b9c3d0" stroke-width="1.6"/>
+    <path d="M 396 421 C 478 421 478 377 560 377" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 421 C 478 421 478 421 560 421" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 421 C 478 421 478 465 560 465" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 184 377 C 242 377 242 553 300 553" fill="none" stroke="#b9c3d0" stroke-width="1.6"/>
+    <path d="M 396 553 C 478 553 478 509 560 509" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 553 C 478 553 478 553 560 553" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 553 C 478 553 478 597 560 597" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 184 377 C 242 377 242 685 300 685" fill="none" stroke="#b9c3d0" stroke-width="1.6"/>
+    <path d="M 396 685 C 478 685 478 641 560 641" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 685 C 478 685 478 685 560 685" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 685 C 478 685 478 729 560 729" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 421 C 466 421 466 678 396 678" fill="none" stroke="#2b6cb0" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#l01-tree-arr)"/>
+    <path d="M 396 91 C 466 91 466 692 396 692" fill="none" stroke="#2b6cb0" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#l01-tree-arr)"/>
+    <path d="M 396 553 C 466 553 466 267 396 267" fill="none" stroke="#2b6cb0" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#l01-tree-arr)"/>
+    <rect x="560" y="8" width="176" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="30" font-size="12" font-weight="600" fill="#1a202c">回本公式 亏损÷(1−亏损)</text>
+    <rect x="560" y="52" width="144" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="74" font-size="12" font-weight="600" fill="#1a202c">亏50%→需+100%回本</text>
+    <rect x="560" y="96" width="180" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="118" font-size="12" font-weight="600" fill="#1a202c">亏70%→需+233%（指数区）</text>
+    <rect x="560" y="140" width="176" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="162" font-size="12" font-weight="600" fill="#1a202c">两条账户路径 A稳 vs B浪</text>
+    <rect x="300" y="74" width="96" height="34" rx="8" fill="#ffffff" stroke="#1a202c" stroke-width="1.2"/>
+    <text x="313" y="96" font-size="13" font-weight="600" fill="#1a202c">回撤数学</text>
+    <rect x="560" y="184" width="128" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="206" font-size="12" font-weight="600" fill="#1a202c">单笔风险 ≤1–2%</text>
+    <rect x="560" y="228" width="156" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="250" font-size="12" font-weight="600" fill="#1a202c">仓位=风险额÷止损幅度</text>
+    <rect x="560" y="272" width="148" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="294" font-size="12" font-weight="600" fill="#1a202c">先定风险，再反推仓位</text>
+    <rect x="560" y="316" width="176" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="338" font-size="12" font-weight="600" fill="#1a202c">例：10万×1%÷5%＝2成仓</text>
+    <rect x="300" y="250" width="96" height="34" rx="8" fill="#ffffff" stroke="#1a202c" stroke-width="1.2"/>
+    <text x="313" y="272" font-size="13" font-weight="600" fill="#1a202c">风险预算</text>
+    <rect x="560" y="360" width="148" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="382" font-size="12" font-weight="600" fill="#1a202c">连败是常态，不是倒霉</text>
+    <rect x="560" y="404" width="200" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="426" font-size="12" font-weight="600" fill="#1a202c">2%×10连败→−18%（可恢复）</text>
+    <rect x="560" y="448" width="204" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="470" font-size="12" font-weight="600" fill="#1a202c">10%×10连败→−65%（判死刑）</text>
+    <rect x="300" y="404" width="96" height="34" rx="8" fill="#ffffff" stroke="#1a202c" stroke-width="1.2"/>
+    <text x="313" y="426" font-size="13" font-weight="600" fill="#1a202c">连败数学</text>
+    <rect x="560" y="492" width="136" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="514" font-size="12" font-weight="600" fill="#1a202c">止损＝单笔认错动作</text>
+    <rect x="560" y="536" width="136" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="558" font-size="12" font-weight="600" fill="#1a202c">保本＝账户总量控制</text>
+    <rect x="560" y="580" width="124" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="602" font-size="12" font-weight="600" fill="#1a202c">满仓止损照样腰斩</text>
+    <rect x="300" y="536" width="96" height="34" rx="8" fill="#ffffff" stroke="#1a202c" stroke-width="1.2"/>
+    <text x="313" y="558" font-size="13" font-weight="600" fill="#1a202c">止损≠保本</text>
+    <rect x="560" y="624" width="128" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="646" font-size="12" font-weight="600" fill="#1a202c">单笔上限 ≤1–2%</text>
+    <rect x="560" y="668" width="156" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="690" font-size="12" font-weight="600" fill="#1a202c">连败熔断 3减半·5停手</text>
+    <rect x="560" y="712" width="180" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="734" font-size="12" font-weight="600" fill="#1a202c">回撤审计 −15%→降到0.5%</text>
+    <rect x="300" y="668" width="96" height="34" rx="8" fill="#ffffff" stroke="#1a202c" stroke-width="1.2"/>
+    <text x="313" y="690" font-size="13" font-weight="600" fill="#1a202c">三条硬规则</text>
+    <rect x="24" y="347" width="160" height="60" rx="8" fill="rgba(192,86,33,0.08)" stroke="#c05621" stroke-width="1.4"/>
+    <text x="38" y="373" font-size="15" font-weight="600" fill="#1a202c">L01 本金保护</text>
+    <text x="38" y="393" font-size="11" fill="#4a5568">先活下来，正期望才有意义</text>
+    <circle cx="392" cy="78" r="8" fill="#2b6cb0"/>
+    <text x="392" y="82" text-anchor="middle" font-size="10" font-weight="600" fill="#fff">1</text>
+    <circle cx="392" cy="254" r="8" fill="#2b6cb0"/>
+    <text x="392" y="258" text-anchor="middle" font-size="10" font-weight="600" fill="#fff">2</text>
+    <circle cx="392" cy="408" r="8" fill="#2b6cb0"/>
+    <text x="392" y="412" text-anchor="middle" font-size="10" font-weight="600" fill="#fff">3</text>
+    <circle cx="392" cy="540" r="8" fill="#2b6cb0"/>
+    <text x="392" y="544" text-anchor="middle" font-size="10" font-weight="600" fill="#fff">4</text>
+    <circle cx="392" cy="672" r="8" fill="#2b6cb0"/>
+    <text x="392" y="676" text-anchor="middle" font-size="10" font-weight="600" fill="#fff">5</text>
+    <line x1="10" y1="764" x2="1014" y2="764" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="10" y="780" font-size="12" font-weight="600" fill="#1a202c">关联图例</text>
+    <text x="86" y="780" font-size="12" fill="#4a5568">① 连败是常态（2%也要−18%）——熔断规则的由来</text>
+    <text x="86" y="802" font-size="12" fill="#4a5568">② 亏深回本是指数区——回撤审计的由来</text>
+    <text x="86" y="824" font-size="12" fill="#4a5568">③ 止损只管单笔，总量保护必须靠风险预算</text>
+  </svg>
+  </div>
+  <h2><span class="tag p1">一</span>一个反直觉的事实：亏损和回本不对称</h2>
+  <p>很多人以为亏 30% 只要涨 30% 就回本。<b>错。</b>因为涨跌的基数不同：亏是在大基数上亏，涨是在小基数上涨。</p>
+  <div class="formula">回本所需涨幅 = 亏损比例 ÷ (1 − 亏损比例)<br>亏 10% → 需涨 <b>11.1%</b>　亏 30% → 需涨 <b>42.9%</b>　亏 50% → 需涨 <b>100%</b>　亏 70% → 需涨 <b>233%</b></div>
+  <p>把这张表翻译成人话：<b>亏损越深，回本难度指数级上升。</b>亏 50% 需要翻倍才能回本——而"翻倍"是顶级投资者一年的目标，你却要先完成它只是回到起点。这就是豆子说"新手如何保护本金"是<b>真正重要的一集</b>的原因。</p>
+  <p><b>我的例子：走一遍两条账户路径。</b>同样两年时间、10 万本金——</p>
+  <table>
+    <thead><tr><th>路径</th><th>第一年</th><th>第二年</th><th>两年后</th><th>体验</th></tr></thead>
+    <tbody>
+      <tr><td>A：稳扎稳打</td><td class="pos">+30%</td><td class="pos">+30%</td><td class="num"><b>16.9 万</b></td><td>平淡，没抓到任何大机会</td></tr>
+      <tr><td>B：大起大落</td><td class="pos">+100%</td><td class="neg">−50%</td><td class="num"><b>10.0 万</b></td><td>第一年是明星，第二年回原点</td></tr>
+    </tbody>
+  </table>
+  <p>B 第一年的收益率是 A 的三倍，两年后却分文未得——还搭进去两年时间和一个被摧毁的心态。注意 B 的第二年只需要 −50% 就抹掉 +100%：<b>这就是不对称性在复利里的样子</b>。你未来的每一分盈利，都要先背着历史回撤的"债"。</p>
+
+  <h2><span class="tag p1">二</span>把"保护本金"变成数字：单笔风险预算</h2>
+  <p>保护本金不是口号，是一条算术规则：<b>任何一笔交易，最多只允许亏掉总资金的 1%–2%。</b>由此反推仓位：</p>
+  <div class="formula">仓位金额 = (总资金 × 单笔风险%) ÷ 止损幅度%<br>例：总资金 10 万，单笔风险 1% = 1000 元；止损幅度设 5% → 仓位 = 1000 ÷ 0.05 = <b>2 万（即 2 成仓）</b></div>
+  <p>这条公式把三件事绑在一起：你能亏多少（风险预算）、错了在哪认错（止损幅度）、该买多少（仓位）。<b>先定风险，再反推仓位</b>——而不是先想买多少、再祈祷别跌到止损。</p>
+  <p><b>我的例子：同一个想法，两种下单方式。</b>你看中一只票，认为止损位在买入价下方 5%。方式一（先想仓位）："我先买 8 万"→ 止损一次亏 4000 元＝账户的 4%，两笔连错就接近腰斩区边缘。方式二（先定风险）："我单笔风险 1%＝1000 元"→ 1000÷5%＝只买 2 万，错了亏 1000，对了该赚多少赚多少。<b>想法一模一样，风险差 4 倍</b>——保护本金保护的就是这个参数，与你看得准不准无关。</p>
+
+  <h2><span class="tag p1">三</span>连败的数学：为什么恰好是 1%–2%</h2>
+  <p>选 1%–2% 不是习惯，是连败数学推出来的。任何模式都会连败（下节课讲透：连败是门票），假设连败 10 笔：</p>
+  <div class="card warn">
+    <b>同样 10 连败，只差一个风险参数，一个活着一个死</b>
+    <p style="margin:6px 0 0">单笔风险 2%：0.98¹⁰ ≈ 0.817 → 回撤 <b>−18.3%</b>，需涨 22.4% 回本，<b>可恢复</b>。<br>
+    单笔风险 10%：0.90¹⁰ ≈ 0.349 → 回撤 <b>−65.1%</b>，需涨 186% 回本，<b>基本判死刑</b>。</p>
+    <p class="small" style="margin:6px 0 0">这还是"每笔都按计划止损"的理想情况；实际中深回撤会诱发变形（下面第六节）。</p>
+  </div>
+  <p><b>我的例子：A 和 B 的十年。</b>A（1% 风险）和 B（10% 风险）用同一个打板模式，2024 年初遇到同一段亏钱效应期，连续 10 笔大面。A 亏掉 9.5%，账户 9.1 万，春天来临时满血复活；B 亏掉 65%，账户 3.5 万，同样的行情来了他需要 +186% 才能回到原点——而行情给的只是普通的 +30%。<b>同一模式、同一行情、同一段连败，结局差在下单前就定好的那个数字上。</b>连败不是倒霉，是任何正期望模式的常态：门票必须一张张付，谁也不知道第几张之后是大赚。</p>
+
+  <h2><span class="tag p1">四</span>止损 ≠ 保护本金（最常见误区）</h2>
+  <p>很多人把"设了止损"等同于"保护了本金"。不对：</p>
+  <p>· <b>止损</b>是单笔交易的认错动作，解决"这一笔错了我走"；<br>
+     · <b>保护本金</b>是账户层面的总量控制，解决"我最多能错几次、每次错多重"。</p>
+  <p><b>我的例子：每笔都止损，照样腰斩。</b>有人纪律性极强，每笔买入都设 5% 止损、从不扛单——但他习惯满仓单票。此时"每笔止损"＝单笔风险 5%。连败 10 笔：0.95¹⁰ ≈ 0.599，账户 <b>−40%</b>。每一条止损都执行得漂漂亮亮，账户照样接近腰斩。<b>止损管住了"单笔"，没管住"总量"</b>。两者是单笔与总量的关系，缺一不可；只做前者，是"纪律很好的输家"。</p>
+
+  <h2><span class="tag p1">五</span>为什么"活下来"在数学上就等于"能赚钱"</h2>
+  <p>交易赚钱靠的是<b>期望值为正 ＋ 足够多的重复次数</b>（大数定律）：</p>
+  <div class="formula">期望值 EV = 胜率 × 平均盈利 − 败率 × 平均亏损<br>例：胜率 40%，盈时 +8%，亏时 −2% → EV = 0.4×8% − 0.6×2% = <b>+2.0%/笔</b></div>
+  <p>这个模式单笔看经常亏（胜率才 40%，连亏四五笔稀松平常），但长期是印钞机。前提是：<b>你得活到"长期"。</b>一旦中途回撤过深被迫离场、爆仓、或心态崩溃乱改规则，正期望永远没机会兑现。所以保护本金不是保守——<b>它是让正期望有机会被时间兑现的唯一方式。</b>反过来说，一个 EV 为正但活不过连败期的账户，和 EV 为零没有区别。</p>
+
+  <h2><span class="tag p2">六</span>三个心态陷阱：数学是怎么被人性击穿的</h2>
+  <ol>
+    <li><b>回本心态</b>：亏了想赶紧赚回来，于是放大单笔风险、加仓扛单——单笔风险从 1–2% 抬到 10%+。数学后果：一旦再连败，回撤直接进入"需涨 100%+"的指数区。保护本金的本质，就是<b>拒绝进入这个区间</b>；回本心态是主动跳进去。</li>
+    <li><b>报复性交易</b>：连败之后"加倍干"想一次扳回。这等于把第三节的 B 路径走到底——连败本来就在模式的正常分布里，加倍下注只是把门票价改成天价。</li>
+    <li><b>"这次不一样"</b>：为跳过风险预算找例外借口（"这个机会太好了/确定性太高"）。风险预算的全部价值就在于<b>没有例外</b>——一旦有例外，它就不是规则而是心情。</li>
+  </ol>
+  <p class="small">杠杆另算但同理：2 倍杠杆＝止损幅度减半、单笔风险翻倍，公式里直接乘上去即可。<b>杠杆不创造收益，只放大你已经选好的风险参数。</b></p>
+
+  <h2><span class="tag p2">七</span>落地：把这节课变成三条硬规则</h2>
+  <div class="card note">
+    <p style="margin:6px 0 0"><b>规则一（单笔上限）</b>：单笔风险 ≤ 1%（新手）/ ≤ 2%（熟练），用第二节公式反推仓位，写进每笔交易计划。</p>
+    <p style="margin:6px 0 0"><b>规则二（连败熔断）</b>：连亏 3 笔 → 仓位减半；连亏 5 笔 → 停手一天复盘。理由：连败期是同源亏损释放期（下节课），此时继续下注＝在结算期加仓。</p>
+    <p style="margin:6px 0 0"><b>规则三（回撤审计）</b>：月末算账户最大回撤，回撤进入 −15% → 强制把单笔风险降到 0.5% 直到创新高。理由：回撤越深，回本所需涨幅指数上升（第一节），先降速再谈进攻。</p>
+    <p class="small" style="margin:6px 0 0">规则二会在 L06《交易纪律的意义》里展开成完整的"大赚空仓/大亏空仓"体系；规则一的参数会被 L03《交易模式》的"回撤可承受"检验直接引用。</p>
+  </div>
+
+  <h2><span class="tag p2">可视</span>可视化件：动手拨一拨</h2>
+  <p>同学们，公式背十遍，不如上手拨一遍。下面这个模拟器把第一节的回撤数学和第三节的连败数学装进了两个滑块——拖一拖，看看数字是怎么"翻脸"的。</p>
+
+  <div class="demo">
+    <h4>回撤不对称 ＋ 连败模拟器</h4>
+    <div class="row">
+      <label>① 亏损幅度 <input type="range" id="dLoss" min="5" max="80" value="30"> <b id="dLossV">30%</b></label>
+      <div class="out">
+        需回本涨幅 = 亏损 ÷ (1 − 亏损) = <b id="dRec">42.9%</b>
+        <div id="dRecCalc">0.30 ÷ (1 − 0.30) = 0.429 → 需涨 42.9%</div>
+        <div class="bar"><i id="dBarLoss" style="width:30%;background:#fc8181"></i></div>
+        <div class="bar"><i id="dBarRec" style="width:17.9%;background:#68d391"></i></div>
+        <div class="small" style="color:#a0aec0">红条＝亏损幅度；绿条＝回本所需涨幅（等比例压缩，只看长度对比）。把滑块拉到 70%，看绿条怎么窜出去——这就是"亏损越深回本越难"的样子。</div>
+      </div>
+    </div>
+    <div class="row" style="margin-top:14px">
+      <label>② 单笔风险 <input type="range" id="dRisk" min="0.5" max="10" step="0.5" value="2"> <b id="dRiskV">2%</b></label>
+      <div class="out">
+        <div id="dStreak">(1 − 2%)^10 = 0.98^10 ≈ 0.817 → 10 连败后剩余 81.7%（回撤 −18.3%）</div>
+        <div><span id="dVerdict"></span></div>
+      </div>
+    </div>
+    <p class="small" style="color:#a0aec0;margin:8px 0 0">同样 10 连败，把滑块从 2% 拉到 10% 看一眼：一个只回撤 18%，一个只剩 35%。<b>连败时死不死，下单前就写在这个数字里了。</b></p>
+  </div>
+
+  <h2><span class="tag p3">八</span>作业 · 自测 · 速查</h2>
+
+  <h4>作业（下次课前完成）</h4>
+  <ol>
+    <li><b>回撤审计</b>：算出你过去一年账户的最大回撤，用公式算"需要涨多少回本"，写下来贴在交易记录首页。</li>
+    <li><b>定规则</b>：用第二节公式给自己定一条单笔风险规则（写出具体数字：风险%、止损幅度%、对应仓位%），并写明它能扛住多少连败。</li>
+    <li><b>设计熔断</b>：写出你的连败熔断规则（几连亏减仓/几连亏停手），并回答：熔断期间你用什么标准判断"可以恢复"？</li>
+  </ol>
+
+  <h4>自测（6 题，先答再看答案）</h4>
+  <div class="q">Q1. 账户从 10 万亏到 6 万，需要涨百分之多少回本？
+    <details><summary>答案</summary><div class="ans">亏 40% → 0.4 ÷ 0.6 = 66.7%。</div></details></div>
+  <div class="q">Q2. 总资金 20 万，单笔风险 2%，止损幅度 8%，仓位应是多少万？
+    <details><summary>答案</summary><div class="ans">风险额 = 20万×2% = 4000；仓位 = 4000 ÷ 0.08 = 5 万（2.5 成仓）。</div></details></div>
+  <div class="q">Q3. 连续 5 笔止损、每笔风险 1%，账户大约还剩多少？
+    <details><summary>答案</summary><div class="ans">0.99⁵ ≈ 0.951 → 约剩 95.1%，回撤 −4.9%，完全可恢复。</div></details></div>
+  <div class="q">Q4. 为什么"回本心态"危险？用数学解释。
+    <details><summary>答案</summary><div class="ans">回本心态会放大单笔风险/加仓扛单，把风险从 1–2% 抬到 10%+；一旦再连败，回撤进入"需涨 100%+ 才回本"的指数区，等于自我判死刑。</div></details></div>
+  <div class="q">Q5. 有人每笔都严格 5% 止损、从不扛单，为什么还可能亏掉 40%？
+    <details><summary>答案</summary><div class="ans">止损只管单笔，不管总量。满仓单票时"5% 止损"＝单笔风险 5%，10 连败 0.95¹⁰≈0.599，即 −40%。止损≠保护本金，缺了风险预算。</div></details></div>
+  <div class="q">Q6. 期望值 +2%/笔、胜率 40% 的模式，为什么有人用它亏钱？
+    <details><summary>答案</summary><div class="ans">正期望需要足够多的重复次数才兑现；连败期回撤过深（单笔风险太大）会让人被迫离场/爆仓/心态崩溃乱改规则——活不到"长期"，期望值永远只是纸面数字。</div></details></div>
+
+  <div class="card good"><b>速查卡</b><ul class="cheat" style="margin:6px 0;padding-left:18px">
+    <li>回本所需涨幅 = 亏损 ÷ (1−亏损)。</li>
+    <li>亏 50% 要 +100% 才回本——亏深了就是指数区。</li>
+    <li>单笔风险 ≤1–2%，先定风险再反推仓位。</li>
+    <li>仓位 = 风险额 ÷ 止损幅度。</li>
+    <li>10 连败：2% 风险 −18%，10% 风险 −65%。</li>
+    <li>止损管单笔，风险预算管总量。</li>
+    <li>活下来＝让正期望有机会被时间兑现。</li>
+    <li>回本心态/报复交易/"这次不一样"＝把门票改成天价。</li>
+    <li>连败熔断：3 连亏减半，5 连亏停手。</li>
+    <li>回撤 −15% 强制降速到 0.5%。</li>
+  </ul></div>
+
+    <h2><span class="tag p4">案</span>真实案例：概念落在盘面上</h2>
+  <p class="small">以下为公开市场事件（数字为约数），用来把本课概念放到真实盘面上看。</p>
+    <div class="card"><b>新东方/好未来 2021「双减」（美股）</b>
+      <p class="small" style="margin:6px 0 0"><b>事实</b>：2021 年 2 月高点到 7 月低点：新东方(EDU) 约 $20→$2（−90%），好未来(TAL) 约 $90→$3（−97%）。</p>
+      <p class="small" style="margin:4px 0 0"><b>对应知识点</b>：回撤数学：−90% 需 +900% 才回本、−97% 需 +3200%——政策叙事一夜改变，持有者直接进入指数区。</p></div>
+    <div class="card"><b>2015 股灾（沪深300）</b>
+      <p class="small" style="margin:6px 0 0"><b>事实</b>：2015 年 6 月 8 日高点 5380 → 8 月 26 日低点约 2950，两个月 −45%（回本需 +82%）；配资盘（单笔风险失控+杠杆）集中爆仓出局。</p>
+      <p class="small" style="margin:4px 0 0"><b>对应知识点</b>：连败数学＋风险预算：同样的下跌，1–2% 单笔风险的人活着等到了 2016–2019 的修复，重仓杠杆者永久出局。</p></div>
+
+
+<h2><span class="tag p3">复习</span>复习巩固</h2>
+  <p>按 1 / 7 / 30 天各翻一遍这叠卡片。先自己答，再翻面——答不上来的那张，就是下次要重点看的。</p>
+
+  <h3>复习卡（点击卡片翻面）</h3>
+  <div class="flash" onclick="this.classList.toggle('open')">
+    <div class="front">回本公式是什么？亏 40% 要涨多少才回本？<span class="hint">点击翻面</span></div>
+    <div class="back">回本所需涨幅 = 亏损 ÷ (1 − 亏损)。亏 40% → 0.4 ÷ 0.6 = <b>66.7%</b>，不是 40%——亏是在大基数上亏，涨是在小基数上涨，天生不对称。→ 追问：如果一笔被套的单子"扛着等回本"，它要先爬出多深的坑？这个坑我扛得起吗？</div>
+  </div>
+  <div class="flash" onclick="this.classList.toggle('open')">
+    <div class="front">"每笔都严格止损"就等于"保护了本金"吗？<span class="hint">点击翻面</span></div>
+    <div class="back">不等于。<b>止损管单笔，保护本金管总量。</b>满仓单票＋5% 止损＝单笔风险 5%，10 连败 0.95¹⁰ ≈ 0.599，账户照样 −40%——每笔止损都执行得漂漂亮亮，账户照样接近腰斩。→ 追问：我的单笔风险实际上由哪两个参数决定？（止损幅度和仓位，是先定哪个、反推哪个？）</div>
+  </div>
+  <div class="flash" onclick="this.classList.toggle('open')">
+    <div class="front">单笔风险为什么恰好定在 1%–2%，而不是 5% 或 0.1%？<span class="hint">点击翻面</span></div>
+    <div class="back">是连败数学推出来的：2% 风险扛 10 连败只回撤 18.3%（涨 22.4% 即回本，<b>可恢复</b>）；10% 风险 10 连败 −65.1%（要涨 186%，<b>基本判死刑</b>）。再小收益太磨人，再大连败即灭——1%–2% 是"扛得住连败"与"赚得到钱"的交点。→ 追问：按我自己模式的历史连败纪录，我的上限到底是 1% 还是 2%？</div>
+  </div>
+
+  <h3>悟道提问（没有标准答案，答案写进你自己的交易笔记）</h3>
+  <div class="card good">
+    <ol style="margin:6px 0 0;padding-left:20px">
+      <li>什么情况下我会允许自己突破单笔风险上限？把这个"情况"白纸黑字写下来，再对照第六节的三个心态陷阱——它像哪一个？</li>
+      <li>连亏 4 笔的时候，如果我心里冒出来的不是平静而是"赶紧捞回来"，这份情绪在提醒我什么？下次它再出现，我用什么具体动作接住它？</li>
+      <li>"活下来"落到我的账户上是一个什么数字？最大允许回撤是多少？碰到哪条线我必须降速、哪条线必须停手？写不出数字，就说明它还只是口号。</li>
+    </ol>
+  </div>
+
+  <h3>联结图（本课概念连到后面三课）</h3>
+  <div class="card note">
+    <p style="margin:6px 0 0">
+      单笔风险 ≤1%–2% ──门票价格是多少──▶ <b>L02 门票论</b>（连败不是倒霉，是门票；风险参数决定门票价格）<br>
+      回撤不对称公式 ──这个模式的回撤我扛得起吗──▶ <b>L03 回撤可承受检验</b>（检验交易模式时，直接引用本课公式与 1% 参数）<br>
+      连亏 3 笔减半 / 5 笔停手 ──熔断的雏形──▶ <b>L06 熔断纪律</b>（展开成"大赚空仓 / 大亏空仓"的完整体系）
+    </p>
+  </div>
+
+  <h2><span class="tag p3">内化</span>内化掌握（三关全过，这课才算学完）</h2>
+
+  <div class="card note">
+    <p style="margin:6px 0 0"><b>关卡一 · 费曼关</b>：在聊天输入「<b>我讲给你听 L01</b>」，我就来当那个爱追问的学生——回本公式为什么长这样、1%–2% 是怎么推出来的、止损为什么≠保护本金，你讲到哪我问到哪，含糊的地方当场暴露。讲不顺的地方，就是没悟到的地方。</p>
+  </div>
+
+  <div class="card warn">
+    <p style="margin:6px 0 0"><b>关卡二 · 场景判断关</b>：账户 20 万，已经连亏 4 笔（每笔都按 1% 单笔风险、按计划止损）。今天出现一个你判断"确定性很高"的机会，你想把这一笔的单笔风险从 1% 提到 8%（风险额 1.6 万），一把把前面亏的扳回来。<b>该不该？该怎么处理？</b>先自己想两分钟、写下决定和理由，再点开下面的参考判断。</p>
+    <details style="margin-top:8px"><summary>参考判断与评分点（自己想完再点）</summary>
+      <div style="color:var(--ink);font-size:13px">
+        <p style="margin:6px 0 0"><b>参考判断：不该。</b>这一笔仍按 1% 执行；按熔断规则本就该减半，甚至降到 0.5%。"确定性高"值得的是按规则给的标准仓位，而不是违规重仓。真正该做的是：写下这个想法、按规则做完这一笔、连亏 5 笔就停手复盘。</p>
+        <p style="margin:8px 0 0"><b>评分点：</b></p>
+        <ul style="margin:4px 0 0;padding-left:20px">
+          <li><b>连败数学</b>：4 连败后账户约 19.2 万（0.99⁴ ≈ 0.961）；这一笔若再亏 8%，账户掉到约 17.6 万、总回撤逼近 −12%，再来一笔同样的错就进 −20% 区——回本难度从此指数上升。</li>
+          <li><b>回本心态</b>：认出"一把扳回"正是第六节第一个陷阱（回本心态），"确定性很高"正是第三个陷阱（"这次不一样"）。</li>
+          <li><b>熔断规则</b>：按规则二，连亏 3 笔时仓位就该减半、连亏 5 笔停手一天复盘——现在正处在熔断降速期，抬高风险是逆规则而行。</li>
+          <li><b>例外借口</b>：能说出"风险预算的全部价值就在于没有例外——一旦有例外，它就不是规则而是心情"这一层的，满分。</li>
+        </ul>
+      </div>
+    </details>
+  </div>
+
+  <div class="card good">
+    <p style="margin:6px 0 0"><b>关卡三 · 规则产出关</b>：把下面模板填成你自己的数字，填不出来＝还没内化：</p>
+    <div class="formula" style="margin:8px 0 0">
+      单笔风险上限：<b>____%</b>（新手建议 ≤1%）<br>
+      止损幅度：<b>____%</b>（你模式的典型止损距离）<br>
+      对应仓位：风险额 ÷ 止损幅度 = <b>____%</b> 仓位<br>
+      连败熔断：连亏 <b>__</b> 笔 → 仓位减半；连亏 <b>__</b> 笔 → 停手 <b>__</b> 天<br>
+      回撤降速线：账户回撤 −<b>__</b>% → 单笔风险降到 <b>__</b>%，直到创新高
+    </div>
+    <p class="small" style="margin:6px 0 0">写完发我，我帮你逐项挑毛病；写完贴在交易记录首页，每笔下单前看一眼。</p>
+  </div>
+
+  <script>
+  (function(){
+    function $(id){return document.getElementById(id)}
+    function fmtBase(x){return String(Math.round(x*1000)/1000)}
+    function calcRec(){
+      var l=+$('dLoss').value;
+      var rec=l/(100-l)*100;
+      $('dLossV').textContent=l+'%';
+      $('dRec').textContent=rec.toFixed(1)+'%';
+      $('dRecCalc').textContent=(l/100).toFixed(2)+' ÷ (1 − '+(l/100).toFixed(2)+') = '+(l/(100-l)).toFixed(3)+' → 需涨 '+rec.toFixed(1)+'%';
+      $('dBarLoss').style.width=l+'%';
+      $('dBarRec').style.width=Math.min(100,rec/2.4)+'%';
+    }
+    function calcStreak(){
+      var r=+$('dRisk').value;
+      var base=1-r/100;
+      var rem=Math.pow(base,10);
+      var dd=(1-rem)*100;
+      $('dRiskV').textContent=r+'%';
+      $('dStreak').textContent='(1 − '+r+'%)^10 = '+fmtBase(base)+'^10 ≈ '+rem.toFixed(3)+' → 10 连败后剩余 '+(rem*100).toFixed(1)+'%（回撤 −'+dd.toFixed(1)+'%）';
+      var v=$('dVerdict');
+      if(dd<=20){v.textContent='判定：可恢复——这是正常门票价，模式照常跑。';v.style.color='#68d391'}
+      else if(dd<=40){v.textContent='判定：危险——回本开始吃力，立刻把单笔风险降回来。';v.style.color='#f6ad55'}
+      else{v.textContent='判定：接近死刑——要翻倍级行情才能回到起点，几乎回不来。';v.style.color='#fc8181'}
+    }
+    $('dLoss').addEventListener('input',calcRec);
+    $('dRisk').addEventListener('input',calcStreak);
+    calcRec();
+    calcStreak();
+  })();
+  </script>
+
+  <div class="next"><b>下一讲（L02）：盈亏同源——你靠什么赚钱，就会靠什么亏钱</b>（连败不是倒霉，是门票；去掉亏损的打法同时会去掉利润）。回「下一课」即跳转，或直接提问。</div>
+  <p class="small" style="margin-top:20px">投资有风险，本课为教育内容，不构成投资建议。数字均为教学示例。疑问直接问，我换例子重讲。</p>
+</div>
+
+</body>
+</html>

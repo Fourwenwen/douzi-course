@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>十课知识树总览</title>
+<style>
+.nav{position:sticky;top:0;z-index:50;background:#1a202c;padding:8px 14px;display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif}
+.nav a{color:#e2e8f0;text-decoration:none;font-size:13px;padding:3px 10px;border-radius:999px;background:#2d3748}
+.nav a:hover{background:#4a5568}
+.nav a.cur{background:#c05621;color:#fff;font-weight:600}
+.nav a.home{background:#2b6cb0}
+</style></head>
+<body style="margin:0">
+<nav class="nav"><a class="home" href="index.html">目录主页</a><a class="" href="lesson-01.html">L01 本金保护</a><a class="" href="lesson-02.html">L02 盈亏同源</a><a class="" href="lesson-03.html">L03 交易模式</a><a class="" href="lesson-04.html">L04 看什么</a><a class="" href="lesson-05.html">L05 技术分析</a><a class="" href="lesson-06.html">L06 交易纪律</a><a class="" href="lesson-07.html">L07 切换原理</a><a class="" href="lesson-08.html">L08 成长</a><a class="" href="lesson-09.html">L09 实操学习</a><a class="" href="lesson-10.html">L10 随手单</a><a class="cur" href="trees.html">知识树</a><a class="" href="cases.html">真实案例</a></nav>
+<style>
+  .doc{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;color:#1a202c;background:#f7fafc;padding:28px 20px 60px;line-height:1.7;max-width:1100px;margin:0 auto}
+  .doc h1{font-size:24px;margin:0 0 4px}
+  .doc h2{font-size:17px;margin:30px 0 8px;padding-left:10px;border-left:4px solid #c05621}
+  .meta{color:#4a5568;font-size:13px;margin-bottom:14px}
+  .small{font-size:12.5px;color:#4a5568}
+</style>
+<div class="doc">
+  <h1>十课知识树总览（全层级版）</h1>
+  <div class="meta">《豆子悟道 · 股票系统学习课》｜ 每课一棵：概念全部画成节点，有几层画几层；关联看虚线（编号见图例）｜ 2026-11-01</div>
+  <p class="small">已同步嵌入各课讲义正文（每课开头「本课知识树」一节）。窄屏可横向滑动查看。</p>
+  <h2>L01 本金保护知识树</h2>
+<div style="overflow-x:auto;margin:10px 0">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1320 672" role="img" aria-labelledby="l01-tree-tree-title l01-tree-tree-desc" style="min-width:1320px;width:100%;height:auto;font-family:'PingFang SC','Microsoft YaHei','Noto Sans SC',-apple-system,sans-serif">
+    <title id="l01-tree-tree-title">L01 本金保护知识树</title>
+    <desc id="l01-tree-tree-desc">本金保护的完整层级：回撤数学、风险预算、连败数学、止损不等于保本、三条硬规则，各分支下展开具体概念与数字，含三条关联。</desc>
+    <defs>
+      <marker id="l01-tree-arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1 L 8 5 L 0 9 z" fill="#2b6cb0"/>
+      </marker>
+    </defs>
+    <line x1="660" y1="88" x2="660" y2="112" stroke="#4a5568" stroke-width="1"/>
+    <line x1="110" y1="112" x2="1166" y2="112" stroke="#4a5568" stroke-width="1"/>
+    <line x1="110" y1="112" x2="110" y2="140" stroke="#4a5568" stroke-width="1"/>
+    <line x1="374" y1="112" x2="374" y2="140" stroke="#4a5568" stroke-width="1"/>
+    <line x1="638" y1="112" x2="638" y2="140" stroke="#4a5568" stroke-width="1"/>
+    <line x1="902" y1="112" x2="902" y2="140" stroke="#4a5568" stroke-width="1"/>
+    <line x1="1166" y1="112" x2="1166" y2="140" stroke="#4a5568" stroke-width="1"/>
+    <line x1="28" y1="184" x2="28" y2="356" stroke="#4a5568" stroke-width="1"/>
+    <line x1="28" y1="212" x2="40" y2="212" stroke="#4a5568" stroke-width="1"/>
+    <line x1="28" y1="260" x2="40" y2="260" stroke="#4a5568" stroke-width="1"/>
+    <line x1="28" y1="308" x2="40" y2="308" stroke="#4a5568" stroke-width="1"/>
+    <line x1="28" y1="356" x2="40" y2="356" stroke="#4a5568" stroke-width="1"/>
+    <line x1="292" y1="184" x2="292" y2="356" stroke="#4a5568" stroke-width="1"/>
+    <line x1="292" y1="212" x2="304" y2="212" stroke="#4a5568" stroke-width="1"/>
+    <line x1="292" y1="260" x2="304" y2="260" stroke="#4a5568" stroke-width="1"/>
+    <line x1="292" y1="308" x2="304" y2="308" stroke="#4a5568" stroke-width="1"/>
+    <line x1="292" y1="356" x2="304" y2="356" stroke="#4a5568" stroke-width="1"/>
+    <line x1="556" y1="184" x2="556" y2="308" stroke="#4a5568" stroke-width="1"/>
+    <line x1="556" y1="212" x2="568" y2="212" stroke="#4a5568" stroke-width="1"/>
+    <line x1="556" y1="260" x2="568" y2="260" stroke="#4a5568" stroke-width="1"/>
+    <line x1="556" y1="308" x2="568" y2="308" stroke="#4a5568" stroke-width="1"/>
+    <line x1="820" y1="184" x2="820" y2="308" stroke="#4a5568" stroke-width="1"/>
+    <line x1="820" y1="212" x2="832" y2="212" stroke="#4a5568" stroke-width="1"/>
+    <line x1="820" y1="260" x2="832" y2="260" stroke="#4a5568" stroke-width="1"/>
+    <line x1="820" y1="308" x2="832" y2="308" stroke="#4a5568" stroke-width="1"/>
+    <line x1="1084" y1="184" x2="1084" y2="308" stroke="#4a5568" stroke-width="1"/>
+    <line x1="1084" y1="212" x2="1096" y2="212" stroke="#4a5568" stroke-width="1"/>
+    <line x1="1084" y1="260" x2="1096" y2="260" stroke="#4a5568" stroke-width="1"/>
+    <line x1="1084" y1="308" x2="1096" y2="308" stroke="#4a5568" stroke-width="1"/>
+    <path d="M 638 328 V 420 Q 638 428 646 428 H 1144 Q 1152 428 1152 420 V 322" fill="none" stroke="#2b6cb0" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#l01-tree-arr)"/>
+    <rect x="850" y="398" width="89" height="24" rx="4" fill="#f7fafc"/>
+    <text x="895" y="416" text-anchor="middle" font-size="12" font-weight="500" fill="#2b6cb0">① 连败→熔断</text>
+    <path d="M 110 376 V 460 Q 110 468 118 468 H 1172 Q 1180 468 1180 460 V 322" fill="none" stroke="#2b6cb0" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#l01-tree-arr)"/>
+    <rect x="594" y="438" width="101" height="24" rx="4" fill="#f7fafc"/>
+    <text x="645" y="456" text-anchor="middle" font-size="12" font-weight="500" fill="#2b6cb0">② 指数区→审计</text>
+    <path d="M 902 328 V 500 Q 902 508 894 508 H 382 Q 374 508 374 500 V 370" fill="none" stroke="#2b6cb0" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#l01-tree-arr)"/>
+    <rect x="593" y="478" width="89" height="24" rx="4" fill="#f7fafc"/>
+    <text x="638" y="496" text-anchor="middle" font-size="12" font-weight="500" fill="#2b6cb0">③ 总量靠预算</text>
+    <rect x="540" y="20" width="240" height="68" rx="6" fill="rgba(192,86,33,0.08)" stroke="#c05621" stroke-width="1.2"/>
+    <text x="554" y="46" font-size="15" font-weight="600" fill="#1a202c">L01 本金保护</text>
+    <text x="554" y="68" font-size="12" fill="#4a5568">先活下来，正期望才有意义</text>
+    <rect x="16" y="140" width="188" height="44" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1.2"/>
+    <text x="28" y="168" font-size="13" font-weight="600" fill="#1a202c">回撤数学</text>
+    <rect x="40" y="192" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="52" y="217" font-size="12" font-weight="600" fill="#1a202c">回本公式 亏损÷(1−亏损)</text>
+    <rect x="40" y="240" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="52" y="265" font-size="12" font-weight="600" fill="#1a202c">亏50%→需+100%回本</text>
+    <rect x="40" y="288" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="52" y="313" font-size="12" font-weight="600" fill="#1a202c">亏70%→需+233%（指数区）</text>
+    <rect x="40" y="336" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="52" y="361" font-size="12" font-weight="600" fill="#1a202c">两条账户路径 A稳 vs B浪</text>
+    <rect x="280" y="140" width="188" height="44" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1.2"/>
+    <text x="292" y="168" font-size="13" font-weight="600" fill="#1a202c">风险预算</text>
+    <rect x="304" y="192" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="316" y="217" font-size="12" font-weight="600" fill="#1a202c">单笔风险 ≤1–2%</text>
+    <rect x="304" y="240" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="316" y="265" font-size="12" font-weight="600" fill="#1a202c">仓位=风险额÷止损幅度</text>
+    <rect x="304" y="288" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="316" y="313" font-size="12" font-weight="600" fill="#1a202c">先定风险，再反推仓位</text>
+    <rect x="304" y="336" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="316" y="361" font-size="12" font-weight="600" fill="#1a202c">例：10万×1%÷5%＝2成仓</text>
+    <rect x="544" y="140" width="188" height="44" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1.2"/>
+    <text x="556" y="168" font-size="13" font-weight="600" fill="#1a202c">连败数学</text>
+    <rect x="568" y="192" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="580" y="217" font-size="12" font-weight="600" fill="#1a202c">连败是常态，不是倒霉</text>
+    <rect x="568" y="240" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="580" y="265" font-size="12" font-weight="600" fill="#1a202c">2%×10连败→−18%（可恢复）</text>
+    <rect x="568" y="288" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="580" y="313" font-size="12" font-weight="600" fill="#1a202c">10%×10连败→−65%（判死刑）</text>
+    <rect x="808" y="140" width="188" height="44" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1.2"/>
+    <text x="820" y="168" font-size="13" font-weight="600" fill="#1a202c">止损≠保本</text>
+    <rect x="832" y="192" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="844" y="217" font-size="12" font-weight="600" fill="#1a202c">止损＝单笔认错动作</text>
+    <rect x="832" y="240" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="844" y="265" font-size="12" font-weight="600" fill="#1a202c">保本＝账户总量控制</text>
+    <rect x="832" y="288" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="844" y="313" font-size="12" font-weight="600" fill="#1a202c">满仓止损照样腰斩</text>
+    <rect x="1072" y="140" width="188" height="44" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1.2"/>
+    <text x="1084" y="168" font-size="13" font-weight="600" fill="#1a202c">三条硬规则</text>
+    <rect x="1096" y="192" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="1108" y="217" font-size="12" font-weight="600" fill="#1a202c">单笔上限 ≤1–2%</text>
+    <rect x="1096" y="240" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="1108" y="265" font-size="12" font-weight="600" fill="#1a202c">连败熔断 3减半·5停手</text>
+    <rect x="1096" y="288" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="1108" y="313" font-size="12" font-weight="600" fill="#1a202c">回撤审计 −15%→降到0.5%</text>
+    <line x1="10" y1="558" x2="1310" y2="558" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="10" y="576" font-size="12" font-weight="600" fill="#1a202c">关联图例</text>
+    <text x="86" y="576" font-size="12" fill="#4a5568">① 连败是常态（2%也要−18%）——熔断规则的由来</text>
+    <text x="86" y="598" font-size="12" fill="#4a5568">② 亏深回本是指数区——回撤审计的由来</text>
+    <text x="86" y="620" font-size="12" fill="#4a5568">③ 止损只管单笔，总量保护必须靠风险预算</text>
+  </svg>
+</div><h2>L02 盈亏同源知识树</h2>
+<div style="overflow-x:auto;margin:10px 0">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1320 720" role="img" aria-labelledby="l02-tree-tree-title l02-tree-tree-desc" style="min-width:1320px;width:100%;height:auto;font-family:'PingFang SC','Microsoft YaHei','Noto Sans SC',-apple-system,sans-serif">
+    <title id="l02-tree-tree-title">L02 盈亏同源知识树</title>
+    <desc id="l02-tree-tree-desc">盈亏同源的完整层级：核心命题、六层例子、七模式数值、术语四组、空仓与套娃，各分支下展开具体概念，含三条关联。</desc>
+    <defs>
+      <marker id="l02-tree-arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1 L 8 5 L 0 9 z" fill="#2b6cb0"/>
+      </marker>
+    </defs>
+    <line x1="660" y1="88" x2="660" y2="112" stroke="#4a5568" stroke-width="1"/>
+    <line x1="110" y1="112" x2="1166" y2="112" stroke="#4a5568" stroke-width="1"/>
+    <line x1="110" y1="112" x2="110" y2="140" stroke="#4a5568" stroke-width="1"/>
+    <line x1="374" y1="112" x2="374" y2="140" stroke="#4a5568" stroke-width="1"/>
+    <line x1="638" y1="112" x2="638" y2="140" stroke="#4a5568" stroke-width="1"/>
+    <line x1="902" y1="112" x2="902" y2="140" stroke="#4a5568" stroke-width="1"/>
+    <line x1="1166" y1="112" x2="1166" y2="140" stroke="#4a5568" stroke-width="1"/>
+    <line x1="28" y1="184" x2="28" y2="356" stroke="#4a5568" stroke-width="1"/>
+    <line x1="28" y1="212" x2="40" y2="212" stroke="#4a5568" stroke-width="1"/>
+    <line x1="28" y1="260" x2="40" y2="260" stroke="#4a5568" stroke-width="1"/>
+    <line x1="28" y1="308" x2="40" y2="308" stroke="#4a5568" stroke-width="1"/>
+    <line x1="28" y1="356" x2="40" y2="356" stroke="#4a5568" stroke-width="1"/>
+    <line x1="292" y1="184" x2="292" y2="404" stroke="#4a5568" stroke-width="1"/>
+    <line x1="292" y1="212" x2="304" y2="212" stroke="#4a5568" stroke-width="1"/>
+    <line x1="292" y1="260" x2="304" y2="260" stroke="#4a5568" stroke-width="1"/>
+    <line x1="292" y1="308" x2="304" y2="308" stroke="#4a5568" stroke-width="1"/>
+    <line x1="292" y1="356" x2="304" y2="356" stroke="#4a5568" stroke-width="1"/>
+    <line x1="292" y1="404" x2="304" y2="404" stroke="#4a5568" stroke-width="1"/>
+    <line x1="556" y1="184" x2="556" y2="356" stroke="#4a5568" stroke-width="1"/>
+    <line x1="556" y1="212" x2="568" y2="212" stroke="#4a5568" stroke-width="1"/>
+    <line x1="556" y1="260" x2="568" y2="260" stroke="#4a5568" stroke-width="1"/>
+    <line x1="556" y1="308" x2="568" y2="308" stroke="#4a5568" stroke-width="1"/>
+    <line x1="556" y1="356" x2="568" y2="356" stroke="#4a5568" stroke-width="1"/>
+    <line x1="820" y1="184" x2="820" y2="356" stroke="#4a5568" stroke-width="1"/>
+    <line x1="820" y1="212" x2="832" y2="212" stroke="#4a5568" stroke-width="1"/>
+    <line x1="820" y1="260" x2="832" y2="260" stroke="#4a5568" stroke-width="1"/>
+    <line x1="820" y1="308" x2="832" y2="308" stroke="#4a5568" stroke-width="1"/>
+    <line x1="820" y1="356" x2="832" y2="356" stroke="#4a5568" stroke-width="1"/>
+    <line x1="1084" y1="184" x2="1084" y2="308" stroke="#4a5568" stroke-width="1"/>
+    <line x1="1084" y1="212" x2="1096" y2="212" stroke="#4a5568" stroke-width="1"/>
+    <line x1="1084" y1="260" x2="1096" y2="260" stroke="#4a5568" stroke-width="1"/>
+    <line x1="1084" y1="308" x2="1096" y2="308" stroke="#4a5568" stroke-width="1"/>
+    <path d="M 96 376 V 468 Q 96 476 104 476 H 630 Q 638 476 638 468 V 370" fill="none" stroke="#2b6cb0" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#l02-tree-arr)"/>
+    <rect x="322" y="446" width="89" height="24" rx="4" fill="#f7fafc"/>
+    <text x="367" y="464" text-anchor="middle" font-size="12" font-weight="500" fill="#2b6cb0">① 门票→分布</text>
+    <path d="M 902 376 V 508 Q 902 516 894 516 H 382 Q 374 516 374 508 V 418" fill="none" stroke="#2b6cb0" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#l02-tree-arr)"/>
+    <rect x="585" y="486" width="106" height="24" rx="4" fill="#f7fafc"/>
+    <text x="638" y="504" text-anchor="middle" font-size="12" font-weight="500" fill="#2b6cb0">② beta→赚行情</text>
+    <path d="M 1166 328 V 548 Q 1166 556 1158 556 H 132 Q 124 556 124 548 V 370" fill="none" stroke="#2b6cb0" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#l02-tree-arr)"/>
+    <rect x="600" y="526" width="89" height="24" rx="4" fill="#f7fafc"/>
+    <text x="645" y="544" text-anchor="middle" font-size="12" font-weight="500" fill="#2b6cb0">③ 规避也同源</text>
+    <rect x="540" y="20" width="240" height="68" rx="6" fill="rgba(192,86,33,0.08)" stroke="#c05621" stroke-width="1.2"/>
+    <text x="554" y="46" font-size="15" font-weight="600" fill="#1a202c">L02 盈亏同源</text>
+    <text x="554" y="68" font-size="12" fill="#4a5568">你靠什么赚钱，就会靠什么亏钱</text>
+    <rect x="16" y="140" width="188" height="44" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1.2"/>
+    <text x="28" y="168" font-size="13" font-weight="600" fill="#1a202c">核心命题</text>
+    <rect x="40" y="192" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="52" y="217" font-size="12" font-weight="600" fill="#1a202c">赚出←→亏产生（双向）</text>
+    <rect x="40" y="240" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="52" y="265" font-size="12" font-weight="600" fill="#1a202c">新股例：担大股东的赚钱效应</text>
+    <rect x="40" y="288" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="52" y="313" font-size="12" font-weight="600" fill="#1a202c">亏损是门票，不是错误</text>
+    <rect x="40" y="336" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="52" y="361" font-size="12" font-weight="600" fill="#1a202c">盈与亏相生（阴阳）</text>
+    <rect x="280" y="140" width="188" height="44" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1.2"/>
+    <text x="292" y="168" font-size="13" font-weight="600" fill="#1a202c">六层例子</text>
+    <rect x="304" y="192" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="316" y="217" font-size="12" font-weight="600" fill="#1a202c">模式两面 封板率↔溢价</text>
+    <rect x="304" y="240" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="316" y="265" font-size="12" font-weight="600" fill="#1a202c">永远涨幻觉 纳指/互联网/国债</text>
+    <rect x="304" y="288" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="316" y="313" font-size="12" font-weight="600" fill="#1a202c">窗口 924·龙空龙</text>
+    <rect x="304" y="336" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="316" y="361" font-size="12" font-weight="600" fill="#1a202c">赚行情 beta分解</text>
+    <rect x="304" y="384" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="316" y="409" font-size="12" font-weight="600" fill="#1a202c">踏空伪命题 光亏不赢</text>
+    <rect x="544" y="140" width="188" height="44" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1.2"/>
+    <text x="556" y="168" font-size="13" font-weight="600" fill="#1a202c">七模式数值</text>
+    <rect x="568" y="192" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="580" y="217" font-size="12" font-weight="600" fill="#1a202c">打板·趋势·龙空龙</text>
+    <rect x="568" y="240" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="580" y="265" font-size="12" font-weight="600" fill="#1a202c">量化·抄底·持指数·大股东</text>
+    <rect x="568" y="288" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="580" y="313" font-size="12" font-weight="600" fill="#1a202c">同源亏损总表</text>
+    <rect x="568" y="336" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="580" y="361" font-size="12" font-weight="600" fill="#1a202c">每模式100笔分布模拟</text>
+    <rect x="808" y="140" width="188" height="44" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1.2"/>
+    <text x="820" y="168" font-size="13" font-weight="600" fill="#1a202c">术语四组</text>
+    <rect x="832" y="192" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="844" y="217" font-size="12" font-weight="600" fill="#1a202c">卖尾/买尾 保险vs门票</text>
+    <rect x="832" y="240" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="844" y="265" font-size="12" font-weight="600" fill="#1a202c">beta/alpha 工资vs奖金</text>
+    <rect x="832" y="288" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="844" y="313" font-size="12" font-weight="600" fill="#1a202c">大蓝筹/小盘题材</text>
+    <rect x="832" y="336" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="844" y="361" font-size="12" font-weight="600" fill="#1a202c">机构/游资/散户</text>
+    <rect x="1072" y="140" width="188" height="44" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1.2"/>
+    <text x="1084" y="168" font-size="13" font-weight="600" fill="#1a202c">空仓与套娃</text>
+    <rect x="1096" y="192" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="1108" y="217" font-size="12" font-weight="600" fill="#1a202c">大赚空仓·大亏空仓</text>
+    <rect x="1096" y="240" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="1108" y="265" font-size="12" font-weight="600" fill="#1a202c">规避动作也有同源</text>
+    <rect x="1096" y="288" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="1108" y="313" font-size="12" font-weight="600" fill="#1a202c">套娃递归：每次再评估</text>
+    <line x1="10" y1="606" x2="1310" y2="606" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="10" y="624" font-size="12" font-weight="600" fill="#1a202c">关联图例</text>
+    <text x="86" y="624" font-size="12" fill="#4a5568">① 亏损是门票——所以七模式都用100笔分布看，不看单笔</text>
+    <text x="86" y="646" font-size="12" fill="#4a5568">② beta/alpha 术语解释的是六层例子里的「赚行情」</text>
+    <text x="86" y="668" font-size="12" fill="#4a5568">③ 连空仓这个规避动作本身也有同源亏损——套娃递归</text>
+  </svg>
+</div><h2>L03 交易模式知识树</h2>
+<div style="overflow-x:auto;margin:10px 0">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1320 1008" role="img" aria-labelledby="l03-tree-tree-title l03-tree-tree-desc" style="min-width:1320px;width:100%;height:auto;font-family:'PingFang SC','Microsoft YaHei','Noto Sans SC',-apple-system,sans-serif">
+    <title id="l03-tree-tree-title">L03 交易模式知识树</title>
+    <desc id="l03-tree-tree-desc">交易模式的完整层级：六元组（含出场四件套与开关细分）、三道检验、老龙反抽板、期望值、失效与开关，含三条关联。</desc>
+    <defs>
+      <marker id="l03-tree-arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1 L 8 5 L 0 9 z" fill="#2b6cb0"/>
+      </marker>
+    </defs>
+    <line x1="660" y1="88" x2="660" y2="112" stroke="#4a5568" stroke-width="1"/>
+    <line x1="110" y1="112" x2="1166" y2="112" stroke="#4a5568" stroke-width="1"/>
+    <line x1="110" y1="112" x2="110" y2="140" stroke="#4a5568" stroke-width="1"/>
+    <line x1="374" y1="112" x2="374" y2="140" stroke="#4a5568" stroke-width="1"/>
+    <line x1="638" y1="112" x2="638" y2="140" stroke="#4a5568" stroke-width="1"/>
+    <line x1="902" y1="112" x2="902" y2="140" stroke="#4a5568" stroke-width="1"/>
+    <line x1="1166" y1="112" x2="1166" y2="140" stroke="#4a5568" stroke-width="1"/>
+    <line x1="52" y1="328" x2="52" y2="500" stroke="#4a5568" stroke-width="1"/>
+    <line x1="52" y1="356" x2="64" y2="356" stroke="#4a5568" stroke-width="1"/>
+    <line x1="52" y1="404" x2="64" y2="404" stroke="#4a5568" stroke-width="1"/>
+    <line x1="52" y1="452" x2="64" y2="452" stroke="#4a5568" stroke-width="1"/>
+    <line x1="52" y1="500" x2="64" y2="500" stroke="#4a5568" stroke-width="1"/>
+    <line x1="52" y1="616" x2="52" y2="692" stroke="#4a5568" stroke-width="1"/>
+    <line x1="52" y1="644" x2="64" y2="644" stroke="#4a5568" stroke-width="1"/>
+    <line x1="52" y1="692" x2="64" y2="692" stroke="#4a5568" stroke-width="1"/>
+    <line x1="28" y1="184" x2="28" y2="596" stroke="#4a5568" stroke-width="1"/>
+    <line x1="28" y1="212" x2="40" y2="212" stroke="#4a5568" stroke-width="1"/>
+    <line x1="28" y1="260" x2="40" y2="260" stroke="#4a5568" stroke-width="1"/>
+    <line x1="28" y1="308" x2="40" y2="308" stroke="#4a5568" stroke-width="1"/>
+    <line x1="28" y1="548" x2="40" y2="548" stroke="#4a5568" stroke-width="1"/>
+    <line x1="28" y1="596" x2="40" y2="596" stroke="#4a5568" stroke-width="1"/>
+    <line x1="292" y1="184" x2="292" y2="308" stroke="#4a5568" stroke-width="1"/>
+    <line x1="292" y1="212" x2="304" y2="212" stroke="#4a5568" stroke-width="1"/>
+    <line x1="292" y1="260" x2="304" y2="260" stroke="#4a5568" stroke-width="1"/>
+    <line x1="292" y1="308" x2="304" y2="308" stroke="#4a5568" stroke-width="1"/>
+    <line x1="556" y1="184" x2="556" y2="404" stroke="#4a5568" stroke-width="1"/>
+    <line x1="556" y1="212" x2="568" y2="212" stroke="#4a5568" stroke-width="1"/>
+    <line x1="556" y1="260" x2="568" y2="260" stroke="#4a5568" stroke-width="1"/>
+    <line x1="556" y1="308" x2="568" y2="308" stroke="#4a5568" stroke-width="1"/>
+    <line x1="556" y1="356" x2="568" y2="356" stroke="#4a5568" stroke-width="1"/>
+    <line x1="556" y1="404" x2="568" y2="404" stroke="#4a5568" stroke-width="1"/>
+    <line x1="820" y1="184" x2="820" y2="308" stroke="#4a5568" stroke-width="1"/>
+    <line x1="820" y1="212" x2="832" y2="212" stroke="#4a5568" stroke-width="1"/>
+    <line x1="820" y1="260" x2="832" y2="260" stroke="#4a5568" stroke-width="1"/>
+    <line x1="820" y1="308" x2="832" y2="308" stroke="#4a5568" stroke-width="1"/>
+    <line x1="1084" y1="184" x2="1084" y2="404" stroke="#4a5568" stroke-width="1"/>
+    <line x1="1084" y1="212" x2="1096" y2="212" stroke="#4a5568" stroke-width="1"/>
+    <line x1="1084" y1="260" x2="1096" y2="260" stroke="#4a5568" stroke-width="1"/>
+    <line x1="1084" y1="308" x2="1096" y2="308" stroke="#4a5568" stroke-width="1"/>
+    <line x1="1084" y1="356" x2="1096" y2="356" stroke="#4a5568" stroke-width="1"/>
+    <line x1="1084" y1="404" x2="1096" y2="404" stroke="#4a5568" stroke-width="1"/>
+    <path d="M 638 424 V 756 Q 638 764 646 764 H 1144 Q 1152 764 1152 756 V 418" fill="none" stroke="#2b6cb0" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#l03-tree-arr)"/>
+    <rect x="853" y="734" width="84" height="24" rx="4" fill="#f7fafc"/>
+    <text x="895" y="752" text-anchor="middle" font-size="12" font-weight="500" fill="#2b6cb0">① 双降触发K</text>
+    <path d="M 902 328 V 796 Q 902 804 894 804 H 382 Q 374 804 374 796 V 322" fill="none" stroke="#2b6cb0" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#l03-tree-arr)"/>
+    <rect x="589" y="774" width="99" height="24" rx="4" fill="#f7fafc"/>
+    <text x="638" y="792" text-anchor="middle" font-size="12" font-weight="500" fill="#2b6cb0">② E&gt;0是第一检</text>
+    <path d="M 1180 424 V 836 Q 1180 844 1172 844 H 118 Q 110 844 110 836 V 706" fill="none" stroke="#2b6cb0" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#l03-tree-arr)"/>
+    <rect x="609" y="814" width="72" height="24" rx="4" fill="#f7fafc"/>
+    <text x="645" y="832" text-anchor="middle" font-size="12" font-weight="500" fill="#2b6cb0">③ K即开关</text>
+    <rect x="540" y="20" width="240" height="68" rx="6" fill="rgba(192,86,33,0.08)" stroke="#c05621" stroke-width="1.2"/>
+    <text x="554" y="46" font-size="15" font-weight="600" fill="#1a202c">L03 交易模式</text>
+    <text x="554" y="68" font-size="12" fill="#4a5568">六元组 ＋ 三道检验</text>
+    <rect x="16" y="140" width="188" height="44" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1.2"/>
+    <text x="28" y="168" font-size="13" font-weight="600" fill="#1a202c">六元组</text>
+    <rect x="40" y="192" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="52" y="217" font-size="12" font-weight="600" fill="#1a202c">U 标的池（老龙）</text>
+    <rect x="40" y="240" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="52" y="265" font-size="12" font-weight="600" fill="#1a202c">E 入场（扫板/半路）</text>
+    <rect x="40" y="288" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="52" y="313" font-size="12" font-weight="600" fill="#1a202c">X 出场</text>
+    <rect x="64" y="336" width="188" height="40" rx="6" fill="#f7fafc" stroke="#cbd5e0" stroke-width="0.8"/>
+    <text x="76" y="361" font-size="12" fill="#4a5568">首板兑现</text>
+    <rect x="64" y="384" width="188" height="40" rx="6" fill="#f7fafc" stroke="#cbd5e0" stroke-width="0.8"/>
+    <text x="76" y="409" font-size="12" fill="#4a5568">连板转弱走</text>
+    <rect x="64" y="432" width="188" height="40" rx="6" fill="#f7fafc" stroke="#cbd5e0" stroke-width="0.8"/>
+    <text x="76" y="457" font-size="12" fill="#4a5568">低于预期开盘兑现</text>
+    <rect x="64" y="480" width="188" height="40" rx="6" fill="#f7fafc" stroke="#cbd5e0" stroke-width="0.8"/>
+    <text x="76" y="505" font-size="12" fill="#4a5568">空一个买点观察</text>
+    <rect x="40" y="528" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="52" y="553" font-size="12" font-weight="600" fill="#1a202c">S/A 仓位·加减（定额阶梯）</text>
+    <rect x="40" y="576" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="52" y="601" font-size="12" font-weight="600" fill="#1a202c">K 开关</text>
+    <rect x="64" y="624" width="188" height="40" rx="6" fill="#f7fafc" stroke="#cbd5e0" stroke-width="0.8"/>
+    <text x="76" y="649" font-size="12" fill="#4a5568">双降＝停用</text>
+    <rect x="64" y="672" width="188" height="40" rx="6" fill="#f7fafc" stroke="#cbd5e0" stroke-width="0.8"/>
+    <text x="76" y="697" font-size="12" fill="#4a5568">突破连板＝重启</text>
+    <rect x="280" y="140" width="188" height="44" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1.2"/>
+    <text x="292" y="168" font-size="13" font-weight="600" fill="#1a202c">三道检验</text>
+    <rect x="304" y="192" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="316" y="217" font-size="12" font-weight="600" fill="#1a202c">正期望（赚谁的钱）</text>
+    <rect x="304" y="240" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="316" y="265" font-size="12" font-weight="600" fill="#1a202c">可重复（分布非单笔）</text>
+    <rect x="304" y="288" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="316" y="313" font-size="12" font-weight="600" fill="#1a202c">回撤可承受（连败扛得住）</text>
+    <rect x="544" y="140" width="188" height="44" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1.2"/>
+    <text x="556" y="168" font-size="13" font-weight="600" fill="#1a202c">老龙反抽板</text>
+    <rect x="568" y="192" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="580" y="217" font-size="12" font-weight="600" fill="#1a202c">名字＝选股条件</text>
+    <rect x="568" y="240" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="580" y="265" font-size="12" font-weight="600" fill="#1a202c">钱源＝认知差博傻</text>
+    <rect x="568" y="288" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="580" y="313" font-size="12" font-weight="600" fill="#1a202c">封板率 ↔ 胜率</text>
+    <rect x="568" y="336" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="580" y="361" font-size="12" font-weight="600" fill="#1a202c">次日溢价 ↔ 盈亏比</text>
+    <rect x="568" y="384" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="580" y="409" font-size="12" font-weight="600" fill="#1a202c">恒宝利空＝模式内亏损</text>
+    <rect x="808" y="140" width="188" height="44" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1.2"/>
+    <text x="820" y="168" font-size="13" font-weight="600" fill="#1a202c">期望值</text>
+    <rect x="832" y="192" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="844" y="217" font-size="12" font-weight="600" fill="#1a202c">E=p×盈−(1−p)×亏</text>
+    <rect x="832" y="240" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="844" y="265" font-size="12" font-weight="600" fill="#1a202c">纪律版 +4.0%/笔</text>
+    <rect x="832" y="288" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="844" y="313" font-size="12" font-weight="600" fill="#1a202c">放任版 −1.5%/笔</text>
+    <rect x="1072" y="140" width="188" height="44" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1.2"/>
+    <text x="1084" y="168" font-size="13" font-weight="600" fill="#1a202c">失效与开关</text>
+    <rect x="1096" y="192" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="1108" y="217" font-size="12" font-weight="600" fill="#1a202c">认知差被学习抹平</text>
+    <rect x="1096" y="240" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="1108" y="265" font-size="12" font-weight="600" fill="#1a202c">博傻需要不断新人</text>
+    <rect x="1096" y="288" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="1108" y="313" font-size="12" font-weight="600" fill="#1a202c">拥挤＝买点前置</text>
+    <rect x="1096" y="336" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="1108" y="361" font-size="12" font-weight="600" fill="#1a202c">双降＝胜率盈亏比同降</text>
+    <rect x="1096" y="384" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="1108" y="409" font-size="12" font-weight="600" fill="#1a202c">重启＝老龙突破连板</text>
+    <line x1="10" y1="894" x2="1310" y2="894" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="10" y="912" font-size="12" font-weight="600" fill="#1a202c">关联图例</text>
+    <text x="86" y="912" font-size="12" fill="#4a5568">① 封板率（胜率）与次日溢价（盈亏比）双降＝老龙模式的停用信号</text>
+    <text x="86" y="934" font-size="12" fill="#4a5568">② 期望值 E=p×盈−(1−p)×亏 直接给出三道检验的第一道</text>
+    <text x="86" y="956" font-size="12" fill="#4a5568">③ 生命周期开关就是六元组里的 K，停用与重启都有 observable 信号</text>
+  </svg>
+</div><h2>L04 看什么知识树</h2>
+<div style="overflow-x:auto;margin:10px 0">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1320 720" role="img" aria-labelledby="l04-tree-tree-title l04-tree-tree-desc" style="min-width:1320px;width:100%;height:auto;font-family:'PingFang SC','Microsoft YaHei','Noto Sans SC',-apple-system,sans-serif">
+    <title id="l04-tree-tree-title">L04 看什么知识树</title>
+    <desc id="l04-tree-tree-desc">看什么的完整层级：伪问题拆解、超额定义、人性面、认知梯度（含两限定与超预期）、观察五项，含三条关联。</desc>
+    <defs>
+      <marker id="l04-tree-arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1 L 8 5 L 0 9 z" fill="#2b6cb0"/>
+      </marker>
+    </defs>
+    <line x1="660" y1="88" x2="660" y2="112" stroke="#4a5568" stroke-width="1"/>
+    <line x1="110" y1="112" x2="1166" y2="112" stroke="#4a5568" stroke-width="1"/>
+    <line x1="110" y1="112" x2="110" y2="140" stroke="#4a5568" stroke-width="1"/>
+    <line x1="374" y1="112" x2="374" y2="140" stroke="#4a5568" stroke-width="1"/>
+    <line x1="638" y1="112" x2="638" y2="140" stroke="#4a5568" stroke-width="1"/>
+    <line x1="902" y1="112" x2="902" y2="140" stroke="#4a5568" stroke-width="1"/>
+    <line x1="1166" y1="112" x2="1166" y2="140" stroke="#4a5568" stroke-width="1"/>
+    <line x1="28" y1="184" x2="28" y2="308" stroke="#4a5568" stroke-width="1"/>
+    <line x1="28" y1="212" x2="40" y2="212" stroke="#4a5568" stroke-width="1"/>
+    <line x1="28" y1="260" x2="40" y2="260" stroke="#4a5568" stroke-width="1"/>
+    <line x1="28" y1="308" x2="40" y2="308" stroke="#4a5568" stroke-width="1"/>
+    <line x1="292" y1="184" x2="292" y2="308" stroke="#4a5568" stroke-width="1"/>
+    <line x1="292" y1="212" x2="304" y2="212" stroke="#4a5568" stroke-width="1"/>
+    <line x1="292" y1="260" x2="304" y2="260" stroke="#4a5568" stroke-width="1"/>
+    <line x1="292" y1="308" x2="304" y2="308" stroke="#4a5568" stroke-width="1"/>
+    <line x1="556" y1="184" x2="556" y2="308" stroke="#4a5568" stroke-width="1"/>
+    <line x1="556" y1="212" x2="568" y2="212" stroke="#4a5568" stroke-width="1"/>
+    <line x1="556" y1="260" x2="568" y2="260" stroke="#4a5568" stroke-width="1"/>
+    <line x1="556" y1="308" x2="568" y2="308" stroke="#4a5568" stroke-width="1"/>
+    <line x1="820" y1="184" x2="820" y2="404" stroke="#4a5568" stroke-width="1"/>
+    <line x1="820" y1="212" x2="832" y2="212" stroke="#4a5568" stroke-width="1"/>
+    <line x1="820" y1="260" x2="832" y2="260" stroke="#4a5568" stroke-width="1"/>
+    <line x1="820" y1="308" x2="832" y2="308" stroke="#4a5568" stroke-width="1"/>
+    <line x1="820" y1="356" x2="832" y2="356" stroke="#4a5568" stroke-width="1"/>
+    <line x1="820" y1="404" x2="832" y2="404" stroke="#4a5568" stroke-width="1"/>
+    <line x1="1084" y1="184" x2="1084" y2="356" stroke="#4a5568" stroke-width="1"/>
+    <line x1="1084" y1="212" x2="1096" y2="212" stroke="#4a5568" stroke-width="1"/>
+    <line x1="1084" y1="260" x2="1096" y2="260" stroke="#4a5568" stroke-width="1"/>
+    <line x1="1084" y1="308" x2="1096" y2="308" stroke="#4a5568" stroke-width="1"/>
+    <line x1="1084" y1="356" x2="1096" y2="356" stroke="#4a5568" stroke-width="1"/>
+    <path d="M 638 328 V 468 Q 638 476 646 476 H 880 Q 888 476 888 468 V 418" fill="none" stroke="#2b6cb0" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#l04-tree-arr)"/>
+    <rect x="712" y="446" width="101" height="24" rx="4" fill="#f7fafc"/>
+    <text x="763" y="464" text-anchor="middle" font-size="12" font-weight="500" fill="#2b6cb0">① 人性→认知差</text>
+    <path d="M 916 424 V 508 Q 916 516 924 516 H 1158 Q 1166 516 1166 508 V 370" fill="none" stroke="#2b6cb0" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#l04-tree-arr)"/>
+    <rect x="990" y="486" width="101" height="24" rx="4" fill="#f7fafc"/>
+    <text x="1041" y="504" text-anchor="middle" font-size="12" font-weight="500" fill="#2b6cb0">② 足迹→温度计</text>
+    <path d="M 374 328 V 548 Q 374 556 366 556 H 118 Q 110 556 110 548 V 322" fill="none" stroke="#2b6cb0" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#l04-tree-arr)"/>
+    <rect x="197" y="526" width="89" height="24" rx="4" fill="#f7fafc"/>
+    <text x="242" y="544" text-anchor="middle" font-size="12" font-weight="500" fill="#2b6cb0">③ 先问赚谁钱</text>
+    <rect x="540" y="20" width="240" height="68" rx="6" fill="rgba(192,86,33,0.08)" stroke="#c05621" stroke-width="1.2"/>
+    <text x="554" y="46" font-size="15" font-weight="600" fill="#1a202c">L04 看什么</text>
+    <text x="554" y="68" font-size="12" fill="#4a5568">看的是赚钱效应本身</text>
+    <rect x="16" y="140" width="188" height="44" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1.2"/>
+    <text x="28" y="168" font-size="13" font-weight="600" fill="#1a202c">伪问题拆解</text>
+    <rect x="40" y="192" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="52" y="217" font-size="12" font-weight="600" fill="#1a202c">技术面/基本面＝工具</text>
+    <rect x="40" y="240" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="52" y="265" font-size="12" font-weight="600" fill="#1a202c">降维：先问看什么</text>
+    <rect x="40" y="288" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="52" y="313" font-size="12" font-weight="600" fill="#1a202c">结合派＝逻辑＋买点</text>
+    <rect x="280" y="140" width="188" height="44" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1.2"/>
+    <text x="292" y="168" font-size="13" font-weight="600" fill="#1a202c">超额定义</text>
+    <rect x="304" y="192" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="316" y="217" font-size="12" font-weight="600" fill="#1a202c">年化7%门槛才算超额</text>
+    <rect x="304" y="240" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="316" y="265" font-size="12" font-weight="600" fill="#1a202c">超额＝赚别人的钱</text>
+    <rect x="304" y="288" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="316" y="313" font-size="12" font-weight="600" fill="#1a202c">找对手盘的人性弱点</text>
+    <rect x="544" y="140" width="188" height="44" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1.2"/>
+    <text x="556" y="168" font-size="13" font-weight="600" fill="#1a202c">人性面</text>
+    <rect x="568" y="192" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="580" y="217" font-size="12" font-weight="600" fill="#1a202c">底层不变，表象可变</text>
+    <rect x="568" y="240" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="580" y="265" font-size="12" font-weight="600" fill="#1a202c">题材换代 互联网+→AI</text>
+    <rect x="568" y="288" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="580" y="313" font-size="12" font-weight="600" fill="#1a202c">投资赚恐惧的钱</text>
+    <rect x="808" y="140" width="188" height="44" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1.2"/>
+    <text x="820" y="168" font-size="13" font-weight="600" fill="#1a202c">认知梯度</text>
+    <rect x="832" y="192" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="844" y="217" font-size="12" font-weight="600" fill="#1a202c">走向认知更高者</text>
+    <rect x="832" y="240" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="844" y="265" font-size="12" font-weight="600" fill="#1a202c">限定①认知差要明显</text>
+    <rect x="832" y="288" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="844" y="313" font-size="12" font-weight="600" fill="#1a202c">限定②总体倾向·长期高低</text>
+    <rect x="832" y="336" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="844" y="361" font-size="12" font-weight="600" fill="#1a202c">超预期＝高认知足迹</text>
+    <rect x="832" y="384" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="844" y="409" font-size="12" font-weight="600" fill="#1a202c">低估＝被叙事压住</text>
+    <rect x="1072" y="140" width="188" height="44" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1.2"/>
+    <text x="1084" y="168" font-size="13" font-weight="600" fill="#1a202c">观察五项</text>
+    <rect x="1096" y="192" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="1108" y="217" font-size="12" font-weight="600" fill="#1a202c">板块强度·封板率</text>
+    <rect x="1096" y="240" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="1108" y="265" font-size="12" font-weight="600" fill="#1a202c">次日溢价·量能</text>
+    <rect x="1096" y="288" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="1108" y="313" font-size="12" font-weight="600" fill="#1a202c">亏钱效应信号</text>
+    <rect x="1096" y="336" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="1108" y="361" font-size="12" font-weight="600" fill="#1a202c">谁在参与过滤器</text>
+    <line x1="10" y1="606" x2="1310" y2="606" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="10" y="624" font-size="12" font-weight="600" fill="#1a202c">关联图例</text>
+    <text x="86" y="624" font-size="12" fill="#4a5568">① 人性弱点是认知差的来源——人性面喂给认知梯度</text>
+    <text x="86" y="646" font-size="12" fill="#4a5568">② 超预期足迹要靠观察五项去读——判据接上温度计</text>
+    <text x="86" y="668" font-size="12" fill="#4a5568">③ 先定义超额＝赚谁的钱，工具之争（技术/基本面）才消解</text>
+  </svg>
+</div><h2>L05 技术分析知识树</h2>
+<div style="overflow-x:auto;margin:10px 0">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1320 672" role="img" aria-labelledby="l05-tree-tree-title l05-tree-tree-desc" style="min-width:1320px;width:100%;height:auto;font-family:'PingFang SC','Microsoft YaHei','Noto Sans SC',-apple-system,sans-serif">
+    <title id="l05-tree-tree-title">L05 技术分析知识树</title>
+    <desc id="l05-tree-tree-desc">技术分析的完整层级：边界定义、影子论、三个赌场故事（基率/过拟合/幸存者）、回测四闸、运气与技能，含三条关联。</desc>
+    <defs>
+      <marker id="l05-tree-arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1 L 8 5 L 0 9 z" fill="#2b6cb0"/>
+      </marker>
+    </defs>
+    <line x1="660" y1="88" x2="660" y2="112" stroke="#4a5568" stroke-width="1"/>
+    <line x1="110" y1="112" x2="1166" y2="112" stroke="#4a5568" stroke-width="1"/>
+    <line x1="110" y1="112" x2="110" y2="140" stroke="#4a5568" stroke-width="1"/>
+    <line x1="374" y1="112" x2="374" y2="140" stroke="#4a5568" stroke-width="1"/>
+    <line x1="638" y1="112" x2="638" y2="140" stroke="#4a5568" stroke-width="1"/>
+    <line x1="902" y1="112" x2="902" y2="140" stroke="#4a5568" stroke-width="1"/>
+    <line x1="1166" y1="112" x2="1166" y2="140" stroke="#4a5568" stroke-width="1"/>
+    <line x1="28" y1="184" x2="28" y2="308" stroke="#4a5568" stroke-width="1"/>
+    <line x1="28" y1="212" x2="40" y2="212" stroke="#4a5568" stroke-width="1"/>
+    <line x1="28" y1="260" x2="40" y2="260" stroke="#4a5568" stroke-width="1"/>
+    <line x1="28" y1="308" x2="40" y2="308" stroke="#4a5568" stroke-width="1"/>
+    <line x1="292" y1="184" x2="292" y2="308" stroke="#4a5568" stroke-width="1"/>
+    <line x1="292" y1="212" x2="304" y2="212" stroke="#4a5568" stroke-width="1"/>
+    <line x1="292" y1="260" x2="304" y2="260" stroke="#4a5568" stroke-width="1"/>
+    <line x1="292" y1="308" x2="304" y2="308" stroke="#4a5568" stroke-width="1"/>
+    <line x1="556" y1="184" x2="556" y2="308" stroke="#4a5568" stroke-width="1"/>
+    <line x1="556" y1="212" x2="568" y2="212" stroke="#4a5568" stroke-width="1"/>
+    <line x1="556" y1="260" x2="568" y2="260" stroke="#4a5568" stroke-width="1"/>
+    <line x1="556" y1="308" x2="568" y2="308" stroke="#4a5568" stroke-width="1"/>
+    <line x1="820" y1="184" x2="820" y2="356" stroke="#4a5568" stroke-width="1"/>
+    <line x1="820" y1="212" x2="832" y2="212" stroke="#4a5568" stroke-width="1"/>
+    <line x1="820" y1="260" x2="832" y2="260" stroke="#4a5568" stroke-width="1"/>
+    <line x1="820" y1="308" x2="832" y2="308" stroke="#4a5568" stroke-width="1"/>
+    <line x1="820" y1="356" x2="832" y2="356" stroke="#4a5568" stroke-width="1"/>
+    <line x1="1084" y1="184" x2="1084" y2="308" stroke="#4a5568" stroke-width="1"/>
+    <line x1="1084" y1="212" x2="1096" y2="212" stroke="#4a5568" stroke-width="1"/>
+    <line x1="1084" y1="260" x2="1096" y2="260" stroke="#4a5568" stroke-width="1"/>
+    <line x1="1084" y1="308" x2="1096" y2="308" stroke="#4a5568" stroke-width="1"/>
+    <path d="M 374 328 V 420 Q 374 428 366 428 H 118 Q 110 428 110 420 V 322" fill="none" stroke="#2b6cb0" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#l05-tree-arr)"/>
+    <rect x="197" y="398" width="89" height="24" rx="4" fill="#f7fafc"/>
+    <text x="242" y="416" text-anchor="middle" font-size="12" font-weight="500" fill="#2b6cb0">① 影子≠因果</text>
+    <path d="M 624 328 V 460 Q 624 468 632 468 H 894 Q 902 468 902 460 V 370" fill="none" stroke="#2b6cb0" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#l05-tree-arr)"/>
+    <rect x="712" y="438" width="101" height="24" rx="4" fill="#f7fafc"/>
+    <text x="763" y="456" text-anchor="middle" font-size="12" font-weight="500" fill="#2b6cb0">② 错觉→解毒剂</text>
+    <path d="M 652 328 V 500 Q 652 508 660 508 H 1158 Q 1166 508 1166 500 V 322" fill="none" stroke="#2b6cb0" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#l05-tree-arr)"/>
+    <rect x="858" y="478" width="101" height="24" rx="4" fill="#f7fafc"/>
+    <text x="909" y="496" text-anchor="middle" font-size="12" font-weight="500" fill="#2b6cb0">③ 幸存者→五查</text>
+    <rect x="540" y="20" width="240" height="68" rx="6" fill="rgba(192,86,33,0.08)" stroke="#c05621" stroke-width="1.2"/>
+    <text x="554" y="46" font-size="15" font-weight="600" fill="#1a202c">L05 技术分析</text>
+    <text x="554" y="68" font-size="12" fill="#4a5568">是模式的影子，不是因果</text>
+    <rect x="16" y="140" width="188" height="44" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1.2"/>
+    <text x="28" y="168" font-size="13" font-weight="600" fill="#1a202c">边界定义</text>
+    <rect x="40" y="192" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="52" y="217" font-size="12" font-weight="600" fill="#1a202c">K线只表现 开高低收·量</text>
+    <rect x="40" y="240" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="52" y="265" font-size="12" font-weight="600" fill="#1a202c">技术面＝f 的任意函数</text>
+    <rect x="40" y="288" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="52" y="313" font-size="12" font-weight="600" fill="#1a202c">描述层，不携带因果</text>
+    <rect x="280" y="140" width="188" height="44" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1.2"/>
+    <text x="292" y="168" font-size="13" font-weight="600" fill="#1a202c">影子论</text>
+    <rect x="304" y="192" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="316" y="217" font-size="12" font-weight="600" fill="#1a202c">赚钱效应→买卖点→形态</text>
+    <rect x="304" y="240" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="316" y="265" font-size="12" font-weight="600" fill="#1a202c">形态＝规则的可读表示</text>
+    <rect x="304" y="288" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="316" y="313" font-size="12" font-weight="600" fill="#1a202c">足迹 ≠ 因果</text>
+    <rect x="544" y="140" width="188" height="44" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1.2"/>
+    <text x="556" y="168" font-size="13" font-weight="600" fill="#1a202c">三个赌场故事</text>
+    <rect x="568" y="192" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="580" y="217" font-size="12" font-weight="600" fill="#1a202c">十连阳＝基率 1172次/年</text>
+    <rect x="568" y="240" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="580" y="265" font-size="12" font-weight="600" fill="#1a202c">扳手＝过拟合＋未来函数</text>
+    <rect x="568" y="288" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="580" y="313" font-size="12" font-weight="600" fill="#1a202c">押豹＝幸存者偏差 511倍</text>
+    <rect x="808" y="140" width="188" height="44" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1.2"/>
+    <text x="820" y="168" font-size="13" font-weight="600" fill="#1a202c">回测四闸</text>
+    <rect x="832" y="192" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="844" y="217" font-size="12" font-weight="600" fill="#1a202c">预注册规则</text>
+    <rect x="832" y="240" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="844" y="265" font-size="12" font-weight="600" fill="#1a202c">样本外验证</text>
+    <rect x="832" y="288" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="844" y="313" font-size="12" font-weight="600" fill="#1a202c">异常剔除预先定义</text>
+    <rect x="832" y="336" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="844" y="361" font-size="12" font-weight="600" fill="#1a202c">问：谁在亏钱给我</text>
+    <rect x="1072" y="140" width="188" height="44" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1.2"/>
+    <text x="1084" y="168" font-size="13" font-weight="600" fill="#1a202c">运气vs技能</text>
+    <rect x="1096" y="192" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="1108" y="217" font-size="12" font-weight="600" fill="#1a202c">沉默样本·结局分布</text>
+    <rect x="1096" y="240" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="1108" y="265" font-size="12" font-weight="600" fill="#1a202c">收益集中性检查</text>
+    <rect x="1096" y="288" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="1108" y="313" font-size="12" font-weight="600" fill="#1a202c">反事实＋样本量门槛</text>
+    <line x1="10" y1="558" x2="1310" y2="558" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="10" y="576" font-size="12" font-weight="600" fill="#1a202c">关联图例</text>
+    <text x="86" y="576" font-size="12" fill="#4a5568">① 影子论给出因果方向：赚钱效应→买卖点→形态，不能倒推</text>
+    <text x="86" y="598" font-size="12" fill="#4a5568">② 三个统计错觉各有对应解药——回测四闸</text>
+    <text x="86" y="620" font-size="12" fill="#4a5568">③ 押豹暴富是幸存者偏差——用运气/技能清单拆解</text>
+  </svg>
+</div><h2>L06 交易纪律知识树</h2>
+<div style="overflow-x:auto;margin:10px 0">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1320 768" role="img" aria-labelledby="l06-tree-tree-title l06-tree-tree-desc" style="min-width:1320px;width:100%;height:auto;font-family:'PingFang SC','Microsoft YaHei','Noto Sans SC',-apple-system,sans-serif">
+    <title id="l06-tree-tree-title">L06 交易纪律知识树</title>
+    <desc id="l06-tree-tree-desc">交易纪律的完整层级：定位、大亏空仓、大赚空仓、必须空仓（含卖了不追三原因）、难受传感器，含三条关联。</desc>
+    <defs>
+      <marker id="l06-tree-arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1 L 8 5 L 0 9 z" fill="#2b6cb0"/>
+      </marker>
+    </defs>
+    <line x1="660" y1="88" x2="660" y2="112" stroke="#4a5568" stroke-width="1"/>
+    <line x1="110" y1="112" x2="1166" y2="112" stroke="#4a5568" stroke-width="1"/>
+    <line x1="110" y1="112" x2="110" y2="140" stroke="#4a5568" stroke-width="1"/>
+    <line x1="374" y1="112" x2="374" y2="140" stroke="#4a5568" stroke-width="1"/>
+    <line x1="638" y1="112" x2="638" y2="140" stroke="#4a5568" stroke-width="1"/>
+    <line x1="902" y1="112" x2="902" y2="140" stroke="#4a5568" stroke-width="1"/>
+    <line x1="1166" y1="112" x2="1166" y2="140" stroke="#4a5568" stroke-width="1"/>
+    <line x1="28" y1="184" x2="28" y2="308" stroke="#4a5568" stroke-width="1"/>
+    <line x1="28" y1="212" x2="40" y2="212" stroke="#4a5568" stroke-width="1"/>
+    <line x1="28" y1="260" x2="40" y2="260" stroke="#4a5568" stroke-width="1"/>
+    <line x1="28" y1="308" x2="40" y2="308" stroke="#4a5568" stroke-width="1"/>
+    <line x1="292" y1="184" x2="292" y2="356" stroke="#4a5568" stroke-width="1"/>
+    <line x1="292" y1="212" x2="304" y2="212" stroke="#4a5568" stroke-width="1"/>
+    <line x1="292" y1="260" x2="304" y2="260" stroke="#4a5568" stroke-width="1"/>
+    <line x1="292" y1="308" x2="304" y2="308" stroke="#4a5568" stroke-width="1"/>
+    <line x1="292" y1="356" x2="304" y2="356" stroke="#4a5568" stroke-width="1"/>
+    <line x1="556" y1="184" x2="556" y2="356" stroke="#4a5568" stroke-width="1"/>
+    <line x1="556" y1="212" x2="568" y2="212" stroke="#4a5568" stroke-width="1"/>
+    <line x1="556" y1="260" x2="568" y2="260" stroke="#4a5568" stroke-width="1"/>
+    <line x1="556" y1="308" x2="568" y2="308" stroke="#4a5568" stroke-width="1"/>
+    <line x1="556" y1="356" x2="568" y2="356" stroke="#4a5568" stroke-width="1"/>
+    <line x1="844" y1="280" x2="844" y2="404" stroke="#4a5568" stroke-width="1"/>
+    <line x1="844" y1="308" x2="856" y2="308" stroke="#4a5568" stroke-width="1"/>
+    <line x1="844" y1="356" x2="856" y2="356" stroke="#4a5568" stroke-width="1"/>
+    <line x1="844" y1="404" x2="856" y2="404" stroke="#4a5568" stroke-width="1"/>
+    <line x1="820" y1="184" x2="820" y2="452" stroke="#4a5568" stroke-width="1"/>
+    <line x1="820" y1="212" x2="832" y2="212" stroke="#4a5568" stroke-width="1"/>
+    <line x1="820" y1="260" x2="832" y2="260" stroke="#4a5568" stroke-width="1"/>
+    <line x1="820" y1="452" x2="832" y2="452" stroke="#4a5568" stroke-width="1"/>
+    <line x1="1084" y1="184" x2="1084" y2="308" stroke="#4a5568" stroke-width="1"/>
+    <line x1="1084" y1="212" x2="1096" y2="212" stroke="#4a5568" stroke-width="1"/>
+    <line x1="1084" y1="260" x2="1096" y2="260" stroke="#4a5568" stroke-width="1"/>
+    <line x1="1084" y1="308" x2="1096" y2="308" stroke="#4a5568" stroke-width="1"/>
+    <path d="M 374 376 V 516 Q 374 524 382 524 H 630 Q 638 524 638 516 V 370" fill="none" stroke="#2b6cb0" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#l06-tree-arr)"/>
+    <rect x="467" y="494" width="77" height="24" rx="4" fill="#f7fafc"/>
+    <text x="506" y="512" text-anchor="middle" font-size="12" font-weight="500" fill="#2b6cb0">① 两头各堵</text>
+    <path d="M 902 472 V 556 Q 902 564 894 564 H 104 Q 96 564 96 556 V 322" fill="none" stroke="#2b6cb0" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#l06-tree-arr)"/>
+    <rect x="456" y="534" width="87" height="24" rx="4" fill="#f7fafc"/>
+    <text x="499" y="552" text-anchor="middle" font-size="12" font-weight="500" fill="#2b6cb0">② T+1压赌性</text>
+    <path d="M 1166 328 V 596 Q 1166 604 1158 604 H 132 Q 124 604 124 596 V 322" fill="none" stroke="#2b6cb0" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#l06-tree-arr)"/>
+    <rect x="606" y="574" width="77" height="24" rx="4" fill="#f7fafc"/>
+    <text x="645" y="592" text-anchor="middle" font-size="12" font-weight="500" fill="#2b6cb0">③ 先行后知</text>
+    <rect x="540" y="20" width="240" height="68" rx="6" fill="rgba(192,86,33,0.08)" stroke="#c05621" stroke-width="1.2"/>
+    <text x="554" y="46" font-size="15" font-weight="600" fill="#1a202c">L06 交易纪律</text>
+    <text x="554" y="68" font-size="12" fill="#4a5568">先行后知，先像后是</text>
+    <rect x="16" y="140" width="188" height="44" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1.2"/>
+    <text x="28" y="168" font-size="13" font-weight="600" fill="#1a202c">定位</text>
+    <rect x="40" y="192" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="52" y="217" font-size="12" font-weight="600" fill="#1a202c">小钱实盘，压赌性</text>
+    <rect x="40" y="240" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="52" y="265" font-size="12" font-weight="600" fill="#1a202c">保本金第一（接L01）</text>
+    <rect x="40" y="288" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="52" y="313" font-size="12" font-weight="600" fill="#1a202c">先执行，后理解</text>
+    <rect x="280" y="140" width="188" height="44" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1.2"/>
+    <text x="292" y="168" font-size="13" font-weight="600" fill="#1a202c">大亏空仓</text>
+    <rect x="304" y="192" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="316" y="217" font-size="12" font-weight="600" fill="#1a202c">超预期亏损才触发</text>
+    <rect x="304" y="240" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="316" y="265" font-size="12" font-weight="600" fill="#1a202c">模式内亏损＝门票</text>
+    <rect x="304" y="288" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="316" y="313" font-size="12" font-weight="600" fill="#1a202c">解除＝搞明白，非天数</text>
+    <rect x="304" y="336" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="316" y="361" font-size="12" font-weight="600" fill="#1a202c">≠止损 单笔vs模式级</text>
+    <rect x="544" y="140" width="188" height="44" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1.2"/>
+    <text x="556" y="168" font-size="13" font-weight="600" fill="#1a202c">大赚空仓</text>
+    <rect x="568" y="192" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="580" y="217" font-size="12" font-weight="600" fill="#1a202c">意外之财＝超预期信号</text>
+    <rect x="568" y="240" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="580" y="265" font-size="12" font-weight="600" fill="#1a202c">超额效应→避盈亏同源</text>
+    <rect x="568" y="288" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="580" y="313" font-size="12" font-weight="600" fill="#1a202c">账户级四五十点也触发</text>
+    <rect x="568" y="336" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="580" y="361" font-size="12" font-weight="600" fill="#1a202c">空仓时长按同源周期</text>
+    <rect x="808" y="140" width="188" height="44" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1.2"/>
+    <text x="820" y="168" font-size="13" font-weight="600" fill="#1a202c">必须空仓</text>
+    <rect x="832" y="192" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="844" y="217" font-size="12" font-weight="600" fill="#1a202c">T+1 卖的当天不买</text>
+    <rect x="832" y="240" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="844" y="265" font-size="12" font-weight="600" fill="#1a202c">卖了不追</text>
+    <rect x="856" y="288" width="188" height="40" rx="6" fill="#f7fafc" stroke="#cbd5e0" stroke-width="0.8"/>
+    <text x="868" y="313" font-size="12" fill="#4a5568">硬板悖论</text>
+    <rect x="856" y="336" width="188" height="40" rx="6" fill="#f7fafc" stroke="#cbd5e0" stroke-width="0.8"/>
+    <text x="868" y="361" font-size="12" fill="#4a5568">弃先手优势</text>
+    <rect x="856" y="384" width="188" height="40" rx="6" fill="#f7fafc" stroke="#cbd5e0" stroke-width="0.8"/>
+    <text x="868" y="409" font-size="12" fill="#4a5568">抑赌性</text>
+    <rect x="832" y="432" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="844" y="457" font-size="12" font-weight="600" fill="#1a202c">拒绝每天满仓</text>
+    <rect x="1072" y="140" width="188" height="44" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1.2"/>
+    <text x="1084" y="168" font-size="13" font-weight="600" fill="#1a202c">难受传感器</text>
+    <rect x="1096" y="192" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="1108" y="217" font-size="12" font-weight="600" fill="#1a202c">违规即反思</text>
+    <rect x="1096" y="240" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="1108" y="265" font-size="12" font-weight="600" fill="#1a202c">先像后是（表象靠齐）</text>
+    <rect x="1096" y="288" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="1108" y="313" font-size="12" font-weight="600" fill="#1a202c">高手可拆框框（境界）</text>
+    <line x1="10" y1="654" x2="1310" y2="654" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="10" y="672" font-size="12" font-weight="600" fill="#1a202c">关联图例</text>
+    <text x="86" y="672" font-size="12" fill="#4a5568">① 大亏空仓堵连续亏损，大赚空仓堵盈亏同源——分布两端各一闸</text>
+    <text x="86" y="694" font-size="12" fill="#4a5568">② 卖了不追/T+1 既保先手优势，也把赌性压下去</text>
+    <text x="86" y="716" font-size="12" fill="#4a5568">③ 先执行后理解——规则住进身体，才长出违规难受的传感器</text>
+  </svg>
+</div><h2>L07 切换原理知识树</h2>
+<div style="overflow-x:auto;margin:10px 0">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1320 672" role="img" aria-labelledby="l07-tree-tree-title l07-tree-tree-desc" style="min-width:1320px;width:100%;height:auto;font-family:'PingFang SC','Microsoft YaHei','Noto Sans SC',-apple-system,sans-serif">
+    <title id="l07-tree-tree-title">L07 切换原理知识树</title>
+    <desc id="l07-tree-tree-desc">切换原理的完整层级：双层结构、切换地基、标的门槛、规律与K线、分类与风偏，含三条关联。</desc>
+    <defs>
+      <marker id="l07-tree-arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1 L 8 5 L 0 9 z" fill="#2b6cb0"/>
+      </marker>
+    </defs>
+    <line x1="660" y1="88" x2="660" y2="112" stroke="#4a5568" stroke-width="1"/>
+    <line x1="110" y1="112" x2="1166" y2="112" stroke="#4a5568" stroke-width="1"/>
+    <line x1="110" y1="112" x2="110" y2="140" stroke="#4a5568" stroke-width="1"/>
+    <line x1="374" y1="112" x2="374" y2="140" stroke="#4a5568" stroke-width="1"/>
+    <line x1="638" y1="112" x2="638" y2="140" stroke="#4a5568" stroke-width="1"/>
+    <line x1="902" y1="112" x2="902" y2="140" stroke="#4a5568" stroke-width="1"/>
+    <line x1="1166" y1="112" x2="1166" y2="140" stroke="#4a5568" stroke-width="1"/>
+    <line x1="28" y1="184" x2="28" y2="308" stroke="#4a5568" stroke-width="1"/>
+    <line x1="28" y1="212" x2="40" y2="212" stroke="#4a5568" stroke-width="1"/>
+    <line x1="28" y1="260" x2="40" y2="260" stroke="#4a5568" stroke-width="1"/>
+    <line x1="28" y1="308" x2="40" y2="308" stroke="#4a5568" stroke-width="1"/>
+    <line x1="292" y1="184" x2="292" y2="308" stroke="#4a5568" stroke-width="1"/>
+    <line x1="292" y1="212" x2="304" y2="212" stroke="#4a5568" stroke-width="1"/>
+    <line x1="292" y1="260" x2="304" y2="260" stroke="#4a5568" stroke-width="1"/>
+    <line x1="292" y1="308" x2="304" y2="308" stroke="#4a5568" stroke-width="1"/>
+    <line x1="556" y1="184" x2="556" y2="308" stroke="#4a5568" stroke-width="1"/>
+    <line x1="556" y1="212" x2="568" y2="212" stroke="#4a5568" stroke-width="1"/>
+    <line x1="556" y1="260" x2="568" y2="260" stroke="#4a5568" stroke-width="1"/>
+    <line x1="556" y1="308" x2="568" y2="308" stroke="#4a5568" stroke-width="1"/>
+    <line x1="820" y1="184" x2="820" y2="308" stroke="#4a5568" stroke-width="1"/>
+    <line x1="820" y1="212" x2="832" y2="212" stroke="#4a5568" stroke-width="1"/>
+    <line x1="820" y1="260" x2="832" y2="260" stroke="#4a5568" stroke-width="1"/>
+    <line x1="820" y1="308" x2="832" y2="308" stroke="#4a5568" stroke-width="1"/>
+    <line x1="1084" y1="184" x2="1084" y2="356" stroke="#4a5568" stroke-width="1"/>
+    <line x1="1084" y1="212" x2="1096" y2="212" stroke="#4a5568" stroke-width="1"/>
+    <line x1="1084" y1="260" x2="1096" y2="260" stroke="#4a5568" stroke-width="1"/>
+    <line x1="1084" y1="308" x2="1096" y2="308" stroke="#4a5568" stroke-width="1"/>
+    <line x1="1084" y1="356" x2="1096" y2="356" stroke="#4a5568" stroke-width="1"/>
+    <path d="M 360 328 V 420 Q 360 428 368 428 H 1144 Q 1152 428 1152 420 V 370" fill="none" stroke="#2b6cb0" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#l07-tree-arr)"/>
+    <rect x="711" y="398" width="89" height="24" rx="4" fill="#f7fafc"/>
+    <text x="756" y="416" text-anchor="middle" font-size="12" font-weight="500" fill="#2b6cb0">① 同源→切换</text>
+    <path d="M 638 328 V 460 Q 638 468 646 468 H 894 Q 902 468 902 460 V 322" fill="none" stroke="#2b6cb0" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#l07-tree-arr)"/>
+    <rect x="716" y="438" width="108" height="24" rx="4" fill="#f7fafc"/>
+    <text x="770" y="456" text-anchor="middle" font-size="12" font-weight="500" fill="#2b6cb0">② 本质=赚钱效应</text>
+    <path d="M 1180 376 V 500 Q 1180 508 1172 508 H 396 Q 388 508 388 500 V 322" fill="none" stroke="#2b6cb0" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#l07-tree-arr)"/>
+    <rect x="733" y="478" width="101" height="24" rx="4" fill="#f7fafc"/>
+    <text x="784" y="496" text-anchor="middle" font-size="12" font-weight="500" fill="#2b6cb0">③ 高股息可预知</text>
+    <rect x="540" y="20" width="240" height="68" rx="6" fill="rgba(192,86,33,0.08)" stroke="#c05621" stroke-width="1.2"/>
+    <text x="554" y="46" font-size="15" font-weight="600" fill="#1a202c">L07 切换原理</text>
+    <text x="554" y="68" font-size="12" fill="#4a5568">盈亏同源的横向拓展</text>
+    <rect x="16" y="140" width="188" height="44" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1.2"/>
+    <text x="28" y="168" font-size="13" font-weight="600" fill="#1a202c">双层结构</text>
+    <rect x="40" y="192" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="52" y="217" font-size="12" font-weight="600" fill="#1a202c">水经与水经注</text>
+    <rect x="40" y="240" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="52" y="265" font-size="12" font-weight="600" fill="#1a202c">回看旧认知＝高阶复盘</text>
+    <rect x="40" y="288" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="52" y="313" font-size="12" font-weight="600" fill="#1a202c">认知成长的可视化</text>
+    <rect x="280" y="140" width="188" height="44" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1.2"/>
+    <text x="292" y="168" font-size="13" font-weight="600" fill="#1a202c">切换地基</text>
+    <rect x="304" y="192" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="316" y="217" font-size="12" font-weight="600" fill="#1a202c">标的不只有股票</text>
+    <rect x="304" y="240" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="316" y="265" font-size="12" font-weight="600" fill="#1a202c">全市场同亏＝错杀＝机会</text>
+    <rect x="304" y="288" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="316" y="313" font-size="12" font-weight="600" fill="#1a202c">期货多空总有方向</text>
+    <rect x="544" y="140" width="188" height="44" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1.2"/>
+    <text x="556" y="168" font-size="13" font-weight="600" fill="#1a202c">标的门槛</text>
+    <rect x="568" y="192" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="580" y="217" font-size="12" font-weight="600" fill="#1a202c">涨的逻辑＋跌的逻辑</text>
+    <rect x="568" y="240" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="580" y="265" font-size="12" font-weight="600" fill="#1a202c">逻辑不依附资金意愿</text>
+    <rect x="568" y="288" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="580" y="313" font-size="12" font-weight="600" fill="#1a202c">模式内＝能做的标的</text>
+    <rect x="808" y="140" width="188" height="44" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1.2"/>
+    <text x="820" y="168" font-size="13" font-weight="600" fill="#1a202c">规律与K线</text>
+    <rect x="832" y="192" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="844" y="217" font-size="12" font-weight="600" fill="#1a202c">同一条件会再现</text>
+    <rect x="832" y="240" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="844" y="265" font-size="12" font-weight="600" fill="#1a202c">K线理论逻辑太单一</text>
+    <rect x="832" y="288" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="844" y="313" font-size="12" font-weight="600" fill="#1a202c">本质＝赚钱效应</text>
+    <rect x="1072" y="140" width="188" height="44" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1.2"/>
+    <text x="1084" y="168" font-size="13" font-weight="600" fill="#1a202c">分类与风偏</text>
+    <rect x="1096" y="192" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="1108" y="217" font-size="12" font-weight="600" fill="#1a202c">人为定义≠客观存在</text>
+    <rect x="1096" y="240" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="1108" y="265" font-size="12" font-weight="600" fill="#1a202c">风偏高→高波动</text>
+    <rect x="1096" y="288" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="1108" y="313" font-size="12" font-weight="600" fill="#1a202c">风偏低→高股息</text>
+    <rect x="1096" y="336" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="1108" y="361" font-size="12" font-weight="600" fill="#1a202c">反目光：看少数人</text>
+    <line x1="10" y1="558" x2="1310" y2="558" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="10" y="576" font-size="12" font-weight="600" fill="#1a202c">关联图例</text>
+    <text x="86" y="576" font-size="12" fill="#4a5568">① 不同标的的盈亏错位＝切换的空间——盈亏同源的横向拓展</text>
+    <text x="86" y="598" font-size="12" fill="#4a5568">② 标的门槛（涨/跌逻辑）落在赚钱效应层，不在图形层</text>
+    <text x="86" y="620" font-size="12" fill="#4a5568">③ 高股息案例：持续不亏钱→盈亏同源预演，未来必有不赚钱一段</text>
+  </svg>
+</div><h2>L08 交易成长知识树</h2>
+<div style="overflow-x:auto;margin:10px 0">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1320 624" role="img" aria-labelledby="l08-tree-tree-title l08-tree-tree-desc" style="min-width:1320px;width:100%;height:auto;font-family:'PingFang SC','Microsoft YaHei','Noto Sans SC',-apple-system,sans-serif">
+    <title id="l08-tree-tree-title">L08 交易成长知识树</title>
+    <desc id="l08-tree-tree-desc">交易成长的完整层级：定义、认知机制、心态通道、正负循环、与全课拼接，含三条关联。</desc>
+    <defs>
+      <marker id="l08-tree-arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1 L 8 5 L 0 9 z" fill="#2b6cb0"/>
+      </marker>
+    </defs>
+    <line x1="660" y1="88" x2="660" y2="112" stroke="#4a5568" stroke-width="1"/>
+    <line x1="110" y1="112" x2="1166" y2="112" stroke="#4a5568" stroke-width="1"/>
+    <line x1="110" y1="112" x2="110" y2="140" stroke="#4a5568" stroke-width="1"/>
+    <line x1="374" y1="112" x2="374" y2="140" stroke="#4a5568" stroke-width="1"/>
+    <line x1="638" y1="112" x2="638" y2="140" stroke="#4a5568" stroke-width="1"/>
+    <line x1="902" y1="112" x2="902" y2="140" stroke="#4a5568" stroke-width="1"/>
+    <line x1="1166" y1="112" x2="1166" y2="140" stroke="#4a5568" stroke-width="1"/>
+    <line x1="28" y1="184" x2="28" y2="260" stroke="#4a5568" stroke-width="1"/>
+    <line x1="28" y1="212" x2="40" y2="212" stroke="#4a5568" stroke-width="1"/>
+    <line x1="28" y1="260" x2="40" y2="260" stroke="#4a5568" stroke-width="1"/>
+    <line x1="292" y1="184" x2="292" y2="308" stroke="#4a5568" stroke-width="1"/>
+    <line x1="292" y1="212" x2="304" y2="212" stroke="#4a5568" stroke-width="1"/>
+    <line x1="292" y1="260" x2="304" y2="260" stroke="#4a5568" stroke-width="1"/>
+    <line x1="292" y1="308" x2="304" y2="308" stroke="#4a5568" stroke-width="1"/>
+    <line x1="556" y1="184" x2="556" y2="260" stroke="#4a5568" stroke-width="1"/>
+    <line x1="556" y1="212" x2="568" y2="212" stroke="#4a5568" stroke-width="1"/>
+    <line x1="556" y1="260" x2="568" y2="260" stroke="#4a5568" stroke-width="1"/>
+    <line x1="820" y1="184" x2="820" y2="260" stroke="#4a5568" stroke-width="1"/>
+    <line x1="820" y1="212" x2="832" y2="212" stroke="#4a5568" stroke-width="1"/>
+    <line x1="820" y1="260" x2="832" y2="260" stroke="#4a5568" stroke-width="1"/>
+    <line x1="1084" y1="184" x2="1084" y2="308" stroke="#4a5568" stroke-width="1"/>
+    <line x1="1084" y1="212" x2="1096" y2="212" stroke="#4a5568" stroke-width="1"/>
+    <line x1="1084" y1="260" x2="1096" y2="260" stroke="#4a5568" stroke-width="1"/>
+    <line x1="1084" y1="308" x2="1096" y2="308" stroke="#4a5568" stroke-width="1"/>
+    <path d="M 96 280 V 372 Q 96 380 104 380 H 366 Q 374 380 374 372 V 322" fill="none" stroke="#2b6cb0" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#l08-tree-arr)"/>
+    <rect x="184" y="350" width="101" height="24" rx="4" fill="#f7fafc"/>
+    <text x="235" y="368" text-anchor="middle" font-size="12" font-weight="500" fill="#2b6cb0">① 可归因才成长</text>
+    <path d="M 638 280 V 412 Q 638 420 646 420 H 894 Q 902 420 902 412 V 274" fill="none" stroke="#2b6cb0" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#l08-tree-arr)"/>
+    <rect x="719" y="390" width="101" height="24" rx="4" fill="#f7fafc"/>
+    <text x="770" y="408" text-anchor="middle" font-size="12" font-weight="500" fill="#2b6cb0">② 心态驱动循环</text>
+    <path d="M 1166 328 V 452 Q 1166 460 1158 460 H 132 Q 124 460 124 452 V 274" fill="none" stroke="#2b6cb0" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#l08-tree-arr)"/>
+    <rect x="600" y="430" width="89" height="24" rx="4" fill="#f7fafc"/>
+    <text x="645" y="448" text-anchor="middle" font-size="12" font-weight="500" fill="#2b6cb0">③ 模式是前提</text>
+    <rect x="540" y="20" width="240" height="68" rx="6" fill="rgba(192,86,33,0.08)" stroke="#c05621" stroke-width="1.2"/>
+    <text x="554" y="46" font-size="15" font-weight="600" fill="#1a202c">L08 交易成长</text>
+    <text x="554" y="68" font-size="12" fill="#4a5568">模式内执行</text>
+    <rect x="16" y="140" width="188" height="44" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1.2"/>
+    <text x="28" y="168" font-size="13" font-weight="600" fill="#1a202c">定义</text>
+    <rect x="40" y="192" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="52" y="217" font-size="12" font-weight="600" fill="#1a202c">模式内执行三要件</text>
+    <rect x="40" y="240" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="52" y="265" font-size="12" font-weight="600" fill="#1a202c">反面＝随手单</text>
+    <rect x="280" y="140" width="188" height="44" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1.2"/>
+    <text x="292" y="168" font-size="13" font-weight="600" fill="#1a202c">认知机制</text>
+    <rect x="304" y="192" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="316" y="217" font-size="12" font-weight="600" fill="#1a202c">盈亏可归因 vs 噪声</text>
+    <rect x="304" y="240" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="316" y="265" font-size="12" font-weight="600" fill="#1a202c">复盘失败模式＝认知+</text>
+    <rect x="304" y="288" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="316" y="313" font-size="12" font-weight="600" fill="#1a202c">复盘随手单＝认知−</text>
+    <rect x="544" y="140" width="188" height="44" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1.2"/>
+    <text x="556" y="168" font-size="13" font-weight="600" fill="#1a202c">心态通道</text>
+    <rect x="568" y="192" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="580" y="217" font-size="12" font-weight="600" fill="#1a202c">随手单盈亏冲心态</text>
+    <rect x="568" y="240" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="580" y="265" font-size="12" font-weight="600" fill="#1a202c">复盘噪声＝拟合噪声</text>
+    <rect x="808" y="140" width="188" height="44" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1.2"/>
+    <text x="820" y="168" font-size="13" font-weight="600" fill="#1a202c">正负循环</text>
+    <rect x="832" y="192" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="844" y="217" font-size="12" font-weight="600" fill="#1a202c">认知→模式→执行 复利</text>
+    <rect x="832" y="240" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="844" y="265" font-size="12" font-weight="600" fill="#1a202c">随手→心态损→更随手</text>
+    <rect x="1072" y="140" width="188" height="44" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1.2"/>
+    <text x="1084" y="168" font-size="13" font-weight="600" fill="#1a202c">与全课拼接</text>
+    <rect x="1096" y="192" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="1108" y="217" font-size="12" font-weight="600" fill="#1a202c">前提＝先有模式（L03）</text>
+    <rect x="1096" y="240" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="1108" y="265" font-size="12" font-weight="600" fill="#1a202c">复盘看分布（L02）</text>
+    <rect x="1096" y="288" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="1108" y="313" font-size="12" font-weight="600" fill="#1a202c">压制随手单（L06/L10）</text>
+    <line x1="10" y1="510" x2="1310" y2="510" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="10" y="528" font-size="12" font-weight="600" fill="#1a202c">关联图例</text>
+    <text x="86" y="528" font-size="12" fill="#4a5568">① 模式内执行的盈亏可归因——复盘才能升级逻辑链条</text>
+    <text x="86" y="550" font-size="12" fill="#4a5568">② 随手单的盈亏冲击心态且不可归因——喂坏两个循环</text>
+    <text x="86" y="572" font-size="12" fill="#4a5568">③ 成长的起点是先有一个三检验通过的模式</text>
+  </svg>
+</div><h2>L09 实操学习知识树</h2>
+<div style="overflow-x:auto;margin:10px 0">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1320 672" role="img" aria-labelledby="l09-tree-tree-title l09-tree-tree-desc" style="min-width:1320px;width:100%;height:auto;font-family:'PingFang SC','Microsoft YaHei','Noto Sans SC',-apple-system,sans-serif">
+    <title id="l09-tree-tree-title">L09 实操学习知识树</title>
+    <desc id="l09-tree-tree-desc">实操学习的完整层级：三条路、模拟盘四宗罪、小钱定义、学费论、怎么练，含三条关联。</desc>
+    <defs>
+      <marker id="l09-tree-arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1 L 8 5 L 0 9 z" fill="#2b6cb0"/>
+      </marker>
+    </defs>
+    <line x1="660" y1="88" x2="660" y2="112" stroke="#4a5568" stroke-width="1"/>
+    <line x1="110" y1="112" x2="1166" y2="112" stroke="#4a5568" stroke-width="1"/>
+    <line x1="110" y1="112" x2="110" y2="140" stroke="#4a5568" stroke-width="1"/>
+    <line x1="374" y1="112" x2="374" y2="140" stroke="#4a5568" stroke-width="1"/>
+    <line x1="638" y1="112" x2="638" y2="140" stroke="#4a5568" stroke-width="1"/>
+    <line x1="902" y1="112" x2="902" y2="140" stroke="#4a5568" stroke-width="1"/>
+    <line x1="1166" y1="112" x2="1166" y2="140" stroke="#4a5568" stroke-width="1"/>
+    <line x1="28" y1="184" x2="28" y2="260" stroke="#4a5568" stroke-width="1"/>
+    <line x1="28" y1="212" x2="40" y2="212" stroke="#4a5568" stroke-width="1"/>
+    <line x1="28" y1="260" x2="40" y2="260" stroke="#4a5568" stroke-width="1"/>
+    <line x1="292" y1="184" x2="292" y2="356" stroke="#4a5568" stroke-width="1"/>
+    <line x1="292" y1="212" x2="304" y2="212" stroke="#4a5568" stroke-width="1"/>
+    <line x1="292" y1="260" x2="304" y2="260" stroke="#4a5568" stroke-width="1"/>
+    <line x1="292" y1="308" x2="304" y2="308" stroke="#4a5568" stroke-width="1"/>
+    <line x1="292" y1="356" x2="304" y2="356" stroke="#4a5568" stroke-width="1"/>
+    <line x1="556" y1="184" x2="556" y2="308" stroke="#4a5568" stroke-width="1"/>
+    <line x1="556" y1="212" x2="568" y2="212" stroke="#4a5568" stroke-width="1"/>
+    <line x1="556" y1="260" x2="568" y2="260" stroke="#4a5568" stroke-width="1"/>
+    <line x1="556" y1="308" x2="568" y2="308" stroke="#4a5568" stroke-width="1"/>
+    <line x1="820" y1="184" x2="820" y2="308" stroke="#4a5568" stroke-width="1"/>
+    <line x1="820" y1="212" x2="832" y2="212" stroke="#4a5568" stroke-width="1"/>
+    <line x1="820" y1="260" x2="832" y2="260" stroke="#4a5568" stroke-width="1"/>
+    <line x1="820" y1="308" x2="832" y2="308" stroke="#4a5568" stroke-width="1"/>
+    <line x1="1084" y1="184" x2="1084" y2="308" stroke="#4a5568" stroke-width="1"/>
+    <line x1="1084" y1="212" x2="1096" y2="212" stroke="#4a5568" stroke-width="1"/>
+    <line x1="1084" y1="260" x2="1096" y2="260" stroke="#4a5568" stroke-width="1"/>
+    <line x1="1084" y1="308" x2="1096" y2="308" stroke="#4a5568" stroke-width="1"/>
+    <path d="M 374 376 V 420 Q 374 428 382 428 H 616 Q 624 428 624 420 V 322" fill="none" stroke="#2b6cb0" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#l09-tree-arr)"/>
+    <rect x="442" y="398" width="113" height="24" rx="4" fill="#f7fafc"/>
+    <text x="499" y="416" text-anchor="middle" font-size="12" font-weight="500" fill="#2b6cb0">① 绕人性→要真实</text>
+    <path d="M 902 328 V 460 Q 902 468 894 468 H 118 Q 110 468 110 460 V 274" fill="none" stroke="#2b6cb0" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#l09-tree-arr)"/>
+    <rect x="455" y="438" width="101" height="24" rx="4" fill="#f7fafc"/>
+    <text x="506" y="456" text-anchor="middle" font-size="12" font-weight="500" fill="#2b6cb0">② 学费成本对比</text>
+    <path d="M 1166 328 V 500 Q 1166 508 1158 508 H 660 Q 652 508 652 500 V 322" fill="none" stroke="#2b6cb0" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#l09-tree-arr)"/>
+    <rect x="858" y="478" width="101" height="24" rx="4" fill="#f7fafc"/>
+    <text x="909" y="496" text-anchor="middle" font-size="12" font-weight="500" fill="#2b6cb0">③ 样本要可归因</text>
+    <rect x="540" y="20" width="240" height="68" rx="6" fill="rgba(192,86,33,0.08)" stroke="#c05621" stroke-width="1.2"/>
+    <text x="554" y="46" font-size="15" font-weight="600" fill="#1a202c">L09 实操学习</text>
+    <text x="554" y="68" font-size="12" fill="#4a5568">小钱实盘</text>
+    <rect x="16" y="140" width="188" height="44" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1.2"/>
+    <text x="28" y="168" font-size="13" font-weight="600" fill="#1a202c">三条路</text>
+    <rect x="40" y="192" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="52" y="217" font-size="12" font-weight="600" fill="#1a202c">模拟盘/小钱/大钱</text>
+    <rect x="40" y="240" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="52" y="265" font-size="12" font-weight="600" fill="#1a202c">验证模式＋新手感悟</text>
+    <rect x="280" y="140" width="188" height="44" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1.2"/>
+    <text x="292" y="168" font-size="13" font-weight="600" fill="#1a202c">模拟盘四宗罪</text>
+    <rect x="304" y="192" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="316" y="217" font-size="12" font-weight="600" fill="#1a202c">绕过了人性本身</text>
+    <rect x="304" y="240" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="316" y="265" font-size="12" font-weight="600" fill="#1a202c">冲击成本·吃单挂单</text>
+    <rect x="304" y="288" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="316" y="313" font-size="12" font-weight="600" fill="#1a202c">不客观</text>
+    <rect x="304" y="336" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="316" y="361" font-size="12" font-weight="600" fill="#1a202c">不能提升认知</text>
+    <rect x="544" y="140" width="188" height="44" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1.2"/>
+    <text x="556" y="168" font-size="13" font-weight="600" fill="#1a202c">小钱定义</text>
+    <rect x="568" y="192" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="580" y="217" font-size="12" font-weight="600" fill="#1a202c">不影响生活和心情</text>
+    <rect x="568" y="240" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="580" y="265" font-size="12" font-weight="600" fill="#1a202c">月5–10%学费预算</text>
+    <rect x="568" y="288" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="580" y="313" font-size="12" font-weight="600" fill="#1a202c">亏完不心疼</text>
+    <rect x="808" y="140" width="188" height="44" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1.2"/>
+    <text x="820" y="168" font-size="13" font-weight="600" fill="#1a202c">学费论</text>
+    <rect x="832" y="192" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="844" y="217" font-size="12" font-weight="600" fill="#1a202c">必须交的学费别省</text>
+    <rect x="832" y="240" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="844" y="265" font-size="12" font-weight="600" fill="#1a202c">模拟→大钱实盘更贵</text>
+    <rect x="832" y="288" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="844" y="313" font-size="12" font-weight="600" fill="#1a202c">同教训成本差6倍</text>
+    <rect x="1072" y="140" width="188" height="44" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1.2"/>
+    <text x="1084" y="168" font-size="13" font-weight="600" fill="#1a202c">怎么练</text>
+    <rect x="1096" y="192" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="1108" y="217" font-size="12" font-weight="600" fill="#1a202c">小钱也要模式内执行</text>
+    <rect x="1096" y="240" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="1108" y="265" font-size="12" font-weight="600" fill="#1a202c">真实人性＋真实成本</text>
+    <rect x="1096" y="288" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="1108" y="313" font-size="12" font-weight="600" fill="#1a202c">产出可归因样本</text>
+    <line x1="10" y1="558" x2="1310" y2="558" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="10" y="576" font-size="12" font-weight="600" fill="#1a202c">关联图例</text>
+    <text x="86" y="576" font-size="12" fill="#4a5568">① 模拟盘测不出人性——小钱实盘才有真实执行力数据</text>
+    <text x="86" y="598" font-size="12" fill="#4a5568">② 同一份教训：小钱学费 vs 大钱回撤，成本差 6 倍以上</text>
+    <text x="86" y="620" font-size="12" fill="#4a5568">③ 小钱练习的价值在可归因样本（接 L08 认知机制）</text>
+  </svg>
+</div><h2>L10 避免随手单知识树</h2>
+<div style="overflow-x:auto;margin:10px 0">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1320 672" role="img" aria-labelledby="l10-tree-tree-title l10-tree-tree-desc" style="min-width:1320px;width:100%;height:auto;font-family:'PingFang SC','Microsoft YaHei','Noto Sans SC',-apple-system,sans-serif">
+    <title id="l10-tree-tree-title">L10 避免随手单知识树</title>
+    <desc id="l10-tree-tree-desc">避免随手单的完整层级：命题、机会设计、准备阶段、执行阶段、24h间隔，含三条关联。</desc>
+    <defs>
+      <marker id="l10-tree-arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1 L 8 5 L 0 9 z" fill="#2b6cb0"/>
+      </marker>
+    </defs>
+    <line x1="660" y1="88" x2="660" y2="112" stroke="#4a5568" stroke-width="1"/>
+    <line x1="110" y1="112" x2="1166" y2="112" stroke="#4a5568" stroke-width="1"/>
+    <line x1="110" y1="112" x2="110" y2="140" stroke="#4a5568" stroke-width="1"/>
+    <line x1="374" y1="112" x2="374" y2="140" stroke="#4a5568" stroke-width="1"/>
+    <line x1="638" y1="112" x2="638" y2="140" stroke="#4a5568" stroke-width="1"/>
+    <line x1="902" y1="112" x2="902" y2="140" stroke="#4a5568" stroke-width="1"/>
+    <line x1="1166" y1="112" x2="1166" y2="140" stroke="#4a5568" stroke-width="1"/>
+    <line x1="28" y1="184" x2="28" y2="308" stroke="#4a5568" stroke-width="1"/>
+    <line x1="28" y1="212" x2="40" y2="212" stroke="#4a5568" stroke-width="1"/>
+    <line x1="28" y1="260" x2="40" y2="260" stroke="#4a5568" stroke-width="1"/>
+    <line x1="28" y1="308" x2="40" y2="308" stroke="#4a5568" stroke-width="1"/>
+    <line x1="292" y1="184" x2="292" y2="308" stroke="#4a5568" stroke-width="1"/>
+    <line x1="292" y1="212" x2="304" y2="212" stroke="#4a5568" stroke-width="1"/>
+    <line x1="292" y1="260" x2="304" y2="260" stroke="#4a5568" stroke-width="1"/>
+    <line x1="292" y1="308" x2="304" y2="308" stroke="#4a5568" stroke-width="1"/>
+    <line x1="556" y1="184" x2="556" y2="356" stroke="#4a5568" stroke-width="1"/>
+    <line x1="556" y1="212" x2="568" y2="212" stroke="#4a5568" stroke-width="1"/>
+    <line x1="556" y1="260" x2="568" y2="260" stroke="#4a5568" stroke-width="1"/>
+    <line x1="556" y1="308" x2="568" y2="308" stroke="#4a5568" stroke-width="1"/>
+    <line x1="556" y1="356" x2="568" y2="356" stroke="#4a5568" stroke-width="1"/>
+    <line x1="820" y1="184" x2="820" y2="308" stroke="#4a5568" stroke-width="1"/>
+    <line x1="820" y1="212" x2="832" y2="212" stroke="#4a5568" stroke-width="1"/>
+    <line x1="820" y1="260" x2="832" y2="260" stroke="#4a5568" stroke-width="1"/>
+    <line x1="820" y1="308" x2="832" y2="308" stroke="#4a5568" stroke-width="1"/>
+    <line x1="1084" y1="184" x2="1084" y2="308" stroke="#4a5568" stroke-width="1"/>
+    <line x1="1084" y1="212" x2="1096" y2="212" stroke="#4a5568" stroke-width="1"/>
+    <line x1="1084" y1="260" x2="1096" y2="260" stroke="#4a5568" stroke-width="1"/>
+    <line x1="1084" y1="308" x2="1096" y2="308" stroke="#4a5568" stroke-width="1"/>
+    <path d="M 110 328 V 420 Q 110 428 118 428 H 352 Q 360 428 360 420 V 322" fill="none" stroke="#2b6cb0" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#l10-tree-arr)"/>
+    <rect x="184" y="398" width="101" height="24" rx="4" fill="#f7fafc"/>
+    <text x="235" y="416" text-anchor="middle" font-size="12" font-weight="500" fill="#2b6cb0">① 制度替意志力</text>
+    <path d="M 638 376 V 460 Q 638 468 646 468 H 894 Q 902 468 902 460 V 322" fill="none" stroke="#2b6cb0" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#l10-tree-arr)"/>
+    <rect x="719" y="438" width="101" height="24" rx="4" fill="#f7fafc"/>
+    <text x="770" y="456" text-anchor="middle" font-size="12" font-weight="500" fill="#2b6cb0">② 预期全在盘后</text>
+    <path d="M 1166 328 V 500 Q 1166 508 1158 508 H 396 Q 388 508 388 500 V 322" fill="none" stroke="#2b6cb0" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#l10-tree-arr)"/>
+    <rect x="726" y="478" width="101" height="24" rx="4" fill="#f7fafc"/>
+    <text x="777" y="496" text-anchor="middle" font-size="12" font-weight="500" fill="#2b6cb0">③ 冷却决策本身</text>
+    <rect x="540" y="20" width="240" height="68" rx="6" fill="rgba(192,86,33,0.08)" stroke="#c05621" stroke-width="1.2"/>
+    <text x="554" y="46" font-size="15" font-weight="600" fill="#1a202c">L10 避免随手单</text>
+    <text x="554" y="68" font-size="12" fill="#4a5568">不要考验人性</text>
+    <rect x="16" y="140" width="188" height="44" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1.2"/>
+    <text x="28" y="168" font-size="13" font-weight="600" fill="#1a202c">命题</text>
+    <rect x="40" y="192" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="52" y="217" font-size="12" font-weight="600" fill="#1a202c">考验的是自己</text>
+    <rect x="40" y="240" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="52" y="265" font-size="12" font-weight="600" fill="#1a202c">人性经不住考验</text>
+    <rect x="40" y="288" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="52" y="313" font-size="12" font-weight="600" fill="#1a202c">不给机会＞意志力</text>
+    <rect x="280" y="140" width="188" height="44" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1.2"/>
+    <text x="292" y="168" font-size="13" font-weight="600" fill="#1a202c">机会设计</text>
+    <rect x="304" y="192" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="316" y="217" font-size="12" font-weight="600" fill="#1a202c">热状态→冷状态</text>
+    <rect x="304" y="240" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="316" y="265" font-size="12" font-weight="600" fill="#1a202c">预先承诺 Ulysses</text>
+    <rect x="304" y="288" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="316" y="313" font-size="12" font-weight="600" fill="#1a202c">不买零食进家</text>
+    <rect x="544" y="140" width="188" height="44" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1.2"/>
+    <text x="556" y="168" font-size="13" font-weight="600" fill="#1a202c">准备阶段</text>
+    <rect x="568" y="192" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="580" y="217" font-size="12" font-weight="600" fill="#1a202c">做预期</text>
+    <rect x="568" y="240" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="580" y="265" font-size="12" font-weight="600" fill="#1a202c">找赚钱效应</text>
+    <rect x="568" y="288" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="580" y="313" font-size="12" font-weight="600" fill="#1a202c">定模式写计划</text>
+    <rect x="568" y="336" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="580" y="361" font-size="12" font-weight="600" fill="#1a202c">此处要有主观</text>
+    <rect x="808" y="140" width="188" height="44" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1.2"/>
+    <text x="820" y="168" font-size="13" font-weight="600" fill="#1a202c">执行阶段</text>
+    <rect x="832" y="192" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="844" y="217" font-size="12" font-weight="600" fill="#1a202c">零主观·客观执行</text>
+    <rect x="832" y="240" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="844" y="265" font-size="12" font-weight="600" fill="#1a202c">只执行计划单</text>
+    <rect x="832" y="288" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="844" y="313" font-size="12" font-weight="600" fill="#1a202c">止损触发＝客观</text>
+    <rect x="1072" y="140" width="188" height="44" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1.2"/>
+    <text x="1084" y="168" font-size="13" font-weight="600" fill="#1a202c">24h间隔</text>
+    <rect x="1096" y="192" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="1108" y="217" font-size="12" font-weight="600" fill="#1a202c">准备→执行≥一天</text>
+    <rect x="1096" y="240" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="1108" y="265" font-size="12" font-weight="600" fill="#1a202c">卖了不买（L06）</text>
+    <rect x="1096" y="288" width="188" height="40" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="1108" y="313" font-size="12" font-weight="600" fill="#1a202c">冲动半衰期短</text>
+    <line x1="10" y1="558" x2="1310" y2="558" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="10" y="576" font-size="12" font-weight="600" fill="#1a202c">关联图例</text>
+    <text x="86" y="576" font-size="12" fill="#4a5568">① 不考验人性的办法是不给机会——用制度不用意志力</text>
+    <text x="86" y="598" font-size="12" fill="#4a5568">② 所有主观判断搬进准备阶段（冷状态），执行阶段零主观</text>
+    <text x="86" y="620" font-size="12" fill="#4a5568">③ 24 小时冷却的不是亏损，是决策本身（接 L06 大亏空仓是另一条）</text>
+  </svg>
+</div>
+</div>
+</body>
+</html>

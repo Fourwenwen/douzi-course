@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>L02 盈亏同源</title>
+
+<style>
+.nav{position:sticky;top:0;z-index:50;background:#1a202c;padding:8px 14px;display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif}
+.nav a{color:#e2e8f0;text-decoration:none;font-size:13px;padding:3px 10px;border-radius:999px;background:#2d3748}
+.nav a:hover{background:#4a5568}
+.nav a.cur{background:#c05621;color:#fff;font-weight:600}
+.nav a.home{background:#2b6cb0}
+.nav .sp{color:#718096;font-size:12px;margin:0 4px}
+</style>
+</head>
+<body style="margin:0;background:#f7fafc">
+<nav class="nav"><a class="home" href="index.html">目录主页</a><a class="" href="lesson-01.html">L01 本金保护</a><a class="cur" href="lesson-02.html">L02 盈亏同源</a><a class="" href="lesson-03.html">L03 交易模式</a><a class="" href="lesson-04.html">L04 看什么</a><a class="" href="lesson-05.html">L05 技术分析</a><a class="" href="lesson-06.html">L06 交易纪律</a><a class="" href="lesson-07.html">L07 切换原理</a><a class="" href="lesson-08.html">L08 成长</a><a class="" href="lesson-09.html">L09 实操学习</a><a class="" href="lesson-10.html">L10 随手单</a><span class="sp">点击跳转复看</span></nav>
+<style>
+  :root{--ink:#1a202c;--sub:#4a5568;--line:#e2e8f0;--bg:#f7fafc;--accent:#c05621;--accent2:#2b6cb0;--good:#276749;--warn:#9b2c2c;--card:#fff}
+  *{box-sizing:border-box}
+  .doc{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;color:var(--ink);background:var(--bg);padding:28px 20px 60px;line-height:1.8;max-width:980px;margin:0 auto}
+  .doc h1{font-size:26px;margin:0 0 4px}
+  .doc h2{font-size:19px;margin:34px 0 10px;padding-left:10px;border-left:4px solid var(--accent)}
+  .doc h3{font-size:16px;margin:20px 0 8px;color:var(--accent2)}
+  .doc p{margin:8px 0}
+  .meta{color:var(--sub);font-size:13px;margin-bottom:16px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin:12px 0}
+  .goal{background:#fffaf0;border-color:#fbd38d}
+  .warn{background:#fff5f5;border-color:#feb2b2}
+  .good{background:#f0fff4;border-color:#9ae6b4}
+  .note{background:#ebf8ff;border-color:#90cdf4}
+  table{width:100%;border-collapse:collapse;font-size:13px;background:var(--card);border-radius:8px;overflow:hidden;margin:8px 0}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+  th{background:#edf2f7;font-weight:600}
+  td.num{white-space:nowrap;font-variant-numeric:tabular-nums;text-align:right}
+  .pos{color:var(--good);font-weight:600}.neg{color:var(--warn);font-weight:600}
+  .tag{display:inline-block;font-size:11px;padding:1px 8px;border-radius:999px;background:#edf2f7;color:var(--sub);margin-right:4px}
+  .p1{background:#feebc8;color:#7b341e}.p2{background:#bee3f8;color:#2a4365}.p3{background:#c6f6d5;color:#22543d}.p4{background:#fed7e2;color:#702459}
+  a{color:var(--accent2);text-decoration:none}a:hover{text-decoration:underline}
+  .formula{background:#1a202c;color:#f7fafc;border-radius:8px;padding:12px 16px;font-family:"SF Mono",Menlo,monospace;font-size:13px;margin:10px 0;overflow-x:auto;line-height:1.9}
+  .formula b{color:#f6ad55}
+  .q{border-left:3px solid var(--accent2);padding-left:12px;margin:12px 0}
+  .ans{color:var(--good);font-size:13px;margin-top:4px}
+  .next{margin-top:24px;padding:14px 18px;border:1px dashed var(--accent);border-radius:10px;background:#fffaf0;font-size:14px}
+  .small{font-size:12.5px;color:var(--sub)}
+  details{margin:8px 0}summary{cursor:pointer;color:var(--accent2);font-size:13.5px}
+  .cheat{columns:2;column-gap:24px}.cheat li{margin:6px 0;break-inside:avoid}
+  ul,ol{margin:6px 0 6px 20px;padding:0}li{margin:3px 0}
+  code{background:#edf2f7;border-radius:4px;padding:0 5px;font-size:12.5px}
+  .demo{background:#1a202c;border-radius:12px;padding:18px 20px;color:#f7fafc;margin:14px 0}
+  .demo h4{margin:0 0 10px;font-size:15px;color:#f6ad55}
+  .demo .row{display:flex;flex-wrap:wrap;gap:18px;align-items:center}
+  .demo label{font-size:13px}
+  .demo input[type=range]{width:240px;vertical-align:middle}
+  .demo .out{font-family:"SF Mono",Menlo,monospace;font-size:13px;line-height:2}
+  .demo .out b{color:#f6ad55}
+  .demo .bar{height:16px;border-radius:8px;background:#2d3748;overflow:hidden;margin:6px 0}
+  .demo .bar i{display:block;height:100%;border-radius:8px}
+  .flash{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:10px 0;cursor:pointer}
+  .flash .front{font-weight:600}
+  .flash .back{display:none;margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);color:var(--good)}
+  .flash.open .back{display:block}
+  .flash .hint{font-size:11.5px;color:var(--sub);float:right;font-weight:400}
+  @media(max-width:640px){.cheat{columns:1}}
+</style>
+
+<div class="doc">
+  <div class="card" style="padding:10px 14px;margin:0 0 14px">
+    <b>课程目录</b>　<span class="small">L01 本金保护 · <b>L02 盈亏同源（本课）</b> · L03 交易模式 · L04 看什么 · L05 技术分析 · L06 纪律 · L07 切换原理 · L08–L13 方法 · L14–L25 认知心智</span><br>
+    <span class="small">导航口令：「目录」看全表 ｜「下一课」推进 ｜「重讲 Lxx」换方式重讲 ｜ 直接提问＝答疑</span>
+    <span class="small">总览入口：<a href="trees.html">十课知识树</a> ｜ <a href="cases.html">十课真实案例</a>（每课正文内也有各自的知识树与真实案例）</span>
+  </div>
+
+  <h1>第二课：盈亏同源——你靠什么赚钱，就会靠什么亏钱</h1>
+  <div class="meta">《豆子悟道 · 股票系统学习课》L02 ｜ 模块一 悟道·地基 ｜ 源自原视频《悟道系列——本质的道理，讲讲盈亏同源》（17:31，<a href="https://www.bilibili.com/video/BV1NgATecEDs">BV1NgATecEDs</a>）｜ <b>本讲义是消化后的讲解</b>：视频全部要点已重组融入正文，配上我的理解与例子，不需要看视频 ｜ 2026-10-27</div>
+
+  <div class="card goal">
+    <b>这节课讲什么</b>
+    <p style="margin:6px 0 0">一句话：<b>你靠什么赚钱，就会靠什么亏钱</b>。赚与亏是同一个源的两面，想单独消灭亏损，会连利润一起消灭。</p>
+    <p style="margin:6px 0 0">豆子把这条规律称为「绝对的道理」——不是股市技巧，而是任何市场、任何模式、现实社会都成立的结构性事实。它是后面几课的地基：L03 交易模式回答"选哪种同源亏损"，L06 纪律和 L07 切换都长在它上面。</p>
+    <p style="margin:6px 0 0">下面八节把它讲透：先立命题，然后六层例子递进（新股→模式→永远涨→窗口→行情→踏空），落到自查三问；再用<b>七个模式的数值模拟</b>让你亲手看见"同源"的形状。</p>
+  </div>
+
+  <h2><span class="tag p4">图</span>本课知识树（思维导图）</h2>
+  <p class="small">从左向右生长：根＝本课主张，一级分支＝主题，向右展开概念；右上角编号＝关联（见图例）。</p>
+  <div style="overflow-x:auto;margin:10px 0">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1000" role="img" aria-labelledby="l02-tree-tree-title l02-tree-tree-desc" style="min-width:1024px;width:100%;height:auto;font-family:'PingFang SC','Microsoft YaHei','Noto Sans SC',-apple-system,sans-serif">
+    <title id="l02-tree-tree-title">L02 盈亏同源知识树</title>
+    <desc id="l02-tree-tree-desc">盈亏同源的完整层级：核心命题、六层例子、七模式数值、术语四组、空仓与套娃，含三条关联。</desc>
+    <defs>
+      <marker id="l02-tree-arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1 L 8 5 L 0 9 z" fill="#2b6cb0"/>
+      </marker>
+    </defs>
+    <path d="M 204 443 C 252 443 252 91 300 91" fill="none" stroke="#b9c3d0" stroke-width="1.6"/>
+    <path d="M 396 91 C 478 91 478 25 560 25" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 91 C 478 91 478 69 560 69" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 91 C 478 91 478 113 560 113" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 91 C 478 91 478 157 560 157" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 204 443 C 252 443 252 289 300 289" fill="none" stroke="#b9c3d0" stroke-width="1.6"/>
+    <path d="M 396 289 C 478 289 478 201 560 201" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 289 C 478 289 478 245 560 245" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 289 C 478 289 478 289 560 289" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 289 C 478 289 478 333 560 333" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 289 C 478 289 478 377 560 377" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 204 443 C 252 443 252 487 300 487" fill="none" stroke="#b9c3d0" stroke-width="1.6"/>
+    <path d="M 396 487 C 478 487 478 421 560 421" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 487 C 478 487 478 465 560 465" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 487 C 478 487 478 509 560 509" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 487 C 478 487 478 553 560 553" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 204 443 C 252 443 252 663 300 663" fill="none" stroke="#b9c3d0" stroke-width="1.6"/>
+    <path d="M 396 663 C 478 663 478 597 560 597" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 663 C 478 663 478 641 560 641" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 663 C 478 663 478 685 560 685" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 663 C 478 663 478 729 560 729" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 204 443 C 252 443 252 817 300 817" fill="none" stroke="#b9c3d0" stroke-width="1.6"/>
+    <path d="M 396 817 C 478 817 478 773 560 773" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 817 C 478 817 478 817 560 817" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 817 C 478 817 478 861 560 861" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 84 C 466 84 466 487 396 487" fill="none" stroke="#2b6cb0" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#l02-tree-arr)"/>
+    <path d="M 396 663 C 466 663 466 289 396 289" fill="none" stroke="#2b6cb0" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#l02-tree-arr)"/>
+    <path d="M 396 817 C 466 817 466 98 396 98" fill="none" stroke="#2b6cb0" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#l02-tree-arr)"/>
+    <rect x="560" y="8" width="160" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="30" font-size="12" font-weight="600" fill="#1a202c">赚出←→亏产生（双向）</text>
+    <rect x="560" y="52" width="184" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="74" font-size="12" font-weight="600" fill="#1a202c">新股例：担大股东的赚钱效应</text>
+    <rect x="560" y="96" width="148" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="118" font-size="12" font-weight="600" fill="#1a202c">亏损是门票，不是错误</text>
+    <rect x="560" y="140" width="136" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="162" font-size="12" font-weight="600" fill="#1a202c">盈与亏相生（阴阳）</text>
+    <rect x="300" y="74" width="96" height="34" rx="8" fill="#ffffff" stroke="#1a202c" stroke-width="1.2"/>
+    <text x="313" y="96" font-size="13" font-weight="600" fill="#1a202c">核心命题</text>
+    <rect x="560" y="184" width="156" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="206" font-size="12" font-weight="600" fill="#1a202c">模式两面 封板率↔溢价</text>
+    <rect x="560" y="228" width="192" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="250" font-size="12" font-weight="600" fill="#1a202c">永远涨幻觉 纳指/互联网/国债</text>
+    <rect x="560" y="272" width="128" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="294" font-size="12" font-weight="600" fill="#1a202c">窗口 924·龙空龙</text>
+    <rect x="560" y="316" width="124" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="338" font-size="12" font-weight="600" fill="#1a202c">赚行情 beta分解</text>
+    <rect x="560" y="360" width="144" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="382" font-size="12" font-weight="600" fill="#1a202c">踏空伪命题 光亏不赢</text>
+    <rect x="300" y="272" width="96" height="34" rx="8" fill="#ffffff" stroke="#1a202c" stroke-width="1.2"/>
+    <text x="313" y="294" font-size="13" font-weight="600" fill="#1a202c">六层例子</text>
+    <rect x="560" y="404" width="136" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="426" font-size="12" font-weight="600" fill="#1a202c">打板·趋势·龙空龙</text>
+    <rect x="560" y="448" width="184" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="470" font-size="12" font-weight="600" fill="#1a202c">量化·抄底·持指数·大股东</text>
+    <rect x="560" y="492" width="100" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="514" font-size="12" font-weight="600" fill="#1a202c">同源亏损总表</text>
+    <rect x="560" y="536" width="144" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="558" font-size="12" font-weight="600" fill="#1a202c">每模式100笔分布模拟</text>
+    <rect x="300" y="470" width="96" height="34" rx="8" fill="#ffffff" stroke="#1a202c" stroke-width="1.2"/>
+    <text x="313" y="492" font-size="13" font-weight="600" fill="#1a202c">七模式数值</text>
+    <rect x="560" y="580" width="152" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="602" font-size="12" font-weight="600" fill="#1a202c">卖尾/买尾 保险vs门票</text>
+    <rect x="560" y="624" width="168" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="646" font-size="12" font-weight="600" fill="#1a202c">beta/alpha 工资vs奖金</text>
+    <rect x="560" y="668" width="120" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="690" font-size="12" font-weight="600" fill="#1a202c">大蓝筹/小盘题材</text>
+    <rect x="560" y="712" width="116" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="734" font-size="12" font-weight="600" fill="#1a202c">机构/游资/散户</text>
+    <rect x="300" y="646" width="96" height="34" rx="8" fill="#ffffff" stroke="#1a202c" stroke-width="1.2"/>
+    <text x="313" y="668" font-size="13" font-weight="600" fill="#1a202c">术语四组</text>
+    <rect x="560" y="756" width="136" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="778" font-size="12" font-weight="600" fill="#1a202c">大赚空仓·大亏空仓</text>
+    <rect x="560" y="800" width="124" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="822" font-size="12" font-weight="600" fill="#1a202c">规避动作也有同源</text>
+    <rect x="560" y="844" width="148" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="866" font-size="12" font-weight="600" fill="#1a202c">套娃递归：每次再评估</text>
+    <rect x="300" y="800" width="96" height="34" rx="8" fill="#ffffff" stroke="#1a202c" stroke-width="1.2"/>
+    <text x="313" y="822" font-size="13" font-weight="600" fill="#1a202c">空仓与套娃</text>
+    <rect x="24" y="413" width="180" height="60" rx="8" fill="rgba(192,86,33,0.08)" stroke="#c05621" stroke-width="1.4"/>
+    <text x="38" y="439" font-size="15" font-weight="600" fill="#1a202c">L02 盈亏同源</text>
+    <text x="38" y="459" font-size="11" fill="#4a5568">你靠什么赚钱，就会靠什么亏钱</text>
+    <circle cx="392" cy="78" r="8" fill="#2b6cb0"/>
+    <text x="392" y="82" text-anchor="middle" font-size="10" font-weight="600" fill="#fff">1</text>
+    <circle cx="392" cy="276" r="8" fill="#2b6cb0"/>
+    <text x="392" y="280" text-anchor="middle" font-size="10" font-weight="600" fill="#fff">2</text>
+    <circle cx="392" cy="474" r="8" fill="#2b6cb0"/>
+    <text x="392" y="478" text-anchor="middle" font-size="10" font-weight="600" fill="#fff">3</text>
+    <circle cx="392" cy="650" r="8" fill="#2b6cb0"/>
+    <text x="392" y="654" text-anchor="middle" font-size="10" font-weight="600" fill="#fff">4</text>
+    <circle cx="392" cy="804" r="8" fill="#2b6cb0"/>
+    <text x="392" y="808" text-anchor="middle" font-size="10" font-weight="600" fill="#fff">5</text>
+    <line x1="10" y1="896" x2="1014" y2="896" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="10" y="912" font-size="12" font-weight="600" fill="#1a202c">关联图例</text>
+    <text x="86" y="912" font-size="12" fill="#4a5568">① 亏损是门票——所以七模式都用100笔分布看，不看单笔</text>
+    <text x="86" y="934" font-size="12" fill="#4a5568">② beta/alpha 术语解释的是六层例子里的「赚行情」</text>
+    <text x="86" y="956" font-size="12" fill="#4a5568">③ 连空仓这个规避动作本身也有同源亏损——套娃递归</text>
+  </svg>
+  </div>
+  <h2><span class="tag p1">一</span>先把命题立起来：赚钱效应与亏钱效应是双向的</h2>
+  <p>豆子的定义只有一句：<b>赚钱效应的出现，会引起亏钱效应的对应产生——它俩是双向的。</b></p>
+  <p>注意他给这条规律的定位：「它是一个绝对的道理，它不是相对的」。不是"大概率"，不是"很多情况下"，而是像"分久必合、合久必分"一样的结构性事实。适用域他也不限于股市：其他市场、现实社会、任何行业，都是它。他此前在《切换原理》（悟道系列第一期）和《交易纪律》里都埋过这个概念，今天把它单独拎出来讲透——因为整个交易体系都长在它上面。</p>
+  <p><b>我的一句话版本：亏损是门票，不是错误。</b>你想砍掉的回撤和你想留住的利润，是同一笔钱的两面。这句话现在听起来像口号，下面六层例子会把它一层层钉死。</p>
+
+  <h2><span class="tag p1">二</span>第一层：新股阴跌——你在替大股东承担他的赚钱效应</h2>
+  <p>先看一个听上去像反例的故事。有人跟豆子说：<b>「我买了一个新股，它一直在跌，中间一点都没有涨——那我不就只承担了亏钱效应吗？」</b></p>
+  <p>豆子的反问一针见血：你先考虑，赚钱效应在哪里？<b>在大股东。</b>大股东把筹码抛给你了，他赚钱了，所以你会亏钱——<b>你是在承担他的赚钱效应产生的亏钱效应。</b></p>
+  <p>这个例子比"泡沫接盘"更锋利：泡沫接盘好歹有"先涨后跌"的过程，而新股是从你买入的第一秒就开始承担别人的赚钱效应（一级成本 vs 你的发行价/上市价）。再注意形态——炒作过的股票会<b>慢慢阴跌，中间几乎不给反弹</b>。同源亏损的兑现通常不温柔：它不像止损一刀结束，而是一路阴跌，让你一边套牢一边抱希望。</p>
+  <p><b>我的扩展：任何一笔亏损，先问一句"我的对手方靠什么赚？"</b>答得出来（比如"我付的是情绪溢价的门票"）＝模式内亏损，付得明白；答不出来（比如"他上市就把筹码卖给我"）＝你可能就是别人的门票。这是"知道自己赚谁的钱"的原始版本，L03 会把它做成交易模式的正式条款。</p>
+
+  <h2><span class="tag p1">三</span>第二层：没有例外——任何模式都同时有两面</h2>
+  <p>他把范围直接推到全称：<b>「任何的模式、任何的形式——比如说我是一个量化、比如说我是一个对冲的头寸——任何的东西，它都会有赚钱效应和亏钱效应，它都不可能只有一方面，它是绝对的。」</b>首板、趋势、龙头、量化、对冲，无一例外。</p>
+  <p>最干净的样本是<b>首板（打板）</b>，因为它的规则最固定，切换最肉眼可见。做打板的人都熟悉这种感觉：有的时候封板率高到 90 多、甚至接近 100%，首板个个给溢价、闭眼赚钱；有的时候封板率掉到七八十，甚至<b>当天的首板后面全炸</b>，次日个个负溢价。动作没变、人没变、方法没变——变的只是环境。</p>
+  <p>这说明盈与亏的两面来自同一个源：<b>资金愿意付溢价的意愿</b>。同一个手法，赚钱效应期和亏钱效应期的成绩可以差一个数量级（封板率 90%+ ↔ 七八十 ↔ 全炸）。所以"我这套手法很稳"这句话，只有加上时间状语——"在这段窗口里"——才成立。</p>
+  <p>每个模式的具体两面和完整数字，放在<a href="#modes">第九节模式说明专节</a>，每个模式都有 100 笔模拟，你可以亲手算一遍。</p>
+
+  <h2><span class="tag p1">四</span>第三层：三个"永远涨"的幻觉</h2>
+
+  <h3>1. 纳斯达克：泡沫的结算日只是还没到</h3>
+  <p>有人拿纳斯达克反驳：「纳斯达克就是永远涨，他哪有亏钱效应呢？」豆子拆两层。第一，<b>它就是有泡沫</b>——你看着它永远涨，只是因为它还没有（破裂）。第二，其实很多人都知道这件事，<b>只是大家都觉得自己不是最后一棒</b>。第一次暴跌能拉回来，第二次暴跌能拉回来，但总有一次跌了拉不回来——那个时候就是亏钱效应开始释放。</p>
+
+  <h3>2. "AI 是未来"不等于不会跌</h3>
+  <p>AI 是不是未来？是。豆子马上跟一句：<b>那互联网也是未来——互联网泡沫照样破裂。</b>"是未来"回答的是长期方向，回答不了估值和筹码结构的短期结算。套到现在就是：你看好某个产业，和你此刻买入的价格是否安全，是<b>两个独立的问题</b>。</p>
+
+  <h3>3. 国债：从没亏过 ≠ 没有风险</h3>
+  <p>更极端的是国债：很多人说投国债到现在没出现过任何一次亏损。豆子点破——<b>国债承担的风险是国家违约</b>；你觉得国家不可能违约，「那只是因为你的国家是很好的国家」。然后他引了一句古话：天下大事，分久必合、合久必分——<b>总会有不好的时候，只是周期可能很长</b>。</p>
+  <p><b>我的推广：把三层套到个人经历上——"我到现在没亏过"在多数情况下不是技能证明，而是你的样本期恰好落在好 beta 里，账还没到结算日。</b>这也是 L01 回撤数学的接口：一次 −50% 需要 +100% 才回本，结算日的单价非常贵。</p>
+
+  <h2><span class="tag p1">五</span>第四层：赚钱效应是窗口——924、黄金、半导体与龙空龙</h2>
+  <p>924 行情是个绝佳样本：那一波<b>很多新人都能赚钱</b>；但也有反过来的时候——<b>再强的老手都不赚钱</b>。能力没变，窗口在变。市场不是一台随时取钱的机器，它有自己的节奏：赚钱效应窗口里随手买都赚，亏钱效应释放期怎么做都亏。</p>
+  <p>黄金和半导体是同一逻辑的两个横截面：<b>黄金的抱团总有瓦解的时候</b>——但"现在轮不上"，因为它现在的趋势还太强，黄金还有很久；半导体在国家大基金三期出来之前跌过一大波，现在涨，将来总有回去跌、还有再涨的时候。<b>都是有赚有亏，没有永远。</b></p>
+  <p>那窗口来了做什么、窗口走了怎么办？豆子给的模式化答案叫<b>龙空龙：有龙头就做，没龙头就空。</b>龙头的赚亏特别极端，所以用"空"来跳过亏钱效应的释放期。判断谁是龙头，他不看涨幅看广度：很多人觉得银之杰涨了更多倍，但他认为东财更强——<b>谁让更多的人赚到钱，谁的赚钱效应就更强</b>。涨幅是结果，广度才是源。</p>
+  <p><b>我的理解：龙空龙没有消灭同源亏损，它换了形态。</b>资金回撤被换成了"空仓期的踏空感＋窗口误判成本"（空早了、龙早了、空仓期手痒）。换形态，不换存在——第九节模式③的数字会让你看得很清楚。</p>
+
+  <h2><span class="tag p1">六</span>第五层：你赚的是行情的钱——量化神话与两个空仓规则</h2>
+  <p>豆子在交易里提炼出两个深刻道理，第一个就是：<b>你的赚钱，是行情给你的。</b>哪怕你是一堆因子的量化机构——"你会发现，这段时间你可以保证赚钱，它会有大跌的时候。"他形容这个形状：<b>小赚大亏，亏的时候快、赚的时候时间长</b>，它让你觉得"我高频量化是不是一直赚钱"。</p>
+  <p><b>我的解读：这是"卖尾"策略的标准曲线</b>，类似保险公司收保费：平时稳定小赚、净值平滑向上，危机时一次性集中结算。2024 年初（924 行情之前）的量化就是教科书案例——<b>很多量化基金单日亏损幅度超过 10%，净值四五天腰斩</b>，当时大部分量化基金都是那个状态。<b>平滑不是没有左尾，是左尾被推迟并集中兑现。</b>对冲头寸也一样：它承担着大的风险，只是大部分时间处于盈利状态，让你忘了风险的存在。</p>
+
+  <h3>名词解释：卖尾与买尾（附图）</h3>
+  <p>顺手把这两个词说透，后面几课都会用到。任何策略的收益分布画出来，中间是常态，两端的极端事件叫<b>尾部（tail）</b>：左尾＝罕见大亏，右尾＝罕见大赚。所谓<b>卖尾</b>（卖出尾部风险，selling tail risk / short vol），就是把左尾风险卖给别人、自己收小钱——像保险公司收保费，月月进账小保费，灾年一次赔大钱。<b>买尾</b>则相反：月月付小钱（门票/保费），赌一次大赔付。</p>
+  <svg viewBox="0 0 900 570" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;background:#f7fafc;border:1px solid #e2e8f0;border-radius:12px;margin:10px 0" font-family="-apple-system,'PingFang SC','Microsoft YaHei',sans-serif">
+    <text x="450" y="30" text-anchor="middle" font-size="17" font-weight="700" fill="#1a202c">卖尾 vs 买尾：两种"收保费"生意</text>
+    <rect x="16" y="50" width="428" height="420" rx="12" fill="#fff" stroke="#e2e8f0"/>
+    <text x="36" y="82" font-size="15" font-weight="700" fill="#9b2c2c">卖尾 · 卖出尾部风险（short tail）</text>
+    <text x="36" y="104" font-size="12" fill="#4a5568">收小钱、赔大钱 ｜ 高胜率 · 小赚大亏</text>
+    <text x="36" y="134" font-size="12" font-weight="600" fill="#2b6cb0">收益分布</text>
+    <line x1="48" y1="262" x2="420" y2="262" stroke="#cbd5e0"/>
+    <path d="M70,262 C150,262 155,150 234,150 C313,150 318,262 398,262" fill="none" stroke="#4a5568" stroke-width="2"/>
+    <path d="M70,262 C110,262 115,222 148,208 L148,262 Z" fill="#feb2b2" opacity="0.85"/>
+    <text x="80" y="242" font-size="11" font-weight="700" fill="#9b2c2c">左尾</text>
+    <text x="176" y="146" font-size="11" fill="#4a5568">常态＝每月稳稳 +1%</text>
+    <text x="64" y="284" font-size="11" fill="#9b2c2c">↑ 小概率 · 大亏（危机赔付）</text>
+    <text x="36" y="320" font-size="12" font-weight="600" fill="#2b6cb0">净值曲线</text>
+    <line x1="48" y1="440" x2="420" y2="440" stroke="#cbd5e0" stroke-dasharray="4 4"/>
+    <polyline points="60,420 110,414 160,408 210,401 260,394 310,387 350,381 368,377" fill="none" stroke="#276749" stroke-width="2.5"/>
+    <polyline points="368,377 380,392 388,438 402,452" fill="none" stroke="#9b2c2c" stroke-width="2.5"/>
+    <circle cx="210" cy="401" r="10" fill="#fff" stroke="#276749"/><text x="210" y="405" text-anchor="middle" font-size="11" font-weight="700" fill="#276749">①</text>
+    <circle cx="388" cy="438" r="10" fill="#fff" stroke="#9b2c2c"/><text x="388" y="442" text-anchor="middle" font-size="11" font-weight="700" fill="#9b2c2c">②</text>
+    <text x="70" y="352" font-size="11" fill="#276749">① 保费期：36 个月 × +1.2%/月，曲线平滑</text>
+    <text x="216" y="466" font-size="10.5" fill="#9b2c2c">② 赔付日：危机月 −12%，几天回吐一年</text>
+    <text x="36" y="466" font-size="10.5" fill="#718096">例：量化中性 · 对冲 · 卖波动率 · 保险</text>
+    <rect x="456" y="50" width="428" height="420" rx="12" fill="#fff" stroke="#e2e8f0"/>
+    <text x="476" y="82" font-size="15" font-weight="700" fill="#276749">买尾 · 买入尾部风险（long tail）</text>
+    <text x="476" y="104" font-size="12" fill="#4a5568">付小钱、博大赚 ｜ 低胜率 · 小亏大赚</text>
+    <text x="476" y="134" font-size="12" font-weight="600" fill="#2b6cb0">收益分布</text>
+    <line x1="488" y1="262" x2="860" y2="262" stroke="#cbd5e0"/>
+    <path d="M510,262 C590,262 595,150 674,150 C753,150 758,262 838,262" fill="none" stroke="#4a5568" stroke-width="2"/>
+    <path d="M838,262 C798,262 793,222 760,208 L760,262 Z" fill="#9ae6b4" opacity="0.9"/>
+    <text x="792" y="242" font-size="11" font-weight="700" fill="#276749">右尾</text>
+    <text x="612" y="146" font-size="11" fill="#4a5568">常态＝门票：经常小亏</text>
+    <text x="668" y="284" font-size="11" fill="#276749">↑ 小概率 · 大赚（趋势赔付）</text>
+    <text x="476" y="320" font-size="12" font-weight="600" fill="#2b6cb0">净值曲线</text>
+    <line x1="488" y1="440" x2="860" y2="440" stroke="#cbd5e0" stroke-dasharray="4 4"/>
+    <polyline points="500,382 520,392 540,384 560,398 580,390 600,404 620,396 640,410 660,402 680,414 700,408 720,420 740,414 760,426" fill="none" stroke="#718096" stroke-width="2.5"/>
+    <polyline points="760,426 776,306 792,252 808,266 826,258" fill="none" stroke="#276749" stroke-width="2.5"/>
+    <circle cx="580" cy="390" r="10" fill="#fff" stroke="#718096"/><text x="580" y="394" text-anchor="middle" font-size="11" font-weight="700" fill="#718096">①</text>
+    <circle cx="792" cy="252" r="10" fill="#fff" stroke="#276749"/><text x="792" y="256" text-anchor="middle" font-size="11" font-weight="700" fill="#276749">②</text>
+    <text x="510" y="352" font-size="11" fill="#718096">① 保费期：60 笔 × −1%，一直在付门票</text>
+    <text x="636" y="332" font-size="10.5" fill="#276749">② 赔付日：10 笔 × +10%，一次大赚</text>
+    <text x="476" y="466" font-size="10.5" fill="#718096">例：趋势跟踪 · 打板 · 期权买方</text>
+    <rect x="16" y="488" width="868" height="66" rx="10" fill="#fffaf0" stroke="#fbd38d"/>
+    <text x="36" y="514" font-size="13" font-weight="600" fill="#7b341e">盈亏同源：稳定的小赚（小亏）与偶发的巨亏（巨赚）是同一个来源——选模式，就是选你愿意承受哪一侧的尾部。</text>
+    <text x="36" y="538" font-size="12" fill="#975a16">识别口诀：曲线越平滑，越要问——它的左尾藏在哪、多大、多久结算一次？（压路机前捡硬币）</text>
+  </svg>
+  <ul>
+    <li><b>卖尾的形状</b>＝高胜率、平时小赚、偶发巨亏——豆子说的"小赚大亏，亏的时候快、赚的时候时间长"。例：量化中性、对冲、卖波动率。</li>
+    <li><b>买尾的形状</b>＝低胜率、平时小亏、偶发巨赚——本课模式专节里的趋势跟踪、打板就是这一侧：60 笔小门票换 10 笔大肉。例：趋势跟踪、打板、期权买方。</li>
+  </ul>
+  <div class="formula">卖尾账：36 个月 × +1.2% ≈ 累计 +43 → 危机月 −12% → 只剩 +31（带杠杆 −20% → +23）
+买尾账：60 笔 × −1% = −60（门票） → 10 笔 × +10% = +100 → 净 <b>+40</b>
+同一句盈亏同源：<b>你拿走的每一分稳定，都是别人替你担的尾部；你要的每次大赚，都要先付够门票。</b></div>
+  <p><b>为什么这是盈亏同源的样本</b>：那份稳定小赚和那次巨亏是<b>同一个来源</b>。量化的 alpha 来自小微盘/流动性暴露，平时每月贡献价差，危机时同一暴露反向结算；对冲只对掉 beta，对不掉"alpha 从哪来"的风险。想只留"+1%"去掉"−12%"，等于让保险公司只收保费不赔付——那生意不存在。<b>识别口诀：曲线越平滑、越像"稳赚"，越要问一句——它的左尾藏在哪、多大、多久结算一次？</b>压路机前捡硬币（picking up nickels in front of a steamroller）说的就是卖尾的活法：硬币是真的，压路机也是真的。</p>
+  <p>所以豆子给模式设计划了唯一的自由度：<b>「没有任何模式能避开它，只是有的能让盈亏不相等」</b>——你可以塑形分布（截断亏损、让利润奔跑、躲释放期、对冲），但<b>不能删除左尾</b>。把"不相等"做成"没有左尾"，就是卖保险曲线，等着结算日。</p>
+  <p><b>三个月五倍 ≠ 悟道。</b>有人晒"三个月翻五倍"，觉得悟道了。豆子说得很硬：<b>一波盈亏同源结束前，你不算做完了一波交易——你只是在盈利的那部分。</b>"我现在卖了、空仓了，肯定不会再同源"？你只要再去做，就还会。<b>落袋为安只是离开桌面，只要你还会回到桌上，账就还在记。</b></p>
+  <p><b>两个空仓规则。</b>他教纪律时说过「大赚空仓、大亏空仓」，底层理由在这里揭晓：<b>躲同源结算期。</b>大赚之后往往紧跟赚钱效应释放的尾段（回吐），大亏之后往往紧跟亏钱效应释放段（越亏越多）；空仓是不让你在结算期继续下注。但注意：规避动作本身也有同源——空仓会躲错窗口、付出踏空与手痒的成本，"避免的不对，再空仓"。所以它是<b>迭代的规则，不是一劳永逸的开关</b>（第八节套娃）。</p>
+  <div class="formula">自检：赚行情 vs 赚能力（beta 分解）
+你的收益 = beta 部分（市场/风格涨跌 × 你的暴露） + alpha 部分（模式真实边际）
+例：牛市年你 +40%，指数 +30%、持仓 beta≈1.1 → beta 部分 ≈ +33 → alpha ≈ +7 → <b>你在赚行情的钱</b>
+自检两问：① 盈利笔是否集中在普涨/风格顺风时段？② 去掉同期基准涨幅后还剩多少？
+alpha≈0 不是耻辱，是诚实的起点；把 +33 当能力＝危机月把 −33 当"市场错了"</div>
+
+  <h3>名词解释：beta 与 alpha（附例子）</h3>
+  <p>这两个词值得掰开记住，后面几课常会用。<b>Beta（β）＝你和市场一起涨跌的部分</b>——行情给的"工资"，市场涨它就涨，跟你选不选股关系不大。<b>Alpha（α）＝剥离市场波动后剩下的部分</b>——能力给的"奖金"，市场横盘甚至下跌时你仍然赚到的钱，就是它。</p>
+  <p><b>最直观的类比：坐电梯 vs 爬楼梯。</b>30 层的电梯带你上楼——这是 beta：电梯上行时轿厢里每个人都"在涨"，不能证明谁体力好。真正的 alpha 是：电梯停了（市场横盘）、甚至往下走（熊市），你还靠自己往上爬的那部分。<b>牛市里人人 +40%，大部分是电梯的高度，不是腿力。</b></p>
+  <p><b>用数字走一遍。</b>某年你的账户 +40%，同期沪深300 指数 +30%，你的持仓波动约为指数的 1.1 倍（beta≈1.1）：</p>
+  <div class="formula">beta 部分 = β × 市场涨幅 = 1.1 × 30% = <b>+33%</b>　← 行情发的工资
+alpha 部分 = 40% − 33% = <b>+7%</b>　← 能力发的奖金
+反证：闭眼买个沪深300 指数基金拿满一年 ≈ +30%——你"选股"选出来的增量只值 +7%</div>
+  <p><b>反过来记账更说明问题。</b>熊市年指数 −20%，你的组合 −22%（beta≈1.1）→ beta 部分 −22%，alpha ≈ 0。这时如果说"是市场错了"——那你牛市的 +33% 就同样要退给市场。<b>beta 的盈亏必须对称记账</b>：牛市把 beta 记成能力、熊市把 beta 亏记成市场冤枉，是同一种错（盈亏同源在记账上的版本）。</p>
+  <p><b>自己怎么估？两档做法：</b>① 粗估——看持仓风格：满仓大蓝筹 beta≈1（相对沪深300），满仓小盘题材 beta 可能 1.2–1.5；② 细算——把你每月账户收益率和基准月收益率画散点，拟合直线的<b>斜率≈beta、截距≈alpha</b>，12 个月数据就能看出大概。</p>
+  <p><b>三个提醒。</b>① beta 是"相对哪个基准"而言且随持仓变化：换基准数字就变，减半仓 beta 就减半——它是当下持仓的属性，不是人的属性。② alpha 会衰减：真 alpha 来自认知差（L04），会被模仿和拥挤稀释（L03 拥挤度、L05）——今年的 +7% 明年可能只剩 +3。③ L04 说"超过年化 7% 才算超额收益"，其实就是在给 alpha 设门槛：7% 以内大概率是 beta 的自然回报。</p>
+  <p><b>记忆句：beta 是行情发的工资，alpha 是能力发的奖金——记账分开记，你就知道自己几斤几两。</b></p>
+
+  <h3>名词解释补：大蓝筹与小盘题材（beta 例子里的两个行话）</h3>
+  <p><b>大蓝筹</b>："蓝筹"来自赌场——蓝色筹码面值最大，借指规模最大、最稳的公司。A 股语境＝沪深300 里的大权重（茅台、工行、招行、长电这类）：市值千亿以上、有业绩有分红、波动小、机构持仓重。<b>它们就是指数的主要成分，所以满仓大蓝筹 beta≈1</b>——组合和指数同涨同跌。</p>
+  <p><b>小盘题材</b>：拆两个词——<b>小盘</b>＝市值小（几十亿到一两百亿，中证1000/国证2000 乃至微盘）；<b>题材</b>＝炒故事和预期而非当期业绩（AI、低空经济、并购重组这类风口）。波动大、涨停跌停常见、游资和散户参与多。<b>相对沪深300 的波动被放大，所以 beta 1.2–1.5 甚至更高</b>；但换中证1000 做基准就接近 1——beta 是相对基准说的。</p>
+  <table>
+    <thead><tr><th></th><th>大蓝筹</th><th>小盘题材</th></tr></thead>
+    <tbody>
+      <tr><td>市值</td><td>千亿以上</td><td>几十亿～两百亿</td></tr>
+      <tr><td>驱动</td><td>业绩、分红、机构配置</td><td>故事、预期、情绪资金</td></tr>
+      <tr><td>波动</td><td>小，跟指数同步</td><td>大，暴涨暴跌</td></tr>
+      <tr><td>典型玩家</td><td>机构、险资、长线资金</td><td>游资、散户、打板客</td></tr>
+      <tr><td>形象比喻</td><td>大船：稳、慢、随潮水</td><td>快艇：快、颠、容易翻</td></tr>
+    </tbody>
+  </table>
+  <p class="small">顺带一提：豆子的模式（打板、龙空龙、老龙反抽）基本都在小盘题材区活动——所以他的环境判断看"赚钱效应"而不是看大盘涨跌。</p>
+
+  <h3>名词解释补二：机构、游资与散户</h3>
+  <p><b>机构</b>＝用"组织的钱"做投资的专业法人/团队：资金规模大、有研究团队、决策受流程与监管约束。A 股主要玩家：<b>公募基金</b>（散户可买、持仓按季公开、受排名考核）、<b>私募基金</b>（高净值客户、不公开）、<b>险资</b>（稳健、爱高股息大蓝筹、超长线）、<b>社保/养老金</b>、<b>国家队</b>（汇金/证金，危急时入场）、<b>外资</b>（QFII/北向，偏好核心资产）、<b>券商自营</b>、<b>产业资本/大股东</b>（新股例里"把筹码抛给你"的就是这侧）。</p>
+  <p><b>游资不是机构</b>：游资＝资金量大的个人/小团队，专做短线题材打板，风格激进；散户＝个人小资金。三者对比：</p>
+  <table>
+    <thead><tr><th></th><th>机构</th><th>游资</th><th>散户</th></tr></thead>
+    <tbody>
+      <tr><td>钱是谁的</td><td>份额持有人/股东的</td><td>自有</td><td>自有</td></tr>
+      <tr><td>决策</td><td>研究流程、投委会</td><td>老板拍板，快</td><td>盘中感觉，最快</td></tr>
+      <tr><td>持仓</td><td>中长线为主</td><td>几天</td><td>不定</td></tr>
+      <tr><td>优势</td><td>研究深度、定价权</td><td>速度、情绪嗅觉</td><td>船小好掉头</td></tr>
+    </tbody>
+  </table>
+  <p>四个要点：① <b>定价权与抱团</b>（2020–21 茅指数/宁组合；抱团瓦解见本课"黄金抱团总有瓦解的时候"）；② <b>船大难掉头</b>，动向留痕迹——龙虎榜、北向资金、基金季报是三个观察窗口；③ <b>考核扭曲行为</b>——年度排名导致追涨杀跌抱团取暖，机构也是人做的（接 L04 人性面）；④ 大蓝筹波动小的根源＝机构持仓重、换手低（beta≈1）。</p>
+  <p class="small">课程衔接：L04 认知梯度里"国家队减持、大股东套现——他们对自己的公司掌握更深"＝<b>机构一侧是认知更高的一侧</b>；L03 拥挤度＝机构都来抢同一买点把 alpha 抢没了。</p>
+
+  <h2><span class="tag p1">七</span>第六层：踏空是一个伪命题</h2>
+  <p>豆子的判断很直接：<b>「踏空是完全没有任何道理的一个说法。」</b>他先把踏空感拆成三种来源：① 把股票加进自选、看着它一直涨；② 下单了又撤单；③ 拿不住、卖飞了。三者的共同点：<b>你并没有持有，却把"没赚到"记成了"失去了"。</b></p>
+  <p>举个例子你就懂了。同一时间窗里，期货上的<b>欧线</b>（集运欧线）走了好几个涨停——它是 20% 涨停的杠杆产品，全仓一个涨停就翻倍，复利做下来<b>一周四五倍</b>；美股一只 CY 开头的小妖股<b>一天涨三倍</b>，第二天盘前又翻倍；币圈更不用说，无时无刻有财富暴富的神话产生。你说你卖飞的那些踏空了——<b>那你这些不更"飞"吗？你踏的空简直踏不完</b>。你不可能把所有机会都把握到自己手里。</p>
+  <p>而豆子自己呢？这些他一个都没参与（AI·DS 参与了；烧碱、氧化铝、尿素、玻璃做了；黄金参与到了；欧线以前做过空、这次没参与；美股没参与，看着它妖舞涨了一天）。你说他踏空了吗？他早年说"A股没有真正的踏空"，后来升级成：<b>任何地方都没有真正的踏空。</b></p>
+  <p>最隐蔽的一种踏空感，他点得特别好：<b>光亏了不赢。</b>你刚吃完自己模式的亏钱效应段，抬头看见别人在赚钱效应段，于是把正常结算误读成"我错过了什么"；<b>甚至你都没亏、只是没赢</b>，也会觉得踏空。破法很朴素——<b>欧线跌的时候你在不在？</b>没承担它的亏损，就无权把它的上涨记成你的损失。</p>
+  <p><b>我的对策四条</b>：① 建"不观察清单"，减少比较源；② 反事实要连亏损分支一起放（全仓欧线的反事实还包括爆仓分支）；③ 用<b>模式覆盖率</b>自评（我的模式今年触发几次、执行几次），不用机会覆盖率；④ 先核对"跌的时候我在不在"，再决定这笔"错过"算不算损失。</p>
+
+  <h2><span class="tag p1">八</span>收束：谨慎、套娃、阴阳相生</h2>
+  <div class="card note">
+    <b>豆子给交易人的自查三问（建议直接贴进你的交易记录模板）</b>
+    <p style="margin:6px 0 0">① 我因为什么赚钱？② 它什么时候会出现亏钱效应？③ 我怎么避免（或承受）？</p>
+    <p class="small" style="margin:6px 0 0">三问答不全，这笔钱你还不认识它。</p>
+  </div>
+  <p><b>套娃：盈亏同源会递归到规避动作本身。</b>你这次用空仓躲过了释放期；下次"觉得跌完了就再进"——迟早有一天你判断"跌完了"是错的（跌完了、涨完、再跌）。你不能靠"空仓等市场先好再做"一劳永逸，<b>它仍然会盈亏同源</b>。只能每次都谨慎、每次重新评估；避免的不对，再空仓、再避免——这个东西可以套娃，没想到吧？</p>
+  <p><b>相生：最后他把这条规律抬到哲学层——它就像阴阳，是相生的。</b>盈与亏互根，你想消灭亏，就同时消灭了盈。而且"它在别的地方可能叫别的词，但就是这么个道理"——周期、竞争、生态位，说的都是它。</p>
+  <p><b>我的总结句：模式给你选择承受哪种同源亏损的权利，不给你免除它的权利。</b></p>
+
+  <h2 id="modes"><span class="tag p4">九</span>模式说明专节：每个模式怎么赚、怎么亏回来（含数值例子）</h2>
+  <p class="small">以下数值为<b>教学模拟</b>（100 笔、按本金百分比计），用于看清"同源"的形状；量化例另附真实事件参照。不是实盘收益承诺。</p>
+
+  <h3>模式① 首板/打板</h3>
+  <p><b>定义</b>：在个股第一个涨停板介入，赌次日溢价与连板接力。<b>钱从哪来</b>：赚钱效应期资金抢筹的情绪溢价。<b>同源亏损</b>：炸板大面、次日负溢价——同一个"情绪愿意付溢价"的机制，退潮时反向付给你折价。数据形状（豆子原话）：封板率 90–100% ↔ 七八十 ↔ 当天全炸；溢价个个给 ↔ 个个负溢价。</p>
+  <div class="formula">100 笔模拟：10 笔均 +15%（=+150）｜30 笔均 +5%（=+150）｜60 笔均 −4.5%（=−270）→ 净 <b>+30</b>（期望 +0.3%/笔）
+"优化"加过滤躲大面日：去掉 20 笔亏损（+90），但同一信号（情绪高温）也去掉 10 笔 +15% 接力中的 6 笔（−90）→ 净仍 +30，只多了过滤成本与安全感错觉
+更狠的过滤：去掉 30 笔亏损（+135），同时去掉 8 笔大肉与 10 笔中肉（−170）→ 净 <b>−5</b>
+同源：大面与大肉诞生于<b>同一段情绪高温</b>；过滤识别的是"温度"，不是"盈亏"</div>
+
+  <h3>模式② 趋势跟踪</h3>
+  <p><b>定义</b>：突破/均线跟随，截断亏损、让利润奔跑。<b>钱从哪来</b>：少数大趋势的右尾。<b>同源亏损</b>：震荡市连续小止损＋趋势末段利润回吐——<b>"让利润奔跑"与"回吐一段"是同一规则的两面</b>。</p>
+  <div class="formula">100 笔模拟：35 笔均 +9%（=+315）｜65 笔均 −3%（=−195）→ 净 <b>+120</b>
+"优化"：为躲回吐，+3% 就止盈 → 35 笔均 +3%（=+105）−195 → 净 <b>−90</b>（由正转负）
+同源：你想消灭的"回吐"，正是"奔跑"的价格</div>
+
+  <h3>模式③ 龙空龙/节奏模式</h3>
+  <p><b>定义</b>：赚钱效应窗口做龙头，释放期空仓。<b>钱从哪来</b>：只吃窗口内正期望（924 式窗口新人也赚）。<b>同源亏损</b>：窗口误判（空早了/龙早了）＋空仓期手痒随手单＋龙头判据争议（东财 vs 银之杰：广度 vs 涨幅）——"对窗口敏感"与"误判窗口"是同一敏感度的两面。</p>
+  <div class="formula">一年模拟：窗口期占 30%（80 笔，E=+1.2%/笔）→ +96
+非窗口期强行交易 230 笔（E=−0.5%/笔）→ −115 → 全年 <b>−19</b>
+遵守"没龙头就空"：全年 <b>+96</b>，代价＝70% 时间空仓的踏空感与 4 次窗口误判（约 −12）→ 净 +84
+同源：它把资金回撤换成了心理成本＋误判成本——换形态，不换存在</div>
+
+  <h3>模式④ 量化/市场中性·对冲</h3>
+  <p><b>定义</b>：多空对冲掉 beta，赚统计价差/alpha。<b>钱从哪来</b>：大量小价差累积（散户行为偏差、流动性供给）。<b>形状</b>：小赚大亏，亏得快、赚得久。<b>同源亏损</b>：价差来源反转——<b>真实参照：2024 年初（924 前）小微盘流动性危机，多数量化基金单日亏损超 10%，净值四五天腰斩</b>；平时越稳的价差，危机时挤得越狠。</p>
+  <div class="formula">模拟：常态 36 个月每月 +1.2%（累计 ≈ +43）｜危机 1 个月 <b>−12%</b>（真实事件量级的浓缩）
+36 个月累计 ≈ +43 − 12 = <b>+31</b>；若带杠杆危机月 −20% → +23
+同源：alpha 来自小微盘/流动性暴露 → 危机时同一暴露反向结算；"对冲"对掉了 beta，对不掉 <b>alpha 的来源风险</b></div>
+
+  <h3>模式⑤ 抄底/均值回归</h3>
+  <p><b>定义</b>：超跌买入赌回归。<b>钱从哪来</b>：高胜率小反弹。<b>同源亏损</b>：偶发接刀大亏——"跌多了会涨"与"跌多了还能更跌"是同一规律的两尾（新股阴跌就是反例：超跌可以更超跌）。</p>
+  <div class="formula">100 笔模拟：65 笔均 +4%（=+260）｜32 笔均 −4%（=−128）｜3 笔接刀均 −15%（=−45）→ 净 <b>+87</b>
+"优化"：加过滤躲 3 笔接刀（+45）→ 但同一过滤躲掉 4 笔 +12% 的深坑大肉（−48）→ 净 <b>+84</b> 且更不稳定
+同源：接刀与深坑大肉在事前<b>长得一模一样</b></div>
+
+  <h3>模式⑥ 长期持有宽基指数</h3>
+  <p><b>定义</b>：买入并长期持有宽基/强势市场指数。<b>钱从哪来</b>：经济增长与货币化的 beta＋长期复利。<b>同源亏损</b>：泡沫段的估值坍缩与<b>超长回撤期</b>（日经 1989、纳指 2000 后十年不创新高）——"永远涨"叙事的同源亏损是"以十年计的解套期"；持有人心理："大家都觉得自己不是最后一棒"。</p>
+  <div class="formula">模拟：长期年化 +8%，但含一次 −50% 估值坍缩（需 +100% 回本，L01 回撤数学）
+同源：你赚的"永远涨"里包含估值扩张段 → 估值收缩段就是它的结算日；周期可能很长 ≠ 不存在</div>
+
+  <h3>模式⑦ 大股东/产业资本</h3>
+  <p><b>定义</b>：以产业成本持有公司，赚成长与泡沫的钱。<b>钱从哪来</b>：一级成本＋泡沫期减持窗口（"他把筹码抛给你了，他赚钱了"）。<b>同源亏损</b>：减持＝把亏钱效应转移给接盘者，同时失去后续上涨＋承担声誉/监管成本；不减持＝坐过山车回原点。<b>同源不等于同形态</b>：产业资本的同源表现为机会成本与周期，而非止损单。</p>
+
+  <h3>七个模式的同源亏损总表</h3>
+  <table>
+    <thead><tr><th>模式</th><th>胜率/赔率形状</th><th>钱从哪来</th><th>同源亏损（必然形态）</th><th>执行崩溃点</th></tr></thead>
+    <tbody>
+      <tr><td>首板/打板</td><td>中胜率·高赔率</td><td>情绪溢价/接力（封板率高位期）</td><td>炸板大面、次日负溢价</td><td>连续大面期停手→错过接力大肉</td></tr>
+      <tr><td>趋势跟踪</td><td>低胜率·高赔率</td><td>大趋势右尾</td><td>震荡磨损、利润回吐</td><td>提前止盈砍右尾</td></tr>
+      <tr><td>龙空龙</td><td>窗口内正期望</td><td>只吃赚钱效应窗口</td><td>窗口误判、空仓心理成本</td><td>空仓期手痒随手单</td></tr>
+      <tr><td>量化/中性</td><td>高胜率·小赚大亏·累积</td><td>统计价差/流动性供给</td><td>风格危机对冲失效（单日&gt;10%、数日腰斩）</td><td>危机后撤策略→错过修复</td></tr>
+      <tr><td>抄底/回归</td><td>高胜率·低赔率</td><td>超跌回归</td><td>接刀大亏（左尾）</td><td>一次接刀后放弃整个模式</td></tr>
+      <tr><td>长期持指数</td><td>长期 beta·超长回撤</td><td>增长＋估值扩张</td><td>估值坍缩＋十年解套期</td><td>坍缩中段割肉→卖在结算尾</td></tr>
+      <tr><td>大股东/产业</td><td>长周期·成本优势</td><td>成长＋泡沫减持窗口</td><td>减持后踏空/不减持坐过山车</td><td>"泡沫顶不减持"叙事</td></tr>
+    </tbody>
+  </table>
+  <p><b>抄模式不抄承受力＝必败</b>：你羡慕打板的 +15%，就要签收它的 −4.5% 连发；羡慕中性的平滑，就要签收它的危机月。<b>选模式＝选你愿意且能够承受的那一种同源亏损</b>（接 L03"回撤可承受"检验）。那句「只是有的能让盈亏不相等」是全部模式设计的边界：<b>你可以塑形分布，不能删除左尾。</b></p>
+
+  <h2><span class="tag p2">十</span>进阶：分布数学与心智层</h2>
+
+  <h3>1. 三层理解</h3>
+  <p><b>行为层</b>：同一个动作产生盈与亏（"跌了敢买"既吃反弹也接刀；"错就走"既躲大跌也被洗）。<b>分布层</b>：收益分布不可分割，不能只摘右尾；"盈亏不相等"是分布塑形，不是分布删除。<b>认知层</b>：你想消除的亏损，正是你想得到的利润的价格——亏损是门票，不是错误。豆子说的"相生/阴阳"，就是认知层。</p>
+
+  <h3>2. 分布数学：为什么"去掉亏损"会反噬利润</h3>
+  <div class="formula">100 笔：60 笔各 −1%，30 笔各 +2%，10 笔各 +10% → 期望 <b>+100%</b>（利润 62.5% 来自 10 笔大赚）
+"优化"提前止盈大赚于 +3% → 期望 <b>+30%</b>　（亏损没变，利润砍七成）
+"优化"加过滤去掉 3 亏 + 1 大赚 → 期望 <b>+93%</b>　（过滤的"减亏"与"砍大赚"同源发生）</div>
+  <p>回测里"完美过滤/完美止盈"全是事后挑分布（过拟合，接 L05），实盘必失效——因为<b>事前无法区分哪笔是大赚</b>。这正是豆子"你毕竟不可能做到所有的机会都把握到自己手里"的数学版。</p>
+
+  <h3>3. 逐笔案例：门票与大赚</h3>
+  <table>
+    <thead><tr><th>#</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th></tr></thead>
+    <tbody>
+      <tr><td>结果</td><td class="num neg">−1.0</td><td class="num neg">−1.0</td><td class="num pos">+2.1</td><td class="num neg">−1.0</td><td class="num neg">−0.8</td><td class="num pos">+1.6</td><td class="num neg">−1.0</td><td class="num pos">+9.5</td><td class="num neg">−1.0</td><td class="num pos">+2.0</td><td class="num neg">−0.9</td><td class="num pos">+6.8</td></tr>
+    </tbody>
+  </table>
+  <div class="formula">净 <b>+15.3%</b>｜胜率 42%｜两笔大赚 (+16.3) 占总盈利 22.0 的 <b>74%</b>，却只占笔数 <b>17%</b></div>
+  <p>7 笔止损是买到第 8、12 笔的门票。若第 7 笔后停手，永远等不到 +9.5%。<b>门票必须一张张付到大赚出现，而大赚何时出现事前不可知</b>——对应豆子"必须等，等待行情给你机会"。</p>
+
+  <h3>4. 六个自我破坏误区</h3>
+  <div class="card warn"><ol style="margin:6px 0 0;padding-left:20px">
+    <li><b>赚了就跑、亏了就扛</b>：砍右尾＋放大左尾，期望由正转负。</li>
+    <li><b>事后诸葛/挑分布</b>："当时不加仓就好了"＝过拟合（L05 扳手检验）。</li>
+    <li><b>用单笔否定规则</b>："止损后它又涨回去"≠止损错。</li>
+    <li><b>抄模式不抄承受力</b>：羡慕收益却受不了其同源亏损（见总表）。</li>
+    <li><b>把模式内亏损当错误去改</b>：频繁改模式＝永远没有模式。</li>
+    <li><b>回本心态放大风险</b>：门票变天价，一次连败进入"需涨 100%+回本"区间（L01）。</li>
+  </ol></div>
+
+  <h3>5. 与 L01/L03/L06 拼接</h3>
+  <div class="formula">用<b>可控的小亏损（门票）</b>换正期望，并把门票总额控制在<b>不会把你买出局</b>的回撤区间（L01）。
+模式六元组 (U,E,X,S,A,K) 的每一项，都是在<b>选择承受哪种同源亏损</b>（L03）。
+大赚空仓/大亏空仓＝躲同源结算期的纪律动作；<b>规避动作本身也有同源</b>（避免的不对→再空仓）＝套娃递归（L06）。</div>
+
+  <h3>6. 学术对照（扩展阅读坐标）</h3>
+  <ul>
+    <li><b>风格溢价与回撤期</b>：价值溢价 2007–2020 长期跑输、2021–2022 回归——溢价以长期回撤期为代价，机构版盈亏同源。</li>
+    <li><b>动量崩溃（momentum crash）</b>：动量长期正期望、急反转时单日巨亏（Daniel &amp; Moskowitz 2016）——右尾策略的左尾账单。</li>
+    <li><b>遍历性（ergodicity）</b>：集合平均≠时间平均；"三个月五倍"的集合里站着爆仓者——"一波同源结束前不算做完一笔交易"的形式化。</li>
+    <li><b>尾部风险承担/carry crash</b>：卖保险式曲线危机前"最稳"、危机时集中结算——量化中性 2024 年初危机的学术对应。</li>
+    <li><b>greater-fool 结构</b>："大家都觉得自己不是最后一棒"是泡沫传递博弈的参与者自知表述。</li>
+  </ul>
+
+  <h2><span class="tag p2">可视化</span>可视化件：动手拨一拨</h2>
+  <p>讲了一路"盈亏同源"，光听不算数——现在你亲手拨一拨，看它长什么样。下面这个模拟器跑的是<b>100 笔的净期望</b>，算式就是第十节的分布数学：<b>期望 = 胜率×平均盈利 −（1−胜率）×平均亏损</b>。先拨滑块找到一个正期望，然后打开那个开关——「大赚止盈于 +3%」——亲眼看着利润怎么被"保护性止盈"吃掉。</p>
+
+  <div class="demo">
+    <h4>门票与右尾：100 笔分布模拟器</h4>
+    <div class="row">
+      <label>胜率 <input type="range" id="l02p" min="20" max="70" value="40"> <b id="l02pV">40%</b></label>
+      <label>平均盈利 <input type="range" id="l02w" min="2" max="20" value="6"> <b id="l02wV">6%</b></label>
+      <label>平均亏损 <input type="range" id="l02l" min="1" max="10" value="2"> <b id="l02lV">2%</b></label>
+    </div>
+    <div class="out">
+      <span id="l02fml"></span><br>
+      100 笔净期望（原始分布）<b id="l02netFull"></b>
+      <div class="bar"><i id="l02barA"></i></div>
+      100 笔净期望（当前状态）<b id="l02netNow"></b>
+      <div class="bar"><i id="l02barB"></i></div>
+    </div>
+    <label style="display:block;margin:10px 0 4px"><input type="checkbox" id="l02cap"> <b style="color:#f6ad55">大赚止盈于 +3%（砍右尾）</b>——把平均盈利强制压到 3%</label>
+    <div class="out" id="l02cmp"></div>
+    <p class="small" style="color:#a0aec0;margin:8px 0 0">对照讲义第十节的分布数学：100 笔 60×−1% + 30×+2% + 10×+10% → 净 <b style="color:#f6ad55">+100%</b>；大赚止盈于 +3% 后 → 净 <b style="color:#f6ad55">+30%</b>——亏损一笔没躲掉，利润砍掉七成。<b>事前你不知道哪笔是大赚</b>，所以"完美止盈"只活在回测里。</p>
+  </div>
+
+  <script>
+  (function(){
+    function fmt(n){return (n>=0?'+':'')+n.toFixed(0)+'%'}
+    function l02calc(){
+      var p=+document.getElementById('l02p').value,
+          w=+document.getElementById('l02w').value,
+          l=+document.getElementById('l02l').value,
+          cap=document.getElementById('l02cap').checked;
+      document.getElementById('l02pV').textContent=p+'%';
+      document.getElementById('l02wV').textContent=w+'%';
+      document.getElementById('l02lV').textContent=l+'%';
+      var evF=p/100*w-(1-p/100)*l, netF=evF*100;
+      var wc=cap?Math.min(w,3):w, evC=p/100*wc-(1-p/100)*l, netC=evC*100;
+      document.getElementById('l02fml').innerHTML='算式：'+p+'% × '+wc+'% − '+(100-p)+'% × '+l+'% = 单笔 <b>'+(evC>=0?'+':'')+evC.toFixed(2)+'%</b>';
+      document.getElementById('l02netFull').textContent=fmt(netF);
+      document.getElementById('l02netNow').textContent=fmt(netC);
+      var barA=document.getElementById('l02barA'), barB=document.getElementById('l02barB');
+      barA.style.width=Math.min(100,Math.abs(netF)/3)+'%';
+      barA.style.background=netF>=0?'#68d391':'#fc8181';
+      barB.style.width=Math.min(100,Math.abs(netC)/3)+'%';
+      barB.style.background=netC>=0?'#68d391':'#fc8181';
+      var cmp=document.getElementById('l02cmp');
+      if(!cap){
+        cmp.innerHTML='（拨动滑块换参数；再打开上面的开关，看"大赚止盈"的真实代价）';
+      }else if(w<=3){
+        cmp.innerHTML='当前平均盈利本来就不超过 3%，开关不起作用——把"平均盈利"拉到 3% 以上再试，看右尾被砍的样子。';
+      }else{
+        var lost=netF-netC;
+        cmp.innerHTML='期望崩塌对比：止盈前 100 笔净 <b>'+fmt(netF)+'</b> → 止盈后 <b>'+fmt(netC)+'</b>，利润被砍掉 <b>'+lost.toFixed(0)+' 个百分点</b>——亏损一笔没躲掉，砍掉的全是右尾，这就是"门票照付、大赚没了"。';
+      }
+    }
+    ['l02p','l02w','l02l'].forEach(function(id){document.getElementById(id).addEventListener('input',l02calc)});
+    document.getElementById('l02cap').addEventListener('change',l02calc);
+    l02calc();
+  })();
+  </script>
+
+  <h2><span class="tag p3">十一</span>作业 · 自测 · 速查</h2>
+
+  <h4>作业 1 · 亏损分类表</h4>
+  <p class="small">每笔亏损记：日期/标的/亏损%/模式内(门票)or模式外(违纪)/一句话原因。月终统计决定改纪律（L06/L10）还是改模式（L03/L12）。</p>
+  <h4>作业 2 · 回答豆子的三问</h4>
+  <p class="small">对每一笔盈利写：<b>① 我因为什么赚钱？② 它什么时候会出现亏钱效应？③ 我怎么避免（或承受）？</b>三问答不全＝这笔钱你还不认识它。</p>
+  <h4>作业 3 · 模式承受力测试</h4>
+  <p class="small">从总表选 2 个你想做的模式，各写：① 它的同源亏损连发 10 次时你的账户与情绪会发生什么；② 你预设的停手/空仓规则；③ 该规则会同时错过什么（同源代价）；④ 规则误判时你的再规避动作（套娃第二层）。写不出③④＝还没理解同源。</p>
+
+  <h4>自测（9 题，先答再看答案）</h4>
+  <div class="q">Q1. 100 笔：70 笔各 −1%，25 笔各 +2%，5 笔各 +12%。期望？把大赚止盈在 +4% 后？说明什么？
+    <details><summary>答案</summary><div class="ans">+40% → 0%。利润主体在右尾，提前止盈＝砍右尾＝盈亏同源。</div></details></div>
+  <div class="q">Q2. 新股从上市第一天阴跌、中间一点没涨，买入者"只承担了亏钱效应"吗？
+    <details><summary>答案</summary><div class="ans">不是。赚钱效应在大股东——他把筹码抛给你了，他赚钱了所以你亏钱；你承担的正是他的赚钱效应的对应面。没有"先涨后跌"不等于没有源。</div></details></div>
+  <div class="q">Q3. "纳斯达克永远涨，哪有亏钱效应？"用两层拆解。
+    <details><summary>答案</summary><div class="ans">① 它有泡沫，"看着永远涨只是因为它还没有（破裂）"；② 大家都知道，"只是都觉得自己不是最后一棒"；总有一次跌了拉不回来＝亏钱效应开始释放。"AI 是未来"同理：互联网也是未来，互联网泡沫照样破。</div></details></div>
+  <div class="q">Q4. "没有任何模式能避开它，只是有的能让盈亏不相等"——这句话给模式设计留了什么、没留什么？
+    <details><summary>答案</summary><div class="ans">留了分布塑形（截损/让利润奔跑/空仓躲释放期/对冲），没留左尾删除。盈亏不相等≠盈亏不存在；把"不相等"做成"没有左尾"＝卖保险曲线，结算日集中到来。</div></details></div>
+  <div class="q">Q5. 均值回归与趋势跟踪的同源亏损有何不同？风控重点各是什么？
+    <details><summary>答案</summary><div class="ans">前者高胜率·低赔率，同源亏损=偶发接刀大亏，风控严防单次大亏；后者低胜率·高赔率，同源亏损=连败/回吐，风控严防砍右尾。</div></details></div>
+  <div class="q">Q6. 为什么"空仓等市场先好再做"不能一劳永逸？
+    <details><summary>答案</summary><div class="ans">套娃递归：你判断"跌完了/市场好了"本身会错（跌完了涨完再跌），规避动作也有同源成本（躲错窗口、踏空、手痒）。只能每次重新评估——"避免的不对，再空仓"。</div></details></div>
+  <div class="q">Q7. 朋友说"我做打板三年没亏过钱"。怎么拆？
+    <details><summary>答案</summary><div class="ans">① 无永续：没亏可能＝样本期落在封板率高位/赚钱效应窗口，账单未结算；② 首板同源最明显（溢价↔负溢价），"没亏过"要么是口径问题（扛单/不记浮亏），要么是窗口未反转。要求看完整分布、最大回撤与负溢价期表现。</div></details></div>
+  <div class="q">Q8. 为什么"光亏了不赢"甚至"没亏只是没赢"也会产生踏空感？怎么破？
+    <details><summary>答案</summary><div class="ans">刚承受完自己模式的亏钱效应段，看见别人在赚钱效应段，把正常结算误读成错过；比较源错配。破法：核对"欧线跌的时候我在不在"——没承担其亏损就无权记其上涨为损失；改用模式覆盖率自评。</div></details></div>
+  <div class="q">Q9. 大赚空仓/大亏空仓的底层理由是什么？它们自己有没有同源亏损？
+    <details><summary>答案</summary><div class="ans">理由＝躲同源结算期（大赚后常跟回吐段、大亏后常跟释放段）。有同源：规避会误判（躲过结算也躲错窗口/付出踏空与手痒成本），"避免的不对，再空仓"＝套娃递归。</div></details></div>
+
+  <div class="card good"><b>速查卡</b><ul class="cheat" style="margin:6px 0;padding-left:18px">
+    <li>亏损是门票，不是错误。</li>
+    <li>你是在承担他的赚钱效应产生的亏钱效应。</li>
+    <li>你想砍的回撤和想留的利润是同一笔钱。</li>
+    <li>评价模式看分布，不看单笔。</li>
+    <li>利润常在右尾，别提前止盈砍右尾。</li>
+    <li>抄模式不抄承受力＝必败。</li>
+    <li>盈亏可以不相等，不能不存在。</li>
+    <li>多数人在赚行情的钱——先承认，再谈 alpha。</li>
+    <li>卖尾＝收小钱赔大钱（保险式）；买尾＝付小钱博大赔付（门票式）。</li>
+    <li>beta 是行情的工资，alpha 是能力的奖金；分开记账。</li>
+    <li>大蓝筹＝指数成分（beta≈1）；小盘题材＝故事驱动、弹性大（beta 高）。</li>
+    <li>机构＝组织的钱的兵团；游资＝骑兵游击队；散户＝单兵。</li>
+    <li>一波同源结束前，不算做完一笔交易。</li>
+    <li>任何地方都没有真正的踏空；欧线跌的时候你没看着。</li>
+    <li>光亏不赢也会制造踏空感。</li>
+    <li>有龙头就做，没龙头就空。</li>
+    <li>大赚空仓、大亏空仓＝躲结算期；规避也有同源。</li>
+    <li>它就像阴阳，是相生的：想灭亏即灭盈。</li>
+  </ul></div>
+
+    <h2><span class="tag p4">案</span>真实案例：概念落在盘面上</h2>
+  <p class="small">以下为公开市场事件（数字为约数），用来把本课概念放到真实盘面上看。</p>
+    <div class="card"><b>贵州茅台抱团瓦解（2021–2022）</b>
+      <p class="small" style="margin:6px 0 0"><b>事实</b>：2021 年 2 月高点 2608 元 → 2022 年 10 月低点约 1333 元，−49%（回本需 +96%）；「茅指数」同期普遍腰斩。</p>
+      <p class="small" style="margin:4px 0 0"><b>对应知识点</b>：盈亏同源/抱团瓦解：赚钱效应持续越久、越拥挤，亏钱效应的结算越猛——2020 年的每一分超额都预售了这一段。</p></div>
+    <div class="card"><b>康美药业财务造假（2019）</b>
+      <p class="small" style="margin:6px 0 0"><b>事实</b>：虚增货币资金约 300 亿曝光，股价从 27 元区间跌至 2 元附近，−90%+；散户承担了造假者「赚钱效应」的全部对应面。</p>
+      <p class="small" style="margin:4px 0 0"><b>对应知识点</b>：新股例的极端版：你是在承担他的赚钱效应产生的亏钱效应——对手盘赚钱的方式就是你的亏损方式。</p></div>
+    <div class="card"><b>红利低波/高股息 2025 热 → 2026 牛市跑输</b>
+      <p class="small" style="margin:6px 0 0"><b>事实</b>：豆子 25 年 1 月录视频时高股息正热，他预言「持续不赚钱效应好的东西未来必有不赚钱的一段」；26 年 7 月回看：牛市中热门高股息/红利低波表现较差。</p>
+      <p class="small" style="margin:4px 0 0"><b>对应知识点</b>：盈亏同源预演（视频原案，L07 展开）：好日子本身是预警，持有者要提前写退出判据。</p></div>
+
+
+<h2><span class="tag p3">复习</span>复习巩固</h2>
+  <p>按 1/7/30 天各来一轮。先自己答，再点开卡片对答案——答案不是背我的，是要长出你自己的悟道。</p>
+
+  <div class="flash" onclick="this.classList.toggle('open')">
+    <div class="front">L02 · 卡 1：连亏七八笔的时候我总想"这方法不行了"——"亏损"在交易里到底是什么？<span class="hint">点击翻面</span></div>
+    <div class="back">是<b>门票</b>，不是错误。你靠什么赚钱，就会靠什么亏钱；想单独消灭亏损，会连利润一起消灭（盈亏同源）。→ 追问自己：这 8 笔里，哪些是模式内的门票、哪些是模式外的违纪？分不清就先别急着改模式。</div>
+  </div>
+  <div class="flash" onclick="this.classList.toggle('open')">
+    <div class="front">L02 · 卡 2：豆子说「只是有的能让盈亏不相等」——这句话给模式设计留了什么、没收什么？<span class="hint">点击翻面</span></div>
+    <div class="back">留了<b>分布塑形</b>（截断亏损、让利润奔跑、空仓躲释放期、对冲），没收<b>左尾删除</b>。盈亏可以不相等，不能不存在——把"不相等"做成"没有左尾"＝卖保险曲线，等着结算日。→ 追问：我现在这条"优化"，是在塑形分布，还是在偷偷删除左尾？</div>
+  </div>
+  <div class="flash" onclick="this.classList.toggle('open')">
+    <div class="front">L02 · 卡 3：卖飞一只后面翻倍的票，我"踏空"了吗？<span class="hint">点击翻面</span></div>
+    <div class="back">踏空是<b>伪命题</b>：你并没有持有，却把"没赚到"记成了"失去了"——任何地方都没有真正的踏空。→ 追问：欧线跌的时候我在不在？没承担它的亏损，就无权把它的上涨记成我的损失。</div>
+  </div>
+
+  <h3>悟道提问（没有标准答案，答案写进你自己的交易笔记）</h3>
+  <div class="card good">
+    <ol style="margin:6px 0 0;padding-left:20px">
+      <li>我靠什么赚钱？它的同源亏损，我真的愿意承受吗——还是只想要收益那一半？</li>
+      <li>既然同源亏损删不掉，我选择承受哪一种？为什么是这一种，而不是别的？</li>
+      <li>什么可观测的信号（不是心情）出现时，我会承认同源亏损正在集中释放、该按规则停手或空仓？</li>
+    </ol>
+  </div>
+
+  <h3>联结图（本课长在哪几课上）</h3>
+  <div class="formula">「亏损是门票」──<b>L01 回撤数学</b>：门票总额必须控制在"不会把你买出局"的回撤区间（−50% 要 +100% 回本）
+「选模式＝选承受哪种同源亏损」──<b>L03 六元组</b>：(U,E,X,S,A,K) 每一项都是同源亏损的选择题
+「完美过滤/完美止盈」──<b>L05 统计错觉</b>：事后挑分布＝过拟合，实盘必失效
+「躲同源结算期」──<b>L06 大赚空仓/大亏空仓</b>：规避动作本身也有同源，套娃递归</div>
+
+  <h2><span class="tag p4">内化</span>内化掌握</h2>
+  <p>三关全过，这课才算学完。</p>
+
+  <div class="card">
+    <b>关卡一 · 费曼关</b>
+    <p style="margin:6px 0 0">把这课讲给我听：在聊天输入「<b>我讲给你听 L02</b>」，我扮演爱追问的学生——哪里含糊、哪里偷换概念，一问就暴露。目标：合上讲义，把"盈亏同源"讲到一个新股民能听懂，还能接住他的反例（"那我买新股一直跌，不就只有亏吗？"）。</p>
+  </div>
+
+  <div class="card warn">
+    <b>关卡二 · 场景判断关</b>
+    <p style="margin:6px 0 0">情境：某学员用一个模式<b>连亏 8 笔</b>，心态崩了，说"这模式不行了，我要换模式，甚至不做了"。问：<b>该不该换？你怎么判断？</b>先自己答完，再看参考。</p>
+    <details><summary>参考判断与评分点（答完再看）</summary>
+      <div class="ans">
+        ① <b>门票论</b>：连亏 8 笔是不是该模式同源亏损的正常释放？在这个模式的历史分布里，8 笔连亏在不在正常范围内？<br>
+        ② <b>评价模式看分布</b>：该模式 100 笔的期望是否仍为正、亏损集中段有没有结构原因（窗口/环境退潮）——不拿 8 笔判死刑。<br>
+        ③ <b>模式内亏损 vs 模式外亏损</b>：这 8 笔是按规则执行的门票，还是违纪随手单？模式外亏损该改的是纪律，不是模式。<br>
+        ④ <b>熔断规则</b>：预设的停手/空仓规则（如连亏 N 笔或回撤 X% 熔断）触发了就按规则执行，而不是拍脑袋换模式；换模式必须有可观测的失效信号，不能是情绪。<br>
+        评分点：答"该换/不该换"本身不给分，给分的是<b>判断链条</b>——是否区分门票与违纪、是否看完整分布、是否有熔断与再进场规则。
+      </div>
+    </details>
+  </div>
+
+  <div class="card">
+    <b>关卡三 · 规则产出关</b>
+    <p style="margin:6px 0 0">按模板写出你自己的规则，贴进你的交易笔记：</p>
+    <div class="formula">① 我靠什么赚钱（钱从哪来、什么行情给我）：
+② 它必然的同源亏损是什么（形态＋频率＋单笔量级）：
+③ 我愿意承受它的理由（为什么是这一种，不是别的）：
+④ 什么信号说明同源亏损在集中释放（可观测、可执行的停手/空仓信号）：</div>
+    <p class="small" style="margin:6px 0 0">写不出④＝还没内化：你只有"想赚钱"，还没搞清"自己在为什么买单"。</p>
+  </div>
+
+  <div class="next"><b>下一讲（L03）：交易模式——一个稳定盈利的模式长什么样</b>（六元组 U/E/X/S/A/K＋开关；成立三检验：正期望/可重复/回撤可承受；老龙反抽板完整拆解）。回「下一课」即跳转，或直接提问。</div>
+  <p class="small" style="margin-top:20px">投资有风险，本课为教育内容，不构成投资建议。数值例子为教学模拟，量化危机参照 2024 年初公开报道量级。疑问直接问，我换例子重讲。</p>
+</div>
+
+</body>
+</html>

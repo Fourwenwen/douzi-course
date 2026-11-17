@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>L07 切换原理：什么时候该换打法</title>
+
+<style>
+.nav{position:sticky;top:0;z-index:50;background:#1a202c;padding:8px 14px;display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif}
+.nav a{color:#e2e8f0;text-decoration:none;font-size:13px;padding:3px 10px;border-radius:999px;background:#2d3748}
+.nav a:hover{background:#4a5568}
+.nav a.cur{background:#c05621;color:#fff;font-weight:600}
+.nav a.home{background:#2b6cb0}
+.nav .sp{color:#718096;font-size:12px;margin:0 4px}
+</style>
+</head>
+<body style="margin:0;background:#f7fafc">
+<nav class="nav"><a class="home" href="index.html">目录主页</a><a class="" href="lesson-01.html">L01 本金保护</a><a class="" href="lesson-02.html">L02 盈亏同源</a><a class="" href="lesson-03.html">L03 交易模式</a><a class="" href="lesson-04.html">L04 看什么</a><a class="" href="lesson-05.html">L05 技术分析</a><a class="" href="lesson-06.html">L06 交易纪律</a><a class="cur" href="lesson-07.html">L07 切换原理</a><a class="" href="lesson-08.html">L08 成长</a><a class="" href="lesson-09.html">L09 实操学习</a><a class="" href="lesson-10.html">L10 随手单</a><span class="sp">点击跳转复看</span></nav>
+<style>
+  :root{--ink:#1a202c;--sub:#4a5568;--line:#e2e8f0;--bg:#f7fafc;--accent:#c05621;--accent2:#2b6cb0;--good:#276749;--warn:#9b2c2c;--card:#fff}
+  *{box-sizing:border-box}
+  .doc{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;color:var(--ink);background:var(--bg);padding:28px 20px 60px;line-height:1.8;max-width:980px;margin:0 auto}
+  .doc h1{font-size:26px;margin:0 0 4px}
+  .doc h2{font-size:19px;margin:34px 0 10px;padding-left:10px;border-left:4px solid var(--accent)}
+  .doc h3{font-size:16px;margin:20px 0 8px;color:var(--accent2)}
+  .doc p{margin:8px 0}
+  .meta{color:var(--sub);font-size:13px;margin-bottom:16px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin:12px 0}
+  .goal{background:#fffaf0;border-color:#fbd38d}
+  .warn{background:#fff5f5;border-color:#feb2b2}
+  .good{background:#f0fff4;border-color:#9ae6b4}
+  .note{background:#ebf8ff;border-color:#90cdf4}
+  table{width:100%;border-collapse:collapse;font-size:13px;background:var(--card);border-radius:8px;overflow:hidden;margin:8px 0}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+  th{background:#edf2f7;font-weight:600}
+  td.num{white-space:nowrap;font-variant-numeric:tabular-nums}
+  .tag{display:inline-block;font-size:11px;padding:1px 8px;border-radius:999px;background:#edf2f7;color:var(--sub);margin-right:4px}
+  .p1{background:#feebc8;color:#7b341e}.p2{background:#bee3f8;color:#2a4365}.p3{background:#c6f6d5;color:#22543d}.p4{background:#fed7e2;color:#702459}
+  a{color:var(--accent2);text-decoration:none}a:hover{text-decoration:underline}
+  .formula{background:#1a202c;color:#f7fafc;border-radius:8px;padding:12px 16px;font-family:"SF Mono",Menlo,monospace;font-size:13px;margin:10px 0;overflow-x:auto;line-height:1.9}
+  .formula b{color:#f6ad55}
+  .q{border-left:3px solid var(--accent2);padding-left:12px;margin:12px 0}
+  .ans{color:var(--good);font-size:13px;margin-top:4px}
+  .next{margin-top:24px;padding:14px 18px;border:1px dashed var(--accent);border-radius:10px;background:#fffaf0;font-size:14px}
+  .small{font-size:12.5px;color:var(--sub)}
+  details{margin:8px 0}summary{cursor:pointer;color:var(--accent2);font-size:13.5px}
+  .cheat{columns:2;column-gap:24px}.cheat li{margin:6px 0;break-inside:avoid}
+  ul,ol{margin:6px 0 6px 20px;padding:0}li{margin:3px 0}
+  code{background:#edf2f7;border-radius:4px;padding:0 5px;font-size:12.5px}
+  .demo{background:#1a202c;border-radius:12px;padding:18px 20px;color:#f7fafc;margin:14px 0}
+  .demo h4{margin:0 0 10px;font-size:15px;color:#f6ad55}
+  .demo .btns{display:flex;flex-wrap:wrap;gap:8px}
+  .demo button{border:0;border-radius:8px;padding:8px 12px;font-size:12.5px;cursor:pointer;background:#2d3748;color:#e2e8f0;font-family:inherit}
+  .demo button:hover{background:#4a5568}
+  .demo button.on{background:#c05621;color:#fff}
+  .demo .out{margin-top:12px;background:#2d3748;border-radius:8px;padding:12px 14px;font-size:13px;line-height:1.9;min-height:66px}
+  .demo .out b{color:#f6ad55}
+  .flash{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:10px 0;cursor:pointer}
+  .flash .front{font-weight:600}
+  .flash .back{display:none;margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);color:var(--good)}
+  .flash.open .back{display:block}
+  .flash .hint{font-size:11.5px;color:var(--sub);float:right;font-weight:400}
+  @media(max-width:640px){.cheat{columns:1}}
+</style>
+
+<div class="doc">
+  <div class="card" style="padding:10px 14px;margin:0 0 14px">
+    <b>课程目录</b>　<span class="small">L01 本金保护 · L02 盈亏同源 · L03 交易模式 · L04 看什么 · L05 技术分析 · L06 交易纪律 · <b>L07 切换原理（本课）</b> · L08 成长 · L09 实操学习 · L10 随手单 · L11–L13 方法 · L14–L25 认知心智</span><br>
+    <span class="small">导航口令：「目录」看全表 ｜「下一课」推进 ｜「重讲 Lxx」换方式重讲 ｜「我讲给你听 Lxx」＝费曼关卡 ｜ 直接提问＝答疑</span>
+    <span class="small">总览入口：<a href="trees.html">十课知识树</a> ｜ <a href="cases.html">十课真实案例</a>（每课正文内也有各自的知识树与真实案例）</span>
+  </div>
+
+  <h1>第七课：切换原理——什么时候该换打法</h1>
+  <div class="meta">《豆子悟道 · 股票系统学习课》L07 ｜ 模块二 悟道注·纪律 ｜ 源自原视频《讲解切换原理 26豆区注解版——悟道注》（17:15，<a href="https://www.bilibili.com/video/BV19JKA6mErE">BV19JKA6mErE</a>）｜ <b>本讲义是消化后的讲解</b>：视频是"回看旧作＋当场注解"的双层结构（他自比<b>水经与水经注</b>），两层观点都已融入正文，不需要看视频 ｜ 2026-11-01</div>
+
+  <div class="card goal">
+    <b>这节课讲什么</b>
+    <p style="margin:6px 0 0">一句话：<b>切换原理是盈亏同源的拓展——一个市场/板块产生亏钱效应时，另一个正在产生赚钱效应；换打法不是三心二意，是跟着赚钱效应换座位。</b></p>
+    <p style="margin:6px 0 0">这课形式特别：豆子回看自己一年半前（2025 年初）的悟道系列第一期，边播边加"注"——旧观点是"经"，当下的批注是"注"。所以你会同时看到<b>当年的他</b>（坚定的小登、全仓科技）和<b>现在的他</b>（切向低估值、嘲讽科技）——这种"回看旧认知并注解"本身就是认知成长的标准姿势。内容主线：目光局限→标的宇宙→能做的标的的门槛→规律与 K 线的边界→分类法修正（风偏）→高股息的盈亏同源预演→复盘频率→纪律收尾。</p>
+  </div>
+
+  <h2><span class="tag p4">图</span>本课知识树（思维导图）</h2>
+  <p class="small">从左向右生长：根＝本课主张，一级分支＝主题，向右展开概念；右上角编号＝关联（见图例）。</p>
+  <div style="overflow-x:auto;margin:10px 0">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 824" role="img" aria-labelledby="l07-tree-tree-title l07-tree-tree-desc" style="min-width:1024px;width:100%;height:auto;font-family:'PingFang SC','Microsoft YaHei','Noto Sans SC',-apple-system,sans-serif">
+    <title id="l07-tree-tree-title">L07 切换原理知识树</title>
+    <desc id="l07-tree-tree-desc">切换原理的完整层级：双层结构、切换地基、标的门槛、规律与K线、分类与风偏，含三条关联。</desc>
+    <defs>
+      <marker id="l07-tree-arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1 L 8 5 L 0 9 z" fill="#2b6cb0"/>
+      </marker>
+    </defs>
+    <path d="M 152 355 C 226 355 226 69 300 69" fill="none" stroke="#b9c3d0" stroke-width="1.6"/>
+    <path d="M 396 69 C 478 69 478 25 560 25" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 69 C 478 69 478 69 560 69" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 69 C 478 69 478 113 560 113" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 152 355 C 226 355 226 201 300 201" fill="none" stroke="#b9c3d0" stroke-width="1.6"/>
+    <path d="M 396 201 C 478 201 478 157 560 157" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 201 C 478 201 478 201 560 201" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 201 C 478 201 478 245 560 245" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 152 355 C 226 355 226 333 300 333" fill="none" stroke="#b9c3d0" stroke-width="1.6"/>
+    <path d="M 396 333 C 478 333 478 289 560 289" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 333 C 478 333 478 333 560 333" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 333 C 478 333 478 377 560 377" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 152 355 C 226 355 226 465 300 465" fill="none" stroke="#b9c3d0" stroke-width="1.6"/>
+    <path d="M 396 465 C 478 465 478 421 560 421" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 465 C 478 465 478 465 560 465" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 465 C 478 465 478 509 560 509" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 152 355 C 226 355 226 619 300 619" fill="none" stroke="#b9c3d0" stroke-width="1.6"/>
+    <path d="M 396 619 C 478 619 478 553 560 553" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 619 C 478 619 478 597 560 597" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 619 C 478 619 478 641 560 641" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 619 C 478 619 478 685 560 685" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 194 C 466 194 466 612 396 612" fill="none" stroke="#2b6cb0" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#l07-tree-arr)"/>
+    <path d="M 396 333 C 466 333 466 465 396 465" fill="none" stroke="#2b6cb0" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#l07-tree-arr)"/>
+    <path d="M 396 626 C 466 626 466 208 396 208" fill="none" stroke="#2b6cb0" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#l07-tree-arr)"/>
+    <rect x="560" y="8" width="100" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="30" font-size="12" font-weight="600" fill="#1a202c">水经与水经注</text>
+    <rect x="560" y="52" width="148" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="74" font-size="12" font-weight="600" fill="#1a202c">回看旧认知＝高阶复盘</text>
+    <rect x="560" y="96" width="124" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="118" font-size="12" font-weight="600" fill="#1a202c">认知成长的可视化</text>
+    <rect x="300" y="52" width="96" height="34" rx="8" fill="#ffffff" stroke="#1a202c" stroke-width="1.2"/>
+    <text x="313" y="74" font-size="13" font-weight="600" fill="#1a202c">双层结构</text>
+    <rect x="560" y="140" width="112" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="162" font-size="12" font-weight="600" fill="#1a202c">标的不只有股票</text>
+    <rect x="560" y="184" width="160" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="206" font-size="12" font-weight="600" fill="#1a202c">全市场同亏＝错杀＝机会</text>
+    <rect x="560" y="228" width="124" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="250" font-size="12" font-weight="600" fill="#1a202c">期货多空总有方向</text>
+    <rect x="300" y="184" width="96" height="34" rx="8" fill="#ffffff" stroke="#1a202c" stroke-width="1.2"/>
+    <text x="313" y="206" font-size="13" font-weight="600" fill="#1a202c">切换地基</text>
+    <rect x="560" y="272" width="136" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="294" font-size="12" font-weight="600" fill="#1a202c">涨的逻辑＋跌的逻辑</text>
+    <rect x="560" y="316" width="136" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="338" font-size="12" font-weight="600" fill="#1a202c">逻辑不依附资金意愿</text>
+    <rect x="560" y="360" width="136" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="382" font-size="12" font-weight="600" fill="#1a202c">模式内＝能做的标的</text>
+    <rect x="300" y="316" width="96" height="34" rx="8" fill="#ffffff" stroke="#1a202c" stroke-width="1.2"/>
+    <text x="313" y="338" font-size="13" font-weight="600" fill="#1a202c">标的门槛</text>
+    <rect x="560" y="404" width="112" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="426" font-size="12" font-weight="600" fill="#1a202c">同一条件会再现</text>
+    <rect x="560" y="448" width="132" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="470" font-size="12" font-weight="600" fill="#1a202c">K线理论逻辑太单一</text>
+    <rect x="560" y="492" width="112" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="514" font-size="12" font-weight="600" fill="#1a202c">本质＝赚钱效应</text>
+    <rect x="300" y="448" width="96" height="34" rx="8" fill="#ffffff" stroke="#1a202c" stroke-width="1.2"/>
+    <text x="313" y="470" font-size="13" font-weight="600" fill="#1a202c">规律与K线</text>
+    <rect x="560" y="536" width="136" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="558" font-size="12" font-weight="600" fill="#1a202c">人为定义≠客观存在</text>
+    <rect x="560" y="580" width="112" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="602" font-size="12" font-weight="600" fill="#1a202c">风偏高→高波动</text>
+    <rect x="560" y="624" width="112" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="646" font-size="12" font-weight="600" fill="#1a202c">风偏低→高股息</text>
+    <rect x="560" y="668" width="124" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="690" font-size="12" font-weight="600" fill="#1a202c">反目光：看少数人</text>
+    <rect x="300" y="602" width="96" height="34" rx="8" fill="#ffffff" stroke="#1a202c" stroke-width="1.2"/>
+    <text x="313" y="624" font-size="13" font-weight="600" fill="#1a202c">分类与风偏</text>
+    <rect x="24" y="325" width="128" height="60" rx="8" fill="rgba(192,86,33,0.08)" stroke="#c05621" stroke-width="1.4"/>
+    <text x="38" y="351" font-size="15" font-weight="600" fill="#1a202c">L07 切换原理</text>
+    <text x="38" y="371" font-size="11" fill="#4a5568">盈亏同源的横向拓展</text>
+    <circle cx="392" cy="56" r="8" fill="#2b6cb0"/>
+    <text x="392" y="60" text-anchor="middle" font-size="10" font-weight="600" fill="#fff">1</text>
+    <circle cx="392" cy="188" r="8" fill="#2b6cb0"/>
+    <text x="392" y="192" text-anchor="middle" font-size="10" font-weight="600" fill="#fff">2</text>
+    <circle cx="392" cy="320" r="8" fill="#2b6cb0"/>
+    <text x="392" y="324" text-anchor="middle" font-size="10" font-weight="600" fill="#fff">3</text>
+    <circle cx="392" cy="452" r="8" fill="#2b6cb0"/>
+    <text x="392" y="456" text-anchor="middle" font-size="10" font-weight="600" fill="#fff">4</text>
+    <circle cx="392" cy="606" r="8" fill="#2b6cb0"/>
+    <text x="392" y="610" text-anchor="middle" font-size="10" font-weight="600" fill="#fff">5</text>
+    <line x1="10" y1="720" x2="1014" y2="720" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="10" y="736" font-size="12" font-weight="600" fill="#1a202c">关联图例</text>
+    <text x="86" y="736" font-size="12" fill="#4a5568">① 不同标的的盈亏错位＝切换的空间——盈亏同源的横向拓展</text>
+    <text x="86" y="758" font-size="12" fill="#4a5568">② 标的门槛（涨/跌逻辑）落在赚钱效应层，不在图形层</text>
+    <text x="86" y="780" font-size="12" fill="#4a5568">③ 高股息案例：持续不亏钱→盈亏同源预演，未来必有不赚钱一段</text>
+  </svg>
+  </div>
+  <h2><span class="tag p1">一</span>这课的形式：水经与水经注——回看旧认知，当场加注</h2>
+  <p>他开场就交代形式：悟道系列是他最知名的系列，但那是一年半前（2025 年初）做的；<b>现在的他回看，觉得很多旧东西"不太本质、不符合当下的市场"</b>——所以做"悟道注"：就像水经和水经注的关系，旧视频是经，现在的话是注。他还自嘲：当年 24 年在牛市里赚了钱，上来就讲《如何在市场里赚钱》，自称"绝对的干货"，"有点狂了"。</p>
+  <p><b>我的解读：这种形式本身就是一堂课。</b>它示范了高阶复盘——不是复盘某笔交易，而是<b>复盘自己的旧认知体系</b>：哪些还成立、哪些被市场证伪、哪些当时就没说清。你学完这门课，一年后也该给自己的交易笔记做一次"注"。<b>能给旧的自己挑毛病，是认知成长最可靠的证据</b>（接 L08：成长看认知不看收益曲线）。</p>
+
+  <h2><span class="tag p1">二</span>地基：目光局限——标的不只有股票</h2>
+  <p>旧视频里有一个场景：某天全市场下跌 4500 多家、甚至 5000 多家，几乎所有票都在跌——"那就没有赚钱效应吗？"答案是：<b>不，其实是大家的目光局限。标的不只有股票。</b>大多数时候也不是所有股票都会跌；就算 A 股全跌，还有期货、有债。</p>
+  <p>他当场给这一期定性：<b>"这一期讲的是切换，其实它是一种盈亏同源的拓展。"</b>这句话是全课的钥匙——L02 说你靠什么赚钱就会靠什么亏钱（同一个模式的两面）；切换原理说的是<b>不同标的/板块之间的盈亏错位</b>：科技板块整体产生大量亏钱效应的时候，不耽误老登股/低估值产生赚钱效应。</p>
+  <p><b>实录注解（视频录制时为 2026 年 7 月）</b>：他本人当时正在做的就是一次切换——从科技成长股中途切到<b>困境反转型、低估值</b>（所谓老登股、避险股）。他的自评很有意思：<b>"我个人认为我投的其实也是成长股，只是没有人意识到它会成长的成长股。"</b>这正是 L04 的赚钱效应/预期差视角：他买的不是"低估值"这个静态标签，是"市场还没意识到的成长"。</p>
+  <p><b>标的宇宙一览</b>（他的原话清单）：股票、期货、债；基金他当场点名——<b>主动基金是很愚蠢的东西</b>（"你不是投在你做决定的东西上"），被动基金还好一点。这个观点他强调"一年半后的当下仍然不变"。</p>
+  <p><b>极端情况的推论</b>：所有市场同时产生亏钱效应有没有可能？"也不是没有，但基本上是没有。"而且真发生了反而是大机会：<b>错杀——超额的亏钱效应也会带来超额的赚钱效应</b>（盈亏同源的反向应用）。期货更是多空双向，"多少会有一个方向产生赚钱效应"。</p>
+  <div class="formula">切换原理 = 盈亏同源的<b>横向拓展</b>：
+纵向（L02）：同一模式，赚钱效应段 ↔ 亏钱效应段（时间上错位）
+横向（本课）：不同标的/板块，A 的亏钱效应释放期 ↔ B 的赚钱效应窗口（空间上错位）
+推论：普跌≠无机会，是<b>你的目光局限</b>；全市场同亏=错杀=超额机会</div>
+
+  <h2><span class="tag p2">三</span>"能投资的标的"的门槛：逻辑链的深刻掌握</h2>
+  <p>列完标的宇宙，他马上划门槛：<b>不是说你达到门槛就行，而是要有深刻的掌握。</b>掌握什么？两头：<b>什么时候出现赚钱效应、什么时候出现亏钱效应</b>——用他当场补的话说就是"涨的逻辑和跌的逻辑都需要知道"。</p>
+  <p>更深的一条：<b>要确保这个逻辑不是依附于资金意愿的。</b>"有的逻辑有资金做它就存在，没有资金做它就不存在——而资金是主观人的想法，那你就会受制于人。"确定的逻辑链应该是：这个标的为什么能赚钱（赚钱效应来源）、什么时候盈亏同源（同源周期）、整个逻辑我都完全把握——<b>这样的东西才叫做我所能做的标的</b>。他顺手把这段接到交易模式上："我的交易必须是在我的模式内。"</p>
+  <p><b>我的例子</b>："最近有资金炒它"不是逻辑（资金走了逻辑就没了）；"猪周期反转时猪肉股的利润弹性"是逻辑（能写出传导链与触发数据）。前者受制于人，后者可以写进 L03 的六元组。<b>切换到一个新标的之前，先过这道门：涨的逻辑、跌的逻辑、逻辑的确定性，三样写不出来，就只是换了个地方追涨。</b></p>
+
+  <h2><span class="tag p2">四</span>规律总结之地：K 线理论的原理与它的边界</h2>
+  <p>旧视频里他给二级市场下的定义：<b>二级市场是一个规律总结的地方——以往出现的东西，同一条件之下之后还会再次产生。这是你做交易的根本。</b>并且这正是 K 线理论的原理：通过以往的 K 线经验去复盘新的 K 线。</p>
+  <p>然后是当场的"注"（自我批注）：<b>但我不看好 K 线理论</b>——它的逻辑太单一了，忽略了过多的影响因素，直接简单化，效果非常差。注解更狠的一句：现在比当年<b>更不认可</b>，"量化回测事实证明效果非常差"（接 L05：技术面是影子不是因果、回测四闸）。结论：要抓住<b>本质的东西</b>——本质是什么？他当场写下答案：<b>涨的逻辑、跌的逻辑，实际上就是赚钱效应。</b></p>
+  <p><b>我的解读：规律总结≠图形总结。</b>"同一条件会再现"是对的，但条件在<b>赚钱效应层</b>（谁在亏钱给我、资金为什么来），不在图形层。同样一个"突破"，赚钱效应窗口里的突破和退潮期的突破是两个物种——这就是为什么 K 线理论逻辑单一：它把条件简化成了价格形状，丢掉了条件的主体（人和钱）。</p>
+
+  <h2><span class="tag p2">五</span>分类法的修正：从"风偏"到"市场帮你分"</h2>
+  <p>他介绍当年的分法："我按风偏来分"——然后当场说：<b>我现在不这么分了。我现在教你怎么分：市场会帮你分好的。</b>证据是概念的生灭：原来炒 AI 时讲的那些概念，市场一变就消失了。<b>所以最好不要刻板去看，跟随着市场去看。</b>遇到一个市场，先分析它是一个什么样的市场：风偏高还是低、（情绪高还是低）。</p>
+  <p>括号里那项他自己打了补丁：<b>情绪是人为定义的，他现在不喜欢说这个词</b>——"实际是一种感觉，不要讲人为定义的概念"。他把话说透：<b>龙头、情绪、高度、前排，都是人为定义的分类，不是客观存在的东西</b>；拿人为定义的东西当研究对象是不好的，<b>直接学本质的东西、市场客观存在的东西</b>。"你按照一种或者几种分法去思考就可以了。"</p>
+  <p><b>我的解读：这段是方法论级的。</b>分类是地图，不是领土——地图可以换（风偏分法当年合理、现在换），领土（赚钱效应的生灭）不变。警惕信号：当你发现自己在研究"这个形态叫什么名字"而不是"这波钱为什么来"，你就在背地图。</p>
+
+  <h2><span class="tag p2">六</span>风偏分法的实战：一个完整的盈亏同源预演</h2>
+  <p>虽然"风偏"不再是他的首选分法，但他用它做了一次漂亮的示范。</p>
+  <p><b>规则：风偏高的时候什么赚钱效应？自然是风偏高的股票</b>——什么样的股票风偏高？<b>波动率大的。</b>当年（25 年初）他是坚定的"小登"（仓位几乎全在科技股，倾向 20cm 的票），所以优先思考风偏高的事；<b>924 行情风偏都非常高</b>，波动大的（创业板、新股类）就是赚钱效应所在。</p>
+  <p><b>反面：熊市风偏低——什么好？高股息。</b>熊市里高股息"明显是持续的不亏钱"。然后是全课最精彩的一段<b>盈亏同源预演</b>：他 25 年 1 月讲这话的时候，热门高股息的表现非常好，但他当场预言——<b>根据盈亏同源原理，赚钱效应好、持续时间长，未来就会有赚钱效应差、或者其他东西赚钱而它不赚钱的时候。</b>注解（26 年 7 月）验证："你现在回看高股息，整个牛市中原来炒过的热门高股息、红利低波之类的表现是比较差的——<b>其实这都是可以预知到的，就这么简单的原理。</b>"</p>
+  <p><b>他当下的判断（26 年 7 月）</b>：现在是"牛市的尽头"（他的定义：投机到了最顶峰）——<b>投机的人越多，投机的赚钱效应就会越差</b>；所以风偏越低，反而表现越好。"因为大家都听故事、都风偏高，大多数人应该亏钱——那就少数人应该赚钱。少数人在做什么？大多数人的目光都放在什么上？<b>不要看那些人们的目光都放在的地方。</b>"</p>
+  <h3>名词解释：风偏、老登股与小登股</h3>
+  <p><b>风偏</b>＝风险偏好（risk appetite）的行话简称：风偏高＝资金敢追高波动、题材活跃；风偏低＝资金求稳、抱团防御。<b>老登股</b>＝低估值/高股息/大盘蓝筹类防御股（"老登"是网络梗式的叫法，对应"小登"＝高弹性成长题材股、科技小票）；这组词在 25–26 年的 A 股语境里就是"成长题材 vs 价值防御"的江湖版叫法。</p>
+  <p><b>那句「我按风偏来分」在干什么？</b>切换原理的操作起点是给市场分类——先认季节，再挑衣服。「按风偏来分」＝用<b>风险偏好高低</b>作分类维度，市场两态各有对应的赚钱效应所在：<b>风偏高</b>（情绪火热、敢追高）→ 高波动标的（20cm、创业板、次新、题材）赚钱效应最猛（924 实例）；<b>风偏低</b>（阴跌熊市、草木皆兵）→ 低波动防御（高股息、红利、国债）持续不亏钱（熊市实例）。类比：按水温分泳池——水热去冲浪（高波动），水冷去浅水（防御），持仓要跟水温匹配。两个语境别漏：① 当年他全仓科技 20cm 的「小登」打法，自然优先想风偏高的事；② 当场注解里他已不这么分——「市场会帮你分好的」，风偏/情绪是人为定义的概念；分类是地图、可以换，赚钱效应是领土、不变。</p>
+  <div class="formula">切换时机的判据（从本节提炼）：
+① 当前市场风偏高低 → 匹配对应波动率的标的（风偏高→高波动；风偏低→低波动/高股息）
+② 盈亏同源预演：当前"持续不亏钱"的东西，未来大概率有不赚钱的一段——别爱上它
+③ 反目光：大多数人的目光聚集处，赚钱效应已被定价；找<b>少数人正在做</b>的事
+④ 切换 ≠ 乱切：新标的先过第三节的"逻辑链门槛"</div>
+
+  <h2><span class="tag p3">七</span>复盘频率跟着逻辑走；能力圈怎么扩</h2>
+  <p>旧视频说"每天你都要复盘市场现在处于一个什么样的状态"。当场的注：<b>不用每天复盘——看你（的模式）需不需要复盘。</b>如果模式每天都可能产生新的买卖点（比如当年他做超短），那当然每天要看，"万一你错过模式内的（买点）就很失败了"；但如果模式是长期持有，就不需要每天复盘——<b>只要它的逻辑没有变，就继续做模式内就可以了</b>，模式本身也是跟着赚钱效应走的。</p>
+  <p>能力圈部分：你的能力越强、掌握的标的越多，越能找到更符合当前市场的标的。但他当场否掉了"门槛优越感"：当年他不断接触新市场、"对自己的行为展示出优越性"（我很进取、我很优秀）——现在觉得无所谓。不过学习是没成本的，接触新市场肯定是好的：<b>特别是做股票的要懂期货</b>（例：有色、猪肉/生猪——"期货思维烙股票"，不懂会有操作上的失误）。别拿门槛当勋章，也别让门槛挡着学习。</p>
+  <p><b>我的操作化</b>：把复盘频率写进模式定义——超短/短线模式：每日盘后复盘市场状态＋计划；波段/长线模式：周级复盘＋"逻辑变了没有"三问（赚钱效应来源变了吗？同源周期启动了吗？市场状态变了吗？）。<b>复盘是给模式服务的，不是打卡。</b></p>
+
+  <h2><span class="tag p3">八</span>收尾：纪律、先空仓重新思考，与"重置"的意义</h2>
+  <p>旧视频的结尾他当场肯定：<b>交易一定要有纪律；规律总结——如果规律不对的时候，一定要优先纠正自己：先空仓、重新思考，不要急，把自己当一个冷静的机器。</b>（这句直接接上 L06 的大亏空仓/大赚空仓：发现规律不对＝超预期出现＝先停。）</p>
+  <p>然后是全片最诚实的自评：回看第一期，"你要说他认知多低倒不至于，我能听懂自己在说什么——但说话感觉就跟没文化一样，信息密度确实是低了点"。<b>这就是他重置系列的原因。</b>我的解读：这段示范了切换原理的元版本——<b>打法要切换，认知体系也要切换</b>；一年半前的"经"配当下的"注"，正是"规律不对时优先纠正自己"在知识层面的执行。</p>
+
+  <h2><span class="tag p4">九</span>可视化件：切换决策器（点情境看打法）</h2>
+  <p class="small">把本课的判据变成盘中可用的工具：选一个市场情境，看该往哪切、依据是什么。</p>
+  <div class="demo">
+    <h4>切换决策器</h4>
+    <div class="btns" id="btns">
+      <button data-k="a">全市场普跌，5000 家下跌</button>
+      <button data-k="b">924 式行情：风偏爆表</button>
+      <button data-k="c">熊市阴跌：风偏极低</button>
+      <button data-k="d">牛市末段：投机顶峰，人人都在讲故事</button>
+      <button data-k="e">科技成长模式连续亏钱效应释放</button>
+      <button data-k="f">某防御资产"持续不亏钱"，正被热捧</button>
+    </div>
+    <div class="out" id="out">👆 点一个情境，这里显示切换动作与依据。</div>
+  </div>
+  <script>
+    var VERDICT = {
+      a: '<b>别急着悲观——目光局限。</b>标的不只有股票：期货、债都在你的宇宙里；全市场同亏几乎不可能，真全亏＝错杀＝超额的亏钱效应带来超额的赚钱效应（大机会）。动作：切出"股票涨跌"视角，按第三节门槛检查其他标的的逻辑链。',
+      b: '<b>风偏高 → 做风偏高的标的（高波动）。</b>924 时风偏都非常高，波动大的（创业板、新股类）是赚钱效应所在。注意：这是"匹配"不是"追高"——新标的仍要过逻辑链门槛。',
+      c: '<b>风偏低 → 高股息/低波动防御。</b>熊市里它们持续不亏钱。但记住盈亏同源预演：现在的好表现已经预支了未来的差表现——别爱上它，设置切换触发条件。',
+      d: '<b>反目光：投机的人越多，投机的赚钱效应越差。</b>风偏越低反而越好；找"少数人正在做的事"，别看目光聚集处。同时把 L06 的大赚空仓挂上——投机顶峰是超额亏钱效应的高发期。',
+      e: '<b>该切，但按流程切。</b>①先空仓、重新思考（不急）；②新标的过三关：涨的逻辑、跌的逻辑、逻辑不依附资金意愿；③切换后仍在模式内（写好 U/E/X/S/A/K）。切换是换座位，不是掀桌子。',
+      f: '<b>盈亏同源预演启动。</b>赚钱效应好、持续时间长 → 未来必有它不赚钱的一段（高股息案例）。动作：持有可以，但把"什么时候它不赚钱"写成退出判据；并开始在低关注度处找下一个赚钱效应。'
+    };
+    var btns = document.querySelectorAll('#btns button');
+    btns.forEach(function(b){ b.addEventListener('click', function(){
+      btns.forEach(function(x){ x.classList.remove('on'); });
+      b.classList.add('on');
+      document.getElementById('out').innerHTML = VERDICT[b.getAttribute('data-k')];
+    });});
+  </script>
+
+    <h2><span class="tag p4">案</span>真实案例：概念落在盘面上</h2>
+  <p class="small">以下为公开市场事件（数字为约数），用来把本课概念放到真实盘面上看。</p>
+    <div class="card"><b>红利低波 2025 热 → 2026 冷（视频原案）</b>
+      <p class="small" style="margin:6px 0 0"><b>事实</b>：25 年初高股息正热时豆子预言盈亏同源；26 年 7 月回看，牛市中热门高股息/红利低波表现较差——「都是可以预知到的」。</p>
+      <p class="small" style="margin:4px 0 0"><b>对应知识点</b>：盈亏同源预演：持续不亏钱的东西，未来必有不赚钱的一段；切换的时机感来自对同源周期的预期。</p></div>
+    <div class="card"><b>2021 春节后的风格切换</b>
+      <p class="small" style="margin:6px 0 0"><b>事实</b>：节前赛道抱团（茅指数）见顶瓦解，节后资金转向中小盘与题材（中证1000 显著走强）——同一时点两种资产的赚钱/亏钱效应完全错位。</p>
+      <p class="small" style="margin:4px 0 0"><b>对应知识点</b>：切换＝盈亏同源的横向拓展：A 的亏钱效应释放期正是 B 的赚钱效应窗口；换打法是换座位，不是掀桌子。</p></div>
+    <div class="card"><b>豆子 2026.7 的实战切换（视频原案）</b>
+      <p class="small" style="margin:6px 0 0"><b>事实</b>：从科技成长股中途切到困境反转、低估值（老登股），自称投的「其实是没人意识到会成长的成长股」。</p>
+      <p class="small" style="margin:4px 0 0"><b>对应知识点</b>：标的门槛三关实战：涨的逻辑（没人意识到的成长）＋跌的逻辑＋逻辑不依附资金意愿——切换标的必须重新过门槛。</p></div>
+
+
+<h2><span class="tag p3">十</span>复习巩固</h2>
+  <p>按 1/7/30 天各来一轮。先自己答，再点开卡片对答案。</p>
+  <div class="flash" onclick="this.classList.toggle('open')">
+    <div class="front">L07 · 卡 1：全市场大跌、几乎所有票都在跌，就没有赚钱效应了吗？<span class="hint">点击翻面</span></div>
+    <div class="back">不是没有，是<b>目光局限</b>——标的不只有股票（期货、债都在宇宙里）；且全市场同亏几乎不可能，真发生了＝错杀＝超额亏钱效应带来超额赚钱效应。→ 追问：我现在的"标的宇宙"清单里写了几个市场？每个我写得出涨/跌的逻辑吗？</div>
+  </div>
+  <div class="flash" onclick="this.classList.toggle('open')">
+    <div class="front">L07 · 卡 2：为什么"高股息持续不亏钱"反而是个预警信号？<span class="hint">点击翻面</span></div>
+    <div class="back">盈亏同源预演：<b>赚钱效应好、持续时间长 → 未来必有它不赚钱的一段</b>（25 年 1 月预言、26 年验证）。持有者要在好日子里写好退出判据。→ 追问：现在"持续不亏钱"的东西是什么？它的同源周期触发信号我写了吗？</div>
+  </div>
+  <div class="flash" onclick="this.classList.toggle('open')">
+    <div class="front">L07 · 卡 3：龙头、情绪、高度、前排这些概念，豆子为什么说别拿它们当研究对象？<span class="hint">点击翻面</span></div>
+    <div class="back">它们是<b>人为定义的分类，不是客观存在的东西</b>——分类是地图，不是领土；概念随市场生灭（炒 AI 时的概念，市场一变就消失）。直接研究本质：赚钱效应（涨的逻辑/跌的逻辑）。→ 追问：我常用的分析概念里，哪些是"人为定义"？我能不能把它们翻译成资金行为？</div>
+  </div>
+
+  <h3>悟道提问（没有标准答案，答案写进你自己的交易笔记）</h3>
+  <div class="card good">
+    <ol style="margin:6px 0 0;padding-left:20px">
+      <li>如果一年后给今天的交易笔记写"注"，我预计自己会批注哪几条？（现在就写下预测，一年后验证——这就是认知成长的可视化。）</li>
+      <li>我的标的宇宙清单：列出我能投资的标的，每个写"赚钱效应何时出现/亏钱效应何时出现/逻辑是否依附资金意愿"。写不出的，现在算"能投资"吗？</li>
+      <li>当前市场大多数人目光聚集在哪？少数人正在做什么？我怎么验证"少数"不是我的一厢情愿？</li>
+    </ol>
+  </div>
+
+  <h2><span class="tag p3">十一</span>内化掌握（三关全过＝这课学完）</h2>
+  <div class="card warn">
+    <p style="margin:6px 0 0"><b>关卡一 · 费曼</b>：在聊天里输入「我讲给你听 L07」，重点考你："切换原理和盈亏同源是什么关系？"、"为什么说龙头/情绪是人为定义的概念？"</p>
+    <p style="margin:6px 0 0"><b>关卡二 · 场景判断</b>：你重仓的科技成长模式连续出现亏钱效应释放（两周三笔大面），同期低估值板块开始有持续赚钱效应。你怎么做？说出动作和依据。</p>
+    <details><summary>参考判断与评分点</summary><div class="ans">正确动作：① 先空仓、重新思考，不急着立刻换（L06：规律不对优先纠正自己）；② 检查低估值是不是真有赚钱效应（观察五项，L04）＋它的<b>逻辑链三关</b>（涨的逻辑/跌的逻辑/不依附资金意愿）写得出来吗；③ 写出切换章程：新标的 U/E/X/S/A/K＋旧模式的重启条件（避免两头挨打）；④ 用"反目光"核对：低估值是不是已经人尽皆知（若是，赚钱效应已被定价）。评分点：不裸切（新标的过门槛）、不恋战（亏钱效应期不硬做）、有章程（切换不是随手换）、有核对（反目光）。</div></details>
+    <p style="margin:6px 0 0"><b>关卡三 · 规则产出</b>：写你自己的切换章程：① 标的宇宙清单（每标的的涨/跌逻辑＋确定性评级）；② 市场状态判据（风偏高/低各做什么）；③ 切换触发条件（什么信号出现＝该换座位）；④ 复盘频率（跟你的模式走）。</p>
+  </div>
+
+  <h2><span class="tag p3">十二</span>作业 · 自测 · 速查</h2>
+
+  <h4>作业（下次课前完成）</h4>
+  <ol>
+    <li><b>标的宇宙表</b>：列出你实际能投的 3–5 个标的/市场，每个填三栏：赚钱效应何时出现／亏钱效应何时出现／逻辑是否依附资金意愿（是=受制于人）。</li>
+    <li><b>做一次"悟道注"</b>：翻出你 6 个月前的交易笔记或心得，逐条加注：还成立/已证伪/当时没说清。体会"回看旧认知"的感觉。</li>
+    <li><b>盈亏同源预演</b>：找一个当前"持续不亏钱"、正被热捧的资产/板块，写下：它赚钱效应好的原因、未来不赚钱的可能触发、我给它的退出判据。</li>
+  </ol>
+
+  <h4>自测（8 题，先答再看答案）</h4>
+  <div class="q">Q1. 切换原理和盈亏同源是什么关系？
+    <details><summary>答案</summary><div class="ans">切换原理是盈亏同源的横向拓展：纵向是同一模式赚钱效应段↔亏钱效应段（时间错位），横向是不同标的/板块 A 的亏钱效应期↔B 的赚钱效应窗口（空间错位）。</div></details></div>
+  <div class="q">Q2. 全市场普跌（5000 家下跌）说明什么？
+    <details><summary>答案</summary><div class="ans">大概率是目光局限而非没有赚钱效应：标的不只有股票（期货、债）；且全市场同亏几乎不可能，真发生了＝错杀＝超额亏钱效应带来超额赚钱效应，反而是大机会。</div></details></div>
+  <div class="q">Q3. "能投资的标的"要过哪三关？
+    <details><summary>答案</summary><div class="ans">① 涨的逻辑（赚钱效应何时出现）；② 跌的逻辑（亏钱效应何时出现）；③ 逻辑不依附资金意愿（"有资金做才存在"的逻辑受制于人）。三样都写得出、且在自己模式内，才叫能做的标的。</div></details></div>
+  <div class="q">Q4. 豆子为什么说龙头、情绪、高度、前排这些概念不值得当研究对象？
+    <details><summary>答案</summary><div class="ans">它们是人为定义的分类而非客观存在，且随市场生灭；研究它们等于背地图。应直接研究本质：赚钱效应（涨/跌的逻辑）。分类可以换（风偏分法→市场帮你分），本质不变。</div></details></div>
+  <div class="q">Q5. 用高股息案例解释"盈亏同源预演"。
+    <details><summary>答案</summary><div class="ans">25 年 1 月高股息"持续不亏钱、表现非常好"时，豆子预言：赚钱效应好、持续时间长 → 未来必有它不赚钱的一段。26 年验证：牛市中热门高股息/红利低波表现差。好日子本身是预警——持有者要提前写退出判据。</div></details></div>
+  <div class="q">Q6. 为什么"投机的人越多，投机的赚钱效应越差"？
+    <details><summary>答案</summary><div class="ans">投机的赚钱效应来自对手盘（接 L02/L04：赚别人的钱）；当投机者成为大多数，潜在对手盘枯竭，且大多数人该亏钱——所以牛市尽头（投机顶峰）时风偏越低反而越好。判据：反目光，别看目光聚集处。</div></details></div>
+  <div class="q">Q7. 复盘应该每天做吗？
+    <details><summary>答案</summary><div class="ans">看模式的逻辑：模式每天可能产生新买卖点（超短）→每天复盘，否则错过模式内买点；长期持有模式→不必每天，逻辑没变就继续做模式内。复盘频率跟逻辑走，不是打卡。</div></details></div>
+  <div class="q">Q8. "先空仓、重新思考"在切换里起什么作用？
+    <details><summary>答案</summary><div class="ans">规律不对时优先纠正自己（接 L06：超预期出现先停）；空仓制造冷状态，防止在旧模式的亏钱效应期里边亏边换（两头挨打）。切换是换座位，不是掀桌子——新标的要重新过逻辑链门槛。</div></details></div>
+
+  <div class="card good"><b>速查卡</b><ul class="cheat" style="margin:6px 0;padding-left:18px">
+    <li>切换原理＝盈亏同源的横向拓展。</li>
+    <li>普跌≠没赚钱效应，是目光局限；标的不只有股票。</li>
+    <li>全市场同亏＝错杀＝超额机会。</li>
+    <li>能做的标的三关：涨的逻辑＋跌的逻辑＋不依附资金。</li>
+    <li>二级市场是规律总结的地方；条件在赚钱效应层，不在图形层。</li>
+    <li>龙头/情绪/高度/前排＝人为定义的地图，不是领土。</li>
+    <li>市场会帮你分——不刻板，跟着市场看。</li>
+    <li>风偏高→高波动；风偏低→高股息。</li>
+    <li>持续不亏钱的东西＝盈亏同源预警（高股息案例）。</li>
+    <li>反目光：别看目光聚集处，看少数人在做什么。</li>
+    <li>复盘频率跟模式逻辑走，不是打卡。</li>
+    <li>规律不对：先空仓、重新思考、不急。</li>
+  </ul></div>
+
+  <div class="next"><b>下一讲（L08）：如何在交易水平上获得成长</b>（<a href="https://www.bilibili.com/video/BV1X2oUBeEb4">BV1X2oUBeEb4</a>）——成长看的是认知不是收益曲线，答案一句话：模式内执行。回「下一课」即跳转，或直接提问。</div>
+  <p class="small" style="margin-top:20px">投资有风险，本课为教育内容，不构成投资建议。个别转写同音字已按语境校订（风偏/老登股/涨的逻辑等）；文中市场判断为视频原观点的转述，不构成建议。疑问直接问，我换例子重讲。</p>
+</div>
+
+</body>
+</html>

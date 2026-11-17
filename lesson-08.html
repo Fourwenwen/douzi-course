@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>L08 交易水平怎么成长</title>
+
+<style>
+.nav{position:sticky;top:0;z-index:50;background:#1a202c;padding:8px 14px;display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif}
+.nav a{color:#e2e8f0;text-decoration:none;font-size:13px;padding:3px 10px;border-radius:999px;background:#2d3748}
+.nav a:hover{background:#4a5568}
+.nav a.cur{background:#c05621;color:#fff;font-weight:600}
+.nav a.home{background:#2b6cb0}
+.nav .sp{color:#718096;font-size:12px;margin:0 4px}
+</style>
+</head>
+<body style="margin:0;background:#f7fafc">
+<nav class="nav"><a class="home" href="index.html">目录主页</a><a class="" href="lesson-01.html">L01 本金保护</a><a class="" href="lesson-02.html">L02 盈亏同源</a><a class="" href="lesson-03.html">L03 交易模式</a><a class="" href="lesson-04.html">L04 看什么</a><a class="" href="lesson-05.html">L05 技术分析</a><a class="" href="lesson-06.html">L06 交易纪律</a><a class="" href="lesson-07.html">L07 切换原理</a><a class="cur" href="lesson-08.html">L08 成长</a><a class="" href="lesson-09.html">L09 实操学习</a><a class="" href="lesson-10.html">L10 随手单</a><span class="sp">点击跳转复看</span></nav>
+<style>
+  :root{--ink:#1a202c;--sub:#4a5568;--line:#e2e8f0;--bg:#f7fafc;--accent:#c05621;--accent2:#2b6cb0;--good:#276749;--warn:#9b2c2c;--card:#fff}
+  *{box-sizing:border-box}
+  .doc{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;color:var(--ink);background:var(--bg);padding:28px 20px 60px;line-height:1.8;max-width:980px;margin:0 auto}
+  .doc h1{font-size:26px;margin:0 0 4px}
+  .doc h2{font-size:19px;margin:34px 0 10px;padding-left:10px;border-left:4px solid var(--accent)}
+  .doc h3{font-size:16px;margin:20px 0 8px;color:var(--accent2)}
+  .doc p{margin:8px 0}
+  .meta{color:var(--sub);font-size:13px;margin-bottom:16px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin:12px 0}
+  .goal{background:#fffaf0;border-color:#fbd38d}
+  .warn{background:#fff5f5;border-color:#feb2b2}
+  .good{background:#f0fff4;border-color:#9ae6b4}
+  .note{background:#ebf8ff;border-color:#90cdf4}
+  table{width:100%;border-collapse:collapse;font-size:13px;background:var(--card);border-radius:8px;overflow:hidden;margin:8px 0}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+  th{background:#edf2f7;font-weight:600}
+  td.num{white-space:nowrap;font-variant-numeric:tabular-nums;text-align:right}
+  .pos{color:var(--good);font-weight:600}.neg{color:var(--warn);font-weight:600}
+  .tag{display:inline-block;font-size:11px;padding:1px 8px;border-radius:999px;background:#edf2f7;color:var(--sub);margin-right:4px}
+  .p1{background:#feebc8;color:#7b341e}.p2{background:#bee3f8;color:#2a4365}.p3{background:#c6f6d5;color:#22543d}.p4{background:#fed7e2;color:#702459}
+  a{color:var(--accent2);text-decoration:none}a:hover{text-decoration:underline}
+  .formula{background:#1a202c;color:#f7fafc;border-radius:8px;padding:12px 16px;font-family:"SF Mono",Menlo,monospace;font-size:13px;margin:10px 0;overflow-x:auto;line-height:1.9}
+  .formula b{color:#f6ad55}
+  .q{border-left:3px solid var(--accent2);padding-left:12px;margin:12px 0}
+  .ans{color:var(--good);font-size:13px;margin-top:4px}
+  .next{margin-top:24px;padding:14px 18px;border:1px dashed var(--accent);border-radius:10px;background:#fffaf0;font-size:14px}
+  .small{font-size:12.5px;color:var(--sub)}
+  details{margin:8px 0}summary{cursor:pointer;color:var(--accent2);font-size:13.5px}
+  .cheat{columns:2;column-gap:24px}.cheat li{margin:6px 0;break-inside:avoid}
+  ul,ol{margin:6px 0 6px 20px;padding:0}li{margin:3px 0}
+  code{background:#edf2f7;border-radius:4px;padding:0 5px;font-size:12.5px}
+  .demo{background:#1a202c;border-radius:12px;padding:18px 20px;color:#f7fafc;margin:14px 0}
+  .demo h4{margin:0 0 10px;font-size:15px;color:#f6ad55}
+  .demo .btns{display:flex;flex-wrap:wrap;gap:8px}
+  .demo button{border:0;border-radius:8px;padding:8px 12px;font-size:12.5px;cursor:pointer;background:#2d3748;color:#e2e8f0;font-family:inherit}
+  .demo button:hover{background:#4a5568}
+  .demo button.on{background:#c05621;color:#fff}
+  .demo .out{margin-top:12px;background:#2d3748;border-radius:8px;padding:12px 14px;font-size:13px;line-height:1.9;min-height:66px}
+  .demo .out b{color:#f6ad55}
+  .flash{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:10px 0;cursor:pointer}
+  .flash .front{font-weight:600}
+  .flash .back{display:none;margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);color:var(--good)}
+  .flash.open .back{display:block}
+  .flash .hint{font-size:11.5px;color:var(--sub);float:right;font-weight:400}
+  @media(max-width:640px){.cheat{columns:1}}
+</style>
+
+<div class="doc">
+  <div class="card" style="padding:10px 14px;margin:0 0 14px">
+    <b>课程目录</b>　<span class="small">L01 本金保护 · L02 盈亏同源 · L03 交易模式 · L04 看什么 · L05 技术分析 · L06 交易纪律 · L07 切换原理 · <b>L08 模式内执行（本课）</b> · L09–L13 方法 · L14–L25 认知心智</span><br>
+    <span class="small">导航口令：「目录」看全表 ｜「下一课」推进 ｜「重讲 Lxx」换方式重讲 ｜「我讲给你听 Lxx」＝费曼关卡 ｜ 直接提问＝答疑</span>
+    <span class="small">总览入口：<a href="trees.html">十课知识树</a> ｜ <a href="cases.html">十课真实案例</a>（每课正文内也有各自的知识树与真实案例）</span>
+  </div>
+
+  <h1>第八课：交易水平怎么成长——模式内执行</h1>
+  <div class="meta">《豆子悟道 · 股票系统学习课》L08 ｜ 模块三 光速提升 · 方法 ｜ 源自原视频《光速提升:如何在交易水平上获得成长》（0:47，<a href="https://www.bilibili.com/video/BV1X2oUBeEb4">BV1X2oUBeEb4</a>）｜ <b>本讲义是消化后的讲解</b>：视频短小精悍，一句话内核已展开为完整教学，配上我的例子与数字，不需要看视频 ｜ 2026-11-01</div>
+
+  <div class="card goal">
+    <b>这节课讲什么</b>
+    <p style="margin:6px 0 0">一句话：<b>交易上的成长不是收益曲线，是认知；而认知成长只有一条路——模式内执行。</b>豆子在 47 秒里给出全课答案：想好一套完整的、可以赚钱的逻辑链条，并且去执行它。反过来，随手单不但不提高认知，还会<b>倒过来降低认知</b>。</p>
+    <p style="margin:6px 0 0">本课把这一句话拆成三层：什么是模式内执行（三个要件）；为什么失败的模式内执行也能涨认知、随手单的盈亏只污染认知（可归因 vs 不可归因）；以及"越赚钱，认知越高"的正复利怎么滚起来。最后接回全课拼图：模式从 L03 来，复盘用 L02 的分布观，压制随手单靠 L06 的纪律。</p>
+  </div>
+
+  <h2><span class="tag p4">图</span>本课知识树（思维导图）</h2>
+  <p class="small">从左向右生长：根＝本课主张，一级分支＝主题，向右展开概念；右上角编号＝关联（见图例）。</p>
+  <div style="overflow-x:auto;margin:10px 0">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 648" role="img" aria-labelledby="l08-tree-tree-title l08-tree-tree-desc" style="min-width:1024px;width:100%;height:auto;font-family:'PingFang SC','Microsoft YaHei','Noto Sans SC',-apple-system,sans-serif">
+    <title id="l08-tree-tree-title">L08 交易成长知识树</title>
+    <desc id="l08-tree-tree-desc">交易成长的完整层级：定义、认知机制、心态通道、正负循环、与全课拼接，含三条关联。</desc>
+    <defs>
+      <marker id="l08-tree-arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1 L 8 5 L 0 9 z" fill="#2b6cb0"/>
+      </marker>
+    </defs>
+    <path d="M 148 267 C 224 267 224 47 300 47" fill="none" stroke="#b9c3d0" stroke-width="1.6"/>
+    <path d="M 396 47 C 478 47 478 25 560 25" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 47 C 478 47 478 69 560 69" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 148 267 C 224 267 224 157 300 157" fill="none" stroke="#b9c3d0" stroke-width="1.6"/>
+    <path d="M 396 157 C 478 157 478 113 560 113" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 157 C 478 157 478 157 560 157" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 157 C 478 157 478 201 560 201" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 148 267 C 224 267 224 267 300 267" fill="none" stroke="#b9c3d0" stroke-width="1.6"/>
+    <path d="M 396 267 C 478 267 478 245 560 245" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 267 C 478 267 478 289 560 289" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 148 267 C 224 267 224 355 300 355" fill="none" stroke="#b9c3d0" stroke-width="1.6"/>
+    <path d="M 396 355 C 478 355 478 333 560 333" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 355 C 478 355 478 377 560 377" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 148 267 C 224 267 224 465 300 465" fill="none" stroke="#b9c3d0" stroke-width="1.6"/>
+    <path d="M 396 465 C 478 465 478 421 560 421" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 465 C 478 465 478 465 560 465" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 465 C 478 465 478 509 560 509" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 40 C 466 40 466 157 396 157" fill="none" stroke="#2b6cb0" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#l08-tree-arr)"/>
+    <path d="M 396 267 C 466 267 466 355 396 355" fill="none" stroke="#2b6cb0" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#l08-tree-arr)"/>
+    <path d="M 396 465 C 466 465 466 54 396 54" fill="none" stroke="#2b6cb0" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#l08-tree-arr)"/>
+    <rect x="560" y="8" width="124" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="30" font-size="12" font-weight="600" fill="#1a202c">模式内执行三要件</text>
+    <rect x="560" y="52" width="100" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="74" font-size="12" font-weight="600" fill="#1a202c">反面＝随手单</text>
+    <rect x="300" y="30" width="96" height="34" rx="8" fill="#ffffff" stroke="#1a202c" stroke-width="1.2"/>
+    <text x="313" y="52" font-size="13" font-weight="600" fill="#1a202c">定义</text>
+    <rect x="560" y="96" width="140" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="118" font-size="12" font-weight="600" fill="#1a202c">盈亏可归因 vs 噪声</text>
+    <rect x="560" y="140" width="144" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="162" font-size="12" font-weight="600" fill="#1a202c">复盘失败模式＝认知+</text>
+    <rect x="560" y="184" width="136" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="206" font-size="12" font-weight="600" fill="#1a202c">复盘随手单＝认知−</text>
+    <rect x="300" y="140" width="96" height="34" rx="8" fill="#ffffff" stroke="#1a202c" stroke-width="1.2"/>
+    <text x="313" y="162" font-size="13" font-weight="600" fill="#1a202c">认知机制</text>
+    <rect x="560" y="228" width="124" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="250" font-size="12" font-weight="600" fill="#1a202c">随手单盈亏冲心态</text>
+    <rect x="560" y="272" width="136" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="294" font-size="12" font-weight="600" fill="#1a202c">复盘噪声＝拟合噪声</text>
+    <rect x="300" y="250" width="96" height="34" rx="8" fill="#ffffff" stroke="#1a202c" stroke-width="1.2"/>
+    <text x="313" y="272" font-size="13" font-weight="600" fill="#1a202c">心态通道</text>
+    <rect x="560" y="316" width="156" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="338" font-size="12" font-weight="600" fill="#1a202c">认知→模式→执行 复利</text>
+    <rect x="560" y="360" width="148" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="382" font-size="12" font-weight="600" fill="#1a202c">随手→心态损→更随手</text>
+    <rect x="300" y="338" width="96" height="34" rx="8" fill="#ffffff" stroke="#1a202c" stroke-width="1.2"/>
+    <text x="313" y="360" font-size="13" font-weight="600" fill="#1a202c">正负循环</text>
+    <rect x="560" y="404" width="156" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="426" font-size="12" font-weight="600" fill="#1a202c">前提＝先有模式（L03）</text>
+    <rect x="560" y="448" width="132" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="470" font-size="12" font-weight="600" fill="#1a202c">复盘看分布（L02）</text>
+    <rect x="560" y="492" width="164" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="514" font-size="12" font-weight="600" fill="#1a202c">压制随手单（L06/L10）</text>
+    <rect x="300" y="448" width="96" height="34" rx="8" fill="#ffffff" stroke="#1a202c" stroke-width="1.2"/>
+    <text x="313" y="470" font-size="13" font-weight="600" fill="#1a202c">与全课拼接</text>
+    <rect x="24" y="237" width="124" height="60" rx="8" fill="rgba(192,86,33,0.08)" stroke="#c05621" stroke-width="1.4"/>
+    <text x="38" y="263" font-size="15" font-weight="600" fill="#1a202c">L08 交易成长</text>
+    <text x="38" y="283" font-size="11" fill="#4a5568">模式内执行</text>
+    <circle cx="392" cy="34" r="8" fill="#2b6cb0"/>
+    <text x="392" y="38" text-anchor="middle" font-size="10" font-weight="600" fill="#fff">1</text>
+    <circle cx="392" cy="144" r="8" fill="#2b6cb0"/>
+    <text x="392" y="148" text-anchor="middle" font-size="10" font-weight="600" fill="#fff">2</text>
+    <circle cx="392" cy="254" r="8" fill="#2b6cb0"/>
+    <text x="392" y="258" text-anchor="middle" font-size="10" font-weight="600" fill="#fff">3</text>
+    <circle cx="392" cy="342" r="8" fill="#2b6cb0"/>
+    <text x="392" y="346" text-anchor="middle" font-size="10" font-weight="600" fill="#fff">4</text>
+    <circle cx="392" cy="452" r="8" fill="#2b6cb0"/>
+    <text x="392" y="456" text-anchor="middle" font-size="10" font-weight="600" fill="#fff">5</text>
+    <line x1="10" y1="544" x2="1014" y2="544" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="10" y="560" font-size="12" font-weight="600" fill="#1a202c">关联图例</text>
+    <text x="86" y="560" font-size="12" fill="#4a5568">① 模式内执行的盈亏可归因——复盘才能升级逻辑链条</text>
+    <text x="86" y="582" font-size="12" fill="#4a5568">② 随手单的盈亏冲击心态且不可归因——喂坏两个循环</text>
+    <text x="86" y="604" font-size="12" fill="#4a5568">③ 成长的起点是先有一个三检验通过的模式</text>
+  </svg>
+  </div>
+  <h2><span class="tag p1">一</span>开题：成长的定义不是收益曲线，是认知</h2>
+  <p>先立个靶子。很多人对"交易水平怎么成长"的直觉答案是：<b>多交易、多复盘，量变引起质变。</b>豆子说不对——<b>成长不取决于你交易了多少笔，取决于你交易的是什么。</b>你交易的是可归因的模式，量变才引起质变；你交易的是随手单，量变只引起噪声。</p>
+  <p>为什么成长的定义是认知而不是收益？因为<b>收益曲线是结果，认知是产生结果的机器</b>。这个月 +30% 可能是行情送的（L02：盈亏同源），不代表水平涨了；这个月 −5% 但把模式的逻辑链条修好了一个洞，水平是真的涨了。豆子那句"哪怕不赚钱，哪怕你的模式失败了……你也会有认知上的提高"，就是在把成长的度量从账户挪到脑子里。</p>
+  <p>视频给的一句话答案是：<b>模式内执行。</b>这节课就是把这五个字讲透。<b>我的理解：如果说 L06 交易纪律是"管住手"，那 L08 是告诉你手该用来干什么</b>——不是不动，而是只动在模式内。</p>
+
+  <h2><span class="tag p1">二</span>什么是模式内执行：三个要件，缺一不可</h2>
+  <p>把原话拆开："我已经想好了一套完整的逻辑链条，可以赚钱的模式，并且我在进行执行。"——正好是<b>三个要件</b>：</p>
+  <table>
+    <tr><th style="width:22%">要件</th><th>含义</th><th>反面（随手单）</th></tr>
+    <tr><td><b>① 完整逻辑链条</b></td><td>想好的：为什么买、什么信号触发、预期怎么走、错了怎么出——一条链是闭环的</td><td>临场随机判断，没有明确思路</td></tr>
+    <tr><td><b>② 可赚钱的模式</b></td><td>有赚钱效应来源：知道这钱从哪赚（情绪溢价？趋势延续？），不是碰运气</td><td>没有明确的赚钱效应，赚了也不知道为什么赚</td></tr>
+    <tr><td><b>③ 正在执行</b></td><td>不是纸上谈兵——真按触发点下单了，哪怕这笔亏</td><td>计划写了没执行，或执行时临场改主意</td></tr>
+  </table>
+  <p><b>反向就是随手单：</b>临场随机的一些判断，没有明确的思路，没有明确的赚钱效应。三个"没有"，一个都不占。</p>
+  <p><b>例子，两个动作放一起看：</b>盘中你盯着自选股，突然一根直线拉起 5 个点，你脑子一热追进去——这就是随手单：你不知道它为什么拉（无逻辑链条）、不知道这钱从哪个效应里赚（无赚钱效应来源）、更谈不上执行什么计划。而按 L03 六元组写的模式，在触发点买入——比如"板块高开 ≥2%、龙头 10 点前涨停、跟风回踩不破均价线时买入"——<b>哪怕这笔亏了，也是模式内执行</b>。注意这个对比的关键：<b>判定标准在"下单前有没有那条逻辑链条"，不在"这笔赚没赚"。</b></p>
+
+  <h2><span class="tag p2">三</span>核心机制：为什么失败的模式内执行涨认知，随手单降认知</h2>
+  <p>这是本课最深的一层，豆子的原话是：模式内执行"哪怕不赚钱……它在底层逻辑有问题，你也会有认知上的提高。不断的随手单不仅不会提高你的认知，还会倒过来降低你的认知"。为什么方向是反的？答案在两个字：<b>归因</b>。</p>
+  <p><b>模式内执行的盈亏可归因。</b>因为下单前有逻辑链条（信号→预期→结果），亏了你可以沿着链条找：是信号错了？是环境变了？还是出场拖了？<b>信号→结果→逻辑对错</b>，每一笔都是给逻辑链条做的一次实验，复盘就是升级逻辑。哪怕结论是"这套模式底层逻辑有问题"，那也是<b>认知 +1</b>：你排掉了一条错误路径。</p>
+  <p><b>随手单的盈亏不可归因。</b>没有逻辑链条，这笔赚 8% 和那笔亏 6% 之间<b>没有任何可检验的关系</b>——盈亏本身都是噪声。你去复盘噪声，学到的"规律"必然是噪声的拟合（接 L05：过拟合就是在噪声里找不存在的规律）。更糟的是，盈亏还会冲击心态（接 L06：赚了膨胀、亏了翻本），心态坏了更随手，进入负循环。豆子的原话说得很重：<b>"你去复盘它的盈利和亏损，会导致你的认知越来越低。"</b></p>
+  <div class="formula">两本认知账（教学模拟）：
+100 笔<b>模式内</b>交易的复盘 → 每笔可归因，假设发现 3 个逻辑漏洞、修好 2 个 → 认知 <b>+N</b>，模式链条 v1→v2
+100 笔<b>随手单</b>的复盘 → 盈亏不可归因，学到的"规律"实为噪声 → 认知 <b>−N</b>，还附送心态损伤
+典型幻觉："我上次追直线拉赚了 6%" → 强化追涨习惯 → 下次追在山顶 −9% → 归因成"这次运气差"
+——<b>噪声样本越多，坏习惯的证据越"充分"，这就是"认知越来越低"的机制</b></div>
+  <p><b>我的比喻：模式内执行像做实验，随手单像掷骰子记日记。</b>实验失败了，你能改实验设计；骰子掷出双六，你不能总结出"双六规律"——但你会忍不住总结，然后把下次掷骰子的钱越押越大。所以哪怕模式失败，<b>失败是可解释的失败</b>；随手单的盈利是<b>不可解释的盈利</b>——前者喂认知，后者喂幻觉。</p>
+
+  <h2><span class="tag p2">四</span>"越赚钱，认知越高"：两个复利循环</h2>
+  <p>视频结尾那句"越赚钱，认知越高"不是鸡汤，是一个<b>正循环</b>的拐点描述：</p>
+  <div class="formula">正循环（模式内执行）：
+认知↑ → 改进模式 → 执行更稳（知行互相强化）→ 可归因样本更多 → 复盘再升级认知 → <b>认知↑</b>
+——赚钱是这个循环的副产品：模式期望为正时，赚得越多＝样本越多＝认知涨得越快
+
+负循环（随手单）：
+盈亏冲击心态（L06）→ 心态损 → 更随手 → 更多噪声样本 → 复盘拟合噪声 → <b>认知↓＋心态更损</b>
+——亏损和"假认知"互相喂养，账户和脑子一起失血</div>
+  <p><b>算一笔小的成长账。</b>每周 5 笔模式内可归因样本 vs 5 笔随手单噪声样本，一年按 50 周算：</p>
+  <table>
+    <tr><th>路线</th><th class="num">每周</th><th class="num">一年样本</th><th>复盘产出</th></tr>
+    <tr><td>模式内执行</td><td class="num">5 笔可归因</td><td class="num">250 笔</td><td class="pos">250 个信号→结果对，可建模、可统计胜率/期望、可改链条</td></tr>
+    <tr><td>随手单</td><td class="num">5 笔噪声</td><td class="num">250 笔</td><td class="neg">250 个不可归因的盈亏，只能造幻觉（如"我适合追直线拉"）</td></tr>
+  </table>
+  <p>数量一样是 250 笔，<b>一个能建模，一个只能造幻觉</b>。一年后，前者手里有一套有分布数据支撑的模式（L02 的分布观就有了原料），后者手里有一套似是而非的"盘感"——而且这套盘感经不起下一次行情切换（L07）。<b>交易频率相同，成长速度天差地别，差别只在"交易的是什么"。</b></p>
+
+  <h2><span class="tag p2">五</span>与全课拼接：模式内执行的前置与后手</h2>
+  <p>模式内执行这五个字不是孤立的口号，它是全课的枢纽：</p>
+  <ul>
+    <li><b>前提：先有模式（L03 六元组三检验）。</b>没有模式，谈"模式内执行"是空话。六元组（选股、买点、卖点、仓位、预期、纠错）就是那条"完整的逻辑链条"的落地格式——三检验（一致性、可回测、可归因）过了，才配得上叫模式。</li>
+    <li><b>复盘工具：L02 分布观。</b>复盘失败的模式时不看单笔看分布——单笔亏损可能是门票，250 笔样本下的胜率/期望/最大回撤才是逻辑对错的证据。<b>模式内执行提供样本，分布观消化样本。</b></li>
+    <li><b>随手单压制：L06 纪律。</b>知道该做模式内执行但手不听话，靠 T+1、卖了不追、大亏空仓这些"先行后知"的硬规则兜底——先把随手单的物理空间挤掉。</li>
+    <li><b>制度保障：L10 两阶段（预告）。</b>把交易拆成"准备阶段（想模式、改模式）"和"执行阶段（只执行）"，让"临场"无事可干——这是模式内执行的制度化，L10 细讲。</li>
+  </ul>
+  <p class="small">一句话拼图：L03 造模式 → L08 只做模式 → L02 复盘模式 → L06 压随手单 → L10 制度固化 → 认知正循环转起来。</p>
+
+  <h2><span class="tag p3">六</span>边界与常见误区：三个最容易走歪的地方</h2>
+  <div class="card warn">
+    <b>误区一："模式内执行"＝死抱错误模式不改？</b>
+    <p class="small" style="margin:6px 0 0">不对。改模式要<b>在复盘后改（准备阶段改），不是盘中改</b>。盘中唯一合法的动作是执行；发现模式有问题，记下来，收盘后在复盘里改逻辑链条，下一交易日用新链条。盘中改模式＝用情绪当研究员，改出来的是随手单 2.0。数字对照：同一笔 −6% 的亏损，盘中临时改规则得到的是 0 个样本（规则变形，前后不可比）；按原模式执行、盘后改链条得到的是 1 个有效样本。</p>
+  </div>
+  <div class="card warn">
+    <b>误区二：模式失败＝模式内执行没价值？</b>
+    <p class="small" style="margin:6px 0 0">不对。失败的模式内执行有<b>认知价值</b>：可归因，能定位底层逻辑哪里错了，能排掉一条错误路径。真正的损失是随手单的盈利——它连失败的资格都没有，因为无从判断对错。<b>可解释的亏损是学费，不可解释的盈利是陷阱。</b></p>
+  </div>
+  <div class="card warn">
+    <b>误区三：拿"模式内"当随手单的遮羞布？</b>
+    <p class="small" style="margin:6px 0 0">临时起意追了直线拉，事后套个模式名（"我做的是情绪溢价模式"）——不算。判据是<b>下单前</b>：逻辑链条是不是事先写好的？触发点是不是事先定的？仓位是不是按规则给的？三个"事先"有一个是事后补的，就是随手单。<b>模式是剧本，不是事后编的借口。</b></p>
+  </div>
+
+  <h2><span class="tag p4">七</span>可视化件：成长诊断器（点按钮看认知账判定）</h2>
+  <p class="small">把这节课变成复盘可用的工具：选一个交易情形，看它在认知账上是加分还是减分，以及依据。</p>
+  <div class="demo">
+    <h4>成长诊断器 · 认知账判定</h4>
+    <div class="btns" id="l08-btns">
+      <button data-k="a">模式内盈利</button>
+      <button data-k="b">模式内亏损</button>
+      <button data-k="c">随手单盈利</button>
+      <button data-k="d">随手单亏损</button>
+      <button data-k="e">复盘失败模式</button>
+    </div>
+    <div class="out" id="l08-out">👆 点一个情形，这里显示认知账判定与依据。</div>
+  </div>
+  <script>
+    var L08_VERDICT = {
+      a: '<b>认知 +1（附带确认）。</b>可归因：信号→结果→逻辑对了。复盘要点：确认赚的是不是模式的钱（逻辑链条兑现），还是运气混进来的。顺势记录胜率/盈亏比，样本 +1。<b>注意：盈利不是判据，归因才是。</b>',
+      b: '<b>认知 +1（甚至比盈利更值钱）。</b>可归因：信号→结果→逻辑哪里错了？是信号失效、环境变化还是出场问题？沿链条定位漏洞，这就是"哪怕失败也有认知提高"的那笔钱。样本 +1，门票照付（L02）。',
+      c: '<b>认知 −1（最危险的一种）。</b>不可归因：没有逻辑链条，赚了也说不出为什么。它会强化坏习惯（"追直线拉果然行"），给下一次 −9% 埋雷。处理：不复盘这笔的盈亏，只记一条"随手单 +1"，并查 L06 哪条纪律没拦住。',
+      d: '<b>认知 −1 ＋ 心态损伤（双重减分）。</b>不可归因的亏损复盘不出逻辑，只能复盘出"运气差/市场坏"这类噪声结论，还会诱发翻本心态（L01）。处理：不纠原因，只做两件事——记"随手单 +1"，触发纪律检查。',
+      e: '<b>认知 +N（成长的主引擎）。</b>失败模式的复盘用 L02 分布观：不看单笔看分布（250 笔样本下的胜率/期望/回撤），定位底层逻辑问题，在准备阶段改链条。豆子原话：哪怕模式失败，"底层逻辑有问题，你也会有认知上的提高"。<b>这是认知复利的原料加工环节。</b>'
+    };
+    var l08Btns = document.querySelectorAll('#l08-btns button');
+    l08Btns.forEach(function(b){ b.addEventListener('click', function(){
+      l08Btns.forEach(function(x){ x.classList.remove('on'); });
+      b.classList.add('on');
+      document.getElementById('l08-out').innerHTML = L08_VERDICT[b.getAttribute('data-k')];
+    });});
+  </script>
+
+    <h2><span class="tag p4">案</span>真实案例：概念落在盘面上</h2>
+  <p class="small">以下为公开市场事件（数字为约数），用来把本课概念放到真实盘面上看。</p>
+    <div class="card"><b>同一个打板模式的两段人生（顺控发展 2021）</b>
+      <p class="small" style="margin:6px 0 0"><b>事实</b>：3 月赚钱效应期：模式内执行净胜率与溢价双高，复盘能说清「赚的是情绪溢价」；4 月亏钱效应期：同源结算，复盘能说清「亏的是溢价退潮」——两段都是可归因样本。</p>
+      <p class="small" style="margin:4px 0 0"><b>对应知识点</b>：模式内执行的认知价值：失败的模式内执行也能提高认知（逻辑链条被证伪=升级），因为它可归因。</p></div>
+    <div class="card"><b>东方通信 2018.10–2019.3（600776）</b>
+      <p class="small" style="margin:6px 0 0"><b>事实</b>：5G 题材老龙，约 3.7 元→41 元（约 10 倍），随后数月跌回起点附近；每一段涨跌事后都有清晰的资金行为解释。</p>
+      <p class="small" style="margin:4px 0 0"><b>对应知识点</b>：可归因 vs 噪声：这类「完整的逻辑链条」样本，复盘一次升级一次认知；随手单的盈亏则永远讲不清「为什么赚」。</p></div>
+
+
+<h2><span class="tag p3">八</span>复习巩固</h2>
+  <p>按 1/7/30 天各来一轮。先自己答，再点开卡片对答案——答案不是背我的，是要长出你自己的悟道。</p>
+  <div class="flash" onclick="this.classList.toggle('open')">
+    <div class="front">L08 · 卡 1：一笔模式内交易亏了 8%，这笔交易对成长有价值吗？<span class="hint">点击翻面</span></div>
+    <div class="back">有，而且可能是最值钱的一笔。因为下单前有逻辑链条，<b>盈亏可归因</b>：沿着信号→预期→结果找逻辑哪里错了，复盘能升级链条——这就是"哪怕失败也有认知上的提高"。对比随手单赚 8%：不可归因，复盘只能拟合噪声。<b>判成长看归因，不看盈亏。</b>→ 追问自己：我能说出这笔亏损"错在链条哪一环"吗？说得出＝样本有效。</div>
+  </div>
+  <div class="flash" onclick="this.classList.toggle('open')">
+    <div class="front">L08 · 卡 2：为什么说随手单的复盘会让认知"越来越低"？<span class="hint">点击翻面</span></div>
+    <div class="back">因为随手单无逻辑链条，盈亏都是<b>噪声</b>；复盘噪声学到的"规律"是噪声的拟合（接 L05 过拟合），比如"我上次追直线拉赚了"→强化坏习惯。同时盈亏冲击心态（接 L06），心态损→更随手→更多噪声，<b>负循环把认知往下拉</b>。→ 追问：我复盘记录里有多少条"规律"其实来自随手单？</div>
+  </div>
+  <div class="flash" onclick="this.classList.toggle('open')">
+    <div class="front">L08 · 卡 3：发现自己的模式有漏洞，盘中直接改规则行不行？<span class="hint">点击翻面</span></div>
+    <div class="back">不行。<b>改模式要在复盘后改（准备阶段），不是盘中改。</b>盘中改规则＝用情绪当研究员，改出来的模式前后不可比，这笔样本也废了（规则变形无法归因）。正确流程：盘中照原模式执行→收盘复盘定位问题→改逻辑链条→下一交易日用新链条。→ 追问：我上周有几次"盘中灵机一动改计划"？每次都是样本报废。</div>
+  </div>
+
+  <h3>悟道提问（没有标准答案，答案写进你自己的交易笔记）</h3>
+  <div class="card good">
+    <ol style="margin:6px 0 0;padding-left:20px">
+      <li>把我的模式压缩成一句话"完整逻辑链条"（因为……所以在……时买入，预期……，错了就……）——我能写顺吗？写不顺说明还谈不上"模式内执行"。</li>
+      <li>我最近 10 笔交易里，有几笔能明确说出"赚/亏的是逻辑链条里哪一环"？几笔只能归结为"运气/盘感"？</li>
+      <li>如果一年只能选 250 笔交易，我选"可归因但可能亏"的 250 笔，还是"可能赚但说不清"的 250 笔？为什么实际行为和这个选择不一致？</li>
+    </ol>
+  </div>
+
+  <h3>联结图（文字版：本课在全课中的位置）</h3>
+  <div class="card note">
+    <p class="small" style="margin:0"><b>L03 六元组三检验</b>（造模式）→ <b>L08 模式内执行</b>（只做模式，产出可归因样本）→ <b>L02 分布观</b>（复盘样本，不看单笔看分布）→ 模式改进 → <b>认知正循环</b>（越赚钱，认知越高）</p>
+    <p class="small" style="margin:6px 0 0">支线一：<b>L06 纪律</b>（T+1 / 卖了不追）压制随手单 → 少喂噪声给心态 → 护住正循环<br>
+    支线二：<b>L05 过拟合</b>＝复盘噪声的病名；<b>L10 两阶段</b>（预告）＝把"盘中只执行、准备阶段改模式"制度化</p>
+  </div>
+
+  <h2><span class="tag p3">九</span>内化掌握（三关全过＝这课学完）</h2>
+  <div class="card warn">
+    <p style="margin:6px 0 0"><b>关卡一 · 费曼</b>：在聊天里输入「我讲给你听 L08」，我扮演爱追问的学生——重点考你："模式内执行的三个要件是什么？"、"随手单的复盘为什么会降低认知？"、"越赚钱认知越高是为什么？"</p>
+    <p style="margin:6px 0 0"><b>关卡二 · 场景判断</b>：你盘中看到一只票直线拉起 5 个点，群里在刷"主力进场"。你想追。同时你的 L03 模式触发点还差 2 个条件没满足。你会怎么做？另外：昨天你按模式买的票亏了 4%，今天该怎么处理这笔亏损？</p>
+    <details><summary>参考判断与评分点</summary><div class="ans">正确动作：① 不追直线拉——临场随机判断、无明确思路、无明确赚钱效应，<b>三无＝随手单</b>；模式触发点没到就不买，宁可错过。② 昨天那笔是模式内亏损：照 X 出场规则处理，记入样本，复盘时沿信号→预期→结果归因，<b>不因亏损否定模式，也不因"模式内"不复盘</b>。评分点：① 能用三要件当场判"随手单"；② 知道判定标准在下单前有没有逻辑链条，不在赚亏；③ 模式内亏损走归因复盘（认知 +1 路径）；④ 不临场改模式、不翻本加仓。</div></details>
+    <p style="margin:6px 0 0"><b>关卡三 · 规则产出</b>：写出你自己的"模式内执行"落地模板：① 我的逻辑链条一句话版（触发信号→买点→预期→出场）；② 我的"随手单判定三问"（下单前问自己：链条事先写好了吗？触发点事先定了吗？仓位按规则给了吗？）；③ 我的复盘归因栏（每笔必填：赚/亏在链条哪一环）。</p>
+  </div>
+
+  <h2><span class="tag p3">十</span>作业 · 自测 · 速查</h2>
+
+  <h4>作业（下次课前完成）</h4>
+  <ol>
+    <li><b>链条卡</b>：把你的模式写成一张"完整逻辑链条"卡（因为→所以→在…时→预期→错了就…），一字一句改到能对新手讲明白。</li>
+    <li><b>认知账本</b>：未来一周每笔交易记两栏——"模式内/随手单"与"归因结果"。周末统计：几笔 +1、几笔 −1，算出你本周的"认知净值"。</li>
+    <li><b>遮羞布自查</b>：翻过去一个月的交易记录，找出 3 笔"事后才套模式名"的单子，承认它们是随手单，写下当时哪条纪律没拦住。</li>
+  </ol>
+
+  <h4>自测（8 题，先答再看答案）</h4>
+  <div class="q">Q1. 模式内执行的三个要件是什么？
+    <details><summary>答案</summary><div class="ans">① 完整逻辑链条（想好的闭环思路）；② 可赚钱的模式（有明确的赚钱效应来源）；③ 正在执行（不是纸上谈兵，按触发点真下单）。缺一不可。</div></details></div>
+  <div class="q">Q2. 随手单的三个特征是什么？
+    <details><summary>答案</summary><div class="ans">临场随机的判断、没有明确的思路、没有明确的赚钱效应。典型例子：盘中看到直线拉就追。</div></details></div>
+  <div class="q">Q3. 为什么失败的模式内执行也能提高认知？
+    <details><summary>答案</summary><div class="ans">因为盈亏可归因：下单前有逻辑链条，信号→结果→逻辑对错可以逐环检验，复盘能定位底层逻辑问题并升级链条。哪怕结论是"模式失败"，也排掉了一条错误路径——认知 +1。</div></details></div>
+  <div class="q">Q4. 为什么随手单不仅不涨认知，还会"倒过来降低认知"？
+    <details><summary>答案</summary><div class="ans">因为无逻辑链条，盈亏不可归因，都是噪声；复盘噪声学到的"规律"是噪声的拟合（如"我上次追直线拉赚了"→强化坏习惯）。同时盈亏冲击心态，心态损→更随手→更多噪声，负循环把认知越拉越低。</div></details></div>
+  <div class="q">Q5. "越赚钱，认知越高"的机制是什么？
+    <details><summary>答案</summary><div class="ans">正循环：认知↑→模式改进→执行更稳→可归因样本更多→复盘再升级认知。模式期望为正时，赚得越多＝样本越多＝认知涨得越快——赚钱是认知复利的副产品。</div></details></div>
+  <div class="q">Q6. 成长账里，每周 5 笔、一年 250 笔，为什么两条路线结局天差地别？
+    <details><summary>答案</summary><div class="ans">数量相同但性质不同：250 笔可归因样本能建模（统计胜率/期望、改进链条），250 笔噪声样本只能造幻觉（似是而非的"盘感"）。差别不在交易量，在交易的是什么。</div></details></div>
+  <div class="q">Q7. 发现模式有漏洞，应该什么时候改、怎么改？
+    <details><summary>答案</summary><div class="ans">在复盘后（准备阶段）改，不在盘中改。盘中只执行原模式；收盘后沿信号→预期→结果归因定位问题，改逻辑链条，下一交易日用新链条。盘中改规则＝样本报废＋情绪当研究员。</div></details></div>
+  <div class="q">Q8. 怎么防止拿"模式内"当随手单的遮羞布？
+    <details><summary>答案</summary><div class="ans">用"三个事先"判定：逻辑链条事先写好、触发点事先定好、仓位按规则给。任何一条是事后补的（临时起意再套个模式名），就是随手单。模式是剧本，不是事后编的借口。</div></details></div>
+
+  <div class="card good"><b>速查卡</b><ul class="cheat" style="margin:6px 0;padding-left:18px">
+    <li>成长＝认知，不是收益曲线。</li>
+    <li>一句话答案：模式内执行。</li>
+    <li>三要件：逻辑链条 / 可赚钱模式 / 正在执行。</li>
+    <li>随手单三无：无思路、无赚钱效应、临场随机。</li>
+    <li>判定看下单前有没有链条，不看赚亏。</li>
+    <li>模式内盈亏可归因 → 复盘升级逻辑（认知 +1）。</li>
+    <li>随手单盈亏是噪声 → 复盘拟合噪声（认知 −1）。</li>
+    <li>可解释的亏损是学费，不可解释的盈利是陷阱。</li>
+    <li>失败的模式内执行也有认知价值。</li>
+    <li>正循环：认知→改模式→稳执行→样本→认知。</li>
+    <li>负循环：心态损→随手→更损（L06 接）。</li>
+    <li>成长账：5 笔/周→250 笔/年，建模 vs 造幻觉。</li>
+    <li>改模式在复盘后改（准备阶段），盘中只执行。</li>
+    <li>三个事先＝真模式；事后补＝遮羞布。</li>
+    <li>拼图：L03 造模式→L08 只做→L02 复盘→L06 压随手。</li>
+    <li>越赚钱，认知越高——正循环的拐点描述。</li>
+  </ul></div>
+
+  <div class="next"><b>下一讲（L09）：实操学习的方式——怎么把课变成手上的功夫</b>（<a href="https://www.bilibili.com/video/BV11NRNBdEPz">BV11NRNBdEPz</a>）。本课给了成长的唯一路径（模式内执行），L09 讲怎么学实操：怎么把模式、复盘、纪律练成本能。回「下一课」即跳转，或直接提问。</div>
+  <p class="small" style="margin-top:20px">投资有风险，本课为教育内容，不构成投资建议。数值例子为教学模拟；原视频 47 秒，内核已完整展开，个别表述已按转写与语境校订（人质＝认知）。疑问直接问，我换例子重讲。</p>
+</div>
+
+</body>
+</html>

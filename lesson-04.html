@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>L04 看什么：技术面vs基本面</title>
+
+<style>
+.nav{position:sticky;top:0;z-index:50;background:#1a202c;padding:8px 14px;display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif}
+.nav a{color:#e2e8f0;text-decoration:none;font-size:13px;padding:3px 10px;border-radius:999px;background:#2d3748}
+.nav a:hover{background:#4a5568}
+.nav a.cur{background:#c05621;color:#fff;font-weight:600}
+.nav a.home{background:#2b6cb0}
+.nav .sp{color:#718096;font-size:12px;margin:0 4px}
+</style>
+</head>
+<body style="margin:0;background:#f7fafc">
+<nav class="nav"><a class="home" href="index.html">目录主页</a><a class="" href="lesson-01.html">L01 本金保护</a><a class="" href="lesson-02.html">L02 盈亏同源</a><a class="" href="lesson-03.html">L03 交易模式</a><a class="cur" href="lesson-04.html">L04 看什么</a><a class="" href="lesson-05.html">L05 技术分析</a><a class="" href="lesson-06.html">L06 交易纪律</a><a class="" href="lesson-07.html">L07 切换原理</a><a class="" href="lesson-08.html">L08 成长</a><a class="" href="lesson-09.html">L09 实操学习</a><a class="" href="lesson-10.html">L10 随手单</a><span class="sp">点击跳转复看</span></nav>
+<style>
+  :root{--ink:#1a202c;--sub:#4a5568;--line:#e2e8f0;--bg:#f7fafc;--accent:#c05621;--accent2:#2b6cb0;--good:#276749;--warn:#9b2c2c;--card:#fff}
+  *{box-sizing:border-box}
+  .doc{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;color:var(--ink);background:var(--bg);padding:28px 20px 60px;line-height:1.8;max-width:980px;margin:0 auto}
+  .doc h1{font-size:26px;margin:0 0 4px}
+  .doc h2{font-size:19px;margin:34px 0 10px;padding-left:10px;border-left:4px solid var(--accent)}
+  .doc h3{font-size:16px;margin:20px 0 8px;color:var(--accent2)}
+  .doc p{margin:8px 0}
+  .meta{color:var(--sub);font-size:13px;margin-bottom:16px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin:12px 0}
+  .goal{background:#fffaf0;border-color:#fbd38d}
+  .warn{background:#fff5f5;border-color:#feb2b2}
+  .good{background:#f0fff4;border-color:#9ae6b4}
+  .note{background:#ebf8ff;border-color:#90cdf4}
+  table{width:100%;border-collapse:collapse;font-size:13px;background:var(--card);border-radius:8px;overflow:hidden;margin:8px 0}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+  th{background:#edf2f7;font-weight:600}
+  td.num{white-space:nowrap;font-variant-numeric:tabular-nums;text-align:right}
+  .pos{color:var(--good);font-weight:600}.neg{color:var(--warn);font-weight:600}
+  .tag{display:inline-block;font-size:11px;padding:1px 8px;border-radius:999px;background:#edf2f7;color:var(--sub);margin-right:4px}
+  .p1{background:#feebc8;color:#7b341e}.p2{background:#bee3f8;color:#2a4365}.p3{background:#c6f6d5;color:#22543d}.p4{background:#fed7e2;color:#702459}
+  a{color:var(--accent2);text-decoration:none}a:hover{text-decoration:underline}
+  .formula{background:#1a202c;color:#f7fafc;border-radius:8px;padding:12px 16px;font-family:"SF Mono",Menlo,monospace;font-size:13px;margin:10px 0;overflow-x:auto;line-height:1.9}
+  .formula b{color:#f6ad55}
+  .q{border-left:3px solid var(--accent2);padding-left:12px;margin:12px 0}
+  .ans{color:var(--good);font-size:13px;margin-top:4px}
+  .next{margin-top:24px;padding:14px 18px;border:1px dashed var(--accent);border-radius:10px;background:#fffaf0;font-size:14px}
+  .small{font-size:12.5px;color:var(--sub)}
+  details{margin:8px 0}summary{cursor:pointer;color:var(--accent2);font-size:13.5px}
+  .cheat{columns:2;column-gap:24px}.cheat li{margin:6px 0;break-inside:avoid}
+  ul,ol{margin:6px 0 6px 20px;padding:0}li{margin:3px 0}
+  code{background:#edf2f7;border-radius:4px;padding:0 5px;font-size:12.5px}
+  @media(max-width:640px){.cheat{columns:1}}
+  .demo{background:#1a202c;border-radius:12px;padding:18px 20px;color:#f7fafc;margin:14px 0}
+  .demo h4{margin:0 0 10px;font-size:15px;color:#f6ad55}
+  .demo .row{display:flex;flex-wrap:wrap;gap:18px;align-items:center}
+  .demo label{font-size:13px}
+  .demo input[type=range]{width:240px;vertical-align:middle}
+  .demo .out{font-family:"SF Mono",Menlo,monospace;font-size:13px;line-height:2}
+  .demo .out b{color:#f6ad55}
+  .demo .bar{height:16px;border-radius:8px;background:#2d3748;overflow:hidden;margin:6px 0}
+  .demo .bar i{display:block;height:100%;border-radius:8px}
+  .flash{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:10px 0;cursor:pointer}
+  .flash .front{font-weight:600}
+  .flash .back{display:none;margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);color:var(--good)}
+  .flash.open .back{display:block}
+  .flash .hint{font-size:11.5px;color:var(--sub);float:right;font-weight:400}
+</style>
+
+<div class="doc">
+  <div class="card" style="padding:10px 14px;margin:0 0 14px">
+    <b>课程目录</b>　<span class="small">L01 本金保护 · L02 盈亏同源 · L03 交易模式 · <b>L04 看什么（本课）</b> · L05 技术分析 · L06 纪律 · L07 切换原理 · L08–L13 方法 · L14–L25 认知心智</span><br>
+    <span class="small">导航口令：「目录」看全表 ｜「下一课」推进 ｜「重讲 Lxx」换方式重讲 ｜ 直接提问＝答疑</span>
+    <span class="small">总览入口：<a href="trees.html">十课知识树</a> ｜ <a href="cases.html">十课真实案例</a>（每课正文内也有各自的知识树与真实案例）</span>
+  </div>
+
+  <h1>第四课：看什么——技术面 vs 基本面，赚钱效应在哪</h1>
+  <div class="meta">《豆子悟道 · 股票系统学习课》L04 ｜ 模块一 悟道·地基 ｜ 源自原视频《悟道系列——交易到底应该看什么？炒股看技术面还是基本面？关于发现赚钱效应的思考》（约 10.8 分钟，<a href="https://www.bilibili.com/video/BV1KHq4BCExQ">BV1KHq4BCExQ</a>）｜ <b>本讲义是消化后的讲解</b>：视频全部要点已重组融入正文，配上我的理解与例子，不需要看视频 ｜ 2026-10-27</div>
+
+  <div class="card goal">
+    <b>这节课讲什么</b>
+    <p style="margin:6px 0 0">一句话：<b>炒股到底看什么？看的不是"技术面还是基本面"，而是赚钱效应本身</b>——技术面和基本面都只是观察它的工具，赚钱效应的来源是<b>认知差与人性（预期差）</b>。把这个想通，"技术面 vs 基本面"的路线之争就自动消解了。</p>
+    <p style="margin:6px 0 0">这节课豆子给出了他自己的第三种答案——<b>人性面</b>：人性底层不变、表象可变，所以研究人性比研究多变的技术面表象更稳。然后他给出一整套"发现赚钱效应"的底层思考：超额收益的定义、认知梯度（价格向认知更高者走）＋两个限定、用盈亏同源判泡沫、技术面的正确用法（看谁在参与）、超预期＝高认知资金的足迹、低估的预期差读法。</p>
+    <p style="margin:6px 0 0">下面十节讲透：先拆掉伪问题、把钱算清楚，然后一节一节把每个概念配上我的解读和走一遍数字的例子，最后收束成一套可执行的观察系统，接上 L01–L03。</p>
+  </div>
+
+  <h2><span class="tag p4">图</span>本课知识树（思维导图）</h2>
+  <p class="small">从左向右生长：根＝本课主张，一级分支＝主题，向右展开概念；右上角编号＝关联（见图例）。</p>
+  <div style="overflow-x:auto;margin:10px 0">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 912" role="img" aria-labelledby="l04-tree-tree-title l04-tree-tree-desc" style="min-width:1024px;width:100%;height:auto;font-family:'PingFang SC','Microsoft YaHei','Noto Sans SC',-apple-system,sans-serif">
+    <title id="l04-tree-tree-title">L04 看什么知识树</title>
+    <desc id="l04-tree-tree-desc">看什么的完整层级：伪问题拆解、超额定义、人性面、认知梯度、观察五项，含三条关联。</desc>
+    <defs>
+      <marker id="l04-tree-arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1 L 8 5 L 0 9 z" fill="#2b6cb0"/>
+      </marker>
+    </defs>
+    <path d="M 152 399 C 226 399 226 69 300 69" fill="none" stroke="#b9c3d0" stroke-width="1.6"/>
+    <path d="M 396 69 C 478 69 478 25 560 25" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 69 C 478 69 478 69 560 69" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 69 C 478 69 478 113 560 113" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 152 399 C 226 399 226 201 300 201" fill="none" stroke="#b9c3d0" stroke-width="1.6"/>
+    <path d="M 396 201 C 478 201 478 157 560 157" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 201 C 478 201 478 201 560 201" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 201 C 478 201 478 245 560 245" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 152 399 C 226 399 226 333 300 333" fill="none" stroke="#b9c3d0" stroke-width="1.6"/>
+    <path d="M 396 333 C 478 333 478 289 560 289" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 333 C 478 333 478 333 560 333" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 333 C 478 333 478 377 560 377" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 152 399 C 226 399 226 509 300 509" fill="none" stroke="#b9c3d0" stroke-width="1.6"/>
+    <path d="M 396 509 C 478 509 478 421 560 421" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 509 C 478 509 478 465 560 465" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 509 C 478 509 478 509 560 509" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 509 C 478 509 478 553 560 553" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 509 C 478 509 478 597 560 597" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 152 399 C 226 399 226 707 300 707" fill="none" stroke="#b9c3d0" stroke-width="1.6"/>
+    <path d="M 396 707 C 478 707 478 641 560 641" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 707 C 478 707 478 685 560 685" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 707 C 478 707 478 729 560 729" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 707 C 478 707 478 773 560 773" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 333 C 466 333 466 502 396 502" fill="none" stroke="#2b6cb0" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#l04-tree-arr)"/>
+    <path d="M 396 516 C 466 516 466 707 396 707" fill="none" stroke="#2b6cb0" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#l04-tree-arr)"/>
+    <path d="M 396 201 C 466 201 466 69 396 69" fill="none" stroke="#2b6cb0" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#l04-tree-arr)"/>
+    <rect x="560" y="8" width="144" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="30" font-size="12" font-weight="600" fill="#1a202c">技术面/基本面＝工具</text>
+    <rect x="560" y="52" width="124" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="74" font-size="12" font-weight="600" fill="#1a202c">降维：先问看什么</text>
+    <rect x="560" y="96" width="136" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="118" font-size="12" font-weight="600" fill="#1a202c">结合派＝逻辑＋买点</text>
+    <rect x="300" y="52" width="96" height="34" rx="8" fill="#ffffff" stroke="#1a202c" stroke-width="1.2"/>
+    <text x="313" y="74" font-size="13" font-weight="600" fill="#1a202c">伪问题拆解</text>
+    <rect x="560" y="140" width="140" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="162" font-size="12" font-weight="600" fill="#1a202c">年化7%门槛才算超额</text>
+    <rect x="560" y="184" width="124" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="206" font-size="12" font-weight="600" fill="#1a202c">超额＝赚别人的钱</text>
+    <rect x="560" y="228" width="136" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="250" font-size="12" font-weight="600" fill="#1a202c">找对手盘的人性弱点</text>
+    <rect x="300" y="184" width="96" height="34" rx="8" fill="#ffffff" stroke="#1a202c" stroke-width="1.2"/>
+    <text x="313" y="206" font-size="13" font-weight="600" fill="#1a202c">超额定义</text>
+    <rect x="560" y="272" width="136" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="294" font-size="12" font-weight="600" fill="#1a202c">底层不变，表象可变</text>
+    <rect x="560" y="316" width="152" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="338" font-size="12" font-weight="600" fill="#1a202c">题材换代 互联网+→AI</text>
+    <rect x="560" y="360" width="112" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="382" font-size="12" font-weight="600" fill="#1a202c">投资赚恐惧的钱</text>
+    <rect x="300" y="316" width="96" height="34" rx="8" fill="#ffffff" stroke="#1a202c" stroke-width="1.2"/>
+    <text x="313" y="338" font-size="13" font-weight="600" fill="#1a202c">人性面</text>
+    <rect x="560" y="404" width="112" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="426" font-size="12" font-weight="600" fill="#1a202c">走向认知更高者</text>
+    <rect x="560" y="448" width="136" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="470" font-size="12" font-weight="600" fill="#1a202c">限定①认知差要明显</text>
+    <rect x="560" y="492" width="172" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="514" font-size="12" font-weight="600" fill="#1a202c">限定②总体倾向·长期高低</text>
+    <rect x="560" y="536" width="136" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="558" font-size="12" font-weight="600" fill="#1a202c">超预期＝高认知足迹</text>
+    <rect x="560" y="580" width="124" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="602" font-size="12" font-weight="600" fill="#1a202c">低估＝被叙事压住</text>
+    <rect x="300" y="492" width="96" height="34" rx="8" fill="#ffffff" stroke="#1a202c" stroke-width="1.2"/>
+    <text x="313" y="514" font-size="13" font-weight="600" fill="#1a202c">认知梯度</text>
+    <rect x="560" y="624" width="124" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="646" font-size="12" font-weight="600" fill="#1a202c">板块强度·封板率</text>
+    <rect x="560" y="668" width="112" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="690" font-size="12" font-weight="600" fill="#1a202c">次日溢价·量能</text>
+    <rect x="560" y="712" width="100" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="734" font-size="12" font-weight="600" fill="#1a202c">亏钱效应信号</text>
+    <rect x="560" y="756" width="112" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="778" font-size="12" font-weight="600" fill="#1a202c">谁在参与过滤器</text>
+    <rect x="300" y="690" width="96" height="34" rx="8" fill="#ffffff" stroke="#1a202c" stroke-width="1.2"/>
+    <text x="313" y="712" font-size="13" font-weight="600" fill="#1a202c">观察五项</text>
+    <rect x="24" y="369" width="128" height="60" rx="8" fill="rgba(192,86,33,0.08)" stroke="#c05621" stroke-width="1.4"/>
+    <text x="38" y="395" font-size="15" font-weight="600" fill="#1a202c">L04 看什么</text>
+    <text x="38" y="415" font-size="11" fill="#4a5568">看的是赚钱效应本身</text>
+    <circle cx="392" cy="56" r="8" fill="#2b6cb0"/>
+    <text x="392" y="60" text-anchor="middle" font-size="10" font-weight="600" fill="#fff">1</text>
+    <circle cx="392" cy="188" r="8" fill="#2b6cb0"/>
+    <text x="392" y="192" text-anchor="middle" font-size="10" font-weight="600" fill="#fff">2</text>
+    <circle cx="392" cy="320" r="8" fill="#2b6cb0"/>
+    <text x="392" y="324" text-anchor="middle" font-size="10" font-weight="600" fill="#fff">3</text>
+    <circle cx="392" cy="496" r="8" fill="#2b6cb0"/>
+    <text x="392" y="500" text-anchor="middle" font-size="10" font-weight="600" fill="#fff">4</text>
+    <circle cx="392" cy="694" r="8" fill="#2b6cb0"/>
+    <text x="392" y="698" text-anchor="middle" font-size="10" font-weight="600" fill="#fff">5</text>
+    <line x1="10" y1="808" x2="1014" y2="808" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="10" y="824" font-size="12" font-weight="600" fill="#1a202c">关联图例</text>
+    <text x="86" y="824" font-size="12" fill="#4a5568">① 人性弱点是认知差的来源——人性面喂给认知梯度</text>
+    <text x="86" y="846" font-size="12" fill="#4a5568">② 超预期足迹要靠观察五项去读——判据接上温度计</text>
+    <text x="86" y="868" font-size="12" fill="#4a5568">③ 先定义超额＝赚谁的钱，工具之争（技术/基本面）才消解</text>
+  </svg>
+  </div>
+  <h2><span class="tag p1">一</span>先把伪问题拆掉：技术面 vs 基本面，不是二选一</h2>
+  <p>豆子开场就点出市场的常态：大多数人把"看技术面"和"看基本面"当成<b>水火不容</b>的两派。看技术面的只看技术面，看基本面的只看基本面；也有所谓"结合派"——豆子拆了一下：所谓结合，多数时候也就是<b>"确认一个逻辑，再确认一个买点"</b>，这思路确实也还可以，但它并不是什么第三条路线，只是把两个工具接了起来。</p>
+  <p>他自己的做法先交代清楚：<b>如果硬要二选一，还是基本面——因为基本面提供的底层赚钱效应会好一些。</b>他交易里长期的、底仓性质的部分偏基本面逻辑。但请注意他的措辞：这是"硬要二选一"时的让步答案，<b>不是他的真正答案</b>。他真正的看法是：不论技术面还是基本面，在他眼中<b>都会产生片面性</b>——因为它们都只是"看"的工具，不是"看什么"的答案。</p>
+  <p><b>我的理解：这是典型的"降维"。</b>两派在争论"用哪把尺子量"，豆子把问题换成"你要量的东西是什么"。答案是赚钱效应。尺子只是尺子。举个例子：两个人看同一只股票，一个说"均线多头排列，该买"，一个说"利润增速只有 5%，不该买"——他们其实没有在吵架，一个在度量"现在有没有人正在赚钱"，一个在度量"这东西长期值多少"。两个问题都对，但都只是一层。<b>争论"看哪个面"，是问错了问题。</b></p>
+
+  <h2><span class="tag p1">二</span>先把钱算清楚：什么是"超额收益"</h2>
+  <p>要理解他后面的一切动作，先得把一个定义钉死：<b>什么是赚钱、什么才算"赚到了"。</b>他给的定义非常量化：</p>
+  <div class="formula">股权投资的底层回报 = 年化 <b>4%–7%</b>（这是股权这种资产本身就该给的，豆子取线：<b>超过年化 7% 的部分，才算超额收益</b>）
+超额收益（alpha）= 你的年化 − 7%
+10 万本金，一年后变 12.5 万 → 年化 +25% → 超额 = 25% − 7% = <b>18% ≈ 1.8 万</b>
+拆账：+0.7 万是"水涨船高"的底层（买宽基躺平也大致有）；<b>+1.8 万才是你要解释的那部分</b></div>
+  <p>接着是全课最关键的一句推理：<b>大多数时候你想要获得超额收益，你都需要赚别人的钱。</b>底层那 7% 是企业成长和货币化给全体股东的"白给"；超出的部分不是市场凭空发的，它必然是从某个对手盘那里转移过来的——你的超额，就是别人的超额亏损（接 L02 盈亏同源）。</p>
+  <p><b>我的解读：这个定义把"我很厉害"的幻觉直接拿掉了。</b>年化 15% 的人里，大部分是 2020–2021 年拿赛道股"水涨船高"的部分，去掉基准后接近零。真正的分水岭是你能不能持续地、清楚地回答：<b>我赚的是谁的钱？他为什么会把这个钱给我？</b>答不出来，就还在赚行情的钱（L02 第五层的 beta 分解）。这也是他后面所有内容的出发点——既然超额＝赚别人的钱，那你想赚谁的钱，是不是就应该研究一下<b>他的人性</b>？</p>
+
+  <h3>名词解释：股权（"股权投资"里的那个"股权"）</h3>
+  <p>股权＝对一家公司的<b>所有权份额</b>。股票就是把公司所有权切成标准化的小份：分成 1 亿份、你买 1 万股，就拥有这家公司万分之一。它给你三样权利：<b>收益权</b>（按持股比例分红）、<b>资产权</b>（清算时还完债、按比例分剩余）、<b>治理权</b>（股东大会投票——散户的票看似没用，机构和大股东就靠它说话，这也是 L02 里"大股东是认知更高一侧"的原因之一）。</p>
+  <p><b>类比合伙开奶茶店</b>：你出 1 万占 1%——店赚 100 万你分 1 万（分红）；店卖 500 万你分 5 万（清算）；开不开分店你投 1% 的票（治理）。股票只是把这个"合伙份额"标准化了，让你能随时转手。两个常用区分：<b>股权 vs 股票</b>——股权是权利本身，股票是权利的凭证，日常混用；<b>一级 vs 二级</b>——买未上市公司的股权是 VC/PE 的"股权投资"，买上市公司的股票同样是股权。</p>
+  <p><b>接回本节公式</b>：「股权投资的底层回报＝年化 4–7%」——这是拥有股权本身的"工资"（企业成长＋分红＋风险溢价），不需要你聪明；<b>超过 7% 的部分才是超额</b>，那要从别人手里赚（认知差）。风险侧（接 L02）：股权是<b>剩余索取权</b>——公司清算时债主先拿钱、股东最后拿，所以股权的波动与归零风险天然比债权大；股权长期回报高于存款，代价就是这个波动，盈亏同源。</p>
+
+  <h2><span class="tag p1">三</span>概念专节：人性面——人性底层不变，表象可变</h2>
+  <p>现在给出他自己的答案。有人问他"你的模式看什么"，他说：我一般称之为<b>人性面</b>——我研究最多的就是人性。他还顺手开了个地图炮：这和"价格行为学那种吹得很牛、实际上路边一条的东西"不一样（他自己补了句"没有冒犯的意思"，但态度很清楚：<b>表象层面的归纳术，不如底层规律值钱</b>）。</p>
+  <p>为什么研究人性？他给的理由是一个结构性判断：<b>人性底层是不变的，但它的表象是可以变的。</b>他举的例子就是"同一代人"：经济周期上行时，人表现出积极、正能量；经济周期下行时，社会矛盾被激化，人变得消极、躺平。人还是那批人，环境不同、想法和行为的表象就不同，<b>但底层的人性不变</b>——贪婪、恐惧、从众、急于求成、损失厌恶，几千年来就那几样。</p>
+  <p>结论：<b>正因为底层不变，人性才是比多变的技术面表象更稳定的研究对象。</b>你归纳"这个形态涨、那个形态跌"，表象一轮行情就换一批；但你研究"人在贪婪时会干什么、在恐惧时会干什么"，它每轮行情都换着花样重演。</p>
+  <p><b>我的例子：看一遍近十年题材股的表象换代。</b>2015 年炒互联网+、2019 年炒半导体自主、2021 年炒新能源、2023 年炒 AI——表象（板块、故事、K 线形态）完全不同，但每一轮都是同一套底层剧本：先知先觉者进场 → 故事开始传播 → 散户怕踏空蜂拥而入 → 情绪顶 → 一地鸡毛。<b>你去研究互联网+的 K 线形态，今天用不上；你去研究"人在怕踏空时会干什么"，今天照样用得上。</b>这就是"底层不变、表象可变"的意思。</p>
+  <p>还有投资端的另一半：他说<b>投资也是一样的，投资也要找到人性的弱点</b>——真正便宜、真正有价值的东西，都是<b>在人性的弱点产生的时候才出现的</b>。恐慌抛售时的低估、无人问津时的便宜货，对手盘的恐惧就是你的安全边际。<b>我的一句话版本：想赚谁的钱，就去研究谁的弱点——投机赚贪婪的钱，投资赚恐惧的钱，都长在人性上。</b></p>
+
+  <h2><span class="tag p2">四</span>判据专节：认知梯度——价格倾向于走向认知更高者期望的方向</h2>
+  <p>人性面怎么落到"看方向"上？豆子用一条底层逻辑接过去：<b>认知决定财富。</b>在大的逻辑上，认知更高的人应该赚到更多的钱；具体到同一个标的上——<b>对他认知更高的人，应该去收割认知更低的人。</b></p>
+  <p>于是他给出了一个重新定义方向的方式，这句值得抄下来：</p>
+  <div class="formula">与其把一个标的的方向定义为"因为什么 K 线之类的去涨跌"
+<b>不如定义为：它会倾向于走向认知更高的人所期望的方向</b>
+（＝认知更高的人参与/押注的方向，就是标的长期倾向的方向）</div>
+  <p>为什么这样定义更合理？他反问了一句：<b>你觉得认知更低的人赚到更多的钱更合理，还是认知更高的人赚到更多的钱更合理？当然是认知更高的人。</b>长期、大数上，钱会流向认知高的一侧，所以价格的长期方向就是那一侧期望的方向。</p>
+
+  <h3>两个限定——没有它们，这个判据会把你害死</h3>
+  <p><b>限定一：认知差必须明显。</b>很多时候一个标的里面不一定有很明显的认知差——可能不管认知高低的人都有多空两边的押注，两边都有聪明钱，这种方式<b>不好判断</b>。只有当它产生了<b>明显的认知差</b>时，长期趋势才要向着认知更高的地方去走。<b>我的读法：这个判据是"有信号才用"的开关，不是全天候罗盘。</b>两边高认知者打对台时，承认看不懂，不出手。</p>
+  <p><b>限定二：看高认知群体的总体倾向，不看单个机构；它定的是长期绝对高低，不是短期顶底。</b>他用牛市高位做例子，走一遍推演：</p>
+  <div class="formula">场景：指数从 3000 涨到 6000，牛市高位
+国家队在减持、大股东在套现 → 他们对自己的公司无疑是<b>掌握更深的</b>（认知更高一侧）
+散户在进场（开户放量、基金申购爆棚）→ 低认知一侧在买
+判据：不需要看<b>单个</b>机构怎么做，看<b>高认知那一批人总体的倾向</b>是否有差距
+推演：这个地方<b>不一定马上就会跌</b>——甚至有可能它只是行情的中断（6000 → 6500 → 再跌回 4500）
+但<b>长期来看，它的绝对高低就是可以定义的了</b></div>
+  <p><b>我的理解：这个限定解释了"看对了方向却短期挨打"。</b>你在 6000 判定"长期绝对高"去做空，行情中断段涨到 6500，你就先爆了——判据没失效，是<b>你用错了时间尺度</b>。认知梯度给的是"这座山是南坡还是北坡"，不给"明天会不会下雨"。所以它适合用来定大方向、定仓位上限、定"哪些票绝对不追"，不适合用来定精确的进出场点位。这也是他反复强调"这些东西只能定义大方向，操作细节靠观察赚钱效应去抓"的原因（第六节会展开）。</p>
+
+  <h2><span class="tag p2">五</span>判据专节：用盈亏同源读行情——应赚 10% 却来了 20%</h2>
+  <p>第二个发现赚钱效应的工具，他直接调用了盈亏同源（L02）：<b>超额收益必然伴随着超额的亏损——超额的赚钱效应，必然伴随着亏钱效应的产生。</b>然后给了一个非常具体的读数例子：</p>
+  <div class="formula">一个标的的性质决定它"应该赚多少"：年化 ≈ <b>10%</b>
+结果在大的逻辑、底层赚钱效应都没变的情况下，短期内它已经产生了 <b>20%</b> 的收益
+→ 多出来的这 10% "形成一个类似泡沫的东西"
+有人把这个叫"价值回归"，豆子的定义是<b>盈亏同源</b>：
+<b>它应该赚多少就赚多少，这是合理的；超额的东西，就可能产生回落亏损</b>
+合理性反证：如果它一直涨下去 → 凭空产生赚钱效应 → <b>不符合标的的性质</b>
+→ 甚至"赚钱效应一直不停、永远不跌"，那肯定是不合理的</div>
+  <p><b>我的解读：他的判据不是"涨得快不快"，而是"符不符合标的的性质"。</b>一个年化该 10% 的东西三个月走了 20%，多出来的部分迟早要被"性质"拉回去——这就是盈亏同源在这门课里的具体读法：超额的赚钱效应就是泡沫段的温度计，它的对应面（回落亏损）已经预售出去了。倒过来想他给的合理性论证：<b>如果赚钱可以永远不跌，市场就凭空产生了一台永动机</b>——任何标的都做不到，因为标的的性质（盈利能力、资金容量、参与者结构）给它定了一个"应有收益"。</p>
+
+  <h3>价值回归 vs 泡沫段：一张判据表</h3>
+  <p>同样是短期 +20%，什么时候是可持续的"价值回归"、什么时候是反噬在即的"泡沫段"？用标的性质做判据：</p>
+  <table>
+    <thead><tr><th style="width:90px">特征</th><th>价值回归（可持续）</th><th>泡沫段（反噬在即）</th></tr></thead>
+    <tbody>
+      <tr><th>驱动</th><td>基本面预期被修正（盈利/现金流/政策实质改善）</td><td>资金/情绪/叙事，无基本面支撑</td></tr>
+      <tr><th>估值</th><td>向内在价值收敛</td><td>脱离内在价值加速上行</td></tr>
+      <tr><th>参与者</th><td>认知驱动的买方</td><td>怕踏空的追高者（博傻）</td></tr>
+      <tr><th>反噬形态</th><td>温和回撤</td><td>急跌/踩踏（亏钱效应集中释放）</td></tr>
+    </tbody>
+  </table>
+  <p><b>我的用法：拿这张表对照第三节的人性面。</b>"参与者"那一行就是"谁在参与"——认知驱动还是怕踏空驱动，又回到人性。一个实操提醒：短期 +20% 反而要先警惕（接 L02：涨速越快、博傻成分越高，亏钱效应释放越猛），先用"标的的性质"称一称这 20% 里有多少是"应得的"、多少是"借来的"。</p>
+
+  <h2><span class="tag p2">六</span>重要区分：这些是"发现赚钱效应的方式"，不是交易模式</h2>
+  <p>讲完人性面、认知梯度、盈亏同源，豆子特意停了一下，做了一个区分——很多人把他的这些话直接当成买卖规则用，那是错的：</p>
+  <p><b>「我这些说的都是一些赚钱效应的发现的方式，而不是交易模式——这些东西是辅助你发现赚钱效应的。」</b>人性面、认知梯度、盈亏同源，是<b>发现</b>赚钱效应的底层思考，回答"哪里可能有超额、它从谁身上来"；把发现变成可执行的规则（买点、卖点、仓位、开关），那是 L03 交易模式的事。<b>他还补了一句：这些东西都只能定义大方向，到了细节中你怎么操作，还是要看着赚钱效应怎么去抓。</b></p>
+  <p><b>我的理解：这相当于给整套体系分了层。</b>底层逻辑负责"指方向、圈候选池"，可观察的赚钱效应信号负责"扣扳机"。你用认知梯度判断"这轮 AI 行情长期方向向上、当前处在早段"——这只是候选；什么时候进、进多少、什么信号出现就走，要靠下面第七、八节的观察方法喂给 L03 的模式开关。把"大方向判断"直接当"买卖信号"，是散户最常见的越级使用。</p>
+
+  <h3>四层观察系统：把"看什么"变成一张表</h3>
+  <table>
+    <thead><tr><th style="width:110px">层级</th><th>看什么</th><th>工具</th><th>回答的问题</th></tr></thead>
+    <tbody>
+      <tr><td>底层（锚）</td><td>标的的性质/基本面</td><td>基本面分析</td><td>这东西值不值？长期年化锚（4–7% 量级）</td></tr>
+      <tr><td>中层（目标）</td><td><b>赚钱效应在哪、多强</b></td><td>技术面/资金面观察</td><td>现在哪里有超额？强度与持续性？</td></tr>
+      <tr><td>来源（为什么）</td><td>认知差 / 人性弱点 / 预期差</td><td>对手盘分析</td><td>我赚的是谁的钱？靠什么差？</td></tr>
+      <tr><td>约束（风控）</td><td>亏钱效应/反噬信号</td><td>L02 盈亏同源 + L03 开关</td><td>这段赚钱效应何时转亏？</td></tr>
+    </tbody>
+  </table>
+  <p class="small">结论：<b>技术面与基本面不是对立阵营，而是同一套系统的两个零件</b>——基本面定"值不值"，技术面定"现在有没有赚钱效应"。豆子自己再加了第三视角：<b>人性面</b>——研究对手盘的人性弱点与认知差，作为贯穿两者的底层透镜（人性底层不变、表象随环境变，故比技术面表象更稳定）。</p>
+
+  <h2><span class="tag p3">七</span>判据专节：技术面的正确用法——看谁在参与</h2>
+  <p>技术面在豆子体系里的角色定位，一句话：<b>它不是预测器，是温度计</b>——"这些东西只是来帮你辅助观察到赚钱效应的一些从各种底层逻辑的思考"。然后他给了一条把技术面翻译成人性面的操作规则，这是本课最可执行的判据之一：</p>
+  <div class="formula">面对任何技术面信号，先问一个问题——<b>谁会参与？</b>
+它产生什么样的东西的时候，<b>高认知的人不会去参与、只有低认知的人会去参与，那你就应该避免参与</b>；
+倒过来的时候（高认知的人在参与）→ 这就是"超预期"（第八节）
+红线：<b>而不是说你看到了一个技术面就去做——这个东西是不行的</b></div>
+  <p><b>我的例子：同一个"放量大阳线"，两种读法。</b>场景 A：一只炒到第四波的妖股，已经涨了 3 倍，某天高位放量涨停——问一句：这个位置、这个故事，高认知的资金会进来吗？大概率不会，来的全是"怕踏空的追高者"。按判据：<b>只有低认知参与 → 避免参与。</b>场景 B：一只无人问津的票，没有公开利好，却突然放量走出超过它正常体量的行情（下节的"超预期"）——高认知资金可能在买，值得研究。<b>同一个图形，"谁在参与"不同，动作相反。</b>这就是技术面必须有底层逻辑（人性面/预期差）支撑才下手的意思。</p>
+
+  <h3>实操清单：怎么"观察赚钱效应"的温度</h3>
+  <ul>
+    <li><b>板块强度</b>：哪些板块涨幅/资金净流入居前 → 赚钱效应所在。</li>
+    <li><b>连板高度 &amp; 封板率</b>：高度板能否晋级、封板率高低 → 赚钱效应强度（接 L03）。</li>
+    <li><b>次日溢价</b>：打板/强势股次日是否给溢价 → 赚钱效应是否还在延续。</li>
+    <li><b>量能</b>：放量＝分歧与承接，缩量＝一致性；量价配合判断持续性。</li>
+    <li><b>亏钱效应信号</b>：高位股集体大跌、炸板率飙升、溢价转负 → 赚钱效应转亏，触发 L03 的开关 K。</li>
+    <li><b>「谁在参与」过滤器（人性面读法）</b>：只有低认知者参与（纯情绪追高/博傻末端）→ <b>避免参与</b>。</li>
+    <li><b>超预期足迹</b>：行情表现明显超出"普通认知者所能决定"的正常范围 → 高认知资金进场的足迹，研究其方向而非当作随机波动。</li>
+  </ul>
+  <p class="small">这些指标都不预测未来，只<b>度量当下赚钱效应的温度</b>——这正是"技术面是辅助观察"的含义。</p>
+
+  <h2><span class="tag p3">八</span>概念专节：超预期＝高认知资金留下的足迹</h2>
+  <p>倒过来的那半边判据，豆子起名叫<b>超预期</b>，读法非常精确。先问一句：<b>超预期，超的是谁的预期？答案：超的是低认知的人的预期。</b>那么逻辑链就闭合了：</p>
+  <div class="formula">这个东西正常应该没有低认知/普通认知的人会去参与了，<b>它正常是无法决定行情的</b>
+但它的表现<b>明显超出了这种正常应该产生的行情</b>
+→ 可以认为：有一些<b>思考和普通人更有差距的资金（高认知）去参与了</b>
+超预期 = 超了低认知者的预期 = <b>大概率是高认知者的思考</b>
+→ 于是你去研究：它的方向是不是有一些特别的表现？
+<b>超预期 ＝ 高认知资金进场留下的足迹；预期差因此是一种"人性面的思考"</b></div>
+  <p><b>我的例子，走一遍数字：</b>一只平时日均成交 2 亿、无人讨论的冷门票，没有公开利好，正常日波动 ±2%。某天低开后被一路买起，尾盘 +8% 封板，成交放大到 10 亿，是平时的 5 倍。用判据推：以这只票的体量和关注度，<b>普通认知者的情绪根本推不出这种行情</b>（"它正常是无法决定行情的"），但行情就是超出了正常范围——那大概率有"思考和普通人更有差距"的资金进场了。它是不是高认知的保票？不一定，<b>"这个时候得看你自己的思考了"</b>。但至少这不再是一个可以当随机波动忽略的信号，你要去研究它的方向有没有特别的表现。</p>
+
+  <h3>预期差的形式化：三个常见困惑一次说清</h3>
+  <div class="formula">价格变动 ≈ f( <b>真实情况 − 市场已隐含的预期</b> )
+超预期   → 涨（哪怕基本面"差"，只要比预期好）
+低于预期 → 跌（哪怕基本面"好"，只要比预期差）
+例：某公司业绩 +30%，市场预期 +50% → 落地即跌——"好公司也跌"</div>
+  <ul>
+    <li><b>利好出尽是利空</b>：利好已被预期并定价，落地时预期差归零甚至转负。</li>
+    <li><b>好公司也跌</b>：预期太满，任何不及预期都触发下跌。</li>
+    <li><b>烂公司也涨</b>：预期太低，边际改善即超预期。</li>
+  </ul>
+  <p><b>我的解读：所以"看基本面好就买"会亏钱——你买的是"好"，市场定价的是"预期"。</b>超额来自你比市场更早、更准地识别预期差。这解释了为什么"业绩大增股价反跌"不是市场发疯，而是你和市场比错了对象。</p>
+  <p>最后他点出自己常用的一个具体买点：<b>超预期（连板/强势）的买点</b>——即把"超预期足迹"落地为一个技术面入场信号。但他立刻加了限制：<b>这个买点背后必须有这套底层逻辑，而不是说你看到一个技术面就去做，这个东西是不行的。</b>裸图形不是信号，"图形＋谁在参与＋预期差"才是。</p>
+
+  <h2><span class="tag p3">九</span>判据专节：低估的预期差读法——有逻辑阻止买入，才叫低估</h2>
+  <p>技术面讲完，他说基本面"也是一个道理"，然后给出了全课最反直觉、也最能体现"预期差"的一句话：</p>
+  <div class="formula">一个股票处于低估状态，<b>会有各种各样的逻辑让你不去买入它</b>
+<b>因为没有任何逻辑阻止你去买入它的话，它就不会是低估的了</b>
+可能是现在资金不认可，可能是舆论、可能是某种叙事
+→ 但正是这些东西<b>可能产生预期差</b>：
+你的认知更深入时，发现低认知的人思考的这个<b>表象不对</b>
+→ 你就可以去参与、去<b>纠错他</b>——你当那个高认知的人</div>
+  <p><b>我的例子，走一遍数字：</b>某股 PE 5 倍、股息率 6%、账上净现金接近市值——怎么看都便宜。但它一直趴着不动，因为市场上压着一条叙事："大股东资金链断裂，随时爆仓砸盘。"按豆子的读法，这条叙事<b>就是"阻止你买入的逻辑"，没有它就轮不到低估</b>。现在你花功夫研究：质押已全部解除、媒体把关联方的债务张冠李戴、大股东今年反而增持了 2%。你判断这个"表象"是错的——这就是<b>预期差</b>：市场被一个（你认为）错误的叙事压住。纠错的回报是双重的：叙事被证伪 → 估值从 PE 5 修复到 10（股价翻倍），期间每年还收 6% 股息。<b>你赚的钱来自哪里？来自相信错误叙事而抛出/不买的人——又回到"赚谁的钱"。</b></p>
+  <p><b>我的总结：低估不是"便宜"，是"被叙事压住的便宜"。</b>便宜到没人敢买，一定有个"为什么"。你的超额不来自"我敢捡便宜"，而来自<b>我核对过那个"为什么"是错的表象</b>。核对不过，那个"为什么"就是真风险——那不叫低估，叫定价正确。</p>
+
+  <h2><span class="tag p2">十</span>收束：信息扩散、学术坐标与全体系拼接</h2>
+
+  <h3>1. 为什么价格向认知更高者移动：信息扩散的时间线</h3>
+  <p>把认知梯度翻译成过程：新信息/新逻辑先被少数<b>高认知者</b>理解并交易 → 价格部分反映 → <b>中认知者</b>跟进 → 最后<b>低认知者</b>在趋势末端接盘（怕踏空的追高者）。<b>超额收益集中在扩散的早段</b>；越晚参与，预期差越小、反噬风险越大。走个数字：同一波行情，早段买入者吃 +10%～+30% 的预期差修复；末端追入者名义上还赶上 +20%，但那 20% 是博傻段的接力棒，随时切换到亏钱效应释放（L02）。这与 L03 的"买点前置/拥挤度"是同一现象的两面：<b>当太多人想抢早段，早段本身也被抢没了。</b></p>
+  <p><b>对散户的操作含义只有两条路</b>：要么提升认知、站到扩散的早段（能比市场更早识别预期差）；要么承认自己晚，降低预期与仓位。<b>在末端接盘＝主动承担反噬</b>。</p>
+
+  <h3>2. 学术对照（扩展阅读坐标）</h3>
+  <ul>
+    <li><b>有效市场假说（EMH）</b>认为价格已反映全部信息 → 无超额。豆子的立场更接近<b>行为金融</b>：价格受人性偏差驱动，存在可利用的预期差/认知差。</li>
+    <li><b>预期差</b>是卖方研究的核心框架（"超预期/低于预期"驱动评级与目标价调整），豆子把它下沉到散户可理解的"人性面思考"。</li>
+    <li><b>聪明钱效应（smart money）</b>：资金流向领先于价格，与"价格向认知更高者移动"同义。</li>
+    <li><b>greater-fool 结构</b>：博傻末端"怕踏空的追高者"接力，与 L02"大家都觉得自己不是最后一棒"是同一博弈的参与者自知表述。</li>
+  </ul>
+
+  <h3>3. 与 L01–L03 的拼接：整条链路</h3>
+  <div class="formula">L04 用技术面<b>度量</b>赚钱效应（温度计＋谁在参与＋超预期足迹）
+  → L03 用<b>模式</b>承接它（环境假设 A 与开关 K 的输入信号就是本课的观察项）
+  → L02 用<b>盈亏同源</b>管理它的反噬（超额必然伴随亏钱效应，泡沫段要认账）
+  → L01 用<b>仓位</b>保命（回撤数学：一次 −50% 需要 +100% 回本）
+底层逻辑（人性面/认知梯度/盈亏同源）只定<b>大方向</b>；操作细节靠观察赚钱效应去抓
+本课所有内容都是<b>赚钱效应的发现方式</b>，不是交易模式——模式见 L03</div>
+
+  <h2>可视化件：动手拨一拨</h2>
+  <p class="small">这一节别光看，动手拨。下面这个小工具把第二节的「超额拆账」和第八节的「预期差判定」变成了滑块——数字实时拆开、结论实时翻面，拨到哪儿算到哪儿。</p>
+
+  <div class="demo">
+    <h4>超额拆账＋预期差判定器（L04 核心）</h4>
+    <div class="row">
+      <label>年化收益 <input type="range" id="l04Ann" min="0" max="40" value="25"> <b id="l04AnnV">25%</b></label>
+      <div class="out">
+        <div>底层 7%（水涨船高）：<b id="l04Base">7.0%</b>　← 买宽基躺平也大致有</div>
+        <div>超额＝年化−7%：<b id="l04Alpha">+18.0%</b>　← <span id="l04AnnMsg">你真正要解释的是这部分</span></div>
+        <div class="bar"><i id="l04BarBase" style="width:17.5%;background:#68d391"></i></div>
+        <div class="bar"><i id="l04BarAlpha" style="width:45%;background:#f6ad55"></i></div>
+      </div>
+    </div>
+    <div class="row" style="margin-top:12px;border-top:1px dashed #4a5568;padding-top:12px">
+      <label>市场预期增速 <input type="range" id="l04Exp" min="0" max="60" value="50"> <b id="l04ExpV">50%</b></label>
+      <label>实际增速 <input type="range" id="l04Act" min="0" max="60" value="30"> <b id="l04ActV">30%</b></label>
+      <div class="out">预期差（实际−预期）：<b id="l04Diff">-20%</b>　<span id="l04Verdict" style="font-size:12px">低于预期 → 小心跌</span></div>
+    </div>
+    <p class="small" style="color:#a0aec0;margin:8px 0 0">先玩上半截：把年化从 25% 往 7% 以下拉，看"你真正要解释的那部分"怎么消失——<b>多数人的收益根本到不了谈超额的地方</b>。再玩下半截：默认值就是讲义里的例子（预期 +50%、实际 +30%）——业绩大增照样跌，因为定价的是预期不是好坏。把实际拉过 50%，看结论怎么翻成"超预期"。</p>
+  </div>
+
+  <h2><span class="tag p3">十一</span>作业 · 自测 · 速查</h2>
+
+  <h4>作业 1 · 预期差自白</h4>
+  <p class="small">选你最近关注的一个标的，写出：市场当前隐含的预期是什么？你的判断与它的差距（预期差）在哪？你比市场高认知的那一点<b>具体是什么</b>？写不出第三问＝没有预期差，只是在猜。</p>
+  <h4>作业 2 · 赚钱效应温度计</h4>
+  <p class="small">用第七节的观察项，给今天/最近一个交易日的市场"赚钱效应温度"打分（强/中/弱/转亏），并写出依据。连续记录两周，比任何指标都长见识。</p>
+  <h4>作业 3 · 泡沫/回归判定</h4>
+  <p class="small">找一段近期 +20% 以上的行情，用第五节判据表判断它是"价值回归"还是"泡沫段"，写出三条证据，其中必须包含一条"参与者是谁"（谁在参与判据）。</p>
+
+  <h4>自测（9 题，先答再看答案）</h4>
+  <div class="q">Q1. 为什么「看基本面好就买」长期未必赚钱？
+    <details><summary>答案</summary><div class="ans">因为价格定价的是「预期」而非「好坏」。基本面好但预期更满时（业绩 +30%、预期 +50%），仍会跌。超额来自预期差，不来自绝对好坏。</div></details></div>
+  <div class="q">Q2. 超额收益怎么定义？为什么说它「必然是赚别人的钱」？
+    <details><summary>答案</summary><div class="ans">股权投资底层回报年化 4–7%，超过年化 7% 的部分才算超额（豆子取线）。底层部分是企业成长给全体股东的；超出部分不是市场白给的，是零和转移——你的超额就是别人的超额亏损。</div></details></div>
+  <div class="q">Q3. 技术面在豆子的体系里是什么角色？
+    <details><summary>答案</summary><div class="ans">不是预测器，是「赚钱效应温度计」——辅助观察当下哪里有赚钱效应、强度与持续性如何，为 L03 模式的 A/K 提供输入信号。看到技术面就直接做＝不行，必须有底层逻辑支撑。</div></details></div>
+  <div class="q">Q4. 「价格向认知更高者移动」的两个限定是什么？牛市高位「看对了却短期挨打」怎么解释？
+    <details><summary>答案</summary><div class="ans">① 只在认知差明显时适用，多空两边都有高认知押注时难判断；② 看高认知群体的总体倾向而非单个机构，且定的是长期绝对高低、不是短期顶底。挨打＝用错了时间尺度：行情中断段（6000→6500）不改变「长期绝对高」的判定，但足以打爆没有仓位保护的逆向单。</div></details></div>
+  <div class="q">Q5. 什么叫「超预期」？超的是谁的预期？
+    <details><summary>答案</summary><div class="ans">正常应该没有低认知/普通认知者参与、无法决定行情的东西，表现却明显超出正常行情 → 大概率有思考与普通人更有差距的资金参与。超的是低认知者的预期，所以是高认知资金的足迹——去研究它的方向，而非当随机波动。</div></details></div>
+  <div class="q">Q6. 「低估的股票一定有逻辑阻止你买入」——这给你什么机会？
+    <details><summary>答案</summary><div class="ans">没有任何逻辑阻止买入就不会低估（会被买平）。压住它的叙事正是预期差的来源：若你深入研究发现那个「表象」不对，就去参与、纠错它，当那个高认知的人。核对不过＝定价正确，不是低估。</div></details></div>
+  <div class="q">Q7. 如何区分价值回归与泡沫段？
+    <details><summary>答案</summary><div class="ans">看四条：驱动是否有基本面实质支撑、估值是向内在价值收敛还是脱离加速、参与者是认知驱动还是怕踏空的追高者、反噬形态是温和回撤还是急跌踩踏。判据的根子是「标的的性质」：应赚 10% 却来了 20%，多出的 10% 是泡沫段。</div></details></div>
+  <div class="q">Q8. 为什么短期 +20% 反而要警惕？
+    <details><summary>答案</summary><div class="ans">若不符合标的性质，该涨幅是情绪/资金泡沫段，是盈亏同源里「借来的」部分；涨速越快、博傻成分越高，亏钱效应释放越猛。该赚多少赚多少是合理的，超额的东西可能产生回落亏损。</div></details></div>
+  <div class="q">Q9. 「人性面」比技术面更值得研究的理由是什么？本课与 L03 开关 K 如何联动？
+    <details><summary>答案</summary><div class="ans">人性底层不变、表象可变——技术面表象一轮行情换一批，人性剧本每轮重演，故人性是更稳定的研究对象。联动：L04 的观察项（溢价/封板率/高位股表现/亏钱效应信号）就是 K 的输入——转亏信号出现→停用模式；释放完再重启。</div></details></div>
+
+  <div class="card good"><b>速查卡</b><ul class="cheat" style="margin:6px 0;padding-left:18px">
+    <li>看什么：看赚钱效应本身；技术面/基本面都只是工具。</li>
+    <li>超额＝超过年化 7% 的部分；超额大多来自赚别人的钱。</li>
+    <li>想赚谁的钱，就去研究谁的人性弱点。</li>
+    <li>人性面：底层不变、表象可变，所以比技术面表象稳。</li>
+    <li>真正便宜的东西，出现在人性弱点产生的时候。</li>
+    <li>价格倾向走向认知更高者期望的方向。</li>
+    <li>认知梯度限定①：认知差要明显；两边聪明钱对打时不出手。</li>
+    <li>认知梯度限定②：看总体倾向、定长期绝对高低，短期未必跌。</li>
+    <li>应赚 10% 却来了 20%：多出的部分是泡沫段，盈亏同源认账。</li>
+    <li>判据不是涨得快，是符不符合标的的性质。</li>
+    <li>这些是赚钱效应的发现方式，不是交易模式（模式见 L03）。</li>
+    <li>底层逻辑定大方向，操作细节靠观察赚钱效应去抓。</li>
+    <li>技术面＝温度计＋「谁在参与」过滤器；只有低认知参与→避免。</li>
+    <li>看到技术面就做＝不行；图形＋谁在参与＋预期差才是信号。</li>
+    <li>超预期＝超低认知者的预期＝高认知资金的足迹。</li>
+    <li>价格变动≈真实情况−已隐含预期；利好出尽是利空。</li>
+    <li>低估＝被叙事压住的便宜；核对叙事是错的表象→纠错、当高认知者。</li>
+    <li>超额集中在信息扩散早段；末端接盘＝承担反噬。</li>
+  </ul></div>
+
+    <h2><span class="tag p4">案</span>真实案例：概念落在盘面上</h2>
+  <p class="small">以下为公开市场事件（数字为约数），用来把本课概念放到真实盘面上看。</p>
+    <div class="card"><b>九安医疗 2021.11「超预期」（002432）</b>
+      <p class="small" style="margin:6px 0 0"><b>事实</b>：美国新冠抗原大单公告落地，业绩预期被大幅上修，股价数月内从 6 元附近拉升至 80 元上方（区间约 13 倍）。</p>
+      <p class="small" style="margin:4px 0 0"><b>对应知识点</b>：超预期＝高认知资金的足迹：正常体量的票无法决定这种行情——「表现超出正常应产生的行情」，值得研究其方向。</p></div>
+    <div class="card"><b>中远海控 2021「业绩最好就是顶」</b>
+      <p class="small" style="margin:6px 0 0"><b>事实</b>：2021 年中报净利约 370 亿（同比增数十倍）、行业景气爆棚，但股价自 2021 年 7 月起持续走低。</p>
+      <p class="small" style="margin:4px 0 0"><b>对应知识点</b>：预期差：价格定价的是「预期」不是「好坏」——利好落地、预期兑现，超额归零甚至转负（利好出尽是利空）。</p></div>
+    <div class="card"><b>贵州茅台 2013–2014「被叙事压住的低估」</b>
+      <p class="small" style="margin:6px 0 0"><b>事实</b>：塑化剂事件＋限制三公消费，PE 一度跌破 9 倍、无人敢买；随后十年股价上涨数十倍。</p>
+      <p class="small" style="margin:4px 0 0"><b>对应知识点</b>：低估读法：一定有逻辑阻止你买入（利空叙事）；核对叙事是错的表象→纠错它，你就是那个高认知的人。</p></div>
+
+
+<h2>复习巩固</h2>
+  <p class="small">按 1/7/30 天三轮来：先自己闭眼回想，答完再点卡片翻面。背下来不算数，答得出来才算。</p>
+
+  <div class="flash" onclick="this.classList.toggle('open')">
+    <div class="front">L04：什么是「超额收益」？为什么说它大多是赚别人的钱？<span class="hint">点击翻面</span></div>
+    <div class="back">股权投资的底层回报是年化 4%–7%，<b>超过年化 7% 的部分才算超额，超额＝你的年化−7%</b>。底层那部分是企业成长给全体股东的"水涨船高"；超出的部分不是市场白给的，是零和转移——<b>你的超额就是别人的超额亏损</b>。→ 追问自己：把我过去一年的收益拆一拆，去掉 7% 之后还剩多少？剩下这部分，我答得出"赚的是谁的钱、他为什么肯给"吗？</div>
+  </div>
+  <div class="flash" onclick="this.classList.toggle('open')">
+    <div class="front">L04：「价格倾向走向认知更高者期望的方向」——哪两个限定，缺了会把你害死？<span class="hint">点击翻面</span></div>
+    <div class="back">限定①<b>认知差必须明显</b>：多空两边都有聪明钱对打时不好判断，这时候承认看不懂、不出手。限定②<b>看高认知群体的总体倾向（不看单个机构），且它定的是长期绝对高低、不是短期顶底</b>：6000 判定"长期高"，行情中断涨到 6500 不推翻判定，但足以打爆没有仓位保护的逆向单。→ 追问自己：我最近一次"看对了却挨打"，是不是把长期判据当短期信号用了？</div>
+  </div>
+  <div class="flash" onclick="this.classList.toggle('open')">
+    <div class="front">L04：「超预期」超的是谁的预期？为什么它是高认知资金的足迹？<span class="hint">点击翻面</span></div>
+    <div class="back">超的是<b>低认知者的预期</b>。正常应该没有普通认知者参与、也"无法决定行情"的东西，表现却明显超出正常该有的行情 → 大概率有<b>思考和普通人更有差距的资金</b>参与了。<b>超预期＝高认知资金进场留下的足迹</b>，预期差因此是一种人性面的思考。→ 追问自己：我看到"超预期"时，第一反应是去研究它的方向，还是直接当买卖信号就下单了？</div>
+  </div>
+
+  <h3>悟道提问（没有标准答案，答案写进你自己的交易笔记）</h3>
+  <div class="card good">
+    <ol style="margin:6px 0 0;padding-left:20px">
+      <li>我比市场更早看到了什么？这个"更早"的依据是什么？（写具体证据，不是感觉）</li>
+      <li>如果超额就是赚别人的钱，我打算赚谁的钱？他的弱点是什么？我凭什么认为这一笔我站在认知更高的一侧？</li>
+      <li>我观察清单上的哪个信号其实只是"表象"？换一轮行情、换一批参与者，它还成立吗？</li>
+    </ol>
+  </div>
+
+  <h3>联结图：本课接上前后课</h3>
+  <p class="small">本课的「超额＝赚别人的钱」直接调用 <b>L02 盈亏同源</b>：超额的赚钱效应必然伴随亏钱效应，泡沫段（应赚 10% 却来了 20%）要认账；第七、八节的观察项（溢价/封板率/量能/亏钱效应信号/谁在参与/超预期足迹）就是 <b>L03 模式开关 K 的输入</b>——转亏信号出现就停用模式；但注意 <b>L05 足迹≠因果</b>：超预期只是"值得研究"的足迹，不是"必然涨"的因果，从基率噪声里读因果就会去追十连阳；「预期差」的完整展开在 <b>L20</b>：价格变动≈真实情况−已隐含预期，本课只是先把它落成"谁在参与＋低估读法"两件趁手的工具。</p>
+
+  <h2>内化掌握</h2>
+  <p class="small">三关全过，这课才算学完。顺序别乱：先讲得出，再判得对，最后写得成自己的规则。</p>
+
+  <div class="card">
+    <b>关卡一 · 费曼关</b>
+    <p style="margin:6px 0 0">把这一课讲给我听，就讲三件事：<b>超额怎么定义、认知梯度的两个限定、超预期为什么是高认知资金的足迹</b>。在聊天输入<b>「我讲给你听 L04」</b>，我扮演爱追问的学生——哪里含糊，哪里就会暴露。</p>
+  </div>
+
+  <div class="card warn">
+    <b>关卡二 · 场景判断关</b>
+    <p style="margin:6px 0 0">情境：一只平时日均成交 2 亿、无人讨论的冷门票，没有公开利好，正常日波动 ±2%。某日放量 +8% 封板，成交放大到 10 亿（平时的 5 倍）。<b>你怎么做？</b>先自己拿主意、写下理由，再对照下面的参考。</p>
+    <details><summary>参考判断与评分点</summary>
+      <ul style="margin:6px 0 0">
+        <li><b>谁在参与（25 分）</b>：以这只票的体量和关注度，普通认知者的情绪根本推不出这种行情——先回答"谁会参与"，而不是先看图形长什么样。</li>
+        <li><b>超预期足迹（25 分）</b>：正常无法决定行情的东西，走出了超出正常的行情＝高认知资金的足迹。这是"值得研究"的信号，不是随机波动；但它是足迹不是保票，更不是"必然涨"的因果（L05 足迹≠因果）。</li>
+        <li><b>去研究方向，而非裸看图形（25 分）</b>：正确动作是去查有没有未公开的产业变化、基本面拐点、资金逻辑，研究它的方向有没有特别的表现。答"放量涨停所以追"＝裸图形，不合格。</li>
+        <li><b>不重仓赌（25 分）</b>："这个时候得看你自己的思考"。研究出预期差再谈仓位；研究不出来就继续观察或极小仓试错，绝不因为"封板了"就重仓追。</li>
+      </ul>
+    </details>
+  </div>
+
+  <div class="card good">
+    <b>关卡三 · 规则产出关</b>
+    <p style="margin:6px 0 0">把本课收成你自己的可执行规则，照下面模板填出来——写不出来，就是还没内化：</p>
+    <div class="formula">我的观察清单（五项，每项只记一句可核对的话）：
+① 板块强度：________（哪些板块涨幅/净流入居前）
+② 连板高度 &amp; 封板率：________（高度板能否晋级、封板率高低）
+③ 次日溢价：________（强势股次日给不给溢价）
+④ 量能：________（放量＝分歧与承接，缩量＝一致性）
+⑤ 亏钱效应信号：________（高位股大跌/炸板率飙升/溢价转负 → 触发 L03 开关 K）</div>
+    <div class="formula">「谁在参与」过滤语句（贴在每一个技术面信号前面）：
+看到任何信号，先问：<b>这个位置、这个故事，谁会参与？</b>
+只有低认知者参与（纯情绪追高/博傻末端）→ 我 ________（避免参与）
+高认知者在参与（超预期足迹）→ 我 ________（去研究方向，不裸追）</div>
+    <div class="formula">预期差自白三问（答不出第三问＝没有预期差，只是在猜）：
+① 市场当前隐含的预期是什么？________
+② 我的判断和它的差距（预期差）具体在哪？________
+③ 我比市场更早/更准看到的那一点是什么？依据是什么？________</div>
+  </div>
+
+  <script>
+  (function(){
+    function $(id){return document.getElementById(id)}
+    function calcAnn(){
+      var a=+$('l04Ann').value, alpha=a-7;
+      $('l04AnnV').textContent=a+'%';
+      $('l04Alpha').textContent=(alpha>=0?'+':'')+alpha.toFixed(1)+'%';
+      $('l04BarBase').style.width=(7/40*100)+'%';
+      $('l04BarAlpha').style.width=(Math.max(0,alpha)/40*100)+'%';
+      var msg;
+      if(alpha>0){msg='你真正要解释的是这 '+alpha.toFixed(1)+'%：我赚的是谁的钱？'}
+      else if(alpha===0){msg='恰好只有水涨船高——还没有超额要解释'}
+      else{msg='连底层 7% 都没跑赢——先别谈超额'}
+      $('l04AnnMsg').textContent=msg;
+      $('l04Alpha').style.color=alpha>0?'#f6ad55':'#fc8181';
+    }
+    function calcDiff(){
+      var e=+$('l04Exp').value, a=+$('l04Act').value, d=a-e;
+      $('l04ExpV').textContent=e+'%';
+      $('l04ActV').textContent=a+'%';
+      $('l04Diff').textContent=(d>0?'+':'')+d+'%';
+      var v=$('l04Verdict');
+      if(d>0){v.textContent='超预期 → 涨的逻辑成立（哪怕基本面"差"，只要比预期好）';v.style.color='#68d391'}
+      else if(d<0){v.textContent='低于预期 → 小心跌（哪怕基本面"好"，只要比预期差）';v.style.color='#fc8181'}
+      else{v.textContent='符合预期 → 定价已含（利好出尽是利空）';v.style.color='#a0aec0'}
+    }
+    $('l04Ann').addEventListener('input',calcAnn);
+    ['l04Exp','l04Act'].forEach(function(id){$(id).addEventListener('input',calcDiff)});
+    calcAnn();calcDiff();
+  })();
+  </script>
+
+  <div class="next"><b>下一讲（L05）：技术分析的真正意义（非常人所理解）</b>——本课说技术面是温度计、是"看谁在参与"的辅助工具，那技术分析到底该用来干什么？L05 把它的真正意义讲透。回「下一课」即跳转，或直接提问。</div>
+  <p class="small" style="margin-top:20px">投资有风险，本课为教育内容，不构成投资建议。数值例子为教学模拟，用于演示判据的用法。疑问直接问，我换例子重讲。</p>
+</div>
+
+</body>
+</html>
