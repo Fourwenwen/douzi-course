@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>L14 交易启蒙</title>
+
+<style>
+.nav{position:sticky;top:0;z-index:50;background:#1a202c;padding:8px 14px;display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif}
+.nav a{color:#e2e8f0;text-decoration:none;font-size:13px;padding:3px 10px;border-radius:999px;background:#2d3748}
+.nav a:hover{background:#4a5568}
+.nav a.cur{background:#c05621;color:#fff;font-weight:600}
+.nav a.home{background:#2b6cb0}
+.nav .sp{color:#718096;font-size:12px;margin:0 4px}
+</style>
+</head>
+<body style="margin:0;background:#f7fafc">
+<nav class="nav"><a class="home" href="index.html">目录主页</a><a class="" href="lesson-01.html">L01 本金保护</a><a class="" href="lesson-02.html">L02 盈亏同源</a><a class="" href="lesson-03.html">L03 交易模式</a><a class="" href="lesson-04.html">L04 看什么</a><a class="" href="lesson-05.html">L05 技术分析</a><a class="" href="lesson-06.html">L06 交易纪律</a><a class="" href="lesson-07.html">L07 切换原理</a><a class="" href="lesson-08.html">L08 成长</a><a class="" href="lesson-09.html">L09 实操学习</a><a class="" href="lesson-10.html">L10 随手单</a><a class="" href="lesson-11.html">L11 止盈止损</a><a class="" href="lesson-12.html">L12 赚钱效应</a><a class="" href="lesson-13.html">L13 模式成熟</a><a class="cur" href="lesson-14.html">L14 交易启蒙</a><span class="sp">点击跳转复看</span></nav>
+<style>
+  :root{--ink:#1a202c;--sub:#4a5568;--line:#e2e8f0;--bg:#f7fafc;--accent:#c05621;--accent2:#2b6cb0;--good:#276749;--warn:#9b2c2c;--card:#fff}
+  *{box-sizing:border-box}
+  .doc{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;color:var(--ink);background:var(--bg);padding:28px 20px 60px;line-height:1.8;max-width:980px;margin:0 auto}
+  .doc h1{font-size:26px;margin:0 0 4px}
+  .doc h2{font-size:19px;margin:34px 0 10px;padding-left:10px;border-left:4px solid var(--accent)}
+  .doc h3{font-size:16px;margin:20px 0 8px;color:var(--accent2)}
+  .doc p{margin:8px 0}
+  .meta{color:var(--sub);font-size:13px;margin-bottom:16px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin:12px 0}
+  .goal{background:#fffaf0;border-color:#fbd38d}
+  .warn{background:#fff5f5;border-color:#feb2b2}
+  .good{background:#f0fff4;border-color:#9ae6b4}
+  .note{background:#ebf8ff;border-color:#90cdf4}
+  table{width:100%;border-collapse:collapse;font-size:13px;background:var(--card);border-radius:8px;overflow:hidden;margin:8px 0}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+  th{background:#edf2f7;font-weight:600}
+  .tag{display:inline-block;font-size:11px;padding:1px 8px;border-radius:999px;background:#edf2f7;color:var(--sub);margin-right:4px}
+  .p1{background:#feebc8;color:#7b341e}.p2{background:#bee3f8;color:#2a4365}.p3{background:#c6f6d5;color:#22543d}.p4{background:#fed7e2;color:#702459}
+  a{color:var(--accent2);text-decoration:none}a:hover{text-decoration:underline}
+  .formula{background:#1a202c;color:#f7fafc;border-radius:8px;padding:12px 16px;font-family:"SF Mono",Menlo,monospace;font-size:13px;margin:10px 0;overflow-x:auto;line-height:1.9}
+  .formula b{color:#f6ad55}
+  .q{border-left:3px solid var(--accent2);padding-left:12px;margin:12px 0}
+  .ans{color:var(--good);font-size:13px;margin-top:4px}
+  .next{margin-top:24px;padding:14px 18px;border:1px dashed var(--accent);border-radius:10px;background:#fffaf0;font-size:14px}
+  .small{font-size:12.5px;color:var(--sub)}
+  details{margin:8px 0}summary{cursor:pointer;color:var(--accent2);font-size:13.5px}
+  .cheat{columns:2;column-gap:24px}.cheat li{margin:6px 0;break-inside:avoid}
+  ul,ol{margin:6px 0 6px 20px;padding:0}li{margin:3px 0}
+  .demo{background:#1a202c;border-radius:12px;padding:18px 20px;color:#f7fafc;margin:14px 0}
+  .demo h4{margin:0 0 10px;font-size:15px;color:#f6ad55}
+  .demo .btns{display:flex;flex-wrap:wrap;gap:8px}
+  .demo button{border:0;border-radius:8px;padding:8px 12px;font-size:12.5px;cursor:pointer;background:#2d3748;color:#e2e8f0;font-family:inherit}
+  .demo button:hover{background:#4a5568}
+  .demo button.on{background:#c05621;color:#fff}
+  .demo .out{margin-top:12px;background:#2d3748;border-radius:8px;padding:12px 14px;font-size:13px;line-height:1.9;min-height:66px}
+  .demo .out b{color:#f6ad55}
+  .flash{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:10px 0;cursor:pointer}
+  .flash .front{font-weight:600}
+  .flash .back{display:none;margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);color:var(--good)}
+  .flash.open .back{display:block}
+  .flash .hint{font-size:11.5px;color:var(--sub);float:right;font-weight:400}
+  @media(max-width:640px){.cheat{columns:1}}
+</style>
+
+<div class="doc">
+  <div class="card" style="padding:10px 14px;margin:0 0 14px">
+    <b>课程目录</b>　<span class="small">L01–L13 已讲 · <b>L14 交易启蒙（本课）</b> · L15 交易者状态 · L16 小资金做大 · L17 大亏应对 · L18 买与卖 · L19 因果倒置 · L20 预期差 · L21 幸存者偏差 · L22 实盘大赛 · L23 知识付费 · L24 不依赖AI · L25 量化与人</span><br>
+    <span class="small">导航口令：「目录」看全表 ｜「下一课」推进 ｜「重讲 Lxx」换方式重讲 ｜「我讲给你听 Lxx」＝费曼关卡 ｜ 直接提问＝答疑</span><br>
+    <span class="small">总览入口：<a href="trees.html">知识树</a> ｜ <a href="cases.html">真实案例</a>（每课正文内也有各自的知识树与真实案例）</span>
+  </div>
+
+  <h1>第十四课：交易启蒙——做交易之前，你就应该明确的东西</h1>
+  <div class="meta">《豆子悟道 · 股票系统学习课》L14 ｜ 模块四 认知·心智 ｜ 源自原视频《交易启蒙——讲讲在做交易之前，你就应该明确的东西》（12:42，<a href="https://www.bilibili.com/video/BV1jeAbzeENH">BV1jeAbzeENH</a>）｜ <b>本讲义是消化后的讲解</b>：视频全部要点已重组融入正文，配上理解与例子，不需要看视频 ｜ 2026-11-18</div>
+
+  <div class="card goal">
+    <b>这节课讲什么</b>
+    <p style="margin:6px 0 0">一句话：<b>做交易的第一件事不是学技术，而是明确目标——你想要什么样的赚钱。</b>目标分三档（玩/学认知、理财、资金大幅跃升），每档的做法、风险、退路完全不同；目标明确了，做成的可能性才大。</p>
+    <p style="margin:6px 0 0">这是模块四的开篇"道序"：豆子发现讲再深的理念意义都不大，<b>对大家有用的永远是基础</b>。所以这课回到最底层：先问"交易能为你带来什么"，再决定怎么做。</p>
+  </div>
+
+  <h2><span class="tag p4">图</span>本课知识树（思维导图）</h2>
+  <p class="small">从左向右生长：根＝本课主张，一级分支＝主题，向右展开概念；右上角编号＝关联（见图例）。</p>
+  <div style="overflow-x:auto;margin:10px 0">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 780" role="img" aria-labelledby="l14-tree-tree-title l14-tree-tree-desc" style="min-width:1024px;width:100%;height:auto;font-family:'PingFang SC','Microsoft YaHei','Noto Sans SC',-apple-system,sans-serif">
+    <title id="l14-tree-tree-title">L14 交易启蒙知识树</title>
+    <desc id="l14-tree-tree-desc">交易启蒙的完整层级：为什么基础、第一问、三档目标（玩/理财/跃升）与四联表，含三条关联。</desc>
+    <defs>
+      <marker id="l14-tree-arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1 L 8 5 L 0 9 z" fill="#2b6cb0"/>
+      </marker>
+    </defs>
+    <path d="M 148 333 C 224 333 224 69 300 69" fill="none" stroke="#b9c3d0" stroke-width="1.6"/>
+    <path d="M 396 69 C 478 69 478 25 560 25" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 69 C 478 69 478 69 560 69" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 69 C 478 69 478 113 560 113" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 148 333 C 224 333 224 201 300 201" fill="none" stroke="#b9c3d0" stroke-width="1.6"/>
+    <path d="M 396 201 C 478 201 478 157 560 157" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 201 C 478 201 478 201 560 201" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 201 C 478 201 478 245 560 245" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 148 333 C 224 333 224 333 300 333" fill="none" stroke="#b9c3d0" stroke-width="1.6"/>
+    <path d="M 416 333 C 488 333 488 289 560 289" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 416 333 C 488 333 488 333 560 333" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 416 333 C 488 333 488 377 560 377" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 148 333 C 224 333 224 465 300 465" fill="none" stroke="#b9c3d0" stroke-width="1.6"/>
+    <path d="M 396 465 C 478 465 478 421 560 421" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 465 C 478 465 478 465 560 465" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 465 C 478 465 478 509 560 509" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 148 333 C 224 333 224 597 300 597" fill="none" stroke="#b9c3d0" stroke-width="1.6"/>
+    <path d="M 408 597 C 484 597 484 553 560 553" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 408 597 C 484 597 484 597 560 597" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 408 597 C 484 597 484 641 560 641" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 194 C 466 194 486 333 416 333" fill="none" stroke="#2b6cb0" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#l14-tree-arr)"/>
+    <path d="M 396 458 C 466 458 466 208 396 208" fill="none" stroke="#2b6cb0" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#l14-tree-arr)"/>
+    <path d="M 408 597 C 478 597 466 472 396 472" fill="none" stroke="#2b6cb0" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#l14-tree-arr)"/>
+    <rect x="560" y="8" width="112" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="30" font-size="12" font-weight="600" fill="#1a202c">高深理念意义小</text>
+    <rect x="560" y="52" width="124" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="74" font-size="12" font-weight="600" fill="#1a202c">有用的永远是基础</text>
+    <rect x="560" y="96" width="100" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="118" font-size="12" font-weight="600" fill="#1a202c">道序：先明确</text>
+    <rect x="300" y="52" width="96" height="34" rx="8" fill="#ffffff" stroke="#1a202c" stroke-width="1.2"/>
+    <text x="313" y="74" font-size="13" font-weight="600" fill="#1a202c">为什么基础</text>
+    <rect x="560" y="140" width="112" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="162" font-size="12" font-weight="600" fill="#1a202c">你就是那个公司</text>
+    <rect x="560" y="184" width="136" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="206" font-size="12" font-weight="600" fill="#1a202c">交易能为你带来什么</text>
+    <rect x="560" y="228" width="144" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="250" font-size="12" font-weight="600" fill="#1a202c">明确目标=提高成功率</text>
+    <rect x="300" y="184" width="96" height="34" rx="8" fill="#ffffff" stroke="#1a202c" stroke-width="1.2"/>
+    <text x="313" y="206" font-size="13" font-weight="600" fill="#1a202c">第一问</text>
+    <rect x="560" y="272" width="96" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="294" font-size="12" font-weight="600" fill="#1a202c">多尝试小钱</text>
+    <rect x="560" y="316" width="96" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="338" font-size="12" font-weight="600" fill="#1a202c">不懂多了解</text>
+    <rect x="560" y="360" width="112" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="382" font-size="12" font-weight="600" fill="#1a202c">交小学费学认知</text>
+    <rect x="300" y="316" width="116" height="34" rx="8" fill="#ffffff" stroke="#1a202c" stroke-width="1.2"/>
+    <text x="313" y="338" font-size="13" font-weight="600" fill="#1a202c">档1 玩/学认知</text>
+    <rect x="560" y="404" width="124" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="426" font-size="12" font-weight="600" fill="#1a202c">追年化→相应策略</text>
+    <rect x="560" y="448" width="124" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="470" font-size="12" font-weight="600" fill="#1a202c">抗风险→配置对冲</text>
+    <rect x="560" y="492" width="124" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="514" font-size="12" font-weight="600" fill="#1a202c">单一现金≠抗风险</text>
+    <rect x="300" y="448" width="96" height="34" rx="8" fill="#ffffff" stroke="#1a202c" stroke-width="1.2"/>
+    <text x="313" y="470" font-size="13" font-weight="600" fill="#1a202c">档2 理财</text>
+    <rect x="560" y="536" width="96" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="558" font-size="12" font-weight="600" fill="#1a202c">需要天赋</text>
+    <rect x="560" y="580" width="96" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="602" font-size="12" font-weight="600" fill="#1a202c">退路/止损线</text>
+    <rect x="560" y="624" width="120" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="646" font-size="12" font-weight="600" fill="#1a202c">认清自己+小目标</text>
+    <rect x="300" y="580" width="108" height="34" rx="8" fill="#ffffff" stroke="#1a202c" stroke-width="1.2"/>
+    <text x="313" y="602" font-size="13" font-weight="600" fill="#1a202c">档3 大幅跃升</text>
+    <rect x="24" y="303" width="124" height="60" rx="8" fill="rgba(192,86,33,0.08)" stroke="#c05621" stroke-width="1.4"/>
+    <text x="38" y="329" font-size="15" font-weight="600" fill="#1a202c">L14 交易启蒙</text>
+    <text x="38" y="349" font-size="11" fill="#4a5568">先明确目标</text>
+    <circle cx="392" cy="56" r="8" fill="#2b6cb0"/>
+    <text x="392" y="60" text-anchor="middle" font-size="10" font-weight="600" fill="#fff">1</text>
+    <circle cx="392" cy="188" r="8" fill="#2b6cb0"/>
+    <text x="392" y="192" text-anchor="middle" font-size="10" font-weight="600" fill="#fff">2</text>
+    <circle cx="412" cy="320" r="8" fill="#2b6cb0"/>
+    <text x="412" y="324" text-anchor="middle" font-size="10" font-weight="600" fill="#fff">3</text>
+    <circle cx="392" cy="452" r="8" fill="#2b6cb0"/>
+    <text x="392" y="456" text-anchor="middle" font-size="10" font-weight="600" fill="#fff">4</text>
+    <circle cx="404" cy="584" r="8" fill="#2b6cb0"/>
+    <text x="404" y="588" text-anchor="middle" font-size="10" font-weight="600" fill="#fff">5</text>
+    <line x1="10" y1="676" x2="1014" y2="676" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="10" y="692" font-size="12" font-weight="600" fill="#1a202c">关联图例</text>
+    <text x="86" y="692" font-size="12" fill="#4a5568">① 第一问（目标）决定选哪一档</text>
+    <text x="86" y="714" font-size="12" fill="#4a5568">② 理财两子目标都服务于明确的目标</text>
+    <text x="86" y="736" font-size="12" fill="#4a5568">③ 跃升档是理财年化的极端化，代价剧增</text>
+  </svg>
+  </div>
+
+  <h2><span class="tag p1">一</span>为什么是"基础"：高深理念的意义很小</h2>
+  <p>开场豆子解释了为什么久违地出"干货"：不是江郎才尽，而是<b>发现出高深理念意义非常小</b>。直播连麦时他发现，不论讲多深，<b>永远对大家有用的东西就是基础的东西</b>。所以这期是一个"道序"——做交易之前，第一个应该先明确的东西。</p>
+  <p><b>我的解读：这和 L08 的认知观一致。</b>认知成长靠的是可归因的基础动作（模式内执行），不是堆砌高深概念。高深概念是"地图的装饰"，基础目标才是"你要去哪"。方向错了，地图再精美也到不了。</p>
+
+  <h2><span class="tag p1">二</span>第一问：交易能为你带来什么？</h2>
+  <p>豆子用了个公司类比：<b>"上班时都有一句话——你能为公司带来什么。你就是那个公司，那你觉得交易能为你带来什么？"</b>很多人脱口而出"我要赚钱"。但他立刻补刀：<b>不同的赚钱之间，难度是不同的。</b></p>
+  <p>所以"我要赚钱"不是目标，是愿望。目标必须具体到<b>哪一种赚钱</b>：年化 10% 的闲钱理财，和"一天 10 倍"，难度天差地别。而交易也是一件事，做事要提高成功率——<b>第一件事就是明确目标</b>。目标明确了，去做成的可能性才非常大。</p>
+  <div class="formula">目标具体化检验：
+"我要赚钱" ✗（愿望，无难度坐标）
+"闲钱年化10%，回撤可控，埋顶回本周期4–5年" ✓（有难度、有风险、有周期）
+"一年10倍" ✓也是目标，但难度坐标极高→见第三档的退路要求</div>
+
+  <h2><span class="tag p1">三</span>目标三档总览</h2>
+  <table>
+    <thead><tr><th style="width:120px">档位</th><th>目的</th><th>做法</th><th>风险/代价</th><th>适合谁</th></tr></thead>
+    <tbody>
+      <tr><td><b>① 玩/学认知</b></td><td>快乐、体验高效市场、提升认知</td><td>多尝试、小钱参与、不懂的多了解</td><td>很小的学费</td><td>大多数人（推荐接触股市/期货/衍生品）</td></tr>
+      <tr><td><b>② 理财</b></td><td>a 追求年化 / b 增强抗风险</td><td>a 做对应年化策略并执行 / b 资产配置对冲</td><td>与年化匹配的风险/时间精力</td><td>有稳定收入/成家立业的成熟生态位</td></tr>
+      <tr><td><b>③ 资金大幅跃升</b></td><td>极高年化（"阶级跃迁"）</td><td>极高超额策略＋天赋</td><td>极高：时间精力耗尽仍做不出</td><td>极少数；需退路＋认清自己</td></tr>
+    </tbody>
+  </table>
+  <p><b>读法</b>：三档不是"高低贵贱"，是<b>不同的难度-代价组合</b>。选档＝选你愿意付的代价。绝大多数人应该从①开始，②是成熟后的主战场，③是少数人的窄门。</p>
+
+  <h2><span class="tag p2">四</span>第一档：玩/学认知——交很小的学费，学很多东西</h2>
+  <p>豆子说这档"可能觉得很蠢，但并不是"：目的是<b>学习认知、体验高效金融市场</b>，不是刻板地"必须赚到钱"。资本倾向于极其集中、高效的金融市场，在其中能学到很高的认知。所以他<b>推荐大多数人接触股市、期货、基本金融概念、衍生品、期权</b>。</p>
+  <p>做法就三句：<b>多尝试、小钱参与、不懂的多了解</b>。不要纯纯思考"怎么赚钱"，而是去体验、去学习。这是一个"很简单、很明确、并且效果很好"的目标：<b>交很小的学费，学到很多很多东西</b>。</p>
+  <p><b>我的衔接</b>：这正是 L09 小钱实盘的"目的版"——L09 讲怎么练（小钱实盘），本课讲为什么练（学认知而非赚钱）。把"赚钱"从目标里拿掉，学费就变小、动作就变形少、认知就长得快。</p>
+
+  <h2><span class="tag p2">五</span>第二档：理财——两个子目标，两条路</h2>
+  <p>适用人群：社会中已有成熟生态位（稳定工作/收入/成家立业）。理财又分两个子目标：</p>
+  <h3>子目标 a：追求年化（10% / 20%）</h3>
+  <p>追求多少就做多少对应的策略，然后执行。年化 10%：做定投类策略，思考<b>埋顶回本周期</b>（股权类好策略约 3–5 年）、<b>因果</b>（什么时候持续有效、什么时候可能失效），研究透、风险可控就执行——闲钱投资、回撤不大，年化 10% 不算高。年化 20%：难度更高，需要<b>对牛市顶底有把控</b>（如纳指/A股埋底埋顶）；A股牛市更高→年化可更高，但风险更大、时间精力要求更高、要在熊市等很久。</p>
+  <h3>子目标 b：增强抗风险</h3>
+  <p><b>最大误区："不理财是最抗风险的。"</b>不理财＝只持单一资产现金，要承受<b>通胀＋外汇波动</b>；而多种资产（商品/股权/现金/债）组合明显更抗风险——至少把这几个风险抗掉了。</p>
+  <p>抗风险的正确做法是<b>先认清自己具体有什么风险，再去对冲它</b>：怕战争/地缘→本土战争应从"身份"而非资产上找办法；做工厂的→产品需求不稳定、可能失业→不能让资产全是实物投资＋现金（周期走弱会大幅贬值甚至破产），要用资产配置对冲自己的实业风险。</p>
+  <div class="card note">
+    <b>本课核心句</b>
+    <p style="margin:6px 0 0"><b>"做事一定要明确目标，按照目标去做。"</b>追求年化→做年化策略；追求抗风险→去抗你具体的风险。两条路不混用。</p>
+  </div>
+
+  <h2><span class="tag p2">六</span>第三档：资金大幅跃升——天赋、退路、认清自己</h2>
+  <p>这档相当于把理财的年化拉到极高。豆子给了三个清醒剂：</p>
+  <ol>
+    <li><b>风险极高，且需要天赋。</b>时间精力可能耗费非常多而做不出来；<b>没有什么策略能稳定达到极高超额</b>，所以明确需要天赋，甚至很需要。</li>
+    <li><b>要有退路（止损线）。</b>大量时间精力投入后若做不出，你怎么让自己有退路？风险过高→必须设止损线。难度远高于现实中创业做到大幅跃升，做到者万众无一。</li>
+    <li><b>认清自己。</b>是不是天才？是不是真的擅长交易？很多人喜欢交易因为"好玩"（第一档），但<b>没有多少人擅长交易</b>——"我觉得我都不算擅长交易"。不能把所有时间精力押在这。</li>
+  </ol>
+  <p>落地办法：给自己一个<b>小目标</b>——能完成→对接 L03 交易模式（从赚钱效应开始）；<b>完成不了→放弃</b>，就这么简单。</p>
+  <p><b>我的解读：这是 L01 本金保护在"人生配置"层面的放大。</b>L01 给单笔设止损，本课给"整条交易人生"设止损线。把交易当③的人，最需要的不是技术，是退路和自知。</p>
+
+  <h2><span class="tag p2">七</span>落地：目标-策略-风险-退路 四联表</h2>
+  <p>把本课变成一张你必须填的表（填不出＝目标还没明确）：</p>
+  <div class="formula">我的目标档：① / ②a / ②b / ③
+对应策略：____（年化策略/对冲配置/极高超额/小钱学习）
+我承受的风险：____（回撤/时间精力/通胀/实业周期）
+我的退路/止损线：____（③必填；①=学费上限；②=最大回撤）
+小目标（可验证）：____（完成→升级；完不成→降档/放弃）</div>
+
+  <h2><span class="tag p4">八</span>可视化件：目标定位器</h2>
+  <p class="small">选一档，看它的做法、风险与退路要求。</p>
+  <div class="demo">
+    <h4>目标定位器</h4>
+    <div class="btns" id="btns">
+      <button data-k="a">① 玩/学认知</button>
+      <button data-k="b">②a 理财·追年化</button>
+      <button data-k="c">②b 理财·抗风险</button>
+      <button data-k="d">③ 资金大幅跃升</button>
+    </div>
+    <div class="out" id="out">👆 点一档，这里显示做法/风险/退路。</div>
+  </div>
+  <script>
+    var V={
+      a:'<b>做法</b>：多尝试、小钱参与、不懂的多了解；接触股市/期货/衍生品。<b>风险</b>：很小的学费。<b>退路</b>：学费上限即止损。<b>判定</b>：大多数人的起点，效果很好。',
+      b:'<b>做法</b>：按目标年化做对应策略并执行（10%→定投+因果+回本周期；20%→需把控牛熊顶底）。<b>风险</b>：与年化匹配的回撤/时间精力。<b>退路</b>：最大回撤线＋闲钱前提。',
+      c:'<b>做法</b>：先认清自己具体风险（通胀/实业周期/地缘），再用多资产（商品/股权/现金/债）对冲。<b>风险</b>：单一现金才是最大风险。<b>退路</b>：不押单一资产。',
+      d:'<b>做法</b>：极高超额策略＋天赋。<b>风险</b>：极高，时间精力耗尽仍可能做不出；无策略能稳定达到。<b>退路</b>：必须设人生止损线＋认清自己＋小目标验证（完不成→放弃）。<b>判定</b>：少数人的窄门。'
+    };
+    var b=document.querySelectorAll('#btns button');
+    b.forEach(function(x){x.addEventListener('click',function(){b.forEach(function(y){y.classList.remove('on')});x.classList.add('on');document.getElementById('out').innerHTML=V[x.getAttribute('data-k')];});});
+  </script>
+
+  <h2><span class="tag p4">九</span>真实案例：三档各自的样本</h2>
+  <p class="small">公开市场事件（数字为约数）。</p>
+  <div class="card"><b>②a 年化10：宽基定投的"埋顶回本周期"</b>
+    <p class="small" style="margin:6px 0 0"><b>事实</b>：沪深300/纳指长期定投，穿越牛熊后年化约 8–12%；但中间可能 3–5 年不赚钱（埋顶回本周期），回撤可达 30–40%。</p>
+    <p class="small" style="margin:4px 0 0"><b>对应知识点</b>：年化10 不难，难的是接受回本周期与回撤——目标明确者执行，目标不明者在底部放弃。</p></div>
+  <div class="card"><b>②b 抗风险：2022 股债双杀与"单一现金"的通胀</b>
+    <p class="small" style="margin:6px 0 0"><b>事实</b>：2022 年股债双杀，单一资产组合大幅回撤；而只持现金者当年承受高通胀（美 CPI 一度 9%）购买力缩水。</p>
+    <p class="small" style="margin:4px 0 0"><b>对应知识点</b>："不理财最抗风险"是误区；多资产对冲才能抗掉通胀/周期/股债几个洞。</p></div>
+  <div class="card"><b>③ 大幅跃升的反面：万众无一</b>
+    <p class="small" style="margin:6px 0 0"><b>事实</b>：期货/杠杆追求一年数倍者，多数以爆仓/巨亏收场（L06 期货大佬案例）；LTCM 诺奖阵容亦近爆仓。</p>
+    <p class="small" style="margin:4px 0 0"><b>对应知识点</b>：极高超额无稳定策略、需天赋；没退路＋没认清自己＝把人生押在窄门上。</p></div>
+
+  <h2><span class="tag p3">十</span>复习巩固</h2>
+  <p>按 1/7/30 天各来一轮。先自己答，再点开卡片对答案。</p>
+  <div class="flash" onclick="this.classList.toggle('open')">
+    <div class="front">L14 · 卡 1：做交易的第一件事是什么？<span class="hint">点击翻面</span></div>
+    <div class="back"><b>明确目标</b>——你想要什么样的赚钱（三档）。"我要赚钱"是愿望不是目标；目标具体到难度/风险/周期，成功率才大。→ 追问：我现在的目标能用一句话说清难度坐标吗？</div>
+  </div>
+  <div class="flash" onclick="this.classList.toggle('open')">
+    <div class="front">L14 · 卡 2："不理财最抗风险"对吗？<span class="hint">点击翻面</span></div>
+    <div class="back">错。只持单一现金要承受通胀＋外汇波动；多资产（商品/股权/现金/债）更抗风险。抗风险＝先认清自己具体风险再对冲。→ 追问：我最大的单一风险是什么？我对冲了吗？</div>
+  </div>
+  <div class="flash" onclick="this.classList.toggle('open')">
+    <div class="front">L14 · 卡 3：想"资金大幅跃升"要先想哪三件事？<span class="hint">点击翻面</span></div>
+    <div class="back">① 风险极高且需天赋（无稳定策略）；② 退路/止损线；③ 认清自己是否擅长＋小目标验证（完不成→放弃）。→ 追问：我给自己设的人生止损线是什么？</div>
+  </div>
+
+  <h3>悟道提问（没有标准答案，答案写进你自己的交易笔记）</h3>
+  <div class="card good">
+    <ol style="margin:6px 0 0;padding-left:20px">
+      <li>我此刻真实的目标是哪一档？我嘴上说的和实际动作一致吗？</li>
+      <li>如果把我当一家公司，"交易"这个员工为我带来了什么？值不值它的工资（时间精力）？</li>
+      <li>我的"小目标"是什么？完成的证据标准是什么？完不成我舍得放弃吗？</li>
+    </ol>
+  </div>
+
+  <h2><span class="tag p3">十一</span>内化掌握（三关全过＝这课学完）</h2>
+  <div class="card warn">
+    <p style="margin:6px 0 0"><b>关卡一 · 费曼</b>：在聊天里输入「我讲给你听 L14」，重点考你："三档各自的代价是什么？"、"为什么抗风险≠不理财？"</p>
+    <p style="margin:6px 0 0"><b>关卡二 · 场景判断</b>：一位有稳定工作、已成家的朋友说"我要辞职全职炒股，一年翻倍"。用本课框架给他分析。</p>
+    <details><summary>参考判断与评分点</summary><div class="ans">他把③当②做：有成熟生态位却选极高难度档，且无退路（辞职=断了现金流）。应：① 先认清自己是否擅长（小目标验证）；② 保留退路（不辞职/设人生止损线）；③ 若真要理财，从②a 闲钱年化开始。评分点：识别档位错配、退路缺失、天赋要求、小目标验证。</div></details>
+    <p style="margin:6px 0 0"><b>关卡三 · 规则产出</b>：填第七节四联表（目标档/策略/风险/退路/小目标），并写下"完不成小目标就降档"的承诺。</p>
+  </div>
+
+  <h2><span class="tag p3">十二</span>作业 · 自测 · 速查</h2>
+  <h4>作业（下次课前完成）</h4>
+  <ol>
+    <li><b>目标自白</b>：写下你真实的目标档与一句话难度坐标，对照你最近的动作是否一致。</li>
+    <li><b>风险清单</b>：列出你个人最大的 3 个风险（通胀/实业/地缘/单一资产），写出对冲方式。</li>
+    <li><b>小目标</b>：设一个 3 个月可验证的小目标＋证据标准＋"完不成就降档"的承诺。</li>
+  </ol>
+  <h4>自测（8 题，先答再看答案）</h4>
+  <div class="q">Q1. 做交易第一件事？
+    <details><summary>答案</summary><div class="ans">明确目标（想要什么样的赚钱），不是学技术。目标明确→成功率大。</div></details></div>
+  <div class="q">Q2. 三档目标？
+    <details><summary>答案</summary><div class="ans">①玩/学认知（小钱学费）②理财（追年化/抗风险）③资金大幅跃升（天赋+退路+认清自己）。</div></details></div>
+  <div class="q">Q3. 第一档的做法？
+    <details><summary>答案</summary><div class="ans">多尝试、小钱参与、不懂的多了解；交小学费学认知，不刻板追求赚钱。</div></details></div>
+  <div class="q">Q4. 年化10 与年化20 的区别？
+    <details><summary>答案</summary><div class="ans">10→定投+因果+回本周期，风险可控；20→需把控牛熊顶底，风险/时间精力更高、熊市等更久。</div></details></div>
+  <div class="q">Q5. 为什么单一现金不抗风险？
+    <details><summary>答案</summary><div class="ans">承受通胀＋外汇波动；多资产组合才能抗掉这几个洞。</div></details></div>
+  <div class="q">Q6. 抗风险的正确顺序？
+    <details><summary>答案</summary><div class="ans">先认清自己具体有什么风险，再用资产配置去对冲它（不混用年化策略）。</div></details></div>
+  <div class="q">Q7. 第三档为什么需要退路？
+    <details><summary>答案</summary><div class="ans">极高超额无稳定策略、需天赋、时间精力可能耗尽仍做不出；不设人生止损线＝把人生押窄门。</div></details></div>
+  <div class="q">Q8. 小目标的作用？
+    <details><summary>答案</summary><div class="ans">可验证的试金石：完成→对接 L03 升级；完不成→放弃/降档，避免无限投入。</div></details></div>
+
+  <div class="card good"><b>速查卡</b><ul class="cheat" style="margin:6px 0;padding-left:18px">
+    <li>第一件事＝明确目标，不是学技术。</li>
+    <li>"我要赚钱"是愿望；目标要有难度坐标。</li>
+    <li>三档：玩/学认知、理财、大幅跃升。</li>
+    <li>① 多尝试小钱，交小学费学认知。</li>
+    <li>②a 按年化做策略；②b 先认清风险再对冲。</li>
+    <li>不理财≠抗风险；单一现金有通胀洞。</li>
+    <li>③ 需天赋＋退路＋认清自己。</li>
+    <li>没有策略能稳定达到极高超额。</li>
+    <li>小目标完不成→放弃/降档。</li>
+    <li>做事一定要明确目标，按目标去做。</li>
+  </ul></div>
+
+  <div class="next"><b>下一讲（L15）：优秀投资/交易者的状态</b>（<a href="https://www.bilibili.com/video/BV13CA7zZEr5">BV13CA7zZEr5</a>）——目标明确后，看看"做成的人"是什么状态。回「下一课」即跳转，或直接提问。</div>
+  <p class="small" style="margin-top:20px">投资有风险，本课为教育内容，不构成投资建议。数值为教学模拟；案例为公开事件约数。疑问直接问，我换例子重讲。</p>
+</div>
+
+</body>
+</html>
