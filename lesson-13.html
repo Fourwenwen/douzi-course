@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>L13 模式成熟的表现</title>
+
+<style>
+.nav{position:sticky;top:0;z-index:50;background:#1a202c;padding:8px 14px;display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif}
+.nav a{color:#e2e8f0;text-decoration:none;font-size:13px;padding:3px 10px;border-radius:999px;background:#2d3748}
+.nav a:hover{background:#4a5568}
+.nav a.cur{background:#c05621;color:#fff;font-weight:600}
+.nav a.home{background:#2b6cb0}
+.nav .sp{color:#718096;font-size:12px;margin:0 4px}
+</style>
+</head>
+<body style="margin:0;background:#f7fafc">
+<nav class="nav"><a class="home" href="index.html">目录主页</a><a class="" href="lesson-01.html">L01 本金保护</a><a class="" href="lesson-02.html">L02 盈亏同源</a><a class="" href="lesson-03.html">L03 交易模式</a><a class="" href="lesson-04.html">L04 看什么</a><a class="" href="lesson-05.html">L05 技术分析</a><a class="" href="lesson-06.html">L06 交易纪律</a><a class="" href="lesson-07.html">L07 切换原理</a><a class="" href="lesson-08.html">L08 成长</a><a class="" href="lesson-09.html">L09 实操学习</a><a class="" href="lesson-10.html">L10 随手单</a><a class="" href="lesson-11.html">L11 止盈止损</a><a class="" href="lesson-12.html">L12 赚钱效应</a><a class="cur" href="lesson-13.html">L13 模式成熟</a><span class="sp">点击跳转复看</span></nav>
+<style>
+  :root{--ink:#1a202c;--sub:#4a5568;--line:#e2e8f0;--bg:#f7fafc;--accent:#c05621;--accent2:#2b6cb0;--good:#276749;--warn:#9b2c2c;--card:#fff}
+  *{box-sizing:border-box}
+  .doc{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;color:var(--ink);background:var(--bg);padding:28px 20px 60px;line-height:1.8;max-width:980px;margin:0 auto}
+  .doc h1{font-size:26px;margin:0 0 4px}
+  .doc h2{font-size:19px;margin:34px 0 10px;padding-left:10px;border-left:4px solid var(--accent)}
+  .doc h3{font-size:16px;margin:20px 0 8px;color:var(--accent2)}
+  .doc p{margin:8px 0}
+  .meta{color:var(--sub);font-size:13px;margin-bottom:16px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin:12px 0}
+  .goal{background:#fffaf0;border-color:#fbd38d}
+  .warn{background:#fff5f5;border-color:#feb2b2}
+  .good{background:#f0fff4;border-color:#9ae6b4}
+  .note{background:#ebf8ff;border-color:#90cdf4}
+  table{width:100%;border-collapse:collapse;font-size:13px;background:var(--card);border-radius:8px;overflow:hidden;margin:8px 0}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+  th{background:#edf2f7;font-weight:600}
+  .tag{display:inline-block;font-size:11px;padding:1px 8px;border-radius:999px;background:#edf2f7;color:var(--sub);margin-right:4px}
+  .p1{background:#feebc8;color:#7b341e}.p2{background:#bee3f8;color:#2a4365}.p3{background:#c6f6d5;color:#22543d}.p4{background:#fed7e2;color:#702459}
+  a{color:var(--accent2);text-decoration:none}a:hover{text-decoration:underline}
+  .formula{background:#1a202c;color:#f7fafc;border-radius:8px;padding:12px 16px;font-family:"SF Mono",Menlo,monospace;font-size:13px;margin:10px 0;overflow-x:auto;line-height:1.9}
+  .formula b{color:#f6ad55}
+  .q{border-left:3px solid var(--accent2);padding-left:12px;margin:12px 0}
+  .ans{color:var(--good);font-size:13px;margin-top:4px}
+  .next{margin-top:24px;padding:14px 18px;border:1px dashed var(--accent);border-radius:10px;background:#fffaf0;font-size:14px}
+  .small{font-size:12.5px;color:var(--sub)}
+  details{margin:8px 0}summary{cursor:pointer;color:var(--accent2);font-size:13.5px}
+  .cheat{columns:2;column-gap:24px}.cheat li{margin:6px 0;break-inside:avoid}
+  ul,ol{margin:6px 0 6px 20px;padding:0}li{margin:3px 0}
+  .demo{background:#1a202c;border-radius:12px;padding:18px 20px;color:#f7fafc;margin:14px 0}
+  .demo h4{margin:0 0 10px;font-size:15px;color:#f6ad55}
+  .demo label{font-size:13px;display:block;margin:6px 0}
+  .demo input[type=range]{width:220px;vertical-align:middle}
+  .demo .out{margin-top:12px;background:#2d3748;border-radius:8px;padding:12px 14px;font-size:13px;line-height:1.9;min-height:66px}
+  .demo .out b{color:#f6ad55}
+  .flash{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:10px 0;cursor:pointer}
+  .flash .front{font-weight:600}
+  .flash .back{display:none;margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);color:var(--good)}
+  .flash.open .back{display:block}
+  .flash .hint{font-size:11.5px;color:var(--sub);float:right;font-weight:400}
+  @media(max-width:640px){.cheat{columns:1}}
+</style>
+
+<div class="doc">
+  <div class="card" style="padding:10px 14px;margin:0 0 14px">
+    <b>课程目录</b>　<span class="small">L01 本金保护 · L02 盈亏同源 · L03 交易模式 · L04 看什么 · L05 技术分析 · L06 交易纪律 · L07 切换原理 · L08 成长 · L09 实操学习 · L10 随手单 · L11 止盈止损 · L12 赚钱效应 · <b>L13 模式成熟（本课）</b> · L14–L25 认知心智</span><br>
+    <span class="small">导航口令：「目录」看全表 ｜「下一课」推进 ｜「重讲 Lxx」换方式重讲 ｜「我讲给你听 Lxx」＝费曼关卡 ｜ 直接提问＝答疑</span><br>
+    <span class="small">总览入口：<a href="trees.html">十课知识树</a> ｜ <a href="cases.html">十课真实案例</a>（每课正文内也有各自的知识树与真实案例）</span>
+  </div>
+
+  <h1>第十三课：模式成熟的表现——预期明确、因果清晰、盈亏同源可预测</h1>
+  <div class="meta">《豆子悟道 · 股票系统学习课》L13 ｜ 模块三 光速提升·方法 ｜ 源自原视频《光速提升：什么是模式成熟的表现》（1:55，<a href="https://www.bilibili.com/video/BV1juRkBUE6v">BV1juRkBUE6v</a>）｜ <b>本讲义是消化后的讲解</b>：视频短小精悍，内核已展开为完整教学，不需要看视频 ｜ 2026-11-18</div>
+
+  <div class="card goal">
+    <b>这节课讲什么</b>
+    <p style="margin:6px 0 0">一句话：<b>模式成熟不看短期表现，看三件事——预期明确（知道怎么赚）、因果清晰（知道为什么能赚）、盈亏同源可预测（知道亏损何时来、能否避开）。</b>收益率好看、曲线好看，都证明不了成熟；<b>经历多次盈亏同源周期后仍能稳定运行</b>，才叫成熟。</p>
+    <p style="margin:6px 0 0">这课是模块三的收官：把 L03 的模式、L08 的成长、L09 的小钱实盘、L11 的内生出场、L12 的对手盘，收进一个"成熟度"的总判据里。</p>
+  </div>
+
+  <h2><span class="tag p4">图</span>本课知识树（思维导图）</h2>
+  <p class="small">从左向右生长：根＝本课主张，一级分支＝主题，向右展开概念；右上角编号＝关联（见图例）。</p>
+  <div style="overflow-x:auto;margin:10px 0">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 780" role="img" aria-labelledby="l13-tree-tree-title l13-tree-tree-desc" style="min-width:1024px;width:100%;height:auto;font-family:'PingFang SC','Microsoft YaHei','Noto Sans SC',-apple-system,sans-serif">
+    <title id="l13-tree-tree-title">L13 模式成熟知识树</title>
+    <desc id="l13-tree-tree-desc">模式成熟的完整层级：成熟定义、反面判据、预期明确、因果清晰、同源可预测，含三条关联。</desc>
+    <defs>
+      <marker id="l13-tree-arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1 L 8 5 L 0 9 z" fill="#2b6cb0"/>
+      </marker>
+    </defs>
+    <path d="M 216 333 C 258 333 258 69 300 69" fill="none" stroke="#b9c3d0" stroke-width="1.6"/>
+    <path d="M 396 69 C 478 69 478 25 560 25" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 69 C 478 69 478 69 560 69" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 69 C 478 69 478 113 560 113" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 216 333 C 258 333 258 201 300 201" fill="none" stroke="#b9c3d0" stroke-width="1.6"/>
+    <path d="M 396 201 C 478 201 478 157 560 157" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 201 C 478 201 478 201 560 201" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 201 C 478 201 478 245 560 245" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 216 333 C 258 333 258 333 300 333" fill="none" stroke="#b9c3d0" stroke-width="1.6"/>
+    <path d="M 396 333 C 478 333 478 289 560 289" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 333 C 478 333 478 333 560 333" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 333 C 478 333 478 377 560 377" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 216 333 C 258 333 258 465 300 465" fill="none" stroke="#b9c3d0" stroke-width="1.6"/>
+    <path d="M 396 465 C 478 465 478 421 560 421" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 465 C 478 465 478 465 560 465" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 465 C 478 465 478 509 560 509" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 216 333 C 258 333 258 597 300 597" fill="none" stroke="#b9c3d0" stroke-width="1.6"/>
+    <path d="M 396 597 C 478 597 478 553 560 553" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 597 C 478 597 478 597 560 597" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 597 C 478 597 478 641 560 641" fill="none" stroke="#c3ccd8" stroke-width="1.3"/>
+    <path d="M 396 597 C 466 597 466 69 396 69" fill="none" stroke="#2b6cb0" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#l13-tree-arr)"/>
+    <path d="M 396 201 C 466 201 466 458 396 458" fill="none" stroke="#2b6cb0" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#l13-tree-arr)"/>
+    <path d="M 396 333 C 466 333 466 472 396 472" fill="none" stroke="#2b6cb0" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#l13-tree-arr)"/>
+    <rect x="560" y="8" width="112" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="30" font-size="12" font-weight="600" fill="#1a202c">落在赚钱效应上</text>
+    <rect x="560" y="52" width="100" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="74" font-size="12" font-weight="600" fill="#1a202c">三要素一句话</text>
+    <rect x="560" y="96" width="156" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="118" font-size="12" font-weight="600" fill="#1a202c">跨≥2次同源周期仍稳定</text>
+    <rect x="300" y="52" width="96" height="34" rx="8" fill="#ffffff" stroke="#1a202c" stroke-width="1.2"/>
+    <text x="313" y="74" font-size="13" font-weight="600" fill="#1a202c">成熟定义</text>
+    <rect x="560" y="140" width="112" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="162" font-size="12" font-weight="600" fill="#1a202c">短暂盈利≠成熟</text>
+    <rect x="560" y="184" width="156" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="206" font-size="12" font-weight="600" fill="#1a202c">收益率/曲线好看≠成熟</text>
+    <rect x="560" y="228" width="132" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="250" font-size="12" font-weight="600" fill="#1a202c">盈亏驱动=因果不明</text>
+    <rect x="300" y="184" width="96" height="34" rx="8" fill="#ffffff" stroke="#1a202c" stroke-width="1.2"/>
+    <text x="313" y="206" font-size="13" font-weight="600" fill="#1a202c">反面判据</text>
+    <rect x="560" y="272" width="96" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="294" font-size="12" font-weight="600" fill="#1a202c">知道怎么赚</text>
+    <rect x="560" y="316" width="124" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="338" font-size="12" font-weight="600" fill="#1a202c">操作应该是什么样</text>
+    <rect x="560" y="360" width="96" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="382" font-size="12" font-weight="600" fill="#1a202c">HOW</text>
+    <rect x="300" y="316" width="96" height="34" rx="8" fill="#ffffff" stroke="#1a202c" stroke-width="1.2"/>
+    <text x="313" y="338" font-size="13" font-weight="600" fill="#1a202c">预期明确</text>
+    <rect x="560" y="404" width="112" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="426" font-size="12" font-weight="600" fill="#1a202c">知道为什么能赚</text>
+    <rect x="560" y="448" width="136" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="470" font-size="12" font-weight="600" fill="#1a202c">操作→赚钱效应传导</text>
+    <rect x="560" y="492" width="96" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="514" font-size="12" font-weight="600" fill="#1a202c">WHY</text>
+    <rect x="300" y="448" width="96" height="34" rx="8" fill="#ffffff" stroke="#1a202c" stroke-width="1.2"/>
+    <text x="313" y="470" font-size="13" font-weight="600" fill="#1a202c">因果清晰</text>
+    <rect x="560" y="536" width="96" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="558" font-size="12" font-weight="600" fill="#1a202c">亏损何时来</text>
+    <rect x="560" y="580" width="108" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="602" font-size="12" font-weight="600" fill="#1a202c">能否避开/减损</text>
+    <rect x="560" y="624" width="108" height="34" rx="8" fill="#ffffff" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="573" y="646" font-size="12" font-weight="600" fill="#1a202c">难避免=不成熟</text>
+    <rect x="300" y="580" width="96" height="34" rx="8" fill="#ffffff" stroke="#1a202c" stroke-width="1.2"/>
+    <text x="313" y="602" font-size="13" font-weight="600" fill="#1a202c">同源可预测</text>
+    <rect x="24" y="303" width="192" height="60" rx="8" fill="rgba(192,86,33,0.08)" stroke="#c05621" stroke-width="1.4"/>
+    <text x="38" y="329" font-size="15" font-weight="600" fill="#1a202c">L13 模式成熟</text>
+    <text x="38" y="349" font-size="11" fill="#4a5568">预期明确·因果清晰·同源可预测</text>
+    <circle cx="392" cy="56" r="8" fill="#2b6cb0"/>
+    <text x="392" y="60" text-anchor="middle" font-size="10" font-weight="600" fill="#fff">1</text>
+    <circle cx="392" cy="188" r="8" fill="#2b6cb0"/>
+    <text x="392" y="192" text-anchor="middle" font-size="10" font-weight="600" fill="#fff">2</text>
+    <circle cx="392" cy="320" r="8" fill="#2b6cb0"/>
+    <text x="392" y="324" text-anchor="middle" font-size="10" font-weight="600" fill="#fff">3</text>
+    <circle cx="392" cy="452" r="8" fill="#2b6cb0"/>
+    <text x="392" y="456" text-anchor="middle" font-size="10" font-weight="600" fill="#fff">4</text>
+    <circle cx="392" cy="584" r="8" fill="#2b6cb0"/>
+    <text x="392" y="588" text-anchor="middle" font-size="10" font-weight="600" fill="#fff">5</text>
+    <line x1="10" y1="676" x2="1014" y2="676" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="10" y="692" font-size="12" font-weight="600" fill="#1a202c">关联图例</text>
+    <text x="86" y="692" font-size="12" fill="#4a5568">① 同源可预测是成熟的硬门槛（一票否决）</text>
+    <text x="86" y="714" font-size="12" fill="#4a5568">② 盈亏驱动暴露因果不清晰</text>
+    <text x="86" y="736" font-size="12" fill="#4a5568">③ HOW 与 WHY 互为表里</text>
+  </svg>
+  </div>
+
+  <h2><span class="tag p1">一</span>成熟的定义：落在赚钱效应上，一句话三要素</h2>
+  <p>视频开场：<b>"模式的基石是赚钱效应，那么模式的成熟要落在赚钱效应上。但是这样太抽象了，所以我就给了这么一句话：预期明确、因果清晰、盈亏同源可预测。"</b></p>
+  <p>注意这个定义的结构：它<b>不提收益率</b>。成熟是一个关于"理解"的状态，不是关于"结果"的状态——你对这个模式的因果链掌握到什么程度，决定了它成熟到什么程度。结果只是这个理解的滞后验证。</p>
+  <p><b>我的类比</b>：一台机器"成熟"不是指它今天产出了多少件产品，而是指<b>工程师知道它每个零件为什么这么装、知道它什么时候会坏、坏了能不能修</b>。产出是果，理解是因。</p>
+
+  <h2><span class="tag p1">二</span>反面判据：短暂的盈利证明不了成熟</h2>
+  <p>视频给了明确的反面：<b>"与它相对的就是短暂的盈利。不论是收益率的好看，还是曲线的好看，这些东西是不能证明你的模式足够的成熟的。"</b></p>
+  <p>为什么？因为<b>一次赚钱效应窗口里，不成熟的模式也能赚钱</b>（924 里新人都赚，L02）。短暂盈利可能只是"恰好站在窗口里"，不是"理解了窗口"。真正的检验是时间维度的：<b>"经历了多次盈亏同源的周期之后，如果你的模式仍然能稳定的运行，才能证明这个模式足够的成熟。"</b></p>
+  <div class="formula">成熟的检验公式（视频原意）：
+成熟 ≠ 一次/一段盈利
+成熟 ＝ <b>跨越 ≥2 次完整盈亏同源周期</b> 后仍稳定运行
+（一次周期 = 赚钱效应期 → 亏钱效应释放期 → 恢复/切换）
+短暂盈利 = 只见过晴天；成熟 = 经历过雨季还活着</div>
+  <p><b>我的解读：这把 L05 的"运气vs技能"落到了模式层面。</b>L05 说"看完整牛熊、数百笔"；本课说"看多次同源周期"——同一个思想：<b>没经历过同源释放期的模式，它的"稳定"是未经检验的。</b></p>
+
+  <h2><span class="tag p2">三</span>三要素拆解：HOW / WHY / WHEN</h2>
+  <p>视频逐条给了定义，我把它翻译成三个问题：</p>
+  <table>
+    <thead><tr><th style="width:110px">要素</th><th>视频定义</th><th>翻译成的问题</th><th>不成熟的样子</th></tr></thead>
+    <tbody>
+      <tr><td><b>预期明确</b></td><td>知道自己怎么去赚钱，操作应该是什么样</td><td>HOW：我的买卖动作清单是什么？</td><td>"看情况""感觉对了就买"</td></tr>
+      <tr><td><b>因果清晰</b></td><td>知道为什么能赚钱，为什么这样的操作能获得这样的赚钱效应</td><td>WHY：操作→赚钱效应的传导链是什么？</td><td>"回测好""别人都这么做"</td></tr>
+      <tr><td><b>盈亏同源可预测</b></td><td>同源产生时能否避开；难避免→仍不能稳定运行；可减损→成熟</td><td>WHEN：亏损何时来？我能不能避开/减损？</td><td>"亏了再说""不知道什么时候会亏"</td></tr>
+    </tbody>
+  </table>
+  <p><b>第三要素最深，展开</b>：视频说"任何赚钱效应的本质逻辑都是会有盈亏同源产生的"（L02 是公理），所以成熟不是"没有亏损"，而是<b>对亏损的时点和形状有预案</b>。两种结果：① 同源难以避免→模式仍不能稳定运行（不成熟）；② 同源可以避开/减损→"尝试去减少盈亏同源的影响，获得更高的超额收益"——<b>这就是成熟的表现</b>。</p>
+  <p><b>我的例子</b>：老龙反抽板（L03）的三要素全填：HOW=反抽首板扫/半路、次日兑现或转弱走；WHY=新散户联想溢价（认知差博傻）；WHEN=封板率+溢价双降时同源释放，K 开关停用→可避开。<b>三栏都填得出来，才叫成熟。</b></p>
+
+  <h2><span class="tag p2">四</span>为什么小钱盈利、实盘就亏？（L09 的回收）</h2>
+  <p>视频回收了上期（L09）的疑问："很多人小钱实盘或模拟盘时盈利，真正去做却亏损。"答案是：<b>"交易是向内求的。稳定成熟的模式是在你的预期和因果上明确的，而不是短暂的盈利或亏损。如果你只是因为盈利或亏损就会去做的话，代表你对它的因果——它为什么会这么产生——是不明确的。"</b></p>
+  <p>翻译：小钱/模拟时你"敢做"，是因为没有真实痛感，动作是随意的；上真钱后痛感启动，你的动作开始<b>跟着盈亏走</b>（赚了就追、亏了就砍/扛），而不是跟着因果走。<b>跟着盈亏走＝因果不明确的证据</b>——因为你不知道"为什么赚"，所以只能用"赚没赚"当信号。</p>
+  <div class="card warn">
+    <b>一个自检信号</b>
+    <p class="small" style="margin:6px 0 0">问自己：我下一笔做不做，依据是"模式信号出现了"还是"上一笔赚/亏了"？前者＝因果驱动（成熟方向）；后者＝盈亏驱动（不成熟）。<b>盈亏驱动的人，小钱和实盘是两套动作，所以小钱盈利实盘亏。</b></p>
+  </div>
+
+  <h2><span class="tag p2">五</span>成熟度自检表与成长路径</h2>
+  <p>把三要素变成可打分的体检（每项 1–5）：</p>
+  <div class="formula">成熟度 = 预期明确 + 因果清晰 + 同源可预测（各 1–5，满分 15）
+≤6  不成熟：先回 L03 写六元组、L12 写对手盘
+7–10 半成熟：有框架但同源预案缺失 → 补 K 开关（L03/L06）
+11–15 成熟候选：再叠加"跨 ≥2 次同源周期仍稳定"的实盘验证
+<b>一票否决</b>：同源"难以避免且无预案" → 不论盈利多少，不成熟</div>
+  <p><b>成长路径（模块三总收束）</b>：L01 外生护栏活下来 → L09 小钱实盘练真人性 → L03 六元组+三检验立模式 → L12 对手盘确认来源 → L11 出场内生化 → L06/L10 纪律与制度保执行 → <b>L13 三要素+跨周期验证＝成熟</b>。每一步都是下一步的前提。</p>
+
+  <h2><span class="tag p4">六</span>可视化件：成熟度体检器</h2>
+  <p class="small">给你的模式三要素打分，看成熟度判定与短板建议。</p>
+  <div class="demo">
+    <h4>成熟度体检器</h4>
+    <label>预期明确（HOW）<input type="range" id="a" min="1" max="5" value="3"> <b id="av">3</b></label>
+    <label>因果清晰（WHY）<input type="range" id="b" min="1" max="5" value="3"> <b id="bv">3</b></label>
+    <label>同源可预测（WHEN）<input type="range" id="c" min="1" max="5" value="2"> <b id="cv">2</b></label>
+    <div class="out" id="out"></div>
+  </div>
+  <script>
+    function calc(){
+      var a=+document.getElementById('a').value,b=+document.getElementById('b').value,c=+document.getElementById('c').value;
+      document.getElementById('av').textContent=a;document.getElementById('bv').textContent=b;document.getElementById('cv').textContent=c;
+      var t=a+b+c, msg;
+      if(c<=2){ msg='<b>一票否决：同源不可预测。</b>不论总分多少，先补 WHEN——写出同源释放的信号与避开/减损预案（L03 K 开关、L06 空仓）。'; }
+      else if(t<=6){ msg='<b>不成熟（'+t+'/15）。</b>回 L03 写六元组、L12 写对手盘档案，把 HOW 和 WHY 填实。'; }
+      else if(t<=10){ msg='<b>半成熟（'+t+'/15）。</b>框架有了，短板在'+(a<=b&&a<=c?'预期明确':(b<=c?'因果清晰':'同源可预测'))+'。补齐后再谈实盘放大。'; }
+      else { msg='<b>成熟候选（'+t+'/15）。</b>最后一步：用实盘验证"跨 ≥2 次同源周期仍稳定"。短暂盈利不算数。'; }
+      document.getElementById('out').innerHTML=msg;
+    }
+    ['a','b','c'].forEach(function(id){document.getElementById(id).addEventListener('input',calc)});
+    calc();
+  </script>
+
+  <h2><span class="tag p4">七</span>真实案例：成熟与不成熟的对照</h2>
+  <p class="small">公开市场事件（数字为约数）。</p>
+  <div class="card"><b>老龙反抽板：跨周期仍稳定＝成熟</b>
+    <p class="small" style="margin:6px 0 0"><b>事实</b>：该模式经历 924 赚钱效应期与随后的亏钱效应释放期（双降→停用→重启），三要素全可填，跨周期后仍稳定运行。</p>
+    <p class="small" style="margin:4px 0 0"><b>对应知识点</b>：成熟的检验是"多次同源周期后仍稳定"，不是一段盈利。</p></div>
+  <div class="card"><b>2024 初小微盘量化：一次同源周期就崩＝不成熟</b>
+    <p class="small" style="margin:6px 0 0"><b>事实</b>：多年"稳定"净值，一次流动性同源释放即单日&gt;10%、数日腰斩；同源"难以避免且无预案"。</p>
+    <p class="small" style="margin:4px 0 0"><b>对应知识点</b>：一票否决项——同源不可预测/难避免，不论历史曲线多好看，不成熟。</p></div>
+  <div class="card"><b>LTCM 1998：短暂盈利的极致反面</b>
+    <p class="small" style="margin:6px 0 0"><b>事实</b>：数年高收益"曲线好看"，一次同源周期（杠杆+不认错）4 个月亏 46% 近爆仓。</p>
+    <p class="small" style="margin:4px 0 0"><b>对应知识点</b>：收益率/曲线好看证明不了成熟；没经历过同源释放期的"稳定"是未经检验的。</p></div>
+
+  <h2><span class="tag p3">八</span>复习巩固</h2>
+  <p>按 1/7/30 天各来一轮。先自己答，再点开卡片对答案。</p>
+  <div class="flash" onclick="this.classList.toggle('open')">
+    <div class="front">L13 · 卡 1：模式成熟的三要素是什么？<span class="hint">点击翻面</span></div>
+    <div class="back"><b>预期明确（HOW 怎么赚）、因果清晰（WHY 为什么能赚）、盈亏同源可预测（WHEN 亏损何时来、能否避开/减损）。</b>→ 追问：我的模式三栏都填得出来吗？哪栏是空的？</div>
+  </div>
+  <div class="flash" onclick="this.classList.toggle('open')">
+    <div class="front">L13 · 卡 2：为什么收益率好看证明不了成熟？<span class="hint">点击翻面</span></div>
+    <div class="back">因为一次赚钱效应窗口里不成熟的模式也能赚（短暂盈利）。成熟的检验是<b>跨 ≥2 次完整同源周期后仍稳定运行</b>——只见过晴天不算经历过雨季。→ 追问：我的模式经历过几次同源释放期？</div>
+  </div>
+  <div class="flash" onclick="this.classList.toggle('open')">
+    <div class="front">L13 · 卡 3：小钱盈利、实盘亏，说明什么？<span class="hint">点击翻面</span></div>
+    <div class="back">说明动作是<b>盈亏驱动</b>而非因果驱动——"因为赚/亏就去做"＝对"为什么赚"不明确。小钱没痛感动作随意，实盘痛感启动就跟着盈亏走，两套动作所以两种结果。→ 追问：我下一笔的依据是模式信号还是上一笔盈亏？</div>
+  </div>
+
+  <h3>悟道提问（没有标准答案，答案写进你自己的交易笔记）</h3>
+  <div class="card good">
+    <ol style="margin:6px 0 0;padding-left:20px">
+      <li>我的模式经历过几次完整的盈亏同源周期？每次我是怎么活下来的？</li>
+      <li>如果同源"难以避免"，我有没有减损预案？（没有＝一票否决，先补）</li>
+      <li>我现在的动作，是因果驱动还是盈亏驱动？举最近一笔为证。</li>
+    </ol>
+  </div>
+
+  <h2><span class="tag p3">九</span>内化掌握（三关全过＝这课学完）</h2>
+  <div class="card warn">
+    <p style="margin:6px 0 0"><b>关卡一 · 费曼</b>：在聊天里输入「我讲给你听 L13」，重点考你："成熟为什么不看收益率？"、"同源可预测的两条分支各意味着什么？"</p>
+    <p style="margin:6px 0 0"><b>关卡二 · 场景判断</b>：某模式过去 18 个月年化 40%、曲线平滑，但从未经历过一次亏钱效应释放期，且说不清"什么时候会亏、亏了怎么办"。它成熟吗？</p>
+    <details><summary>参考判断与评分点</summary><div class="ans">不成熟。① 短暂盈利/曲线好看不能证明成熟；② 未跨同源周期＝未经检验；③ 同源"难以避免且无预案"＝一票否决。评分点：识别"只见过晴天"、用跨周期检验、用一票否决项、不被 40% 年化（果）骗过。</div></details>
+    <p style="margin:6px 0 0"><b>关卡三 · 规则产出</b>：给你的模式填三要素表（HOW/WHY/WHEN）＋成熟度打分＋"跨周期验证"计划（记录接下来每次同源释放期你的应对）。</p>
+  </div>
+
+  <h2><span class="tag p3">十</span>作业 · 自测 · 速查</h2>
+  <h4>作业（下次课前完成）</h4>
+  <ol>
+    <li><b>三要素表</b>：给模式填 HOW/WHY/WHEN 三栏，空栏即短板。</li>
+    <li><b>周期盘点</b>：列出模式经历过的同源释放期（时间/信号/你的应对/结果），数够不够 2 次。</li>
+    <li><b>驱动审计</b>：翻最近 10 笔，标注每笔是因果驱动还是盈亏驱动，算比例。</li>
+  </ol>
+  <h4>自测（8 题，先答再看答案）</h4>
+  <div class="q">Q1. 模式成熟的三要素？
+    <details><summary>答案</summary><div class="ans">预期明确（HOW）、因果清晰（WHY）、盈亏同源可预测（WHEN）。</div></details></div>
+  <div class="q">Q2. 成熟的检验为什么是"跨周期"而不是"收益率"？
+    <details><summary>答案</summary><div class="ans">一次窗口里不成熟模式也能赚；只有跨 ≥2 次同源周期仍稳定，才证明理解而非运气。</div></details></div>
+  <div class="q">Q3. "同源可预测"的两条分支？
+    <details><summary>答案</summary><div class="ans">难避免→仍不能稳定运行（不成熟）；可避开/减损→减少同源影响、获更高超额（成熟）。</div></details></div>
+  <div class="q">Q4. 小钱盈利实盘亏的根因？
+    <details><summary>答案</summary><div class="ans">盈亏驱动而非因果驱动；小钱无痛感动作随意，实盘痛感启动跟着盈亏走，两套动作两种结果。</div></details></div>
+  <div class="q">Q5. 预期明确 vs 因果清晰的区别？
+    <details><summary>答案</summary><div class="ans">预期明确=知道怎么赚（操作清单 HOW）；因果清晰=知道为什么能赚（操作→赚钱效应的传导 WHY）。</div></details></div>
+  <div class="q">Q6. 一票否决项是什么？
+    <details><summary>答案</summary><div class="ans">同源难以避免且无预案——不论盈利多少，不成熟。</div></details></div>
+  <div class="q">Q7. 成熟度打分怎么用？
+    <details><summary>答案</summary><div class="ans">三要素各 1–5：≤6 回 L03/L12 补框架；7–10 补同源预案；11–15 成熟候选再叠加跨周期实盘验证。</div></details></div>
+  <div class="q">Q8. 本课与模块三其它课的关系？
+    <details><summary>答案</summary><div class="ans">总收束：L01 护栏→L09 小钱→L03 立模式→L12 对手盘→L11 内生出场→L06/L10 纪律→L13 三要素+跨周期＝成熟。</div></details></div>
+
+  <div class="card good"><b>速查卡</b><ul class="cheat" style="margin:6px 0;padding-left:18px">
+    <li>成熟三要素：预期明确/因果清晰/同源可预测。</li>
+    <li>HOW 怎么赚 / WHY 为什么赚 / WHEN 亏何时来。</li>
+    <li>短暂盈利≠成熟；曲线好看≠成熟。</li>
+    <li>跨 ≥2 次同源周期仍稳定＝成熟。</li>
+    <li>同源难避免且无预案＝一票否决。</li>
+    <li>可减损同源→更高超额＝成熟表现。</li>
+    <li>盈亏驱动＝因果不明确的证据。</li>
+    <li>小钱盈利实盘亏＝两套动作。</li>
+    <li>成熟度 15 分制，≤6 回炉。</li>
+    <li>只见过晴天，不算经历过雨季。</li>
+  </ul></div>
+
+  <div class="next"><b>下一讲（L14）：交易启蒙——做交易前就该明确的事</b>（<a href="https://www.bilibili.com/video/BV1jeAbzeENH">BV1jeAbzeENH</a>）。模块三收官，进入模块四·认知心智。回「下一课」即跳转，或直接提问。</div>
+  <p class="small" style="margin-top:20px">投资有风险，本课为教育内容，不构成投资建议。数值为教学模拟；案例为公开事件约数。疑问直接问，我换例子重讲。</p>
+</div>
+
+</body>
+</html>
